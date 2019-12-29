@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/abc_ic_menu_overflow_material"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+
+            <item
+                android:id="@+id/bar_menu_modify_name"
+                android:title="@string/label_modify_name"
+                android:icon="@drawable/icon_menu_edit" />
+
+            <item
+                android:id="@+id/bar_menu_modify_summary"
+                android:title="@string/label_modify_summary"
+                android:icon="@drawable/icon_menu_edit" />
+
+            <item
+                android:id="@+id/bar_menu_modify_logo"
+                android:title="@string/label_modify_group_logo"
+                android:icon="@drawable/icon_menu_edit" />
+
+            <item
+                android:id="@+id/bar_menu_invite"
+                android:title="@string/label_group_invite"
+                android:icon="@drawable/icon_menu_invitation" />
+
+            <item
+                android:id="@+id/bar_menu_delete"
+                android:title="@string/common_delete"
+                android:icon="@drawable/icon_menu_delete" />
+
+
+        </menu>
+    </item>
+
+</menu>

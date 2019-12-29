@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/abc_ic_menu_overflow_material"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/menu_copy_url"
+                android:icon="@drawable/abc_ic_menu_copy_mtrl_am_alpha"
+                android:title="@string/label_copy_url" />
+            <item
+                android:id="@+id/menu_open_browser"
+                android:icon="@drawable/icon_menu_browser"
+                android:title="@string/label_open_browser" />
+            <item
+                android:id="@+id/menu_text_size"
+                android:icon="@drawable/icon_menu_font"
+                android:title="@string/label_changetext_size" />
+            <item
+                android:id="@+id/menu_share_moment"
+                android:icon="@drawable/icon_menu_moment"
+                android:title="@string/label_share_moment" />
+            <item
+                android:id="@+id/menu_share_friend"
+                android:icon="@drawable/abc_ic_menu_share_mtrl_alpha"
+                android:title="@string/label_share_friend" />
+        </menu>
+    </item>
+</menu>

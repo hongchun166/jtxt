@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/list_border" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="0px"
+        android:left="0px"
+        android:right="0px"
+        android:top="1px">
+        <shape>
+            <solid android:color="@color/list_bg_pressed" />
+        </shape>
+    </item>
+</layer-list>
+ 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/haf_theme_green" />
+    <size
+        android:width="80dip"
+        android:height="80dip" />
+    <corners android:radius="5dip" />
+
+</shape>

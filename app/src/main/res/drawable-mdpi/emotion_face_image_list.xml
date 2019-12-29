@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/f_static_hehe"
+        android:maxLevel="1" />
+    <item
+        android:drawable="@drawable/f_static_aini"
+        android:maxLevel="2" />
+    <item
+        android:drawable="@drawable/f_static_baibai"
+        android:maxLevel="3" />
+    <item
+        android:drawable="@drawable/f_static_beishang"
+        android:maxLevel="4" />
+    <item
+        android:drawable="@drawable/f_static_bishi"
+        android:maxLevel="5" />
+    <item
+        android:drawable="@drawable/f_static_bizui"
+        android:maxLevel="6" />
+    <item
+        android:drawable="@drawable/f_static_chanzui"
+        android:maxLevel="7" />
+    <item
+        android:drawable="@drawable/f_static_chijing"
+        android:maxLevel="8" />
+    <item
+        android:drawable="@drawable/f_static_dalian"
+        android:maxLevel="9" />
+    <item
+        android:drawable="@drawable/f_static_ding"
+        android:maxLevel="10" />
+    <item
+        android:drawable="@drawable/f_static_ganmao"
+        android:maxLevel="11" />
+    <item
+        android:drawable="@drawable/f_static_guzhang"
+        android:maxLevel="12" />
+    <item
+        android:drawable="@drawable/f_static_haha"
+        android:maxLevel="13" />
+    <item
+        android:drawable="@drawable/f_static_haixiu"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_han"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_heiheihei"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_heixian"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_heng"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_huaixiao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_huaxin"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_jiyan"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_keai"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_kelian"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_ku"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_kun"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_lei"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_nu"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_qinqin"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_shayan"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_shengbing"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_shuai"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_kulou"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_shuijiao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_xixi"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_taikaixin"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_tian"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_touxiao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_wabishi"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_weiqu"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_wu"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_xiaoku"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_xingxingyan"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_xu"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_yinxian"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_yiwen"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_youhengheng"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_zuohengheng"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_yun"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_yunbei"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_zhuakuang"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_feizao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_doge"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_erha"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_miao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_shenshou"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_tuzi"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_xiongmao"
+        android:maxLevel="14" />
+    <item
+        android:drawable="@drawable/f_static_zhutou"
+        android:maxLevel="14" />
+</level-list>

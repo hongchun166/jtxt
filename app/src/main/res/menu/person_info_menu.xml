@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:icon="@drawable/abc_ic_menu_overflow_material"
+        android:title=""
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/delete_friend"
+                android:icon="@mipmap/del_red"
+                android:title="@string/delete_friend"/>
+
+            <item
+                android:id="@+id/report"
+                android:icon="@mipmap/report"
+                android:title="@string/report"/>
+
+            <item
+                android:id="@+id/share_card"
+                android:icon="@mipmap/fenxiang"
+                android:title="@string/share_card"/>
+
+        </menu>
+    </item>
+</menu>

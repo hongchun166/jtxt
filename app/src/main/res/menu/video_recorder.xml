@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+    android:id="@+id/menu_screen"
+    android:icon="@drawable/icon_screen_rotation"
+    app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_light"
+        android:icon="@drawable/icon_menu_light"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:icon="@drawable/icon_camera_toggle"
+        android:id="@+id/menu_toggle"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/abc_ic_menu_overflow_material"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/bar_menu_unsubscribe"
+                android:icon="@drawable/abc_ic_clear_material"
+                android:title="@string/label_unsubscribe" />
+        </menu>
+    </item>
+</menu>

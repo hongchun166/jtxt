@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/label_album_bucket"
+        android:id="@+id/menu_bucket"
+        android:icon="@drawable/icon_menu_list"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_button"
+        app:showAsAction="ifRoom"
+        app:actionLayout="@layout/menu_single_button"
+        android:title="" />
+
+</menu>

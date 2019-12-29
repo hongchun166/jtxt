@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/common_camera_recorder"
+        android:id="@+id/menu_camera"
+        android:orderInCategory="80"
+        android:icon="@drawable/icon_menu_camera"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:title="@string/label_publish"
+        android:id="@+id/menu_publish"
+        android:orderInCategory="80"
+        android:icon="@drawable/ofm_remarks_icon"
+        app:showAsAction="ifRoom"/>
+</menu>
