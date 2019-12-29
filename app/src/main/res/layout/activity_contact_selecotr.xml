@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingTop="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+         />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:background="#DEFFFFFF"
+        android:gravity="center_horizontal"
+        android:paddingTop="100dp"
+        android:scrollbars="none"
+        android:text="@string/common_noresult"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="#f0FFFFFF"
+        android:paddingBottom="10dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/selectedListView"
+            android:layout_width="wrap_content"
+            android:layout_height="45dip"
+            android:layout_centerVertical="true"
+            android:clipToPadding="false"
+            android:layout_marginEnd="150dp"
+            android:paddingStart="10dp"
+            android:scrollbars="none"/>
+        <EditText
+            android:id="@+id/keyword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="-150dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/selectedListView"
+            android:background="@null"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/icon_search"
+            android:gravity="center_vertical"
+            android:hint="@string/common_search"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_below="@id/keyword"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="?attr/colorAccent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/searchView"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/vertical_shadow" />
+
+        <com.linkb.jstx.component.CharSelectorBar
+            android:id="@+id/sidrbar"
+            android:layout_width="20dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            android:background="@android:color/white" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/searchView"
+        android:background="@drawable/title_bar_shadow" />
+
+    <TextView
+        android:id="@+id/dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/sort_selected_bg"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:visibility="invisible" />
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+</RelativeLayout>

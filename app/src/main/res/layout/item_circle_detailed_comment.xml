@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="?android:listDivider"
+
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_comment_selector"
+        android:orientation="vertical"
+        android:padding="5dip">
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/circle_icon_small_side"
+            android:layout_height="@dimen/circle_icon_small_side"
+            android:padding="2dip"
+            android:background="@drawable/item_background_single"
+            app:srcCompat="@drawable/icon_def_head" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@id/icon"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff576b95"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/name"
+                    android:text="@string/common_comment"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/replyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/reply"
+                    android:textColor="#ff576b95"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/theme_night_text_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <com.linkb.jstx.component.EmoticonTextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dip"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="?android:listDivider"
+
+        />
+</LinearLayout>

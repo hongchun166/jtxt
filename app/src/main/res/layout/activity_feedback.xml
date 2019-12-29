@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@drawable/background_bottom_line"
+        android:hint="@string/tip_feedback"
+        android:maxLength="200"
+        android:padding="10dp"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:textColor="@color/theme_text_color"
+        android:textSize="14sp" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+
+</merge>

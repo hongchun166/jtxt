@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.EmoticonPanelView xmlns:android="http://schemas.android.com/apk/res/android"
+                                          xmlns:app="http://schemas.android.com/apk/res-auto"
+                                          android:id="@+id/emoticonPanelView"
+                                          android:layout_width="match_parent"
+                                          android:orientation="vertical"
+                                          android:layout_height="match_parent"
+   >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/emoticonViewPager"
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:paddingBottom="32dp"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tagPanelView"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icon_pager_tag" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            app:srcCompat="@drawable/icon_pager_tag" />
+    </LinearLayout>
+
+</com.linkb.jstx.component.EmoticonPanelView>

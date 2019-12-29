@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_contact"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:textColor="@color/theme_text_color"
+        android:textStyle="bold"
+        android:background="@color/theme_window_color"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/simple_list_background"
+        android:padding="6dp">
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/icon"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@id/icon"
+            android:textColor="@color/theme_text_color"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.MicroServerInputPanelView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                  android:layout_width="match_parent"
+                                                  android:layout_height="wrap_content"
+                                                  android:layout_alignParentBottom="true"
+                                                  android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="0.3"
+        android:background="@drawable/title_bar_top_shadow" />
+
+
+    <LinearLayout
+        android:id="@+id/keyboardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dip">
+
+            <ImageButton
+                android:id="@+id/menuSwitchButton"
+                android:layout_width="64dp"
+                android:padding="8dp"
+                android:layout_height="50dp"
+                android:scaleType="centerInside"
+                android:layout_centerVertical="true"
+                android:background="?selectableItemBackground"
+                app:srcCompat="@drawable/icon_microserver_menu" />
+            <View
+                android:layout_width="1px"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@id/menuSwitchButton"
+                android:background="@color/list_border"
+             />
+
+            <Button
+                android:id="@+id/sendMessageButton"
+                android:layout_width="45dip"
+                android:layout_height="32dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/chat_send_button"
+                android:text="@string/common_send"
+                android:textColor="@android:color/white"
+                android:textSize="12.0sp" />
+
+            <LinearLayout
+                android:id="@+id/centerInputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_toLeftOf="@id/sendMessageButton"
+                android:layout_toRightOf="@id/menuSwitchButton"
+                android:background="@drawable/input_bottom_line_hover"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/messageEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:minHeight="35dip"
+                    android:paddingBottom="5dip"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/chat_emotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginRight="5dip"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/icon_face_drawable" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+        <cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout
+            android:id="@+id/rootPanel"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="@dimen/min_panel_height"
+            android:background="@android:color/white"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:listDivider" />
+
+            <include
+                android:id="@+id/emoticonPanelView"
+                layout="@layout/layout_emotion_panel" />
+        </cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/white"
+        android:minHeight="50dip"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/keyboardSwitchButton"
+            android:layout_width="64dp"
+            android:padding="8dp"
+            android:layout_height="50dp"
+            android:scaleType="centerInside"
+            android:background="?selectableItemBackground"
+            app:srcCompat="@drawable/icon_microserver_keyboard" />
+        <View
+            android:layout_width="1px"
+            android:background="@color/list_border"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:id="@+id/menuBarView"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+</com.linkb.jstx.component.MicroServerInputPanelView>

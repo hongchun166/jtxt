@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/layout_global_toolbar"
+        android:id="@+id/toolbar" />
+
+
+    <EditText
+        android:id="@+id/token"
+        android:layout_width="match_parent"
+        android:gravity="top|left"
+        android:layout_height="100dip"
+        android:padding="6dip"
+        android:maxLength="100"
+        android:layout_margin="10dip"
+        android:textSize="14sp"
+        android:background="@drawable/edittext_full_bg_selector"
+        android:hint="@string/tip_verify_info" />
+
+</LinearLayout>

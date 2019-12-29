@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+   <include
+       layout="@layout/layout_common_modify_toolbar"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_background_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_oldpassword"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/oldPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:inputType="textPassword"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:maxLength="16"
+            android:background="@drawable/edittext_full_bg_selector"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_background_bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_newpassword"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/newPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@android:color/black"
+            android:background="@drawable/edittext_full_bg_selector" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/modify_apply_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_setting_modify_apply_password"
+        android:textColor="@color/tex_color_blue_1068ed"
+        android:textSize="@dimen/text_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        />
+</LinearLayout>

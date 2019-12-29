@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <fragment
+            android:id="@+id/conversationFragment"
+            android:name="com.linkb.jstx.activity.chat.ConversationFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/contactFragment"
+            android:name="com.linkb.jstx.activity.contact.ContactsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/trendCenterFragment"
+            android:name="com.linkb.jstx.activity.trend.TrendCenterFragmentV2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/settingCenterFragment"
+            android:name="com.linkb.jstx.activity.setting.UserCenterFragmentV2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_tab_widget_height"
+        android:layout_gravity="bottom"
+        android:background="@color/obscure_white"
+        android:divider="@android:color/transparent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/home_tab_widget_height"
+        android:alpha="0.5"
+        android:background="@drawable/title_bar_top_shadow" />
+
+    <!--<include layout="@layout/layout_global_toolbar" />-->
+
+</TabHost>

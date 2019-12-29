@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:scrollbars="none" />
+
+    <LinearLayout
+        android:id="@+id/loadingView"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+       >
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_function_microapp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:gravity="center_horizontal"
+            android:textSize="14sp"
+            android:textColor="@android:color/black" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/app_loading_animation"
+            android:layout_width="60dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+    <include
+        layout="@layout/layout_global_toolbar" />
+
+
+</FrameLayout>
+

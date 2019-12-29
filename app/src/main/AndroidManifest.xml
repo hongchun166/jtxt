@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.linkb">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:persistent="true"
+        android:allowBackup="false"
+        android:theme="@style/Lvxin.Base.Theme"
+        android:name="com.linkb.jstx.app.LvxinApplication"
+        android:hardwareAccelerated="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="wDKVeT50X5FbyUYT1OojUN4EfSTFopnr" />
+
+        <activity android:name="com.linkb.jstx.activity.SplashActivity"
+            android:theme="@style/AppTheme.StatusTranslate"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:theme="@style/AppTheme.StatusTranslate"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name="com.linkb.jstx.activity.HomeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.LoginAndRegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.LoginActivityV2"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.RegisterActivityV2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.ForceOfflineAlertActivity"
+            android:theme="@style/CommonDialogStyle"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.AppNewVersionActivity"
+            android:theme="@style/CommonDialogStyle"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.setting.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ProfileEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.setting.ModifyApplyPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.MessageSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyMottoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyRemarkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ServerSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ThemeSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.TimelineMomentActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MomentPublishActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MomentMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MomentDetailedActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MineMomentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.trend.FriendMomentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MapAddressActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MicroAppActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.farsunset.lvxin.microapp"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.MicroAppListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.HotGroupListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.trend.InformationListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.chat.MicroServerWindowActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.FriendChatActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.GroupChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.SystemMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.FileChoiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.FileViewerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.MapLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.MapViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.chat.MMWebViewActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="com.linkb.jstx.activity.contact.ContactSelectorActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.contact.GroupMemberSelectorActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.contact.MessageForwardActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.OrganizationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.JoinGroupRequestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.RequestHandleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.CreateGroupActivity"
+            android:theme="@style/CommonDialogStyle"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.ModifyGroupActivity"
+            android:theme="@style/CommonDialogStyle"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.GroupDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.UserDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.contact.PersonInfoActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.GroupMemberListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.InviteGroupMemberActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.GroupListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.MicroServerDetailedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.MicroServerListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.MomentRuleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.LookMicroServerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.contact.TagListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.contact.TagDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".jstx.activity.wallet.WalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.ExChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.BillActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.contact.SearchFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.contact.SearchGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.ChargeCoinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.WithdrawCoinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.WithdrawCoinConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.BillDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.SelectBillTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.RedPacketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.TimeSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.RedPacketReceivedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.MoreCurrencyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.RedPacketRecordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".jstx.activity.wallet.WithDrawFinishActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".jstx.activity.wallet.FinancialActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.PhoneContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupQrCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupQrCodeActivityV2"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.QrcodeScanActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.FindPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupManagerSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.DeleteGroupManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupSummaryEditActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupInfoEditActivity"
+        android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.GroupMemberAtSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.trend.InformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".video.RoomActivity"
+            android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".video.GroupVideoMemberSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.trend.NearlyPeopleActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.trend.GameListActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.trend.GameDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.wallet.CoinSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".jstx.activity.contact.SendCardsSelectContactActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".jstx.activity.contact.ApplyFriendActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".jstx.activity.wallet.CoinTransferActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.wallet.CoinTransferReceivedDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.linkb.jstx.activity.contact.MessageSharedActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:label="@string/label_share_to_contact"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.linkb.jstx.activity.util.PhotoAlbumActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.linkb.jstx.activity.util.PhotoVewActivity" android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name="com.linkb.jstx.activity.util.PhotoGalleryActivity" android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name="com.linkb.jstx.activity.util.VideoRecorderActivity" android:screenOrientation="portrait"/>
+        <activity android:name="com.linkb.jstx.activity.util.VideoPlayerActivity" android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name="com.linkb.jstx.activity.util.PhotoPrevewActivity" android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+        <receiver android:name="com.linkb.jstx.receiver.CycleLocationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".jstx.service.VideoWindowService"
+            android:exported="false" />
+        <service
+            android:name="com.linkb.jstx.service.MessageNotifyService"
+            android:exported="false" />
+        <service
+            android:name="com.linkb.jstx.service.ApkDownloaderService"
+            android:exported="false" />
+        <service
+            android:name="com.linkb.jstx.service.UploadCrashLogService"
+            android:exported="false" />
+
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <provider
+            android:name=".jstx.provider.LinkBProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+        <!-- ****************************************CIM推送配置 begin*************************************** -->
+        <service
+            android:name="com.farsunset.cim.sdk.android.CIMPushService"
+            android:process=":cimpush" />
+
+        <provider
+            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"
+            android:authorities="com.farsunset.cim.provider"
+            android:exported="true" />
+        <!-- ****************************************CIM推送配置 end*************************************** -->
+
+
+        <!--消息接受广播注册-->
+        <receiver android:name="com.linkb.jstx.receiver.CIMPushMessageReceiver" android:exported="true">
+            <intent-filter android:priority="0x7fffffff">
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  <!-- 网络变化广播 -->
+                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" /><!-- 消息广播action -->
+                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> <!-- 发送sendbody失败广播-->
+                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> <!-- 发送sendbody成功广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> <!--重新连接 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> <!-- 链接意外关闭广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> <!-- 链接失败广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> <!-- 链接成功广播-->
+                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> <!-- 发送sendbody成功后获得replaybody回应广播 -->
+
+                <!-- 【可选】 一些常用的系统广播，增强pushservice的复活机会-->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.linkb.jstx.service.LvxinAccountService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!--保活机制-->
+        <activity android:name=".alive.SinglePixelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/SingleActivityStyle"/>
+
+        <service
+            android:name=".alive.service.AliveJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+    </application>
+</manifest>

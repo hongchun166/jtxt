@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ListView的头部 -->
+
+<com.linkb.jstx.component.TimelineMomentHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 android:background="@color/theme_window_color"
+                                                 android:layout_height="wrap_content"
+                                                 android:orientation="vertical">
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/circle_banner_normal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/banner_bottom_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-52dip"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/iconCardView"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="0dp"
+            app:contentPadding="2dp"
+            app:cardElevation="5dp">
+
+            <com.linkb.jstx.component.WebImageView
+                android:id="@+id/icon"
+                android:layout_width="72dip"
+                android:layout_height="72dip" />
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:id="@+id/sns_message_remind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/black_panel_bg"
+            android:gravity="left|center"
+            android:visibility="gone"
+            android:padding="5.0dip">
+
+            <com.linkb.jstx.component.WebImageView
+                android:id="@+id/sns_notify_firstimg"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_marginLeft="3.0dip" />
+
+            <com.linkb.jstx.component.WebImageView
+                android:id="@+id/sns_notify_secondimg"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_marginLeft="3.0dip" />
+
+            <com.linkb.jstx.component.WebImageView
+                android:id="@+id/sns_notify_lastimg"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_marginLeft="3.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.linkb.jstx.component.TimelineMomentHeaderView>

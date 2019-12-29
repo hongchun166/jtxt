@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.MicroServerFromLinkView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linkPanelView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="8dip"
+        android:padding="10dip"
+        android:background="@drawable/item_background_single"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:orientation="vertical"
+            android:textSize="16sp" />
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="150dip"
+            android:layout_marginTop="15dip"
+            android:scaleType="centerCrop"
+            app:srcCompat="@color/theme_window_color" />
+
+        <TextView
+            android:id="@+id/descrpiton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:orientation="vertical"
+            android:maxLines="6"
+            android:lineSpacingExtra="5dip"
+            android:ellipsize="end"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dip"
+            android:orientation="vertical"
+            android:textColor="@android:color/black"
+            android:text="@string/label_read_all_text"
+            android:textSize="14sp" />
+    </LinearLayout>
+</com.linkb.jstx.component.MicroServerFromLinkView>

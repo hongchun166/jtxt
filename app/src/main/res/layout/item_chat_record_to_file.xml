@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.ToMessageFileView xmlns:android="http://schemas.android.com/apk/res/android"
+                                          xmlns:app="http://schemas.android.com/apk/res-auto"
+                                          android:id="@+id/to_message_view"
+                                          android:layout_width="match_parent"
+                                          android:layout_height="wrap_content"
+                                          android:orientation="vertical"
+   >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_marginRight="5dp"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+
+    <com.linkb.jstx.component.ChatFileView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="80dp"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/logo"
+        android:background="@drawable/chating_background_to_white"
+        android:clickable="true"
+      >
+      <include layout="@layout/layout_chat_to_file_view" />
+    </com.linkb.jstx.component.ChatFileView>
+
+    <com.linkb.jstx.component.CircleProgressView
+        android:id="@+id/circleProgressView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/container"
+        android:layout_marginRight="-70dp"
+        android:layout_gravity="center" />
+
+    <include layout="@layout/layout_message_statusbox" />
+
+</com.linkb.jstx.component.ToMessageFileView>

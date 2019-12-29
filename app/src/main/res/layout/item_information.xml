@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <com.linkb.jstx.component.TimeLineMarker
+        android:id="@+id/timeLineMarker"
+        android:layout_width="12dp"
+        android:layout_height="0dp"
+        android:paddingTop="10dp"
+        app:beginLine="@color/divider_color_gray_ebebeb"
+        app:endLine="@color/divider_color_gray_ebebeb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineSize="1dp"
+        app:marker="@drawable/image_blue_circlr"
+        app:markerSize="12dp" />
+
+    <TextView
+        android:id="@+id/time_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="01-12 13:18"
+        android:textColor="@color/tex_color_gray_191919"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/timeLineMarker"
+        app:layout_constraintTop_toTopOf="@+id/timeLineMarker" />
+
+    <TextView
+        android:id="@+id/title_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="WBF和PsEx数字货币交易所签约的仪式在WBF大厦成功举行"
+        android:textColor="@color/tex_color_gray_191919"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/time_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/time_text_view"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"/>
+
+    <org.sufficientlysecure.htmltextview.HtmlTextView
+        android:id="@+id/content_collapse_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="新加坡时间2018年11月28日，WBF和PsEx数字货币交易所签约仪式在WBF大厦成功举行。"
+        android:maxLength="140"
+        android:ellipsize="end"
+        android:textColor="@color/tex_color_gray_232323"
+        android:textSize="12sp"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        app:layout_constraintStart_toStartOf="@+id/time_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/title_textView"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"/>
+
+    <org.sufficientlysecure.htmltextview.HtmlTextView
+        android:id="@+id/content_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="新加坡时间2018年11月28日，WBF和PsEx数字货币交易所签约仪式在WBF大厦成功举行。"
+        android:textColor="@color/tex_color_gray_232323"
+        android:textSize="12sp"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/time_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/title_textView"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"/>
+
+    <TextView
+        android:id="@+id/share_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@mipmap/share"
+        android:drawablePadding="5dp"
+        android:text="@string/share"
+        android:textColor="@color/tex_color_gray_7B7B7B"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline2" />
+
+    <TextView
+        android:id="@+id/comment_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:drawableStart="@mipmap/comment"
+        android:drawablePadding="5dp"
+        android:text="@string/comment"
+        android:textColor="@color/tex_color_gray_7B7B7B"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/share_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/content_textView" />
+
+    <TextView
+        android:id="@+id/favorite_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:drawableStart="@mipmap/collect"
+        android:drawablePadding="5dp"
+        android:text="@string/favorite"
+        android:textColor="@color/tex_color_gray_7B7B7B"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/comment_text_view"
+        app:layout_constraintTop_toTopOf="@+id/content_textView" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:background="@color/divider_color_gray_ebebeb"
+        app:layout_constraintEnd_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/time_text_view"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>

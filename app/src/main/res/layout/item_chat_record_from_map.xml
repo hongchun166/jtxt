@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.FromMessageMapView xmlns:android="http://schemas.android.com/apk/res/android"
+                                           xmlns:app="http://schemas.android.com/apk/res-auto"
+                                           android:id="@+id/from_message_view"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:orientation="vertical"
+  >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_marginLeft="5dp"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="1dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <ViewStub
+        android:id="@+id/fromNameStub"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout="@layout/item_chat_from_name" />
+
+    <com.linkb.jstx.component.ChatMapView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromName"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="80dp"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="2dp"
+        app:cardCornerRadius="1dp"
+        app:cardMaxElevation="2dp"
+        app:cardElevation="1dp"
+        app:contentPadding="1dp"
+        android:foreground="?android:selectableItemBackground"
+
+        >
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/chat_mapview_width"
+            android:layout_height="@dimen/chat_mapview_height"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/def_chat_progress_background" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="@dimen/chat_mapview_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="5dp"
+            android:background="@android:color/white"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <ProgressBar
+            android:id="@+id/loadImagePprogressbar"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </com.linkb.jstx.component.ChatMapView>
+
+</com.linkb.jstx.component.FromMessageMapView>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/layout_common_modify_toolbar"
+        android:id="@+id/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/iconSwicth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1.0px"
+        android:background="@drawable/item_background_top"
+        android:gravity="center_vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/label_user_icon"
+            android:textColor="@color/theme_text_color" />
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/icon"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/icon_def_head" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_account"
+            android:textColor="@color/theme_text_color" />
+
+        <TextView
+            android:id="@+id/account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/theme_text_color" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/modify_name_rly"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_name"
+            android:textColor="@color/theme_text_color" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_name_btn"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/theme_text_color"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/modify_name_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/next_step"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/modify_gender_rly"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/theme_text_color"
+            android:text="@string/label_user_gender" />
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_gender_btn"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/theme_text_color" />
+
+        <ImageView
+            android:id="@+id/modify_gender_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/next_step"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/modify_phone_rly"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_telephone"
+            android:textColor="@color/theme_text_color" />
+
+        <TextView
+            android:id="@+id/telephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_phone_btn"
+            android:layout_marginRight="8dp"
+            android:text="138888888"
+            android:textColor="@color/theme_text_color" />
+
+        <ImageView
+            android:id="@+id/modify_phone_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/next_step"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/modify_email_rly"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_email"
+            android:textColor="@color/theme_text_color" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_email_btn"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/theme_text_color" />
+
+        <ImageView
+            android:id="@+id/modify_email_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/next_step"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_middle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_user_org"
+            android:textColor="@color/theme_text_color" />
+
+        <TextView
+            android:id="@+id/org"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/theme_text_color" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/modify_motto_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/item_background_bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/moto_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/label_user_motto"
+            android:textColor="@color/theme_text_color" />
+
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@mipmap/next_step" />
+
+        <TextView
+            android:id="@+id/motto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/arrow"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/theme_text_color" />
+
+    </RelativeLayout>
+
+</LinearLayout>

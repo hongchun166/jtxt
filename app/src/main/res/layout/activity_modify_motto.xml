@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/motto"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:gravity="top|left"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:inputType="textMultiLine"
+        android:background="@drawable/background_bottom_line"
+        android:textColor="@color/theme_text_color"
+        android:textSize="14sp"
+        android:maxLength="100"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dip" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+
+</merge>

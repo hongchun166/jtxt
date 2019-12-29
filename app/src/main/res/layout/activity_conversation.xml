@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_toolbar"
+        android:id="@+id/fragment_message_toolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/net_error_background"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fragment_message_toolbar">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/disconnect_icon"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_network_error"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/disconnect_icon"
+            android:layout_centerVertical="true"
+            android:textColor="@color/theme_text_color"
+            android:text="@string/tip_cim_conn_failed"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:background="?android:listDivider"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/fragment_message_toolbar"
+        android:id="@+id/conversationList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/home_tab_widget_height"
+        android:scrollbars="none" />
+
+    <ImageView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        app:srcCompat="@drawable/contact_user_null_bg" />
+
+    <View
+        android:id="@+id/mask_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/half_transparent"
+        android:layout_below="@+id/fragment_message_toolbar"
+        android:visibility="gone"/>
+</RelativeLayout>

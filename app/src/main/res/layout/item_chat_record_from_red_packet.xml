@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.FromMessageRedPacketView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/to_message_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="5dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <ViewStub
+        android:id="@+id/fromNameStub"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout="@layout/item_chat_from_name" />
+
+    <com.linkb.jstx.component.ChatRedPacketView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="80dp"
+        android:layout_toRightOf="@id/logo"
+        app:cardCornerRadius="8dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/red_packet_content_fly"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@color/background_yellow_FEA841"
+                >
+
+                <TextView
+                    android:id="@+id/remark_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/red_packet_tips"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_title"
+                    android:drawableStart="@mipmap/hongbao_for_chat"
+                    android:drawablePadding="10dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/BLink_red_packet"
+                    android:textColor="@color/tex_color_gray_999999"
+                    android:textSize="@dimen/text_tips"
+                    />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </com.linkb.jstx.component.ChatRedPacketView>
+
+    <include layout="@layout/layout_message_statusbox" />
+</com.linkb.jstx.component.FromMessageRedPacketView>

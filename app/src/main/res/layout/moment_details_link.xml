@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.DetailMomentLinkView xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:background="@drawable/simple_list_background"
+                                             android:orientation="vertical"
+                                             android:paddingLeft="10dip">
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dip"
+        android:padding="1dip"
+        app:srcCompat="@drawable/icon_def_head" />
+
+
+    <TextView
+        android:id="@id/name"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginTop="8dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="@android:color/black"
+        android:shadowDy="0.25"
+        android:textSize="16sp"
+        android:shadowRadius="0.25"
+        android:textColor="@color/moment_name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text"
+        android:textIsSelectable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/icon"
+        android:textColor="@android:color/black" />
+
+
+    <LinearLayout
+        android:id="@+id/linkPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dip"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/circle_comment_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dip">
+
+        <ImageView
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:scaleType="centerCrop"
+            android:background="#e5e5e5"
+            android:padding="10dp"
+            app:srcCompat="@drawable/icon_link" />
+
+        <TextView
+            android:id="@+id/linkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:textColor="@color/text_chat_color" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linkPanel"
+        android:textColor="#808080"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginTop="-10dp"
+        android:padding="10dp"
+        android:textSize="12sp" />
+
+    <ImageButton
+        android:id="@+id/commentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/linkPanel"
+        android:layout_marginTop="-10dp"
+        android:background="@null"
+        android:padding="10dp"
+        app:srcCompat="@drawable/circle_comment_button" />
+
+    <include layout="@layout/moment_praise_gridview" />
+</com.linkb.jstx.component.DetailMomentLinkView>

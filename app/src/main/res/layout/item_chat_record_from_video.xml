@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.FromMessageVideoView xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:id="@+id/from_message_view"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:orientation="vertical"
+    >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="5dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <ViewStub
+        android:id="@+id/fromNameStub"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout="@layout/item_chat_from_name" />
+
+    <com.linkb.jstx.component.ChatVideoView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromName"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="80dp"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="2dp"
+        app:cardCornerRadius="1dp"
+        app:cardMaxElevation="2dp"
+        app:cardElevation="1dp"
+        app:contentPadding="1dp"
+        android:foreground="?android:selectableItemBackground"
+        android:clickable="true">
+
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/chat_video_width"
+            android:layout_height="@dimen/chat_video_height"
+            app:srcCompat="@drawable/def_chat_video_background" />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/icon_video_play_normal" />
+
+        <TextView
+            android:id="@+id/extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="8sp" />
+    </com.linkb.jstx.component.ChatVideoView>
+
+</com.linkb.jstx.component.FromMessageVideoView>

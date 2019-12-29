@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/bannerlView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/user_detailed_banner" />
+
+        <com.linkb.jstx.component.WebImageView
+            android:id="@+id/icon"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_box_bg"
+            android:padding="2.0dip"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dip"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="0.0"
+            android:shadowDy="1.0"
+            android:shadowRadius="1.0"
+            android:textColor="@android:color/white"
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/bannerlView"
+        android:background="@drawable/background_bottom_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bannerlView"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/item_background_single"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/messsage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:minHeight="50dip"
+            android:padding="5dip"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/list_border" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:minHeight="50dip"
+            android:padding="5dip"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/simple_list_background"
+        android:orientation="horizontal"
+        android:paddingTop="1px">
+
+        <TextView
+            android:id="@+id/agreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/common_agree"
+            android:textColor="@color/green_btn_color_normal" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="50dip"
+            android:background="@color/list_border" />
+
+        <TextView
+            android:id="@+id/refuseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/common_refuse"
+            android:textColor="@color/theme_red" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="50dip"
+            android:background="@color/list_border" />
+
+        <TextView
+            android:id="@+id/ignoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/common_ignore"
+            android:textColor="@color/text_grey" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+</RelativeLayout>

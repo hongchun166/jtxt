@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackgroundBorderless">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="27dip"
+        android:layout_height="27dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dip"
+        android:tag="TAB_ICON" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/icon"
+        android:layout_centerHorizontal="true"
+        android:tag="TAB_NAME"
+        android:textSize="12sp" />
+
+
+    <View
+        android:id="@+id/reddot"
+        android:layout_width="12dip"
+        android:layout_height="12dip"
+        android:layout_marginLeft="-10dip"
+        android:layout_marginTop="4dip"
+        android:layout_toRightOf="@id/icon"
+        android:background="@drawable/dot_nor_red"
+        android:visibility="gone"
+        />
+
+
+    <TextView
+        android:id="@+id/badge"
+        style="@style/badgeTextViewStyle"
+        android:layout_width="18dip"
+        android:layout_height="18dip"
+        android:layout_marginLeft="-12dip"
+        android:layout_marginTop="4dip"
+        android:layout_toRightOf="@id/icon"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.ChattingInputPanelView xmlns:android="http://schemas.android.com/apk/res/android"
+                                               xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:layout_alignParentBottom="true"
+                                               android:gravity="center_vertical"
+                                               android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="0.3"
+        android:background="@drawable/title_bar_top_shadow" />
+
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:minHeight="50dp">
+
+        <ImageButton
+            android:id="@+id/leftSwitchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/icon_chat_left_button"
+          />
+
+
+        <Button
+            android:id="@+id/sendMessageButton"
+            android:layout_width="45dip"
+            android:layout_height="32dip"
+            android:layout_marginTop="11dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/chat_send_button"
+            android:text="@string/common_send"
+            android:textColor="@android:color/white"
+            android:textSize="12.0sp"
+            android:visibility="invisible" />
+
+
+        <ImageButton
+            android:id="@+id/chating_select_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/icon_chat_more"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/centerInputBox"
+            android:layout_toLeftOf="@id/sendMessageButton"
+            android:layout_toRightOf="@id/leftSwitchButton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal"
+            android:background="@drawable/input_bottom_line_hover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/messageEditText"
+                android:layout_width="0dp"
+                android:inputType="textMultiLine"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:layout_weight="9"
+                android:background="@null"
+                android:gravity="bottom|left"
+                android:minHeight="36dp"
+                android:paddingBottom="5dp"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/chat_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="5dip"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="bottom"
+                app:srcCompat="@drawable/icon_face_drawable" />
+        </LinearLayout>
+
+
+        <com.linkb.jstx.component.RecordingButton
+            android:id="@+id/voiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/label_chat_soundrecord_normal"
+            android:textColor="#717171"
+            android:background="@drawable/record_button_selector"
+            android:layout_toLeftOf="@id/chating_select_more"
+            android:layout_toRightOf="@id/leftSwitchButton"
+            android:gravity="center"
+            android:visibility="gone">
+        </com.linkb.jstx.component.RecordingButton>
+    </RelativeLayout>
+
+    <cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout
+        android:id="@+id/rootPanel"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <View
+            android:background="?android:listDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
+
+        <include layout="@layout/layout_emotion_panel" />
+
+        <LinearLayout
+            android:id="@+id/toolPanelView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/toolViewPager"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                />
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_indicator1"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/common_navigator_height"
+                android:layout_marginBottom="16dp"
+                />
+        </LinearLayout>
+
+
+    </cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout>
+
+
+</com.linkb.jstx.component.ChattingInputPanelView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:visibility="gone"
+    android:background="@drawable/net_error_background"
+    android:layout_height="50dp">
+     <android.support.v7.widget.AppCompatImageView
+         android:id="@+id/disconnect_icon"
+         android:layout_width="wrap_content"
+         android:layout_centerVertical="true"
+         android:layout_marginLeft="16dp"
+         android:src="@drawable/ic_network_error"
+         android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/disconnect_icon"
+        android:layout_centerVertical="true"
+        android:textColor="@color/theme_text_color"
+        android:text="@string/tip_cim_conn_failed"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:background="?android:listDivider"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+</RelativeLayout>

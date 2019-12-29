@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/orgBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            app:srcCompat="@drawable/icon_org" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:text="@string/label_contacts_org"
+            android:textColor="@color/theme_text_color" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/list_border" />
+
+    <LinearLayout
+        android:id="@+id/groupBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            app:srcCompat="@drawable/icon_contacts_group" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:text="@string/label_contacts_group_chat"
+            android:textColor="@color/theme_text_color" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/list_border" />
+
+    <LinearLayout
+        android:id="@+id/accountBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            app:srcCompat="@drawable/icon_microserver" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:text="@string/label_contacts_public"
+            android:textColor="@color/theme_text_color" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/list_border" />
+
+    <LinearLayout
+        android:id="@+id/tagBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            app:srcCompat="@drawable/icon_colour_tag" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dip"
+            android:text="@string/label_contacts_tag"
+            android:textColor="@color/theme_text_color" />
+
+    </LinearLayout>
+</LinearLayout>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.linkb.jstx.component.ProgressbarPhotoView xmlns:android="http://schemas.android.com/apk/res/android"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <com.linkb.jstx.component.WebPhotoView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="48dip"
+        android:layout_height="48dip"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/progressbar_bg"
+        android:layout_centerVertical="true"
+        style="@android:style/Widget.Holo.Light.ProgressBar" />
+
+</com.linkb.jstx.component.ProgressbarPhotoView>

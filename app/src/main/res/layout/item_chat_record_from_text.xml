@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.FromMessageTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:id="@+id/from_message_view"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+ >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_marginLeft="5dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <ViewStub
+        android:id="@+id/fromNameStub"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout="@layout/item_chat_from_name" />
+
+    <com.linkb.jstx.component.EmoticonTextView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromName"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@id/logo"
+        android:autoLink="web|phone|email"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="3dp"
+        android:background="@drawable/chating_background_from"
+        android:textColor="@color/text_chat_from_color"
+        android:textColorLink="@color/text_chat_from_color"
+        android:textSize="@dimen/chating_text_size" />
+
+</com.linkb.jstx.component.FromMessageTextView>

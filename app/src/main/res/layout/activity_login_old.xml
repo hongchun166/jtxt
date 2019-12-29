@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <com.linkb.jstx.component.LoginBallsView
+                android:id="@+id/balls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.linkb.jstx.component.WebImageView
+                android:id="@+id/icon"
+                android:layout_width="96dip"
+                android:layout_height="96dip"
+                app:srcCompat="@drawable/icon_def_head"
+                android:layout_centerInParent="true"
+                android:background="@drawable/profile_top_card_pic_border"
+                android:padding="5dip"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/account"
+            android:layout_below="@id/header"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_login_account_wrap"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:drawablePadding="5dp"
+            android:hint="@string/common_account"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_full_bg_selector"
+            android:digits="._@0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" />
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_below="@id/account"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/password"
+            android:hint="@string/label_login_password"
+            android:layout_width="match_parent"
+            android:drawableLeft="@drawable/icon_login_password_wrap"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_full_bg_selector"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:layout_below="@id/password"
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:elevation="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_button_green"
+            android:textColor="@color/green_button_text_selector"
+            android:enabled="false"
+            android:text="@string/label_login" />
+
+        <TextView
+            android:layout_below="@id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dip"
+            android:gravity="center"
+            android:text="登录帐号可在后台用户管理查看，默认密码000000"
+            android:textColor="@color/text_grey" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/label_config"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:contentPadding="10dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="3dp"
+            >
+            <TextView
+                android:drawableLeft="@drawable/icon_cloud_host_warp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_setting_server"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textSize="12sp" />
+        </android.support.v7.widget.CardView>
+
+    </cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout>

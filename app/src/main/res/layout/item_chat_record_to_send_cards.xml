@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.ToMessagePersonCardsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/to_message_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="1dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <com.linkb.jstx.component.ChatPersonCardsView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/logo"
+        app:cardCornerRadius="8dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/person_cards_content_fly"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                >
+
+                <com.linkb.jstx.component.WebImageView
+                    android:id="@+id/person_card_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/lianxiren"/>
+
+                <TextView
+                    android:id="@+id/person_card_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/person_cards_name_default"
+                    android:textColor="@color/tex_color_gray_191919"
+                    android:textSize="@dimen/text_title"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/divider_color_gray_ebebeb"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/person_card"
+                    android:textColor="@color/tex_color_gray_999999"
+                    android:textSize="@dimen/text_tips"
+                    />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </com.linkb.jstx.component.ChatPersonCardsView>
+
+    <include layout="@layout/layout_message_statusbox" />
+</com.linkb.jstx.component.ToMessagePersonCardsView>

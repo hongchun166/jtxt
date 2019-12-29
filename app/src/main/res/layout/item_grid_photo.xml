@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.WebImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                     android:padding="5dp"
+                                     android:layout_width="@dimen/add_photo_min_side"
+                                     android:layout_height="@dimen/add_photo_min_side"
+                                     app:srcCompat="@color/theme_window_color" />

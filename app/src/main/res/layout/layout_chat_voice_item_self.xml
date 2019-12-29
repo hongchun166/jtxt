@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+
+    <TextView
+        android:id="@+id/lengthTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="2dip"
+        android:paddingTop="2dip"
+        android:textColor="@color/theme_night_text_color"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/waveformImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|center_vertical"
+        android:paddingTop="2dip"
+        app:srcCompat="@drawable/icon_voice_right_3" />
+
+    <ImageView
+        android:id="@+id/waveformAnim"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right|center_vertical"
+        android:paddingTop="2dip"
+        app:srcCompat="@drawable/chat_to_voice"
+        android:visibility="gone" />
+</merge>
+

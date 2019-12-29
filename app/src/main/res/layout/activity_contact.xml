@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray_f0f1f2">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <include
+        android:id="@+id/fragment_message_toolbar"
+        layout="@layout/layout_fragment_toolbar" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/contact_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_message_toolbar"
+        >
+
+    </net.lucode.hackware.magicindicator.MagicIndicator>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contact_view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/home_tab_widget_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_indicator"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </android.support.v4.view.ViewPager>
+
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView9"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:text="3位联系人"-->
+        <!--android:textSize="12sp"-->
+        <!--android:textColor="@color/tex_color_gray_A9A9A9"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/contact_recyclerView"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/contact_recyclerView" />-->
+
+
+</android.support.constraint.ConstraintLayout>

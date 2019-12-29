@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.linkb.jstx.component.CustomSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/inputPanel"
+        android:layout_marginBottom="-2dp"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <com.linkb.jstx.component.ChatRecordListView
+            android:id="@+id/chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.linkb.jstx.component.CustomSwipeRefreshLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/menu_progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dip"
+        android:background="@drawable/loading_progress_background"
+        android:padding="3dip"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/menu_progress"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Small"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:layout_toRightOf="@id/menu_progress"
+            android:paddingRight="10dip"
+            android:text="@string/label_geting"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+    <include
+        android:id="@+id/inputPanel"
+        layout="@layout/layout_microserver_inputpanel" />
+
+
+</cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout>

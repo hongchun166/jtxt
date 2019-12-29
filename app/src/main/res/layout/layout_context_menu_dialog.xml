@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="@drawable/menu_popup_bg"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/menu_qr_code_copy"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="@string/common_qrcode_read"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:paddingLeft="10dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_copy"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?android:selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="@string/common_copy"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:paddingLeft="10dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_forward"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/common_forward"
+        android:background="?android:selectableItemBackground"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:paddingLeft="10dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_revoke"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/common_revoke"
+        android:visibility="gone"
+        android:background="?android:selectableItemBackground"
+        android:textColor="@color/text_chat_color"
+        android:paddingLeft="10dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_delete"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/common_delete"
+        android:paddingLeft="10dp"
+        android:background="?android:selectableItemBackground"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/menu_chat_top"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/menu_chat_top"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:background="?android:selectableItemBackground"
+        android:textColor="@color/text_chat_color"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_cancel_top"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:background="?android:selectableItemBackground"
+        android:text="@string/menu_cancel_top"
+        android:paddingLeft="10dp"
+        android:textColor="@color/text_chat_color"
+        android:visibility="gone"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_mark_noread"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/menu_mark_noread"
+        android:background="?android:selectableItemBackground"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/menu_mark_read"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/menu_mark_read"
+        android:paddingLeft="10dp"
+        android:background="?android:selectableItemBackground"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/menu_delete_chat"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="@string/menu_delete_chat"
+        android:background="?android:selectableItemBackground"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:textColor="@color/text_chat_color"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

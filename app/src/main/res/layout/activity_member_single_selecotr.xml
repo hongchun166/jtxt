@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ >
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_height="wrap_content"
+         />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="?actionBarSize"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/vertical_shadow" />
+        <com.linkb.jstx.component.CharSelectorBar
+            android:id="@+id/sidrbar"
+            android:layout_width="20dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            android:background="@android:color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/sort_selected_bg"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_centerHorizontal="true"
+        android:background="#DEFFFFFF"
+        android:gravity="center_horizontal"
+        android:paddingTop="100dp"
+        android:scrollbars="none"
+        android:text="@string/common_noresult"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+
+
+</RelativeLayout>

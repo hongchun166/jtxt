@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_blue_2D76E3" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_selected="true" >
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_blue_2D76E3" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_activated="true" >
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_blue_2D76E3" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_active="true" >
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_blue_2D76E3" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_checked="true" >
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_blue_2D76E3" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/background_gray_C7CCD2" />
+                    <padding android:bottom="1dp"/>
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <solid android:color="@color/white" />
+                    <padding android:bottom="12dp" android:left="10dp" android:right="10dp" android:top="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

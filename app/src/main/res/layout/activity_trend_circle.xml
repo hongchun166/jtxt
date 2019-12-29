@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.linkb.jstx.component.CustomSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.linkb.jstx.component.LoadMoreRecyclerView
+            android:id="@+id/circleListView"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.linkb.jstx.component.CustomSwipeRefreshLayout>
+
+    <include
+        android:id="@+id/inputPanelView"
+        layout="@layout/layout_simple_inputpanel"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+</cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.ToMessageCoinTransferView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/to_message_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="1dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <com.linkb.jstx.component.ChatCoinTransferView
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/logo"
+        app:cardCornerRadius="8dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/background_transfer"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@color/background_yellow_FEA841"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:orientation="horizontal">
+
+                <com.linkb.jstx.component.WebImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/hongbao_for_chat"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/coin_transfer_amount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="@string/coin_transfer_to_amount"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_content"
+                        />
+
+                    <TextView
+                        android:id="@+id/remark_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text="@string/coin_transfer_to_friend"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_content"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/coin_transfer"
+                    android:textColor="@color/tex_color_gray_999999"
+                    android:textSize="@dimen/text_tips"
+                    />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </com.linkb.jstx.component.ChatCoinTransferView>
+
+    <include layout="@layout/layout_message_statusbox" />
+</com.linkb.jstx.component.ToMessageCoinTransferView>

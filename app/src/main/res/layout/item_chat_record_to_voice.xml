@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.ToMessageVoiceView xmlns:android="http://schemas.android.com/apk/res/android"
+                                           xmlns:app="http://schemas.android.com/apk/res-auto"
+                                           android:id="@+id/to_message_view"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:orientation="vertical"
+   >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+
+    <com.linkb.jstx.component.ChatVoiceView
+        android:id="@+id/container"
+        android:layout_width="@dimen/chat_voice_width"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/logo"
+        android:layout_marginLeft="80dp"
+        android:background="@drawable/chating_background_to"
+        android:clickable="true"
+        android:gravity="center_vertical|right" />
+
+    <include layout="@layout/layout_message_statusbox" />
+
+</com.linkb.jstx.component.ToMessageVoiceView>

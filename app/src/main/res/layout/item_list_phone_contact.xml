@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <FrameLayout
+        android:id="@+id/char_fly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="15dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/background_gray_f0f1f2"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/char_index_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="W"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/tex_color_gray_191919"
+
+            />
+    </FrameLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/contacts_avatar_width"
+        android:layout_height="@dimen/contacts_avatar_height"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/char_fly"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:siShape="@drawable/shape_rounded_rectangle"
+        app:siSquare="true"
+        app:srcCompat="@mipmap/lianxiren" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/theme_text_color"
+        android:text="Monica"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintStart_toStartOf="@+id/divider_view"
+        app:layout_constraintTop_toTopOf="@+id/icon" />
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginStart="20dp"
+        android:background="@color/divider_color_gray_ebebeb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/icon" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="60dp"
+        android:layout_height="24dp"
+        android:background="@drawable/button_background_small_blue_to_white"
+        android:text="@string/invite_contacts"
+        android:textColor="@drawable/text_color_white_to_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/icon" />
+
+</android.support.constraint.ConstraintLayout>
