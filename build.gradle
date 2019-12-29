@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        jcenter()
+        jcenter {
+            url 'http://jcenter.bintray.com'
+        }
+
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.15'
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        jcenter {
+            url 'http://jcenter.bintray.com'
+        }
+
+        maven { url "https://jitpack.io" }
+        flatDir {
+            dirs 'libs'
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+    }
+}
