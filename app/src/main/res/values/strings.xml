@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BLink</string>
-
+    <string name="accept">接受</string>
     <string name="manager">管理员</string>
     <string name="exit_app_tips">再按一次退出程序</string>
     <string name="dialog_loading">加载中...</string>
@@ -71,6 +71,7 @@
     <string name="search" >搜索</string>
     <string name="search_edit" >搜索 : </string>
     <string name="new_friend" >新朋友</string>
+    <string name="new_friend2" >新好友</string>
     <string name="create_chat_group" >创建群聊</string>
     <string name="search_account" >搜索账号</string>
     <string name="search_group" >搜索群组功能</string>
@@ -143,6 +144,8 @@
 
     <!--钱包模块-->
     <string name="wallet_title">BLink Wallet</string>
+    <string name="wallet_title2">Kiki Wallet</string>
+
     <string name="scan">扫一扫</string>
     <string name="charge_coin">充币</string>
     <string name="withdraw_coin">提币</string>
@@ -158,6 +161,7 @@
     <string name="transfer_remark">备注: 为了账户安全,请用户在其他钱包转账时备注ID</string>
     <string name="transfer_tips">提示: 转账时谨慎核对,一旦转入,不可撤回,转账时间视区块链确认时间而定,若有拥堵,请耐心等待。</string>
     <string name="total_assets">总资产折合(BTC)</string>
+    <string name="total_assets2">总资产</string>
     <string name="hide_coin_type">隐藏无余额币种</string>
     <string name="balance_available">可用</string>
     <string name="balance_lock">锁定</string>
@@ -848,7 +852,6 @@
     <string name="set_remark_for_friend_tips">请输入对方的昵称</string>
     <string name="already_commit_apply_friend">已经提交申请，等待对方确认</string>
     <string name="commit_apply_friend_failure">发送请求失败，请检查网络</string>
-
     <!--转账-->
     <string name="coin_transfer">转账</string>
     <string name="coin_transfer_type">转账币种</string>
@@ -914,6 +917,13 @@
     <string name="handle">操作</string>
     <string name="reset">重置</string>
     <string name="transaction_currency">交易币种</string>
+    <string name="mine_invitation">我的邀请</string>
+    <string name="invitation_reward">邀请奖励</string>
+    <string name="directly_invitation">直接邀请 (人)</string>
+    <string name="indirect_invitation">间接邀请 (人)</string>
+    <string name="reawrd__300kkc">1.成功注册奖励300KKC</string>
+    <string name="directly_reward_des">2.直接邀请好友赠送200KKC,间接邀请赠送100个KKC（直邀满18人后）</string>
+    <string name="invitation_reward_commission_des">3.邀请奖励每天0.05%逐步释放，自己和社群的线上活跃会加速释放。</string>
 
 
 </resources>

@@ -1,6 +1,7 @@
 package com.linkb.jstx.activity.contact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -87,7 +88,8 @@ public class GroupQrCodeActivityV2 extends BaseActivity {
     }
     @OnClick(R.id.viewInvitationInfo)
     public void gotoInvitationInfo(){
-
+        Intent intent=new Intent(this,MineInvitationActivityV2.class);
+        startActivity(intent);
     }
 
 

@@ -7,6 +7,7 @@
 
     <dimen name="sns_photos_spacing">5dp</dimen>
     <dimen name="toolbar_elevation">3dp</dimen>
+    <dimen name="dimen_30dp">30dp</dimen>
 
     <!--导航栏-->
     <dimen name="common_navigator_height">30dp</dimen>
@@ -48,5 +49,6 @@
     <dimen name="text_20sp">20sp</dimen>
     <dimen name="text_18sp">18sp</dimen>
     <dimen name="text_51sp">51sp</dimen>
+    <dimen name="text_49sp">49sp</dimen>
     <dimen name="popup_window_icon_size">25dp</dimen>
 </resources>

@@ -19,7 +19,7 @@ import android.widget.PopupWindow;
 import com.linkb.R;
 import com.linkb.jstx.activity.QrcodeScanActivity;
 import com.linkb.jstx.activity.base.CIMMonitorFragment;
-import com.linkb.jstx.activity.wallet.WalletActivity;
+import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.adapter.wallet.ContentPagerAdapter;
 import com.linkb.jstx.component.QuickOperationPopupWindow;
 import com.linkb.jstx.fragment.FriendListFragment;
@@ -205,7 +205,7 @@ public class ContactsFragment extends CIMMonitorFragment implements  View.OnClic
 
     @Override
     public void mineWallet() {
-        startActivity(new Intent(getActivity(), WalletActivity.class));
+        startActivity(new Intent(getActivity(), WalletActivityV2.class));
     }
 
     @Override

@@ -25,7 +25,7 @@ import com.linkb.jstx.activity.QrcodeScanActivity;
 import com.linkb.jstx.activity.base.CIMMonitorFragment;
 import com.linkb.jstx.activity.contact.CreateGroupActivity;
 import com.linkb.jstx.activity.contact.SearchFriendActivity;
-import com.linkb.jstx.activity.wallet.WalletActivity;
+import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.adapter.ConversationListViewAdapter;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
@@ -445,7 +445,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
 
     @Override
     public void mineWallet() {
-        startActivity(new Intent(getActivity(), WalletActivity.class));
+        startActivity(new Intent(getActivity(), WalletActivityV2.class));
     }
 
     @Override

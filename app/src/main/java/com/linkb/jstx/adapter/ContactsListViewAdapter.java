@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.linkb.jstx.activity.contact.ApplyFriendBeActivityV2;
 import com.linkb.jstx.activity.contact.GroupListActivity;
 import com.linkb.jstx.activity.contact.MicroServerListActivity;
 import com.linkb.jstx.activity.contact.TagListActivity;
@@ -19,6 +20,7 @@ import com.linkb.jstx.adapter.viewholder.TextViewHolder;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.comparator.NameAscComparator;
 import com.linkb.jstx.database.StarMarkRepository;
+import com.linkb.jstx.fragment.FriendListFragment;
 import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.util.CharacterParser;
 import com.linkb.jstx.activity.chat.FriendChatActivity;
@@ -106,7 +108,7 @@ public class ContactsListViewAdapter extends RecyclerView.Adapter implements Vie
         {
             FriendListResult.FriendShip friend = (FriendListResult.FriendShip) mContentList.get(position);
             ContactsViewHolder contactsHolder = (ContactsViewHolder) holder;
-            if(friend.getId().equals("-123")){
+            if(friend.getId().equals(FriendListFragment.LOCAL_NEW_FRIEND_ID)){
                 contactsHolder.icon.load(FileURLBuilder.getUserIconUrl(friend.getFriendAccount()), R.mipmap.newfriend, 999);
             }else {
                 contactsHolder.icon.load(FileURLBuilder.getUserIconUrl(friend.getFriendAccount()), R.mipmap.lianxiren, 999);
@@ -211,10 +213,15 @@ public class ContactsListViewAdapter extends RecyclerView.Adapter implements Vie
         if (v.getTag() instanceof FriendListResult.FriendShip)
         {
             FriendListResult.FriendShip friend = (FriendListResult.FriendShip) v.getTag();
-            Intent intent = new Intent(v.getContext(), FriendChatActivity.class);
-            intent.putExtra(Constant.CHAT_OTHRES_ID, friend.getFriendAccount());
-            intent.putExtra(Constant.CHAT_OTHRES_NAME, friend.getName());
-            v.getContext().startActivity(intent);
+            if(FriendListFragment.LOCAL_NEW_FRIEND_ID.equals(friend.getId())){
+                ApplyFriendBeActivityV2.navToActApplyFriendBe(mContext);
+            }else {
+                Intent intent = new Intent(v.getContext(), FriendChatActivity.class);
+                intent.putExtra(Constant.CHAT_OTHRES_ID, friend.getFriendAccount());
+                intent.putExtra(Constant.CHAT_OTHRES_NAME, friend.getName());
+                v.getContext().startActivity(intent);
+            }
+
         }
     }
 

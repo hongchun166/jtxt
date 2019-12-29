@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BLink</string>
-
+    <string name="accept">Accept</string>
     <string name="manager">manager</string>
     <string name="exit_app_tips">press again to exit the programm</string>
     <string name="dialog_loading">loading...</string>
@@ -57,6 +57,7 @@
     <string name="search" >search</string>
     <string name="search_edit" >search : </string>
     <string name="new_friend" >new Friend</string>
+    <string name="new_friend2" >new Friend</string>
     <string name="create_chat_group" >create group chat</string>
     <string name="search_account" >search account</string>
     <string name="search_group" >search group</string>
@@ -122,6 +123,7 @@
     <string name="red_packet_received_tips_default" >Red packet waited Receive</string>
     <string name="send_red_packer_count_default" >send red packet total 0</string>
     <string name="wallet_title">BLink Wallet</string>
+    <string name="wallet_title2">Kiki Wallet</string>
     <string name="scan">scan</string>
     <string name="charge_coin">coin charge</string>
     <string name="withdraw_coin">coin withdraw</string>
@@ -137,6 +139,7 @@
     <string name="transfer_remark">Remarks: For account security, please note the ID when transferring money in other wallets.</string>
     <string name="transfer_tips">	Tip: Check carefully when transferring funds. Once transferred, it is irrevocable. The transfer time depends on the blockchain confirmation time. If there is congestion, please be patient.</string>
     <string name="total_assets">total assets(BTC)</string>
+    <string name="total_assets2">Total assets</string>
     <string name="hide_coin_type">Hide no balance currency</string>
     <string name="balance_available">valid</string>
     <string name="balance_lock">lock</string>
@@ -676,5 +679,11 @@
     <string name="tip_permission_deny_tips" >You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
     <!--Abnormal tips-->
     <string name="error_get_assets">Get an abnormal balance of assets</string>
-
+    <string name="mine_invitation">mine invitation</string>
+    <string name="invitation_reward">invitation reward</string>
+    <string name="directly_invitation">directly invitation (people)</string>
+    <string name="indirect_invitation">indirect invitation (people)</string>
+    <string name="reawrd__300kkc">Reward 300KKC for successful registration</string>
+    <string name="directly_reward_des">Directly invite friends to present 200KKC, indirectly invite 100 KKCS (after 18 people have been invited)</string>
+    <string name="invitation_reward_commission_des">Invite rewards are released gradually by 0.05% per day. The online activity of yourself and your community will accelerate the release.</string>
 </resources>

@@ -47,7 +47,7 @@ import butterknife.ButterKnife;
 /** BLINK好友列表
 * */
 public class FriendListFragment extends CIMMonitorFragment implements OnTouchMoveCharListener , View.OnClickListener, HttpRequestListener<FriendListResult> {
-
+    public static String LOCAL_NEW_FRIEND_ID="-123";
 
     @BindView(R.id.contact_recyclerView) RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
@@ -188,8 +188,9 @@ public class FriendListFragment extends CIMMonitorFragment implements OnTouchMov
                 contentList.add(friend);
             }
             FriendListResult.FriendShip friendShip=new FriendListResult.FriendShip();
-            friendShip.setName("新好友");
-            friendShip.setId("-123");
+            String friend=getContext().getResources().getString(R.string.new_friend2);
+            friendShip.setName(friend);
+            friendShip.setId(LOCAL_NEW_FRIEND_ID);
             contentList.add(0,friendShip);
             return contentList;
         }

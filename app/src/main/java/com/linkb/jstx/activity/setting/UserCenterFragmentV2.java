@@ -24,7 +24,6 @@ import com.linkb.jstx.activity.base.BaseFragment;
 import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 import com.linkb.jstx.activity.contact.PhoneContactsActivity;
 import com.linkb.jstx.activity.trend.MineMomentActivity;
-import com.linkb.jstx.activity.wallet.WalletActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
@@ -206,11 +205,11 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
         showProgressDialog("");
         HttpServiceManager.queryNewAppVersion(checkVersionListener);
     }
-//    @OnClick(R.id.mine_wallet_cly)
-//    public void onMineWallet(){
-//        startActivity(new Intent(getActivity(), WalletActivity.class));
-//    }
 
+    @OnClick(R.id.invite_cly)
+    public void goInvite(){
+        startActivity(new Intent(this.getActivity(), PhoneContactsActivity.class));
+    }
     @OnClick(R.id.modify_password_cly)
     public void modifyPassword(){
         startActivity(new Intent(getActivity(), ModifyPasswordActivity.class));

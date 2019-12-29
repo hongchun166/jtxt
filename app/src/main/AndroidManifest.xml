@@ -291,6 +291,9 @@
             android:name=".jstx.activity.wallet.WalletActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".jstx.activity.wallet.WalletActivityV2"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".jstx.activity.wallet.ExChangeActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -344,6 +347,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".jstx.activity.contact.GroupQrCodeActivityV2"
             android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.MineInvitationActivityV2"
+            android:screenOrientation="portrait" />
         <activity android:name=".jstx.activity.QrcodeScanActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".jstx.activity.FindPasswordActivity"
@@ -380,6 +385,8 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".jstx.activity.contact.ApplyFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".jstx.activity.contact.ApplyFriendBeActivityV2"
             android:screenOrientation="portrait" />
 
         <activity android:name=".jstx.activity.wallet.CoinTransferActivity"
