@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Lvxin.Base.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionOverflowMenuStyle">@style/ToolbarSubMenuTheme</item>
+        <item name="android:editTextStyle">@style/MMEditText</item>
+        <item name="android:editTextBackground">@drawable/edittext_full_bg_selector</item>
+        <item name="android:textViewStyle">@style/MMTextView</item>
+        <item name="android:listViewStyle">@style/MMListView</item>
+        <item name="android:listDivider">@drawable/list_divider</item>
+        <item name="android:dropDownListViewStyle">@style/ToolbarListMenuStyle</item>
+        <item name="android:actionBarSize">@dimen/toolbar_height</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/theme_window_color</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+    </style>
+
+    <!--底部弹出框-->
+    <style name="BottomDialog" parent="@style/Lvxin.Base.Theme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- animation 样式 -->
+    <style name="ActivityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <style name="AppSplash.Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/app_splash_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <!--沉浸式主题-->
+    <style name="AppTheme.StatusTranslate" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentNavigation">false</item>-->
+    </style>
+
+    <!--自定义loading style-->
+    <style name="CustomDialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/app_splash_bg</item>
+    </style>
+
+    <style name="Black.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryNormal</item>
+        <item name="colorAccent">@color/colorAccentNormal</item>
+        <item name="menuColor">@color/nor_menu_color</item>
+        <item name="menuDividerColor">@color/nor_menu_divider_color</item>
+        <item name="hoverColor">@color/nor_hover_color</item>
+        <item name="toolbarColor">@color/colorToolbarNormal</item>
+
+    </style>
+
+
+    <style name="Red.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryRed</item>
+        <item name="colorAccent">@color/colorAccentRed</item>
+        <item name="menuColor">@color/red_menu_color</item>
+        <item name="menuDividerColor">@color/red_menu_divider_color</item>
+        <item name="hoverColor">@color/red_hover_color</item>
+        <item name="toolbarColor">@color/colorToolbarRed</item>
+    </style>
+
+    <style name="Blue.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryBlue</item>
+        <item name="colorAccent">@color/colorAccentBlue</item>
+        <item name="menuColor">@color/blue_menu_color</item>
+        <item name="menuDividerColor">@color/blue_menu_divider_color</item>
+        <item name="hoverColor">@color/blue_hover_color</item>
+        <item name="toolbarColor">@color/colorToolbarBlue</item>
+    </style>
+
+    <style name="Green.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryGreen</item>
+        <item name="colorAccent">@color/colorAccentGreen</item>
+        <item name="menuColor">@color/green_menu_color</item>
+        <item name="menuDividerColor">@color/green_menu_divider_color</item>
+        <item name="hoverColor">@color/green_hover_color</item>
+        <item name="toolbarColor">@color/colorToolbarGreen</item>
+    </style>
+
+    <style name="Purple.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryPurple</item>
+        <item name="colorAccent">@color/colorAccentPurple</item>
+        <item name="menuColor">@color/purple_menu_color</item>
+        <item name="menuDividerColor">@color/purple_menu_divider_color</item>
+        <item name="hoverColor">@color/purple_hover_color</item>
+        <item name="toolbarColor">@color/colorToolbarPurple</item>
+    </style>
+
+    <style name="Teal.Theme" parent="Lvxin.Base.Theme">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorAccent">@color/colorAccentTeal</item>
+        <item name="menuColor">@color/teal_menu_color</item>
+        <item name="hoverColor">@color/teal_hover_color</item>
+        <item name="menuDividerColor">@color/teal_menu_divider_color</item>
+        <item name="toolbarColor">@color/colorToolbarTeal</item>
+    </style>
+
+    <style name="ToolbarSubMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/background_blue_1068ed</item>
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <style name="ToolbarListMenuStyle" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:divider">?menuDividerColor</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:listSelector">?selectableItemBackground</item>
+    </style>
+
+    <style name="MMListView" parent="@android:style/Widget.ListView">
+        <item name="android:dividerHeight">0dip</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@null</item>
+    </style>
+
+    <style name="MMTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColorLink">#62749B</item>
+    </style>
+
+    <style name="MMEditText" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">@dimen/NormalTextSize</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/edittext_full_bg_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+
+    <style name="bottomPopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+    </style>
+
+    <style name="popubWindowAlphaAnimation">
+        <item name="android:windowEnterAnimation">@anim/appear</item>
+        <item name="android:windowExitAnimation">@anim/disappear</item>
+    </style>
+    <style name="popubWindowScaleAnimation">
+        <item name="android:windowEnterAnimation">@anim/popubwindow_appear</item>
+        <item name="android:windowExitAnimation">@anim/popubwindow_disappear</item>
+    </style>
+
+    <style name="badgeTextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">20dip</item>
+        <item name="android:layout_height">20dip</item>
+        <item name="android:background">@drawable/dot_nor_red</item>
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:padding">0dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <style name="ExpandedTitleStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CommonDialogStyle"  parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_material_background</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--1像素Activity风格 @android:color/transparent-->
+    <style name="SingleActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoDisplay">false</item>
+    </style>
+    <style name="LoginEditTx">
+        <item name="android:background">@drawable/edit_tx_bg_transparent_bottom_black_line</item>
+    </style>
+</resources>

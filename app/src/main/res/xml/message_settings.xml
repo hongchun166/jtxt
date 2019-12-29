@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <item
+        label="新消息提示音"
+        key = "KEY_MESSAGE_SOUND_SWITCH"
+        def="true"
+        hint="关闭后收到新消息后不会有提示音" />
+    <item
+        label="消息免打扰"
+        def="true"
+        key = "KEY_MESSAGE_DISTURB_SWITCH"
+        hint="开启后在深夜23:00到8:00时段不会发出提示音" />
+    <item
+        label="消息接收回执"
+        def="true"
+        key = "KEY_MESSAGE_RECEIPT_SWITCH"
+        hint="关闭后不再告知对方消息阅读状态" />
+    <item
+        label="消息状态显示"
+        def="true"
+        key = "KEY_MESSAGE_STATUS_SWITCH"
+        hint="关闭后不再显示消息发送、阅读状态" />
+    <item
+        label="通知栏消息"
+        def="true"
+        key = "KEY_MESSAGE_NOTIFY_SWITCH"
+        hint="关闭后新消息将不在通知栏显示" />
+</config>

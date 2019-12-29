@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="." name="sdcard" />
+    <external-files-path path="." name="files" />
+    <cache-path name="cache" path="."/>
+    <root-path path="." name="root"/>
+</paths>

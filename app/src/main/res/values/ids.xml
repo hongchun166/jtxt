@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <item type="id" name="toolbar" />
+    <item type="id" name="appbar" />
+    <item type="id" name="target" />
+    <item type="id" name="CHAT_RECORD_TARGET" />
+    <item type="id" name="GLIDE_TAG" />
+    <item type="id" name="TOOLBAR" />
+    <item type="id" name="container" />
+    <item type="id" name="inputPanel" />
+    <item type="id" name="file" />
+    <item type="id" name="datetime" />
+    <item type="id" name="holder" />
+    <item type="id" name="x" />
+    <item type="id" name="y" />
+</resources>

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BLink</string>
+
+    <string name="manager">管理员</string>
+    <string name="exit_app_tips">再按一次退出程序</string>
+    <string name="dialog_loading">加载中...</string>
+    <string name="recommend_contacts">推荐联系人</string>
+    <string name="already_new_version_tips">已是最新版本</string>
+    <string name="no_install_wx">没有安装微信</string>
+    <string name="wechat_loging">正在获取微信授权...</string>
+    <string name="register_gift_money">125.50</string>
+    <string name="register_gift_money_unit">DPC</string>
+    <string name="register_gift_tips">首次登陆，BLink送您%1$dDPC!</string>
+    <string name="click_confirm">点击确认</string>
+    <string name="find_password" >找回密码</string>
+
+    <string name="language_cn">简体中文</string>
+    <string name="language_en">English</string>
+    <string name="language_auto">自动</string>
+    <string name="language_traditional">繁體</string>
+
+    <string name="language_select">当前选择的语言: %s</string>
+
+    <!--消息页面-->
+    <string name="start_group_chat">发起群聊</string>
+    <string name="add_friends">添加朋友</string>
+    <string name="mine_wallet">我的钱包</string>
+    <!--我的页面-->
+    <string name="wallet">钱包</string>
+    <string name="verify_name">实名认证</string>
+    <string name="system_setting">系统设置</string>
+    <string name="task_center">任务中心</string>
+    <string name="invite_friend">邀请好友</string>
+    <string name="invite_friend_tips">分享会员赠送DPC币</string>
+    <string name="register_share">注册分享</string>
+    <string name="register_share_tips">注册分享赠送DPC币</string>
+    <string name="login_prisent">登录即送</string>
+    <string name="login_prisent_tips">登录时长赠送DPC币</string>
+    <string name="go_invite">去邀请</string>
+    <string name="go_share">去分享</string>
+    <string name="received">领取</string>
+    <string name="go_login">去登录</string>
+    <string name="login_time">登录时长</string>
+    <string name="exit_login">退出登录</string>
+
+    <!--发现页面-->
+    <string name="popular_group">热门群</string>
+    <string name="find_find" >找一找</string>
+    <string name="information">资讯</string>
+    <string name="discuss_group">贴吧</string>
+    <string name="favorite">收藏</string>
+    <string name="comment">评论</string>
+    <string name="share">分享</string>
+
+    <!--通讯录-->
+    <string name="search">搜索</string>
+    <string name="search_edit">搜索 : </string>
+    <string name="new_friend">新朋友</string>
+    <string name="create_chat_group">创建群聊</string>
+    <string name="search_account">搜索账号</string>
+    <string name="search_group" >搜索群组功能</string>
+    <string name="apply_join_group_tips" >已经提交申请,等待群主审核通过</string>
+    <string name="apply_join_group_error_tips" >您已经在该群里</string>
+    <string name="read_qr_code_error" >无效的二维码</string>
+    <string name="search_no_result">搜索无结果</string>
+    <string name="blink_friend">BLink好友</string>
+    <string name="my_friend" >我的好友</string>
+    <string name="mine_group">我的群组</string>
+    <string name="phone_contacts">手机通讯录</string>
+    <string name="invite_contacts">邀请</string>
+    <string name="invite_contacts_sms_content">你的好友通过BLink给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+
+    <!--登录/注册-->
+    <string name="welcome_title">欢迎来到BLink</string>
+    <string name="welcome_title_accent">全球首款社区自治化即时通信平台</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="login_email">邮箱登录</string>
+    <string name="login_telephone">手机登录</string>
+    <string name="register_email">邮箱注册</string>
+    <string name="register_telephone">手机注册</string>
+    <string name="locale_default">中国</string>
+    <string name="language_default">简体中文</string>
+    <string name="email_verify_code">邮箱验证码</string>
+    <string name="telephone_verify_code">手机验证码</string>
+    <string name="go_to_login">已有账号，去登录吧</string>
+    <string name="go_to_register">还没有账号？去注册吧</string>
+    <string name="go_to_register2">账号注册</string>
+    <string name="service_rule_tips_login">登录即代表阅读并同意</string>
+
+    <string name="account_tips">手机号</string>
+    <string name="email_account_tips">邮箱账号</string>
+    <string name="nick_name">昵称</string>
+    <string name="sex">性别</string>
+    <string name="password_tips">密码(至少6位)</string>
+    <string name="password_confirm_tips">密码确认(至少6位)</string>
+    <string name="apply_password_tips">支付密码(6位)</string>
+    <string name="apply_password_confirm_tips">支付密码确认(6位)</string>
+    <string name="password_tip_accent">密码</string>
+    <string name="image_verify">图形验证码</string>
+    <string name="msm_verify_code">短信验证码</string>
+    <string name="get_msm_verify_code">获取验证码</string>
+    <string name="toggle_language">切换语言</string>
+    <string name="forgot_password">忘记密码?</string>
+    <string name="forgot_password2">忘记密码</string>
+    <string name="platform_describe">安全、便捷、高效的社交平台</string>
+    <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
+    <string name="service_rule_tips">注册即代表阅读并同意</string>
+    <string name="service_rule">服务条款</string>
+    <string name="switch_language">切换语言</string>
+    <string name="account_error">手机号码无效</string>
+    <string name="account_empty_error">手机号码不能为空</string>
+    <string name="password_empty_error">密码不能为空</string>
+    <string name="password_confirm_error">两次输入的密码不一致</string>
+    <string name="apply_password_empty_error">支付密码不能为空</string>
+    <string name="apply_password_confirm_error">两次输入的支付密码不一致</string>
+    <string name="nick_name_empty_error">昵称不能为空</string>
+    <string name="verify_code_empty_error">验证码不能为空</string>
+    <string name="old_apply_password_empty_error">旧支付密码不能为空</string>
+    <string name="new_apply_password_empty_error">新支付密码不能为空</string>
+
+    <!--钱包模块-->
+    <string name="wallet_title">BLink Wallet</string>
+    <string name="scan">扫一扫</string>
+    <string name="charge_coin">充币</string>
+    <string name="withdraw_coin">提币</string>
+    <string name="withdraw_coin_record">提币记录</string>
+    <string name="withdraw_coin_finish">提币完成</string>
+    <string name="blink_service">BLink服务</string>
+    <string name="exchange">兑汇</string>
+    <string name="finances">理财</string>
+    <string name="bill">账单</string>
+    <string name="address">地址</string>
+    <string name="input_charge_amount">输入充值金额</string>
+    <string name="submit">提交</string>
+    <string name="transfer_remark">备注: 为了账户安全,请用户在其他钱包转账时备注ID</string>
+    <string name="transfer_tips">提示: 转账时谨慎核对,一旦转入,不可撤回,转账时间视区块链确认时间而定,若有拥堵,请耐心等待。</string>
+    <string name="total_assets">总资产折合(BTC)</string>
+    <string name="hide_coin_type">隐藏无余额币种</string>
+    <string name="balance_available">可用</string>
+    <string name="balance_lock">锁定</string>
+    <string name="apply">支付</string>
+    <string name="goto_exchange">进行兑换</string>
+    <string name="developing">即将开放</string>
+    <string name="exchange_reference_price">兑换参考价: 0</string>
+    <string name="exchange_tips">兑换后24小时内未完成交易将会退回钱包</string>
+    <string name="today_exchange_rate">今日汇率</string>
+    <string name="currency">币种</string>
+    <string name="exchange_rate">汇率</string>
+    <string name="day_withdrawal_amount">日提现额度</string>
+    <string name="customed_query">自定义查询</string>
+    <string name="withdraw_coin_amount">提币额度</string>
+    <string name="available_amount">可用额度: </string>
+    <string name="actual_arrival_amount">实际到账: </string>
+    <string name="processing_fee">, 手续费: </string>
+    <string name="at_least_withdraw_amount">单笔提币至少</string>
+    <string name="at_most_withdraw_amount">单笔提币最多</string>
+    <string name="select_receive_address">请选择收币地址, 或扫码录入</string>
+    <string name="withdraw_coin_tips">备注例如My Address#2(选填)</string>
+    <string name="withdraw_coin_hint">请输入提币金额</string>
+    <string name="withdraw_coin_address">到账地址: </string>
+    <string name="withdraw_coin_address_name">地址名称: </string>
+    <string name="finance_password">资金密码</string>
+    <string name="msg_verify_code">短信验证码</string>
+    <string name="withdraw_confirm">确认提现</string>
+    <string name="send_verify_code">获取验证码</string>
+    <string name="bill_detail">账单详情</string>
+    <string name="handing_fee">手续费</string>
+    <string name="actual_arrival_money">实际到账</string>
+    <string name="remark">备注</string>
+    <string name="time">时间</string>
+    <string name="select_time">选择时间</string>
+    <string name="finish">完成</string>
+    <string name="select_by_month">按月选择</string>
+    <string name="select_by_day">按日选择</string>
+    <string name="verify_password_ing">正在验证密码...</string>
+    <string name="withdraw_amount_too_large">提币金额超出可用额度</string>
+    <string name="withdraw_address_empty_error">收币地址不能为空</string>
+    <string name="withdraw_address_success">提币成功</string>
+    <string name="withdraw_address_failure">提币失败</string>
+    <string name="back_wallet_home_page">返回钱包</string>
+    <string name="withdraw_finish_tips">恭喜小主提币成功</string>
+    <string name="accelerate_develop">正在加速开发中...</string>
+
+    <!--红包模块-->
+    <string name="red_packet">红包</string>
+    <string name="red_packet_number">红包个数</string>
+    <string name="red_packet_number_hint">填写个数</string>
+    <string name="amount">金额</string>
+    <string name="amount_tips">余额:</string>
+    <string name="group_member_size">本群共%1$d人</string>
+    <string name="group_member_size_default">本群共0人</string>
+    <string name="amount_tips_default">余额: 0.00</string>
+    <string name="total_amount">总金额</string>
+    <string name="collect">拼</string>
+    <string name="single_amount">单个金额</string>
+    <string name="red_packet_amount">红包金额</string>
+    <string name="red_packet_tips">恭喜发财，大吉大利</string>
+    <string name="put_coin_to_bag">塞币进红包</string>
+    <string name="red_packet_sender">%1$s的红包</string>
+    <string name="red_packet_open">開</string>
+    <string name="general_red_packet">普通红包</string>
+    <string name="luck_red_packet">拼手气红包</string>
+    <string name="received_red_packet">收到的红包</string>
+    <string name="click_check_balance">点击查看</string>
+    <string name="red_packet_restore_to_wallet">已存入账户余额</string>
+    <string name="red_packet_open_detail">领取 %1$d/%2$d</string>
+    <string name="red_packet_receive_money">%1$s%2$s</string>
+    <string name="deal_password_input">请输入支付密码</string>
+    <string name="BLink_red_packet">BLink红包</string>
+    <string name="red_packet_received_tips">红包等待对方领取</string>
+    <string name="red_packet_received_tips_default">红包等待对方领取</string>
+    <string name="BLink_Pay">BLink Pay</string>
+    <string name="more_currency">更多币种</string>
+    <string name="sending_red_packet">红包发送中</string>
+    <string name="red_packet_empty_error">红包不能为空</string>
+    <string name="apply_password_error">支付密码错误</string>
+    <string name="red_packet_record">红包记录</string>
+    <string name="mine_received_red_packet">我收到的</string>
+    <string name="mine_send_red_packet">我发出的</string>
+    <string name="total">共</string>
+    <string name="received_red_packet_error">领取红包失败</string>
+    <string name="red_packet_check_detail">查看领取详情</string>
+    <string name="red_packet_empty">手慢了,红包已抢完了</string>
+    <string name="red_packet_time_out">红包已超过24小时。如已领取，可在“红包记录”中查看</string>
+    <string name="red_packet_un_invailable">红包已失效</string>
+    <string name="collect_red_packet_tips">当前为拼手气红包，</string>
+    <string name="common_red_packet_tips">当前为普通红包，</string>
+    <string name="change_common_red_packet_tips">改为普通红包</string>
+    <string name="change_collect_red_packet_tips">改为拼手气红包</string>
+    <string name="un_received_red_packet_tips">24小时内红包未被领取，红包金额将退回账户</string>
+    <string name="total_received_red_packet">%1$s共收到</string>
+    <string name="total_received_red_packet_default">共收到</string>
+    <string name="total_sended_red_packet">%1$s共发出</string>
+    <string name="total_sended_red_packet_default">共发出</string>
+    <string name="most_luck_count">手气最佳</string>
+    <string name="time_out_red_packet_count">已过期%1$d/%2$d个</string>
+    <string name="red_packet_send_count">%1$d/%2$d个</string>
+    <string name="send_red_packer_count">发出红包总数%1$d个</string>
+    <string name="send_red_packer_count_default">发出红包总数0个</string>
+
+    <!--个人信息-->
+    <string name="person_info">个人信息</string>
+    <string name="delete_friend">删除好友</string>
+    <string name="report">进行举报</string>
+    <string name="share_card">分享名片</string>
+    <string name="post_bar">贴吧圈</string>
+    <string name="common_group">共同群组</string>
+    <string name="join_blacklist">加入黑名单</string>
+    <string name="send_msg">发消息</string>
+    <string name="voice_call">语音通话</string>
+    <string name="blink_account">Blink账户 :</string>
+    <string name="signature">签名 :</string>
+    <string name="apply_friend">申请好友</string>
+    <string name="mine_home_page">我的主页</string>
+    <string name="goto_modify">去修改 >></string>
+    <string name="un_verify">未认证</string>
+
+
+
+    <string name="common_comment">回复</string>
+    <string name="common_send">发送</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_upgrade">升级</string>
+    <string name="common_account">帐号</string>
+    <string name="common_confirm">确定</string>
+    <string name="common_query">查询</string>
+    <string name="common_gender">性别</string>
+    <string name="common_handle">处理</string>
+    <string name="common_sysmessage">系统消息</string>
+    <string name="common_system">系统</string>
+    <string name="common_message">消息</string>
+    <string name="common_agree">同意</string>
+    <string name="common_refuse">拒绝</string>
+    <string name="common_ignore">忽略</string>
+    <string name="common_back">返回</string>
+    <string name="common_mygroups">我的群组</string>
+    <string name="common_has_agree">已同意</string>
+    <string name="common_has_refuse">已拒绝</string>
+    <string name="common_has_ignore">已忽略</string>
+    <string name="common_add">添加</string>
+    <string name="common_contacts">通讯录</string>
+    <string name="common_copy">复制</string>
+    <string name="common_qrcode_read">二维码识别</string>
+    <string name="common_forward">转发</string>
+    <string name="common_notice">通知</string>
+    <string name="common_revoke">撤销</string>
+    <string name="common_man">男</string>
+    <string name="common_female">女</string>
+    <string name="common_edit">编辑</string>
+    <string name="common_feedback">建议反馈</string>
+    <string name="common_delete">删除</string>
+    <string name="common_open">打开</string>
+    <string name="common_location">位置</string>
+    <string name="common_map">地图</string>
+    <string name="common_about">关于</string>
+    <string name="common_hint">提示</string>
+    <string name="common_save">保存</string>
+    <string name="common_setting">设置</string>
+    <string name="common_detail">详情</string>
+    <string name="common_trend">发现</string>
+    <string name="common_my">我的</string>
+    <string name="common_dissolve">解散</string>
+    <string name="common_quit">退出</string>
+    <string name="common_create">创建</string>
+    <string name="common_camera">拍照</string>
+    <string name="common_camera_recorder">拍摄</string>
+    <string name="common_album">相册</string>
+    <string name="common_image">图片</string>
+    <string name="common_download">下载</string>
+    <string name="common_current_location">当前位置：%1$s</string>
+    <string name="common_detailed">详细资料</string>
+    <string name="common_search">搜索</string>
+    <string name="common_multiselect">多选</string>
+    <string name="common_singleselect">单选</string>
+    <string name="common_noresult">没有结果</string>
+    <string name="common_contact">联系人</string>
+    <string name="common_file">文档</string>
+    <string name="common_mangment">管理</string>
+    <string name="common_resume_download">继续下载</string>
+    <string name="common_moment">动态</string>
+    <string name="common_praise">点赞</string>
+    <string name="common_authorize">授权</string>
+    <string name="common_invite">邀请</string>
+
+
+    <string name="label_format_kilometre">%1$.2f公里</string>
+    <string name="label_format_metre">%1$d米</string>
+
+
+    <string name="menu_chat_top">置顶聊天</string>
+    <string name="menu_cancel_top">取消置顶</string>
+    <string name="menu_mark_noread">标为未读</string>
+    <string name="menu_mark_read">标为已读</string>
+    <string name="menu_delete_chat">删除聊天</string>
+
+    <string name="label_logout">退出登录</string>
+    <string name="label_logout_hint">确定要退出当前帐号吗?</string>
+    <string name="label_killapp">关闭应用</string>
+    <string name="label_killapp_hint">这样将无法接收到消息，确定关闭程序吗？</string>
+
+    <string name="label_file_stopdownload">停止下载</string>
+    <string name="label_file_download">已下载%1$s</string>
+    <string name="label_file_choice">选择文件</string>
+    <string name="label_file_info">查看文件</string>
+
+    <string name="label_search_group">搜索群组:%1$s</string>
+    <string name="label_search_microserver">搜公众号:%1$s</string>
+    <string name="label_enter_microserver">进入公众号</string>
+    <string name="label_subscribe">关注</string>
+    <string name="label_unsubscribe">不再关注</string>
+    <string name="label_function_summary">介绍</string>
+    <string name="label_homepage">主页</string>
+    <string name="label_microserver">公众号:%1$s</string>
+    <string name="label_org_list">组织结构</string>
+    <string name="label_tag_list">我的标签</string>
+
+    <string name="label_copy_url">复制链接</string>
+    <string name="label_copy_success">复制成功</string>
+    <string name="label_download_bitmap_to_local">下载图片到本机</string>
+    <string name="label_save_bitmap">保存图片</string>
+    <string name="label_copy_bitmap_success">图片复制成功</string>
+    <string name="label_share_moment">分享到动态</string>
+    <string name="label_share_friend">分享给联系人</string>
+
+    <string name="label_open_browser">浏览器中打开</string>
+    <string name="label_changetext_size">调整字体</string>
+    <string name="label_geting">获取中&#8230;</string>
+    <string name="label_read_all_text">查看全文</string>
+
+    <string name="label_enter_now">立即体验</string>
+    <string name="label_login_password">密码</string>
+    <string name="label_login">登录</string>
+    <string name="label_user_oldpassword">旧密码：</string>
+    <string name="label_user_newpassword">新密码(至少6位)：</string>
+    <string name="label_user_newpassword_confirm">确认新密码</string>
+    <string name="label_user_old_apply_password">旧支付密码：</string>
+    <string name="label_user_new_apply_password">新支付密码：</string>
+    <string name="label_user_account">帐号：</string>
+    <string name="label_user_telephone">电话：</string>
+    <string name="label_user_email">邮箱：</string>
+    <string name="label_user_org">组织：</string>
+    <string name="label_user_icon">头像：</string>
+    <string name="label_user_name">名称：</string>
+    <string name="label_user_gender">性别：</string>
+    <string name="label_user_motto">签名：</string>
+    <string name="label_ablbum_all">所有图片</string>
+    <string name="label_rule">权限限制</string>
+    <string name="label_chat">对话</string>
+    <string name="label_starark">设为星标朋友</string>
+    <string name="label_set_remark">设置备注</string>
+
+    <string name="label_contacts_org">组织</string>
+    <string name="label_contacts_group_chat">群组</string>
+    <string name="label_contacts_public">公众号</string>
+    <string name="label_contacts_tag">标签</string>
+    <string name="label_contacts_frend_count">%d位联系人</string>
+
+    <string name="label_group_icon">群徽：</string>
+    <string name="label_group_name">名称：</string>
+    <string name="label_group_summary">公告：</string>
+    <string name="tips_input_group_name">请输入群名称</string>
+    <string name="tips_input_group_summary">输入群公告</string>
+    <string name="group_summary">群公告</string>
+    <string name="group_summary_empty">暂无群公告</string>
+    <string name="label_group_founder">群主：</string>
+    <string name="label_group_id">群号：</string>
+    <string name="label_group_qrcode">群二维码：</string>
+    <string name="group_qrcode">群二维码</string>
+    <string name="copy_group_qrcode">复制二维码</string>
+    <string name="hint_self_Invitation_code">我的邀请码</string>
+    <string name="hint_scan_download_app">扫描下载安装App</string>
+    <string name="hint_come_experience_kikichat">快来体验下kikichat吧</string>
+    <string name="hint_say_hello">Hi,我是,%1$s</string>
+    <string name="invite_info">邀请详情</string>
+    <string name="copy_group_qrcode_success_tips">二维码已经存储到手机相册</string>
+    <string name="get_group_detail_failure">获取群详情信息失败</string>
+
+    <string name="label_group_invite">邀请加入</string>
+    <string name="label_group_ignore">屏蔽群消息</string>
+    <string name="label_group_banned">全员禁言</string>
+    <string name="label_group_uncheck_info">不可互加好友</string>
+    <string name="label_group_uncheck_info_tips">设置不可互加好友时,将不能在群内查看其他人资料</string>
+    <string name="label_group_banned_tips">本群已经被群主设置全员禁言</string>
+    <string name="label_group_apply">申请加入</string>
+    <string name="label_group_create">创建群组</string>
+    <string name="label_group_modify">修改群组</string>
+    <string name="label_group_detail">群资料</string>
+    <string name="label_group_members">群成员列表</string>
+    <string name="label_group_create_succesed">创建成功</string>
+    <string name="label_group_invite_count">邀请(%d)</string>
+    <string name="label_group_look_members">查看所有成员(%d)</string>
+
+    <string name="label_album_selected_count">确定(%1$s)</string>
+    <string name="label_menu_theme">主题设置</string>
+    <string name="label_menu_album">我的相册</string>
+    <string name="label_setting_modify_password">修改密码</string>
+    <string name="label_setting_modify_apply_password">修改支付密码</string>
+    <string name="label_setting_default_apply_password">默认支付密码为000000</string>
+    <string name="label_setting_modify_motto">修改签名</string>
+    <string name="label_setting_modify_name">修改名称</string>
+    <string name="label_setting_modify_phone">修改电话</string>
+    <string name="label_setting_modify_email">修改邮箱</string>
+    <string name="label_setting_modify_summary">修改群公告</string>
+    <string name="email_format_error">邮箱格式错误</string>
+
+    <string name="label_setting_profile">个人信息</string>
+    <string name="label_setting_notify">消息设置</string>
+    <string name="label_setting_update">版本更新</string>
+    <string name="label_setting_about">关于</string>
+    <string name="label_setting_quitapp">退出应用</string>
+    <string name="label_setting_server">服务配置</string>
+    <string name="label_setting_newversion">新版本:%1$s</string>
+    <string name="label_setting_serverurl">服务端地址</string>
+    <string name="label_setting_serverurl_hint">格式如:http://192.168.1.1:9090/\n或者</string>
+    <string name="label_setting_cimport_hint">CIM端口，不是web服务器的端口</string>
+    <string name="label_setting_server_hint">具体配置信息请询问你的系统管理员</string>
+    <string name="label_ignore_group_message">打开后当收到该群消息时，将不会有通知和提示音</string>
+    <string name="label_publish">发布</string>
+    <string name="label_moment_publish">分享时光</string>
+    <string name="label_moment_message">圈子消息</string>
+    <string name="label_moment_replay_user"><Data><![CDATA[<font color="#3C568B">%1$s</font>]]></Data>回复<Data><![CDATA[<font color="#3C568B">%2$s</font>]]></Data>:%3$s</string>
+    <string name="label_moment_replay"><Data><![CDATA[<font color="#3C568B">%1$s</font>]]></Data>:%2$s</string>
+    <string name="label_moment_me">我的空间</string>
+
+    <string name="label_function_moment">朋友圈</string>
+    <string name="label_function_microapp">小应用</string>
+
+    <string name="label_chat_soundrecord_normal">按住,说话</string>
+    <string name="label_chat_soundrecord_abort">松开,结束</string>
+    <string name="label_chat_soundrecord_send">松开,发送</string>
+    <string name="label_chat_soundcancle">手指上滑,取消发送</string>
+    <string name="label_chat_unlashcancle">松开手指,取消发送</string>
+    <string name="label_copy_bitmap_tips">你可能要发送的照片：</string>
+
+    <string name="label_create_chat">创建新聊天</string>
+    <string name="label_recent_chat">最近聊天</string>
+
+    <string name="title_contacts_verify">请求验证</string>
+    <string name="title_delete_message">删除消息</string>
+    <string name="title_choice_picture">选择图片方式</string>
+    <string name="title_choice_contact">选择联系人</string>
+    <string name="title_save_config">保存设置</string>
+    <string name="title_moment_rule">设置空间权限</string>
+    <string name="title_theme_setting">主题设置</string>
+    <string name="title_look_microserver">查看公众号</string>
+    <string name="title_message_forward">消息转发</string>
+    <string name="title_look_microapp">小应用列表</string>
+
+    <string name="tip_has_sent">已发</string>
+    <string name="tip_has_read">已读</string>
+    <string name="tip_save_loading">正在保存,请稍候&#8230;</string>
+    <string name="tip_conn_server_failed">服务器暂时无法访问</string>
+    <string name="tip_cim_conn_failed">暂时无法连接到服务器</string>
+    <string name="tip_data_beall">我也是有底线的</string>
+    <string name="tip_loading">正在%1$s,请稍候&#8230;</string>
+    <string name="tip_unknow_distance">未知距离</string>
+    <string name="tip_unknow_location">未知地址</string>
+    <string name="tip_handle_succeed">处理成功</string>
+    <string name="tip_file_download_complete">下载完成，保存在：%1$s</string>
+    <string name="tip_file_download_failed">下载失败，请稍候再试</string>
+    <string name="tip_send_request_complete">发送请求成功，等待对方验证!</string>
+    <string name="tip_article_deleted">这条内容已经被删除了!</string>
+    <string name="tip_photo_video_download_complete">下载完成，已经保存在您的相册</string>
+
+    <string name="tip_message_revoke_failed">消息撤销失败，对方已经接收!</string>
+    <string name="tip_required_name">请填写名称</string>
+    <string name="tip_search_noresult">没有查询到相关结果</string>
+    <string name="tip_required_article">不能发表空内容哟!</string>
+    <string name="tip_message_forward_completed">消息发送成功</string>
+    <string name="tip_publish_complete">发布成功</string>
+    <string name="tip_group_dissolve_complete">已经成功解散该群</string>
+    <string name="tip_group_quit_complete">已经成功退出该群</string>
+    <string name="tip_group_kickout_complete">已经成功踢出该成员</string>
+    <string name="tip_group_invite_complete">发送邀请成功，等待对方确认!</string>
+    <string name="tip_save_complete">保存成功</string>
+    <string name="tip_oldpassword_error">旧密码错误</string>
+    <string name="tip_account_or_password_error">帐号或者密码错误</string>
+    <string name="tip_account_invailed">当前帐号不存在</string>
+    <string name="tip_account_disabled">当前帐号被系统禁用</string>
+    <string name="tip_delete_comment">确定删除这条评论吗?</string>
+    <string name="tip_find_newversion">发现新版本</string>
+    <string name="tip_cancel_upgrae">暂不升级</string>
+    <string name="tip_delete_message">这样会删除与之相关的所有本地消息记录并且无法恢复，确定删除吗?</string>
+    <string name="tip_dissolve_group">确定解散该群，并删除本地消息记录?</string>
+    <string name="tip_quit_group">确定退出该群，并删除本地消息记录?</string>
+    <string name="tip_kickout_group">确定将对方踢出本群吗?</string>
+    <string name="tip_delete_article">确定删除这条内容吗?</string>
+    <string name="tip_delete_record">确定删除这条记录吗?</string>
+    <string name="tip_delete_system_message">这样会删除所有本地系统消息并且无法恢复，确定要删除吗?</string>
+    <string name="tip_max_nine_picture">最多只能发送9张图片哟</string>
+    <string name="tip_group_create_succesed">创建成功，现在去邀请小伙伴们加入吧</string>
+    <string name="tip_save_server_config">修改服务器配置将会清空当前所有包括消息，联系人等记录，确定保存配置并清空本地记录重启应用吗?</string>
+    <string name="tip_file_too_large">文件超过了20M的限制，不能发送</string>
+
+    <string name="tip_title_groupmessage">群组消息</string>
+    <string name="tip_request_joingroup">%1$s请求加入您的群(%2$s)</string>
+    <string name="tip_refuse_joingroup">%1$s拒绝了您加入群(%2$s)的请求</string>
+    <string name="tip_agree_joingroup">%1$s同意了您入群(%2$s)的请求</string>
+    <string name="tip_request_invitegroup">%1$s邀请您加入群(%2$s)</string>
+    <string name="tip_refuse_invitegroup">%1$s拒绝了您邀请入群(%2$s)的请求</string>
+    <string name="tip_agree_invitegroup">%1$s同意了您邀请入群(%2$s)的请求</string>
+    <string name="tip_kickout_group_completed">你已经被群主请出群(%1$s)</string>
+    <string name="tip_quit_group_completed">%1$s退出了群(%2$s)</string>
+    <string name="tip_dissolve_group_completed">群(%1$s)已被群主解散</string>
+    <string name="tip_group_has_dissolved">该群已被解散</string>
+
+    <string name="tip_request_verify">验证消息：%1$s</string>
+    <string name="tip_verify_info">验证信息</string>
+    <string name="tip_feedback">说说你的心声吧^_^</string>
+    <string name="tip_feedback_completed">谢谢你的反馈^_^</string>
+    <string name="tip_group_hello_message">欢迎加入，赶快和大家打个招呼吧!</string>
+    <string name="tip_group_hello_message_format">欢迎%1$s加入，赶快和大家打个招呼吧!</string>
+    <string name="hint_comment">回复%1$s</string>
+    <string name="hint_delete_image">长按可以删除选中的图片</string>
+    <string name="title_login_remind">登录提醒</string>
+
+    <string name="tip_logo_updated">头像更新成功</string>
+    <string name="tip_file_uploading">正在上传......%d%%</string>
+    <string name="tip_logo_update_error">头像更新失败,请重试</string>
+
+    <string name="tip_required_server_path">服务端地址不能为空</string>
+    <string name="tip_invalid_server_path">服务端地址格式不正确</string>
+    <string name="tip_required_server_cimport">CIM端口不能为空</string>
+
+    <string name="about_text">即时通信专业版是面向中小企业和者各类团队组织内部交流使用工具。它可以在局域网内使用保证沟通的信息安全，并且它是完全免费的，而且可以及时获得更新。在使用过程中有什么建议或意见可以随时联系我{微笑}。  \n\n项目主页地址\n<a href="https://gitee.com/farsunset/lvxin-pro">https://gitee.com/farsunset/lvxin-pro</a></string>
+    <string name="label_share_to_contact">分享给即时通信好友</string>
+    <string name="title_joingroup_request">入群申请</string>
+    <string name="tip_search_hint">账号、ID、名称</string>
+    <string name="tip_textsize_small">小</string>
+    <string name="tip_textsize_normal">标准</string>
+    <string name="tip_textsize_big">大</string>
+    <string name="tip_textsize_large">特大</string>
+
+    <string name="label_publish_input_hint">分享一下你此时此刻的想法吧^_^</string>
+    <string name="tip_force_offline">您的帐号%1$s在另外一台设备%2$s上登录了，如果不是你本人的操作，您的密码已经泄露，请及时修改密码。</string>
+    <string name="tip_user_disabled_offline">您的帐号已经被系统禁用，将会退出登录，具体原因请联系系统管理员。</string>
+    <string name="tip_copy_successed">已复制到粘贴板</string>
+    <string name="label_chat_draft"><Data><![CDATA[<font color="#b12727">[草稿]</font>]]></Data>%1$s</string>
+    <string name="label_distance_of">相距%1$s</string>
+    <string name="label_user_moment_month">%1$s月</string>
+
+    <string name="label_message_preview_image">[图片]</string>
+    <string name="label_message_preview_file">[文件]</string>
+    <string name="label_message_preview_voice">[语音]</string>
+    <string name="label_message_preview_map">[地图]</string>
+    <string name="label_message_preview_video">[视频]</string>
+    <string name="label_message_preview_red_packet">[BLink 红包]</string>
+    <string name="label_message_from_red_packet">%1$s</string>
+    <string name="label_message_to_red_packet">[BLink 红包]%1$s</string>
+
+    <string name="label_message_preview_normal">%1$s</string>
+    <string name="tip_please_configure_serverinfo">请先配置好你的服务器信息</string>
+
+
+    <string name="moment_rule_shield">不让TA看我的时刻空间</string>
+    <string name="moment_rule_shield_tip">打开后，你在时刻空间发的内容，对方将无法看到</string>
+
+    <string name="moment_rule_ignore">不看TA的时刻空间</string>
+    <string name="moment_rule_ignore_tip">打开后，对方在时刻空间发的内容，你将无法看到</string>
+
+    <string name="tip_permission_denied">权限申请</string>
+    <string name="tip_permission_audio_rejected">申请录音权限被拒绝，暂时不能使用录音功能</string>
+    <string name="tip_permission_audio_disable">您没有允许即时通信的录音权限，请在应用信息>即时通信>权限>设置允许录音的权限</string>
+
+    <string name="tip_permission_location_disable">您没有允许即时通信的定位权限，请在应用信息>即时通信>权限>设置允许定位的权限</string>
+    <string name="tip_permission_location_rejected">申请定位权限被拒绝，暂时无法使用地图功能</string>
+
+    <string name="tip_permission_camera_rejected">申请拍摄权限被拒绝，暂时不能进行拍摄视频和照片</string>
+    <string name="tip_permission_album_rejected">您拒绝了即时通信的查看相册的请求，暂时不能选择图片</string>
+    <string name="tip_permission_album_disable">您没有允许即时通信的读取系统相册的权限，请在应用信息>即时通信>权限>设置允许查看相册的权限</string>
+    <string name="tip_permission_camera_disable">您没有允许即时通信的拍照权限，请在应用信息>即时通信>权限>设置允许拍照的权限</string>
+    <string name="tip_permission_camera_audio_disable">您没有允许即时通信的录制音频权限，请在应用信息>即时通信>权限>设置允许录制音频的权限</string>
+
+    <string name="tip_permission_open">您永久拒绝了这个权限，请在应用信息>即时通信>权限中重新开启这个权限</string>
+    <string name="tip_permission_deny_tips">您永久拒绝了这个权限，可能导致某些功能无法正常使用</string>
+
+    <string name="title_apk_downloading">安装包下载中</string>
+    <string name="title_apk_downloading_progress">进度%d%%</string>
+
+    <string name="title_apk_begin_download_toast">开始下载,在通知栏查看进度</string>
+    <string name="title_apk_begin_download">开始下载安装包</string>
+    <string name="title_apk_download_failed">下载过程中出现异常，请点击重试</string>
+    <string name="title_dialog_message_forward">转发给:</string>
+    <string name="title_add_picture">添加图片</string>
+    <string name="title_select_address">选取位置</string>
+
+    <string name="title_shared_voice_message">[语音]&#160;&#160;%1$s</string>
+    <string name="title_shared_file_message">[文件]&#160;%1$s</string>
+    <string name="label_web_provider">网页由&#160;%1$s&#160;提供</string>
+    <string name="label_browser_provider">Chromium内核提供技术支持</string>
+    <string name="title_bettery_saving">关于省电优化</string>
+    <string name="tip_bettery_saving">如果您的手机带有省电模式，请将关闭对即时通信进行省电优化，或者将即时通信加入系统清理白名单，以免被系统智能优化后将无法及时收到消息</string>
+    <string name="tip_moment_praise">赞了你</string>
+    <string name="title_video_recorder">录制视频</string>
+    <string name="label_press_recorder">按住拍摄</string>
+    <string name="tips_empty_group">赶快去创建一个，或者加入一个群组吧^_^</string>
+    <string name="tips_empty_folder">空文件夹</string>
+
+    <string name="tips_list_loading">加载中......</string>s
+    <string name="tips_no_microserver">您还未关注公众号，点击查看关注一些吧^_^</string>
+    <string name="tips_chat_object_notexist">该联系人已经不存在啦</string>
+    <string name="label_album_bucket">相册目录</string>
+    <string name="theme_normal">雅黑</string>
+    <string name="theme_blue">靛蓝</string>
+    <string name="theme_red">酒红</string>
+    <string name="theme_green">草绿</string>
+    <string name="theme_purple">紫色</string>
+    <string name="theme_teal">翠绿</string>
+    <string name="label_subscribed">已关注</string>
+    <string name="label_unsubscribed">未关注</string>
+    <string name="label_clear_address">不使用地理位置</string>
+    <string name="label_select_location">选择所在位置</string>
+    <string name="label_album_name_count">%1$s (%2$d张)</string>
+    <string name="test_chat_width">国国国国国国国国国国国国国国国</string>
+    <string name="label_file_path_format">文件位置:%1$s</string>
+    <string name="label_app_file">即时通信文件</string>
+    <string name="label_sdcard_file">手机存储</string>
+    <string name="label_file_sum_format">文件：%1$d</string>
+    <string name="label_file_desc_format">%1$s&#160;&#160;&#160;&#160;%2$s</string>
+    <string name="label_checked_info_format">已选：%1$s</string>
+    <string name="tips_not_support_shared">不支持的分享类型</string>
+    <string name="hint_chat_new_message">%1$d条新消息</string>
+    <string name="title_select_at_member">选择提醒的人</string>
+    <string name="label_rencent_message_ignored">[%1$d条]%2$s</string>
+    <string name="label_rencent_message_at"><Data><![CDATA[<font color="#b12727">[有人@我]</font>]]></Data>%1$s</string>
+    <string name="label_file_selector">文件选择器</string>
+    <string name="tips_saveing_video">正在合成视频</string>
+    <string name="tips_trans_video_direction">正在转换视频方向</string>
+    <string name="label_tag_format">%1$s(%2$d)</string>
+    <string name="title_input_tagname">输入标签名字</string>
+    <string name="label_modify_name">修改名称</string>
+    <string name="label_modify_summary">修改群公告</string>
+    <string name="label_modify_group_logo">修改群徽</string>
+    <string name="label_new_version_format">发现新版本:<Data><![CDATA[<font color="#45C01A"><strong>%1$s</strong></font>]]></Data></string>
+
+
+    <!--异常提示-->
+    <string name="error_get_assets">获取资产余额异常</string>
+
+</resources>

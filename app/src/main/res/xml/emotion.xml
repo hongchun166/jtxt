@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set>
+    <item
+        name="{微笑}"
+        res="f_static_hehe" />
+    <item
+        name="{爱你}"
+        res="f_static_aini" />
+    <item
+        name="{拜拜}"
+        res="f_static_baibai" />
+    <item
+        name="{悲伤}"
+        res="f_static_beishang" />
+    <item
+        name="{鄙视}"
+        res="f_static_bishi" />
+    <item
+        name="{闭嘴}"
+        res="f_static_bizui" />
+    <item
+        name="{馋嘴}"
+        res="f_static_chanzui" />
+    <item
+        name="{吃惊}"
+        res="f_static_chijing" />
+    <item
+        name="{打脸}"
+        res="f_static_dalian" />
+    <item
+        name="{敲打}"
+        res="f_static_ding" />
+    <item
+        name="{感冒}"
+        res="f_static_ganmao" />
+    <item
+        name="{鼓掌}"
+        res="f_static_guzhang" />
+    <item
+        name="{哈哈}"
+        res="f_static_haha" />
+    <item
+        name="{害羞}"
+        res="f_static_haixiu" />
+    <item
+        name="{流汗}"
+        res="f_static_han" />
+    <item
+        name="{嘿嘿}"
+        res="f_static_heiheihei" />
+    <item
+        name="{黑线}"
+        res="f_static_heixian" />
+    <item
+        name="{怨恨}"
+        res="f_static_heng" />
+    <item
+        name="{坏笑}"
+        res="f_static_huaixiao" />
+    <item
+        name="{花心}"
+        res="f_static_huaxin" />
+    <item
+        name="{调皮}"
+        res="f_static_jiyan" />
+    <item
+        name="{可爱}"
+        res="f_static_keai" />
+    <item
+        name="{可怜}"
+        res="f_static_kelian" />
+    <item
+        name="{装酷}"
+        res="f_static_ku" />
+    <item
+        name="{瞌睡}"
+        res="f_static_kun" />
+    <item
+        name="{流泪}"
+        res="f_static_lei" />
+    <item
+        name="{发怒}"
+        res="f_static_nu" />
+    <item
+        name="{亲亲}"
+        res="f_static_qinqin" />
+    <item
+        name="{傻眼}"
+        res="f_static_shayan" />
+    <item
+        name="{生病}"
+        res="f_static_shengbing" />
+    <item
+        name="{衰衰}"
+        res="f_static_shuai" />
+    <item
+        name="{骷髅}"
+        res="f_static_kulou" />
+    <item
+        name="{睡觉}"
+        res="f_static_shuijiao" />
+    <item
+        name="{龇牙}"
+        res="f_static_xixi" />
+    <item
+        name="{开心}"
+        res="f_static_taikaixin" />
+    <item
+        name="{跪舔}"
+        res="f_static_tian" />
+    <item
+        name="{偷笑}"
+        res="f_static_touxiao" />
+    <item
+        name="{挖鼻}"
+        res="f_static_wabishi" />
+    <item
+        name="{委屈}"
+        res="f_static_weiqu" />
+    <item
+        name="{捂眼}"
+        res="f_static_wu" />
+    <item
+        name="{笑哭}"
+        res="f_static_xiaoku" />
+    <item
+        name="{惊喜}"
+        res="f_static_xingxingyan" />
+    <item
+        name="{嘘嘘}"
+        res="f_static_xu" />
+    <item
+        name="{阴险}"
+        res="f_static_yinxian" />
+    <item
+        name="{疑问}"
+        res="f_static_yiwen" />
+    <item
+        name="{右哼}"
+        res="f_static_youhengheng" />
+    <item
+        name="{左哼}"
+        res="f_static_zuohengheng" />
+    <item
+        name="{头晕}"
+        res="f_static_yun" />
+    <item
+        name="{运背}"
+        res="f_static_yunbei" />
+    <item
+        name="{抓狂}"
+        res="f_static_zhuakuang" />
+    <item
+        name="{肥皂}"
+        res="f_static_feizao" />
+    <item
+        name="{狗狗}"
+        res="f_static_doge" />
+    <item
+        name="{二哈}"
+        res="f_static_erha" />
+    <item
+        name="{猫猫}"
+        res="f_static_miao" />
+    <item
+        name="{神兽}"
+        res="f_static_shenshou" />
+    <item
+        name="{兔子}"
+        res="f_static_tuzi" />
+    <item
+        name="{熊猫}"
+        res="f_static_xiongmao" />
+    <item
+        name="{猪头}"
+        res="f_static_zhutou" />
+</set>

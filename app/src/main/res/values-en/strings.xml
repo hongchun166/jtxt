@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BLink</string>
+
+    <string name="manager">manager</string>
+    <string name="exit_app_tips">press again to exit the programm</string>
+    <string name="dialog_loading">loading...</string>
+    <string name="recommend_contacts">contacts recommend</string>
+    <string name="already_new_version_tips" >already last version</string>
+    <string name="no_install_wx" >No install wechat</string>
+    <string name="wechat_loging" >Geting wechat auth...</string>
+    <string name="register_gift_money" >125.50</string>
+    <string name="register_gift_money_unit" >DPC</string>
+    <string name="register_gift_tips" >First Login, Gift with %1$dDPC!</string>
+    <string name="click_confirm" >click_confirm</string>
+    <string name="find_password" >find password</string>
+
+    <string name="language_cn" >Chinese</string>
+    <string name="language_en" >English</string>
+    <string name="language_auto" >auto</string>
+    <string name="language_traditional" >Chinese tradition</string>
+
+    <string name="language_select" >current language: %s</string>
+    <!--message page-->
+    <string name="start_group_chat">start group chat</string>
+    <string name="add_friends">add friends</string>
+    <string name="mine_wallet">my wallet</string>
+
+    <string name="wallet">wallet</string>
+    <string name="verify_name">verified</string>
+    <string name="system_setting">system setting</string>
+    <string name="task_center">task center</string>
+    <string name="invite_friend">invite friends</string>
+    <string name="invite_friend_tips">share to members to gain DPC coins</string>
+    <string name="register_share">register share</string>
+    <string name="register_share_tips">register share to gain DPC coins</string>
+    <string name="login_prisent">login to gain</string>
+    <string name="login_prisent_tips">login period to gain DPC coins</string>
+    <string name="go_invite">invite</string>
+    <string name="phone_contacts">phone contacts</string>
+    <string name="invite_contacts">invite</string>
+    <string name="invite_contacts_sms_content">Your friend will leave a message to you via BLink. Please register to check it out. Download address:%1$s</string>
+    <string name="go_share" >share</string>
+    <string name="received" >receive</string>
+    <string name="go_login" >login</string>
+    <string name="login_time" >login time</string>
+    <string name="exit_login" >login out</string>
+
+    <string name="popular_group" >popular group</string>
+    <string name="find_find" >Find</string>
+    <string name="information" >information</string>
+    <string name="discuss_group" >Discuss Group</string>
+    <string name="favorite" >Collection</string>
+    <string name="comment" >Comment</string>
+    <string name="share" >Share</string>
+
+    <string name="search" >search</string>
+    <string name="search_edit" >search : </string>
+    <string name="new_friend" >new Friend</string>
+    <string name="create_chat_group" >create group chat</string>
+    <string name="search_account" >search account</string>
+    <string name="search_group" >search group</string>
+    <string name="apply_join_group_tips" >Waiting Group Creator Review</string>
+    <string name="read_qr_code_error" >invaild qrcode</string>
+    <string name="apply_join_group_error_tips" >You had joined this Group</string>
+    <string name="search_no_result" >search no result</string>
+    <string name="blink_friend" >BLink Friend</string>
+    <string name="my_friend" >Mine Friend</string>
+    <string name="mine_group" >Mine Group</string>
+    <!--login/register-->
+    <string name="welcome_title">welcome to BLink</string>
+    <string name="welcome_title_accent">The world\'s first community-autonomous instant messaging platform</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="login_email">login with email</string>
+    <string name="login_telephone">login with telephone</string>
+    <string name="register_email">register with email</string>
+    <string name="register_telephone">register with telephone</string>
+    <string name="locale_default">china</string>
+    <string name="language_default">chinese</string>
+    <string name="email_verify_code">email verify code</string>
+    <string name="go_to_login">Registered? go login</string>
+    <string name="go_to_register">Not register? Go register</string>
+    <string name="go_to_register2">Go register</string>
+    <string name="telephone_verify_code">telephone verify code</string>
+    <string name="service_rule_tips_login">login with agree service</string>
+
+    <string name="account_tips">phone number</string>
+    <string name="email_account_tips">email</string>
+    <string name="nick_name">nick name</string>
+    <string name="sex">sex</string>
+    <string name="password_tips">password(at least 6 digits)</string>
+    <string name="apply_password_tips">pament password(6 digits)</string>
+    <string name="password_tip_accent">password</string>
+    <string name="image_verify">image verification</string>
+    <string name="msm_verify_code">message verification</string>
+    <string name="get_msm_verify_code">get verify code</string>
+    <string name="toggle_language">change language</string>
+    <string name="forgot_password">forget password?</string>
+    <string name="forgot_password2">Forget password</string>
+    <string name="platform_describe">A safe, convenient and efficient social platform</string>
+    <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
+    <string name="service_rule_tips">Registration means read and agreed</string>
+    <string name="service_rule">service rule</string>
+    <string name="switch_language">switch language</string>
+    <string name="account_error">phone number invalid</string>
+    <string name="account_empty_error">phone number can\'t be empty</string>
+    <string name="password_empty_error">password can\'t be empty</string>
+    <string name="apply_password_empty_error">payment password can\'t be empty</string>
+    <string name="nick_name_empty_error">nick name can\'t be empty</string>
+    <string name="password_confirm_tips" >password confirm</string>
+    <string name="apply_password_confirm_tips" >Apply password confirm</string>
+    <string name="password_confirm_error" >password input wrong</string>
+    <string name="apply_password_confirm_error" >password input wrong</string>
+    <string name="verify_code_empty_error" >verify code empty</string>
+    <string name="old_apply_password_empty_error" >old password empty</string>
+    <string name="new_apply_password_empty_error" >new password empty</string>
+
+    <!--wallet module-->
+    <string name="red_packet_restore_to_wallet" >already put in balance</string>
+    <string name="red_packet_received_tips" >waited Receive</string>
+    <string name="red_packet_received_tips_default" >Red packet waited Receive</string>
+    <string name="send_red_packer_count_default" >send red packet total 0</string>
+    <string name="wallet_title">BLink Wallet</string>
+    <string name="scan">scan</string>
+    <string name="charge_coin">coin charge</string>
+    <string name="withdraw_coin">coin withdraw</string>
+    <string name="withdraw_coin_record">coin withdraw record</string>
+    <string name="withdraw_coin_finish">coin withdraw finished</string>
+    <string name="blink_service">BLink service</string>
+    <string name="exchange">exchange</string>
+    <string name="finances">finance</string>
+    <string name="bill">bill</string>
+    <string name="address">address</string>
+    <string name="input_charge_amount">input charge amount</string>
+    <string name="submit">submit</string>
+    <string name="transfer_remark">Remarks: For account security, please note the ID when transferring money in other wallets.</string>
+    <string name="transfer_tips">	Tip: Check carefully when transferring funds. Once transferred, it is irrevocable. The transfer time depends on the blockchain confirmation time. If there is congestion, please be patient.</string>
+    <string name="total_assets">total assets(BTC)</string>
+    <string name="hide_coin_type">Hide no balance currency</string>
+    <string name="balance_available">valid</string>
+    <string name="balance_lock">lock</string>
+    <string name="apply">pay</string>
+    <string name="goto_exchange">exchange</string>
+    <string name="developing">developing</string>
+    <string name="exchange_reference_price">exchange reference price: 0</string>
+    <string name="exchange_tips">Uncompleted transactions within 24 hours after redemption will be returned to the wallet</string>
+    <string name="today_exchange_rate">exchange rate today</string>
+    <string name="currency">currency</string>
+    <string name="exchange_rate">xchange_rate</string>
+    <string name="day_withdrawal_amount">day withdraw amount</string>
+    <string name="customed_query">customed query</string>
+    <string name="withdraw_coin_amount">withdraw coin amount</string>
+    <string name="available_amount">available amount: </string>
+    <string name="actual_arrival_amount">actual arrival account: </string>
+    <string name="processing_fee">, fee: </string>
+    <string name="at_least_withdraw_amount">at least withdraw amount</string>
+    <string name="at_most_withdraw_amount">at most withdraw amount</string>
+    <string name="select_receive_address">Please select the currency address, or scan the code to enter</string>
+    <string name="withdraw_coin_tips">remark such as My Address#2(selected)</string>
+    <string name="withdraw_coin_hint">please input withdraw amount</string>
+    <string name="withdraw_coin_address">withdraw arrival adress: </string>
+    <string name="withdraw_coin_address_name">adress name: </string>
+    <string name="finance_password">finance password</string>
+    <string name="msg_verify_code">message verification code</string>
+    <string name="withdraw_confirm">withdraw confirm</string>
+    <string name="send_verify_code">Get Verify Code</string>
+    <string name="bill_detail">bill detail</string>
+    <string name="handing_fee">handing fee</string>
+    <string name="actual_arrival_money">actual arrival amount</string>
+    <string name="remark">remark</string>
+    <string name="time">time</string>
+    <string name="select_time">select time</string>
+    <string name="finish">finish</string>
+    <string name="select_by_month">select by month</string>
+    <string name="select_by_day">select by day</string>
+    <string name="verify_password_ing">password verifying...</string>
+    <string name="withdraw_amount_too_large">The amount of the coin exceeds the available amount</string>
+    <string name="withdraw_address_empty_error">withdraw address can\'t be empty</string>
+    <string name="withdraw_address_success">withdraw success</string>
+    <string name="withdraw_address_failure">withraw failed</string>
+    <string name="back_wallet_home_page">back to wallet</string>
+    <string name="withdraw_finish_tips">Congratulations for the success of the coin</string>
+    <string name="accelerate_develop">Speeding up development...</string>
+
+    <string name="label_user_old_apply_password" >old apply password:</string>
+    <string name="label_user_new_apply_password" >new apply password:</string>
+    <string name="label_setting_modify_apply_password" >modify apply password</string>
+    <string name="label_setting_default_apply_password" >default apply password: 000000</string>
+
+    <!--red wallet page-->
+    <string name="red_packet">red pecket</string>
+    <string name="red_packet_number">red packet number</string>
+    <string name="red_packet_number_hint">input number</string>
+    <string name="amount">amount</string>
+    <string name="amount_tips">balance:</string>
+    <string name="group_member_size">This group has a total of %1$d people</string>
+    <string name="group_member_size_default">0 people in this group</string>
+    <string name="amount_tips_default">balance: 0.00</string>
+    <string name="total_amount">total amount</string>
+    <string name="collect">collect</string>
+    <string name="single_amount">single amount</string>
+    <string name="red_packet_amount">red packet amount</string>
+    <string name="red_packet_tips">best wishes</string>
+    <string name="put_coin_to_bag">put coin to bag</string>
+    <string name="red_packet_sender">%1$s red envelope</string>
+    <string name="red_packet_open">open</string>
+    <string name="general_red_packet">normal red packet</string>
+    <string name="luck_red_packet">fighting for red packet</string>
+    <string name="received_red_packet">received red packet</string>
+    <string name="click_check_balance" >Saved to wallet, click to view</string>
+    <string name="red_packet_open_detail">Receive %1$s/%2$s</string>
+    <string name="red_packet_receive_money">%1$s%2$s</string>
+    <string name="deal_password_input">Please enter the payment password</string>
+    <string name="BLink_red_packet">BLink red packet</string>
+    <string name="BLink_Pay">BLink Pay</string>
+    <string name="more_currency">more currency</string>
+    <string name="sending_red_packet">sending red packet</string>
+    <string name="red_packet_empty_error">red envelope cannot be empty</string>
+    <string name="apply_password_error">Payment password error</string>
+    <string name="red_packet_record">red packet record</string>
+    <string name="mine_received_red_packet">my received red packet</string>
+    <string name="mine_send_red_packet">my send red packet</string>
+    <string name="total">total</string>
+    <string name="received_red_packet_error">Failed to receive red packet</string>
+    <string name="red_packet_check_detail">View picking details</string>
+    <string name="red_packet_empty">too slow, red packet has been taken</string>
+    <string name="red_packet_time_out">The red envelope has been more than 24 hours. If you have already received it, you can view it in "Red Packet Record"</string>
+    <string name="red_packet_un_invailable">red packet invalid</string>
+    <string name="collect_red_packet_tips">currently a handy red packet，</string>
+    <string name="common_red_packet_tips">currently normal red packet，</string>
+    <string name="change_common_red_packet_tips">change to ordinary red packet</string>
+    <string name="change_collect_red_packet_tips">Change to a hand red packet</string>
+    <string name="un_received_red_packet_tips">The red packet will not be received within 24 hours, and the red packet amount will be returned to the account.</string>
+    <string name="total_received_red_packet">%1$s received in total</string>
+    <string name="total_received_red_packet_default">total received</string>
+    <string name="total_sended_red_packet">%1$s send</string>
+    <string name="total_sended_red_packet_default">total send</string>
+    <string name="most_luck_count">Best luck</string>
+    <string name="time_out_red_packet_count">Expired %1$d/%2$d</string>
+    <string name="red_packet_send_count">%1$d/%2$d个</string>
+    <string name="send_red_packer_count">The total number of red packet sent is %1$d</string>
+
+    <!--individual message-->
+    <string name="person_info">Personal information</string>
+    <string name="delete_friend">delete friend</string>
+    <string name="report">report</string>
+    <string name="share_card">share contact</string>
+    <string name="post_bar">post bar</string>
+    <string name="common_group">Common group</string>
+    <string name="join_blacklist">join blacklist</string>
+    <string name="send_msg">send message</string>
+    <string name="voice_call">voice call</string>
+    <string name="blink_account">Blink account :</string>
+    <string name="signature">signature :</string>
+    <string name="apply_friend">apply friend</string>
+    <string name="mine_home_page">my home page</string>
+    <string name="goto_modify">go to modify >></string>
+    <string name="un_verify">unverified</string>
+
+
+    <string name="common_comment">reply</string>
+    <string name="common_send">send</string>
+    <string name="common_cancel">cancel</string>
+    <string name="common_upgrade">upgrade</string>
+    <string name="common_account">account</string>
+    <string name="common_confirm">confirm</string>
+    <string name="common_query">query</string>
+    <string name="common_gender">gender</string>
+    <string name="common_handle">handle</string>
+    <string name="common_sysmessage">system message</string>
+    <string name="common_system">system</string>
+    <string name="common_message">message</string>
+    <string name="common_agree">agree</string>
+    <string name="common_refuse">refuse</string>
+    <string name="common_ignore">ignore</string>
+    <string name="common_back">back</string>
+    <string name="common_mygroups">my group</string>
+    <string name="common_has_agree">agreed</string>
+    <string name="common_has_refuse">refused</string>
+    <string name="common_has_ignore">ignored</string>
+    <string name="common_add">add</string>
+    <string name="common_contacts">contacts</string>
+    <string name="common_copy">copy</string>
+    <string name="common_qrcode_read">common QR code read</string>
+    <string name="common_forward">forward</string>
+    <string name="common_notice">notice</string>
+    <string name="common_revoke">revoke</string>
+    <string name="common_man">man</string>
+    <string name="common_female">female</string>
+    <string name="common_edit">edit</string>
+    <string name="common_feedback">common feedback</string>
+    <string name="common_delete">delete</string>
+    <string name="common_open">open</string>
+    <string name="common_location">location</string>
+    <string name="common_map">map</string>
+    <string name="common_about">about</string>
+    <string name="common_hint">hint</string>
+    <string name="common_save">save</string>
+    <string name="common_setting">setting</string>
+    <string name="common_detail">detail</string>
+    <string name="common_trend">finding</string>
+    <string name="common_my">mine</string>
+    <string name="common_dissolve">dissolve</string>
+    <string name="common_quit">quit</string>
+    <string name="common_create">create</string>
+    <string name="common_camera">photo</string>
+    <string name="common_camera_recorder">shot</string>
+    <string name="common_album">album</string>
+    <string name="common_image">image</string>
+    <string name="common_download">download</string>
+    <string name="common_current_location">current location：%1$s</string>
+    <string name="common_detailed">detailed file</string>
+    <string name="common_search">search</string>
+    <string name="common_multiselect">multiselect</string>
+    <string name="common_singleselect">singleselect</string>
+    <string name="common_noresult">no result</string>
+    <string name="common_contact">contacts</string>
+    <string name="common_file">file</string>
+    <string name="common_mangment">manage</string>
+    <string name="common_resume_download">continue to download</string>
+    <string name="common_moment">dynamic</string>
+    <string name="common_praise">praise</string>
+    <string name="common_authorize">authorize</string>
+    <string name="common_invite">invite</string>
+
+
+    <string name="label_format_kilometre">%1$.2f kilometre</string>
+    <string name="label_format_metre">%1$d meter</string>
+
+
+    <string name="menu_chat_top">top chat</string>
+    <string name="menu_cancel_top">cancel top</string>
+    <string name="menu_mark_noread">mark as unread</string>
+    <string name="menu_mark_read">mark as read</string>
+    <string name="menu_delete_chat">delete chat</string>
+
+    <string name="label_logout">logout</string>
+    <string name="label_logout_hint">Are you sure to sign out of your current account?</string>
+    <string name="label_killapp">Close application</string>
+    <string name="label_killapp_hint">You will not receive the message, are you sure to close the program?</string>
+
+    <string name="label_file_stopdownload">stop download</string>
+    <string name="label_file_download">download%1$s</string>
+    <string name="label_file_choice">select file</string>
+    <string name="label_file_info">view files</string>
+
+    <string name="label_search_group">search group:%1$s</string>
+    <string name="label_search_microserver">Search microserver:%1$s</string>
+    <string name="label_enter_microserver">enter microserver</string>
+    <string name="label_subscribe">notice</string>
+    <string name="label_unsubscribe">no longer pay attention</string>
+    <string name="label_function_summary">introduce</string>
+    <string name="label_homepage">homepage</string>
+    <string name="label_microserver">microserver:%1$s</string>
+    <string name="label_org_list">structure</string>
+    <string name="label_tag_list">my label</string>
+
+    <string name="label_copy_url">copy link</string>
+    <string name="label_copy_success">copy success</string>
+    <string name="label_download_bitmap_to_local">Download bitmap to local</string>
+    <string name="label_save_bitmap">Save bitmap</string>
+    <string name="label_copy_bitmap_success">QR code copy success</string>
+    <string name="label_share_moment">Share moment</string>
+    <string name="label_share_friend">share to friends</string>
+
+    <string name="label_open_browser">open in browser</string>
+    <string name="label_changetext_size">change text-size</string>
+    <string name="label_geting">getting&#8230;</string>
+    <string name="label_read_all_text">read all text</string>
+
+    <string name="label_enter_now"> Experience now</string>
+    <string name="label_login_password">password</string>
+    <string name="label_login">login</string>
+    <string name="label_user_oldpassword">old password：</string>
+    <string name="label_user_newpassword">new password：</string>
+    <string name="label_user_newpassword_confirm">confirm new password</string>
+
+
+    <string name="label_user_account">account：</string>
+    <string name="label_user_telephone">phone：</string>
+    <string name="label_user_email">email：</string>
+    <string name="label_user_org">structure：</string>
+    <string name="label_user_icon">icon：</string>
+    <string name="label_user_name">name：</string>
+    <string name="label_user_gender">gender：</string>
+    <string name="label_user_motto">motto：</string>
+    <string name="label_ablbum_all">all images</string>
+    <string name="label_rule">permission limit</string>
+    <string name="label_chat">chat</string>
+    <string name="label_starark">star mark</string>
+    <string name="label_set_remark">set remark</string>
+
+    <string name="label_contacts_org">structure</string>
+    <string name="label_contacts_group_chat">group</string>
+    <string name="label_contacts_public">microserver</string>
+    <string name="label_contacts_tag">label</string>
+    <string name="label_contacts_frend_count">%d contacts</string>
+
+    <string name="label_group_icon">group icon：</string>
+    <string name="label_group_name">name：</string>
+    <string name="label_group_summary">notice：</string>
+    <string name="tips_input_group_name">input group name</string>
+    <string name="tips_input_group_summary">input group summary</string>
+    <string name="group_summary">group summary</string>
+    <string name="group_summary_empty">group summary empty</string>
+    <string name="label_group_founder">group founder：</string>
+    <string name="label_group_qrcode">group QR code：</string>
+    <string name="group_qrcode">group QR code</string>
+    <string name="copy_group_qrcode">copy group QR code</string>
+    <string name="hint_self_Invitation_code">Invitation code</string>
+    <string name="hint_scan_download_app">Download App</string>
+    <string name="hint_come_experience_kikichat">Come Experience kikichat</string>
+    <string name="hint_say_hello">Hi,My %1$s</string>
+    <string name="invite_info">Invite info</string>
+    <string name="copy_group_qrcode_success_tips">group QR code stored in gallery</string>
+    <string name="label_group_id">group id：</string>
+
+    <string name="label_group_invite">invite to join</string>
+    <string name="label_group_ignore">Block group message</string>
+    <string name="label_group_apply">apply to join</string>
+    <string name="label_group_create">Create group</string>
+    <string name="label_group_modify">modify group</string>
+    <string name="label_group_detail">group detail</string>
+    <string name="label_group_members">group members</string>
+    <string name="label_group_banned">group members banned</string>
+    <string name="label_group_uncheck_info">group unable check info</string>
+    <string name="label_group_uncheck_info_tips">group unable check info tips</string>
+    <string name="label_group_banned_tips">group banned</string>
+    <string name="label_group_create_succesed">create success</string>
+    <string name="label_group_invite_count">invite(%d)</string>
+    <string name="label_group_look_members">View all members(%d)</string>
+    <string name="get_group_detail_failure">get group detail failure</string>
+
+    <string name="label_album_selected_count">confirm(%1$s)</string>
+    <string name="label_menu_theme">theme setting</string>
+    <string name="label_menu_album">my album</string>
+    <string name="label_setting_modify_password">modify password</string>
+    <string name="label_setting_modify_motto">modify signiture</string>
+    <string name="label_setting_modify_name">modify name</string>
+    <string name="label_setting_modify_phone">modify phone</string>
+    <string name="label_setting_modify_email">modify email</string>
+    <string name="label_setting_modify_summary">modify group notice</string>
+    <string name="email_format_error">email format error</string>
+
+    <string name="label_setting_profile">personnel information</string>
+    <string name="label_setting_notify">notify setting</string>
+    <string name="label_setting_update">new version update</string>
+    <string name="label_setting_about">about</string>
+    <string name="label_setting_quitapp">quit app</string>
+    <string name="label_setting_server">server setting</string>
+    <string name="label_setting_newversion">new version:%1$s</string>
+    <string name="label_setting_serverurl">Server address</string>
+    <string name="label_setting_serverurl_hint">pattern sample:http://192.168.1.1:9090/\n or</string>
+    <string name="label_setting_cimport_hint">CIM port, not the port of the web server</string>
+    <string name="label_setting_server_hint">Please ask your system administrator for specific configuration information</string>
+    <string name="label_ignore_group_message">When you open the group, you will not receive notifications and prompts when you receive the group message.</string>
+    <string name="label_publish">publish</string>
+    <string name="label_moment_publish">share moment</string>
+    <string name="label_moment_message">moment message</string>
+    <string name="label_moment_replay_user"><Data><![CDATA[<font color="#3C568B">%1$s</font>]]></Data>reply<Data><![CDATA[<font color="#3C568B">%2$s</font>]]></Data>:%3$s</string>
+    <string name="label_moment_replay"><Data><![CDATA[<font color="#3C568B">%1$s</font>]]></Data>:%2$s</string>
+    <string name="label_moment_me">my moment</string>
+
+    <string name="label_function_moment">moment</string>
+    <string name="label_function_microapp">microapp</string>
+
+    <string name="label_chat_soundrecord_normal">Hold and talk</string>
+    <string name="label_chat_soundrecord_abort">Release, and end</string>
+    <string name="label_chat_soundrecord_send">release and send</string>
+    <string name="label_chat_soundcancle">Slip on your finger, cancel sending</string>
+    <string name="label_chat_unlashcancle">Release your finger and cancel sending</string>
+    <string name="label_copy_bitmap_tips">The photo you may want to send</string>
+
+    <string name="label_create_chat">create new chat</string>
+    <string name="label_recent_chat">recent chat</string>
+
+
+    <string name="title_contacts_verify">Request verification</string>
+    <string name="title_delete_message">delete message</string>
+    <string name="title_choice_picture">Choose image mode</string>
+    <string name="title_choice_contact">select contract</string>
+    <string name="title_save_config">save settings</string>
+    <string name="title_moment_rule">set moment rule</string>
+    <string name="title_theme_setting">set theme</string>
+    <string name="title_look_microserver">view microserver</string>
+    <string name="title_message_forward">message forward</string>
+    <string name="title_look_microapp">micro app list</string>
+
+    <string name="tip_has_sent">send</string>
+    <string name="tip_has_read">read</string>
+    <string name="tip_save_loading">Saving, please wait&#8230;</string>
+    <string name="tip_conn_server_failed">The server is temporarily inaccessible</string>
+    <string name="tip_cim_conn_failed">Temporarily unable to connect to the server</string>
+    <string name="tip_data_beall">I also have the bottom line.</string>
+    <string name="tip_loading">In %1$s, please wait &#8230;</string>
+    <string name="tip_unknow_distance">unkown distance</string>
+    <string name="tip_unknow_location">Unknown address</string>
+    <string name="tip_handle_succeed">Successful processing</string>
+    <string name="tip_file_download_complete">Download completed, saved in：%1$s</string>
+    <string name="tip_file_download_failed">download failed, please try again later</string>
+    <string name="tip_send_request_complete">Send the request successfully, wait for the other party to verify!</string>
+    <string name="tip_article_deleted">This item has been deleted!</string>
+    <string name="tip_photo_video_download_complete">下The download is complete and has been saved in your album</string>
+
+    <string name="tip_message_revoke_failed">The message has been revoked and the other side has received it!</string>
+    <string name="tip_required_name">please input name</string>
+    <string name="tip_search_noresult"> No related results were found</string>
+    <string name="tip_required_article">content can\'t be empty</string>
+    <string name="tip_message_forward_completed">message send failed</string>
+    <string name="tip_publish_complete">Successfully released</string>
+    <string name="tip_group_dissolve_complete">Has successfully dissolved the group</string>
+    <string name="tip_group_quit_complete">Has successfully quit the group</string>
+    <string name="tip_group_kickout_complete">Has successfully kicked out the member</string>
+    <string name="tip_group_invite_complete">Send invitation successfully, wait for the other party to confirm!</string>
+    <string name="tip_save_complete">Successfully saved</string>
+    <string name="tip_oldpassword_error">Old password error</string>
+    <string name="tip_account_or_password_error">Incorrect account or password</string>
+    <string name="tip_account_invailed">Current account does not exist</string>
+    <string name="tip_account_disabled">Current account is disabled by the system</string>
+    <string name="tip_delete_comment">Are you sure to delete this comment?</string>
+    <string name="tip_find_newversion">find new version</string>
+    <string name="tip_cancel_upgrae">cancel upgrade</string>
+    <string name="tip_delete_message">You will delete all local message records associated with it and cannot be recovered. Are you sure to delete?</string>
+    <string name="tip_dissolve_group">Are you sure to dissolve the group and delete the local message record?</string>
+    <string name="tip_quit_group">Are you sure to quit the group and delete the local message record?</string>
+    <string name="tip_kickout_group">Are you sure to kick the other side out of the group?</string>
+    <string name="tip_delete_article">Are you sure to delete this item?</string>
+    <string name="tip_delete_record">Are you to delete this record?</string>
+    <string name="tip_delete_system_message">You will delete all local system messages and cannot be recovered. Are you sure to delete them?</string>
+    <string name="tip_max_nine_picture">You can send 9 pictures</string>
+    <string name="tip_group_create_succesed">Created successfully, now invite friends to join</string>
+    <string name="tip_save_server_config">Modifying the server configuration will clear all current records including messages, contacts, etc., confirm the save configuration and clear the local record to restart the application?</string>
+    <string name="tip_file_too_large">The file exceeds 20Mand cannot be sent.</string>
+
+    <string name="tip_title_groupmessage">group message</string>
+    <string name="tip_request_joingroup">%1$s request to join your group (%2$s)</string>
+    <string name="tip_refuse_joingroup">%1$s rejected your request to join the group (%2$s)</string>
+    <string name="tip_agree_joingroup">%1$s has agreed to your request to join the group (%2$s)</string>
+    <string name="tip_request_invitegroup">%1$s invites you to join the group(%2$s)</string>
+    <string name="tip_refuse_invitegroup">%1$s refused your invitation to enter the group(%2$s)</string>
+    <string name="tip_agree_invitegroup">%1$sAgree your request to join the group (%2$s)</string>
+    <string name="tip_kickout_group_completed">You have been kicked out from (%1$s) by group founder</string>
+    <string name="tip_quit_group_completed">%1$s has quit the group(%2$s)</string>
+    <string name="tip_dissolve_group_completed">Group (%1$s) has been disbanded by the group owner</string>
+    <string name="tip_group_has_dissolved">This group is already dissolved</string>
+
+    <string name="tip_request_verify">verify message：%1$s</string>
+    <string name="tip_verify_info">verify info</string>
+    <string name="tip_feedback">give some feedback^_^</string>
+    <string name="tip_feedback_completed">thank you for your feedback^_^</string>
+    <string name="tip_group_hello_message">welcome %1$s, say hello to everyone</string>
+    <string name="tip_group_hello_message_format">welcome, say hello to everyone</string>
+    <string name="hint_comment">reply%1$s</string>
+    <string name="hint_delete_image">Long press to delete the selected image</string>
+    <string name="title_login_remind">login remind</string>
+
+    <string name="tip_logo_updated">icon updated successfully</string>
+    <string name="tip_file_uploading">uploading......%d%%</string>
+    <string name="tip_logo_update_error">icon update failed, please try again</string>
+
+    <string name="tip_required_server_path">The server address cannot be empty</string>
+    <string name="tip_invalid_server_path">The server address format is incorrect</string>
+    <string name="tip_required_server_cimport">CIM port cannot be empty</string>
+
+    <string name="about_text">Instant Messaging Professional Edition is an internal communication tool for SMEs and various teams. It can be used to secure communication in the LAN, and it is completely free and can be updated in a timely manner. If you have any suggestions or comments during the use, please feel free to contact me.(smile)。  \n\nProject home page address\n<a href="https://gitee.com/farsunset/lvxin-pro">https://gitee.com/farsunset/lvxin-pro</a></string>
+    <string name="label_share_to_contact">Share to instant friends</string>
+    <string name="title_joingroup_request">joingroup request</string>
+    <string name="tip_search_hint">account、ID、name</string>
+    <string name="tip_textsize_small">小</string>
+    <string name="tip_textsize_normal">standard</string>
+    <string name="tip_textsize_big">big</string>
+    <string name="tip_textsize_large">large</string>
+
+    <string name="label_publish_input_hint">share your thoughts right now^_^</string>
+    <string name="tip_force_offline">Your account %1$s is logged in on another device %2$s. If it is not your own operation, your password has been leaked, please change your password in time.</string>
+    <string name="tip_user_disabled_offline">Your account has been disabled by the system and will log out. For details, please contact your system administrator.</string>
+    <string name="tip_copy_successed">Copied to pasteboard</string>
+    <string name="label_chat_draft"><Data><![CDATA[<font color="#b12727">[copy]</font>]]></Data>%1$s</string>
+    <string name="label_distance_of">distance %1$s</string>
+    <string name="label_user_moment_month">%1$s month</string>
+
+    <string name="label_message_preview_image">[image]</string>
+    <string name="label_message_preview_file">[file]</string>
+    <string name="label_message_preview_voice">[voice]</string>
+    <string name="label_message_preview_map">[map]</string>
+    <string name="label_message_preview_video">[video]</string>
+    <string name="label_message_preview_red_packet">[BLink red packet]</string>
+    <string name="label_message_from_red_packet">%1$s</string>
+    <string name="label_message_to_red_packet" >[BLink red packet]%1$s</string>
+
+    <string name="label_message_preview_normal">%1$s</string>
+    <string name="tip_please_configure_serverinfo">Please configure your server information first.</string>
+
+
+    <string name="moment_rule_shield">Don\'t let him or her see my moment</string>
+    <string name="moment_rule_shield_tip">Once opening, the content you sent in the moment will not be visible to the other side.</string>
+
+    <string name="moment_rule_ignore">Do not see his/her moment</string>
+    <string name="moment_rule_ignore_tip">After opening, the content sent by the other side in moment will not be visible.</string>
+
+    <string name="tip_permission_denied">permission</string>
+    <string name="tip_permission_audio_rejected">The permission to apply for recording is denied, and the recording function cannot be used temporarily.</string>
+    <string name="tip_permission_audio_disable">You do not have permission to allow instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permission to Allow Recording</string>
+
+    <string name="tip_permission_location_disable">You don\'t have permission to allow instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permissions to Allow Targeting</string>
+    <string name="tip_permission_location_rejected">Request targeting permission was denied, map feature is temporarily unavailable</string>
+
+    <string name="tip_permission_camera_rejected">The application for shooting permission is denied, and it is temporarily impossible to take videos and photos.</string>
+    <string name="tip_permission_album_rejected">You have rejected the request to view the album for instant messaging, and you cannot select the image at this time.</string>
+    <string name="tip_permission_album_disable">You do not have permission to read system albums that allow instant messaging, please allow permission to view albums in App info > Instant Messaging > Permissions > Settings</string>
+    <string name="tip_permission_camera_disable">You do not have permission to take photos for instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permission to Allow Photographing</string>
+
+    <string name="tip_permission_open">You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
+
+    <string name="title_apk_downloading">Installation package download</string>
+    <string name="title_apk_downloading_progress">progress %d%%</string>
+
+    <string name="title_apk_begin_download_toast">start to download,view progress in the notification</string>
+    <string name="title_apk_begin_download">Start downloading the installation package</string>
+    <string name="title_apk_download_failed">An exception occurred during the download, please click Retry</string>
+    <string name="title_dialog_message_forward">forward to:</string>
+    <string name="title_add_picture">add pictures</string>
+    <string name="title_select_address">Select location</string>
+
+    <string name="title_shared_voice_message">[voice]&#160;&#160;%1$s</string>
+    <string name="title_shared_file_message">[file]&#160;%1$s</string>
+    <string name="label_web_provider">Page provided by %1$s</string>
+    <string name="label_browser_provider">Chromium Kernel provides technical support</string>
+    <string name="title_bettery_saving">About power saving optimization</string>
+    <string name="tip_bettery_saving">If your mobile phone has a power saving mode, please turn off the power saving optimization for instant messaging, or add instant communication to the system to clean up the whitelist, so as not to receive the message in time after being intelligently optimized by the system.</string>
+    <string name="tip_moment_praise">praise</string>
+    <string name="title_video_recorder">video record</string>
+    <string name="label_press_recorder">press to record</string>
+    <string name="tips_empty_group">Go and create one, or join a group.^_^</string>
+    <string name="tips_empty_folder">Empty folder</string>
+
+    <string name="tips_list_loading">loading......</string>s
+    <string name="tips_no_microserver">You haven\'t paid attention to the public number yet, click to view it.^_^</string>
+    <string name="tips_chat_object_notexist">The contact no longer exists.</string>
+    <string name="label_album_bucket">Album directory</string>
+    <string name="theme_normal">normal</string>
+    <string name="theme_blue">blue</string>
+    <string name="theme_red">Wine red</string>
+    <string name="theme_green">green</string>
+    <string name="theme_purple">purple</string>
+    <string name="theme_teal">Green</string>
+    <string name="label_subscribed">already subscribed</string>
+    <string name="label_unsubscribed">unsubscribed</string>
+    <string name="label_clear_address">Do not use location</string>
+    <string name="label_select_location">Choose your location</string>
+    <string name="label_album_name_count">%1$s (%2$d)</string>
+    <string name="test_chat_width"></string>
+    <string name="label_file_path_format">the location of folder:%1$s</string>
+    <string name="label_app_file">Instant messaging file</string>
+    <string name="label_sdcard_file">Mobile phone storage</string>
+    <string name="label_file_sum_format">folder：%1$d</string>
+    <string name="label_file_desc_format">%1$s&#160;&#160;&#160;&#160;%2$s</string>
+    <string name="label_checked_info_format">selected：%1$s</string>
+    <string name="tips_not_support_shared">Unsupported sharing type</string>
+    <string name="hint_chat_new_message">%1$d new message</string>
+    <string name="title_select_at_member">Select the person to remind</string>
+    <string name="label_rencent_message_ignored">[%1$d条]%2$s</string>
+    <string name="label_rencent_message_at"><Data><![CDATA[<font color="#b12727">[有人@我]</font>]]></Data>%1$s</string>
+    <string name="label_file_selector">File selector</string>
+    <string name="tips_saveing_video">video is saving</string>
+    <string name="tips_trans_video_direction">video direction is transforming</string>
+    <string name="label_tag_format">%1$s(%2$d)</string>
+    <string name="title_input_tagname">input tagname</string>
+    <string name="label_modify_name">modify name</string>
+    <string name="label_modify_summary">modify notice</string>
+    <string name="label_modify_group_logo">modify group logo</string>
+    <string name="label_new_version_format">find new version:<Data><![CDATA[<font color="#45C01A"><strong>%1$s</strong></font>]]></Data></string>
+
+    <string name="tip_permission_camera_audio_disable" >You do not have permission to take photos for instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permission to Allow Photographing</string>
+    <string name="tip_permission_deny_tips" >You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
+    <!--Abnormal tips-->
+    <string name="error_get_assets">Get an abnormal balance of assets</string>
+
+</resources>

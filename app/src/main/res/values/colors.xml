@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="app_splash_bg">#1068ED</color>
+    <color name="haf_theme_green">#7f45C01A</color>
+    <color name="theme_text_color">#505050</color>
+
+
+    <!--background-->
+    <color name="background_green_009944">#009944</color>
+    <color name="background_green_44CAB2">#44CAB2</color>
+    <color name="background_yellow_FFBB29">#FFBB29</color>
+    <color name="background_yellow_FCE1C4">#FCE1C4</color>
+    <color name="background_yellow_FEA841">#FEA841</color>
+    <color name="background_red_F25F4F">#F25F4F</color>
+    <color name="background_red_F45440">#F45440</color>
+    <color name="background_red_D63337">#D63337</color>
+    <color name="background_blue_1068ed">#1068ED</color>
+    <color name="background_blue_2D76E3">#2D76E3</color>
+    <color name="background_blue_E1E8F0">#E1E8F0</color>
+    <color name="background_gray_C7CCD2">#C7CCD2</color>
+    <color name="background_gray_f0f1f2">#f0f1f2</color>
+    <color name="background_gray_f0f0f0">#f0f0f0</color>
+    <color name="background_gray_f1f1f1">#f1f1f1</color>
+    <color name="background_gray_EBEBEB">#EBEBEB</color>
+    <color name="background_gray_E6E6E6">#E6E6E6</color>
+    <color name="background_gray_F6F6F6">#F6F6F6</color>
+    <color name="background_gray_EDEDED">#EDEDED</color>
+    <color name="background_gray_F2F2F2">#F2F2F2</color>
+
+    <color name="background_brown_4C4C4C">#4C4C4C</color>
+    <color name="half_transparent">#88000000</color>
+
+    <!--字体-->
+    <color name="tex_color_white">#FFFFFF</color>
+    <color name="tex_color_gray_FFBB29">#FFBB29</color>
+    <color name="tex_color_gray_FFE0B0">#FFE0B0</color>
+    <color name="tex_color_gray_191919">#191919</color>
+    <color name="tex_color_gray_232323">#232323</color>
+    <color name="tex_color_gray_333">#333333</color>
+    <color name="tex_color_gray_666">#666666</color>
+    <color name="tex_color_gray_D2D2D2">#D2D2D2</color>
+    <color name="tex_color_gray_7B7B7B">#7B7B7B</color>
+    <color name="tex_color_gray_999999">#999999</color>
+    <color name="tex_color_gray_88898B">#88898B</color>
+    <color name="tex_color_gray_A9A9A9">#A9A9A9</color>
+
+    <color name="tex_color_blue_015DD6">#015DD6</color>
+    <color name="tex_color_blue_1068ed">#1068ED</color>
+    <color name="tex_color_blue_3266B2">#3266B2</color>
+    <color name="tex_color_blue_113db2">#ff113db2</color>
+    <color name="tex_color_blue_6B8198">#6B8198</color>
+    <color name="tex_color_green_26A07C">#26A07C</color>
+
+    <!--divider-->
+    <color name="divider_color_gray_CCCCCC">#CCCCCC</color>
+    <color name="divider_color_gray_ebebeb">#ebebeb</color>
+    <color name="divider_color_gray_F3F3F3">#F3F3F3</color>
+    <color name="divider_color_gray_F0F0F0">#F0F0F0</color>
+    <color name="divider_color_gray_9A9FA2">#9A9FA2</color>
+    <color name="divider_color_gray_999999">#999999</color>
+    <color name="divider_color_gray_D5D5D5">#D5D5D5</color>
+
+    <color name="text_grey">#999999</color>
+    <color name="text_blue">#596a91</color>
+    <color name="moment_name">#405f9e</color>
+    <color name="text_chat_color">#353535</color>
+    <color name="haf_transparent">#50000000</color>
+    <color name="haf_white">#7fffffff</color>
+
+    <color name="obscure_white">#F8FFFFFF</color>
+    <color name="text_chat_to_color">#2f3b23</color>
+    <color name="text_chat_from_color">#353535</color>
+
+    <color name="color_control_highlight">#33262A3B</color>
+
+
+    <color name="red_btn_border_color">#b12727</color>
+    <color name="red_btn_color_normal">#d43957</color>
+    <color name="red_btn_color_pressed">#cf3333</color>
+    <color name="red_btn_color_disable">#7fed3b3b</color>
+    <color name="green_btn_color_disable">#c8199018</color>
+    <color name="green_btn_color_pressed">#199018</color>
+    <color name="green_btn_color_normal">#1aad19</color>
+    <color name="green_btn_border_color">#1a9819</color>
+    <color name="green_btn_text_color_disable">#D0EFC6</color>
+
+
+    <color name="gray_pressed">#dddddd</color>
+    <color name="night_black">#546881</color>
+
+    <color name="theme_window_color">#ffeef1f3</color>
+
+    <color name="theme_night_text_color">#59687C</color>
+    <color name="darkgray">#AAAAAA</color>
+
+    <color name="def_imageview_color">#e9edee</color>
+
+    <color name="list_bg">#ffffffff</color>
+    <color name="list_bg_pressed">#e7e7e7</color>
+    <color name="list_border">#7fACA8A8</color>
+    <color name="list_border_pressed">#7fACA8A8</color>
+    <color name="dialog_menu_divider">#adb0b9</color>
+
+    <color name="theme_orange">@android:color/holo_orange_light</color>
+    <color name="theme_blue">@android:color/holo_blue_light</color>
+    <color name="theme_red">@android:color/holo_red_light</color>
+    <color name="theme_green">#45C01A</color>
+
+
+    <color name="moment_image_color">#c8cccf</color>
+    <color name="comment_item">#FFF1F1F1</color>
+    <color name="comment_item_pressed">#e9e9e9</color>
+
+    <color name="video_background">#9897a6</color>
+
+    <color name="colorPrimaryNormal">#1d1f2b</color>
+    <color name="colorToolbarNormal">#262A3B</color>
+    <color name="colorAccentNormal">@color/theme_green</color>
+
+    <color name="colorPrimaryRed">#49181d</color>
+    <color name="colorToolbarRed">#551e23</color>
+    <color name="colorAccentRed">#551e23</color>
+
+    <color name="colorPrimaryTeal">#028074</color>
+    <color name="colorToolbarTeal">#009688</color>
+    <color name="colorAccentTeal">#028074</color>
+
+    <color name="colorPrimaryBlue">#1068ED</color>
+    <color name="colorToolbarBlue">#1068ED</color>
+    <color name="colorAccentBlue">#1068ED</color>
+
+    <color name="colorPrimaryPurple">#4b4151</color>
+    <color name="colorToolbarPurple">#5d5165</color>
+    <color name="colorAccentPurple">#4b4151</color>
+
+    <color name="colorPrimaryGreen">#579138</color>
+    <color name="colorToolbarGreen">#6ab344</color>
+    <color name="colorAccentGreen">#6ab344</color>
+
+
+    <color name="nor_menu_color">#262A3B</color>
+    <color name="nor_menu_divider_color">#1B1F2D</color>
+    <color name="nor_hover_color">#199018</color>
+
+    <color name="red_menu_color">#551e23</color>
+    <color name="red_menu_divider_color">#43181c</color>
+    <color name="red_hover_color">#6b1f26</color>
+
+    <color name="blue_menu_color">#1b82d2</color>
+    <color name="blue_menu_divider_color">#1776bf</color>
+    <color name="blue_hover_color">#228bde</color>
+
+    <color name="green_menu_color">#6ab344</color>
+    <color name="green_menu_divider_color">#569137</color>
+    <color name="green_hover_color">#579935</color>
+
+    <color name="teal_menu_color">#009688</color>
+    <color name="teal_menu_divider_color">#00796b</color>
+    <color name="teal_hover_color">#02786d</color>
+
+    <color name="purple_menu_color">#5d5165</color>
+    <color name="purple_menu_divider_color">#4c4353</color>
+    <color name="purple_hover_color">#4c4353</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="ovalBtnBackground">#34AADC</color>
+    <color name="backgroundColor">#151515</color>
+    <color name="textColor">#FAFAFA</color>
+    <color name="editTextBackground">#49494B</color>
+    <color name="versionCodeColor">#57575A</color>
+    <color name="blue">#FF588CEE</color>
+    <color name="purple">#FFAA66CC</color>
+    <color name="yellow">#F8CF5E</color>
+    <color name="green">#4FA16A</color>
+    <color name="red">#CD5849</color>
+    <color name="gray_voice_connect">#585858</color>
+    <color name="cyanBlue">#00FFFF</color>
+    <color name="popupWindowBackground">#353535</color>
+    <color name="f8fbff">#f8fbff</color>
+
+    <integer-array name="audioBackgroundColors">
+        <item>@color/app_splash_bg</item>
+        <item>@color/gray_voice_connect</item>
+        <item>@color/app_splash_bg</item>
+        <item>@color/gray_voice_connect</item>
+        <item>@color/app_splash_bg</item>
+        <item>@color/gray_voice_connect</item>
+    </integer-array>
+</resources>

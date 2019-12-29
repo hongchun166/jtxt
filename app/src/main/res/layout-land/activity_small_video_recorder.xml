@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2c2c2c"
+    android:orientation="vertical">
+
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/record_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      />
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@id/TOOLBAR"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <Button
+        android:id="@+id/recorder"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@drawable/video_recorder_button"
+        android:gravity="center"
+        android:text="@string/label_press_recorder"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/confirm"
+        android:layout_width="60dp"
+        android:layout_below="@id/recorder"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="28dp"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/icon_done_white"
+        android:visibility="gone"
+        app:backgroundTint="@color/theme_green"
+        app:rippleColor="@android:color/white" />
+
+    <com.linkb.jstx.component.LinearProgressView
+        android:id="@+id/record_progress"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#7f000000" />
+
+</RelativeLayout>

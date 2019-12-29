@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_10dip">10dp</dimen>
+    <dimen name="ButtonCornerSize">2.0dip</dimen>
+    <dimen name="NormalTextSize">16.0dip</dimen>
+    <dimen name="sort_char_size">12sp</dimen>
+
+    <dimen name="sns_photos_spacing">5dp</dimen>
+    <dimen name="toolbar_elevation">3dp</dimen>
+
+    <!--导航栏-->
+    <dimen name="common_navigator_height">30dp</dimen>
+    <dimen name="toolbar_height">66dp</dimen>
+    <dimen name="toolbar_height_without_immersiom">45dp</dimen>
+    <dimen name="title_margin_top">30dp</dimen>
+    <dimen name="icon_margin_top">32dp</dimen>
+    <dimen name="appbar_margin_top">5dp</dimen>
+    <dimen name="appbar_title_margin_top">10dp</dimen>
+    <dimen name="appbar_padding_top">0dp</dimen>
+    <dimen name="toolbar_padding_top">12dp</dimen>
+    <dimen name="toolbar_title_padding_top">10dp</dimen>
+    <dimen name="wallet_appbar_title_margin_top">10dp</dimen>
+
+
+    <!--我的页面-->
+    <dimen name="mine_row_margin">10dp</dimen>
+    <dimen name="mine_button_length">80dp</dimen>
+    <dimen name="mine_button_height">30dp</dimen>
+    <dimen name="mine_button_text_size">14sp</dimen>
+    <dimen name="row_padding_top">10dp</dimen>
+    <dimen name="row_padding_bottom">10dp</dimen>
+    <dimen name="row_padding_left">20dp</dimen>
+    <dimen name="row_padding_right">20dp</dimen>
+
+    <dimen name="card_elevation">2dp</dimen>
+
+    <!--通讯录-->
+    <dimen name="contacts_avatar_width">40dp</dimen>
+    <dimen name="contacts_avatar_height">40dp</dimen>
+
+    <!--字体尺寸-->
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_navigation">18sp</dimen>
+    <dimen name="text_30sp">30sp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_content">14sp</dimen>
+    <dimen name="text_tips">12sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_18sp">18sp</dimen>
+    <dimen name="text_51sp">51sp</dimen>
+    <dimen name="popup_window_icon_size">25dp</dimen>
+</resources>

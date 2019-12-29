@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="hoverColor" format="reference|color"/>
+    <attr name="menuColor" format="reference|color"/>
+    <attr name="menuPressedColor" format="reference|color"/>
+    <attr name="menuDividerColor" format="reference|color"/>
+    <attr name="toolbarColor" format="reference|color"/>
+
+    <declare-styleable name="TimeLineMarker">
+        <attr name="markerSize" format="dimension" />
+        <attr name="marker" format="color|reference" />
+        <attr name="beginLine" format="color|reference" />
+        <attr name="endLine" format="color|reference" />
+        <attr name="lineSize" format="dimension" />
+    </declare-styleable>
+</resources>
