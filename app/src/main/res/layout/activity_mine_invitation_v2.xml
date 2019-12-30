@@ -9,11 +9,11 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-        android:background="?toolbarColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:orientation="vertical">
+        android:background="?toolbarColor"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/appbar_padding_top">
 
         <android.support.v7.widget.Toolbar
             android:id="@id/TOOLBAR"
@@ -26,9 +26,9 @@
                 android:id="@id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/toolbar_title_padding_top"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingTop="@dimen/toolbar_title_padding_top"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -49,9 +49,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="47dp"
-                android:layout_marginTop="@dimen/dimen_30dp"
-                android:layout_marginRight="47dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="35dp"
                 android:background="@drawable/background_white_with_radius"
                 android:orientation="vertical">
 
@@ -59,25 +59,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="23dp"
+                    android:layout_marginTop="16.6dp"
                     android:text="@string/invitation_reward"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_20sp" />
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="0.00"
                         android:id="@+id/tv_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="0.00"
                         android:textColor="@color/color_E75B28"
-                        android:textSize="50dp"
+                        android:textSize="37dp"
                         tools:text="1000" />
 
                     <TextView
@@ -92,16 +92,16 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15.6dp"
+                    android:layout_marginRight="15dp"
                     android:background="@drawable/shape_gray_dotted_line" />
 
                 <LinearLayout
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7.6dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -111,7 +111,7 @@
                         android:gravity="center"
                         android:text="@string/directly_invitation"
                         android:textColor="@color/tex_color_gray_999999"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -120,35 +120,35 @@
                         android:gravity="center"
                         android:text="@string/indirect_invitation"
                         android:textColor="@color/tex_color_gray_999999"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="0"
                         android:id="@+id/tv_directly_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:text="0"
                         android:textColor="@color/color_330000"
-                        android:textSize="40dp"
+                        android:textSize="30dp"
                         tools:text="100" />
 
                     <TextView
-                        android:text="0"
                         android:id="@+id/tv_indirect_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:text="0"
                         android:textColor="@color/color_330000"
-                        android:textSize="40dp"
+                        android:textSize="30dp"
                         tools:text="100" />
                 </LinearLayout>
             </LinearLayout>
@@ -156,79 +156,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="47dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="47dp"
-                android:layout_marginBottom="90dp"
-                android:background="@mipmap/back_mine_invi_des"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/back_mine_invi_des"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="奖"
-                        android:textColor="@color/color_e0bd7c"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="励"
-                        android:textColor="@color/color_e0bd7c"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="规"
-                        android:textColor="@color/color_e0bd7c"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="则"
-                        android:textColor="@color/color_e0bd7c"
-                        android:textSize="20dp" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="22dp"
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="@string/reawrd__300kkc"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <ImageView
-                        android:layout_width="131dp"
-                        android:layout_height="107dp"
-                        android:layout_marginRight="36dp"
+                        android:layout_width="98.3dp"
+                        android:layout_height="80.3dp"
+                        android:layout_marginRight="27dp"
                         android:src="@mipmap/icon_three_amount" />
 
 
@@ -237,48 +193,50 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="18dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="131dp"
-                        android:layout_height="107dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_width="98.3dp"
+                        android:layout_height="80.3dp"
+                        android:layout_marginLeft="11dp"
                         android:src="@mipmap/icon_two_amout" />
+
                     <TextView
-                        android:layout_marginRight="36dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="7.6dp"
+                        android:layout_marginRight="27dp"
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="@string/directly_reward_des"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="22dp"
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="@string/invitation_reward_commission_des"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <ImageView
-                        android:layout_width="131dp"
-                        android:layout_height="107dp"
-                        android:layout_marginRight="36dp"
+                        android:layout_width="98.3dp"
+                        android:layout_height="80.3dp"
+                        android:layout_marginRight="27dp"
                         android:src="@mipmap/icon_commission" />
                 </LinearLayout>
             </LinearLayout>

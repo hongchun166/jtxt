@@ -15,7 +15,8 @@ android {
 
         ndk{abiFilters "armeabi", "armeabi-v7a", "x86", "mips", "arm-v8a"}
     }
-
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
     flavorDimensions "default"
     productFlavors {
         ceshienviroment {
@@ -130,6 +131,7 @@ android {
 
 
     }
+
 //    splits {
 //        abi {
 //            enable true
