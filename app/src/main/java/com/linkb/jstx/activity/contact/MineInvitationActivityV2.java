@@ -6,7 +6,7 @@ import com.linkb.jstx.activity.base.BaseActivity;
 public class MineInvitationActivityV2 extends BaseActivity {
     @Override
     protected void initComponents() {
-        System.out.println("测试代码提交kkk");
+        System.out.println("测试代码提交k1111kk");
     }
 
     @Override
