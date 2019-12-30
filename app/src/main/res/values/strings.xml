@@ -439,7 +439,7 @@
     <string name="hint_self_Invitation_code">我的邀请码</string>
     <string name="hint_scan_download_app">扫描下载安装App</string>
     <string name="hint_come_experience_kikichat">快来体验下kikichat吧</string>
-    <string name="hint_say_hello">Hi,我是,%1$s</string>
+    <string name="hint_say_hello">Hi,我是%1$s</string>
     <string name="invite_info">邀请详情</string>
     <string name="copy_group_qrcode_success_tips">二维码已经存储到手机相册</string>
     <string name="get_group_detail_failure">获取群详情信息失败</string>

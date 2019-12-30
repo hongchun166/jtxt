@@ -43,7 +43,9 @@
     <color name="tex_color_gray_7B7B7B">#7B7B7B</color>
     <color name="tex_color_gray_999999">#999999</color>
     <color name="tex_color_gray_88898B">#88898B</color>
+    <color name="tex_color_gray_8A8A8A">#8A8A8A</color>
     <color name="tex_color_gray_A9A9A9">#A9A9A9</color>
+    <color name="tex_color_330000">#330000</color>
 
     <color name="tex_color_blue_015DD6">#015DD6</color>
     <color name="tex_color_blue_1068ed">#1068ED</color>

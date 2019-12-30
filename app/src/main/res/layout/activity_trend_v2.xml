@@ -11,11 +11,11 @@
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="150dp"/>
     <RelativeLayout
         android:id="@+id/circleItem"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@android:color/white"
         android:paddingLeft="16dp"
@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/discuss_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/ic_trend_circle_v2" />
@@ -32,11 +32,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/discuss_image"
             android:text="@string/label_function_moment"
-            android:textColor="@android:color/black" />
+            android:textSize="@dimen/text_15sp"
+            android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
     <RelativeLayout
         android:id="@+id/popular_group_rly"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/user_center_item_size"
         android:background="@android:color/white"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
@@ -60,8 +60,8 @@
 
         <ImageView
             android:id="@+id/popular_group_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             app:srcCompat="@mipmap/ic_trend_search_v2" />
 
@@ -69,11 +69,11 @@
             android:id="@+id/popular_group_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/popular_group_image"
             android:text="@string/find_find"
-            android:textColor="@android:color/black" />
+            android:textSize="@dimen/text_15sp"
+            android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
     <RelativeLayout
         android:id="@+id/information_rly"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/user_center_item_size"
         android:background="@android:color/white"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
@@ -103,8 +103,8 @@
 
         <ImageView
             android:id="@+id/information_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             app:srcCompat="@mipmap/information" />
 
@@ -112,11 +112,11 @@
             android:id="@+id/information_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/information_image"
             android:text="@string/information"
-            android:textColor="@android:color/black" />
+            android:textSize="@dimen/text_15sp"
+            android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
     <RelativeLayout
         android:id="@+id/game_Item"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@android:color/white"
         android:paddingLeft="16dp"
@@ -150,8 +150,8 @@
 
         <ImageView
             android:id="@+id/game__image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/youxi" />
@@ -163,7 +163,8 @@
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/game__image"
             android:text="@string/game"
-            android:textColor="@android:color/black" />
+            android:textSize="@dimen/text_15sp"
+            android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -179,7 +180,7 @@
     <RelativeLayout
         android:id="@+id/nearly_people_Item"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@android:color/white"
         android:paddingLeft="16dp"
@@ -188,8 +189,8 @@
 
         <ImageView
             android:id="@+id/nearly_people_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/fujinderen" />
@@ -201,7 +202,8 @@
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/nearly_people_image"
             android:text="@string/nearly_people"
-            android:textColor="@android:color/black" />
+            android:textSize="@dimen/text_15sp"
+            android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
             android:layout_width="wrap_content"
