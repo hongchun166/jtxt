@@ -14,10 +14,15 @@ import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.MineInviteCodeResult;
 import com.linkb.jstx.util.BitmapUtils;
 import com.linkb.jstx.util.ClipboardUtils;
 import com.linkb.jstx.util.ConvertUtils;
 import com.linkb.jstx.util.ZXingUtils;
+import com.linkb.video.utils.ToastUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,9 +33,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**  二维码功能页面
-* */
-public class GroupQrCodeActivityV2 extends BaseActivity {
+/**
+ * 二维码功能页面
+ */
+public class GroupQrCodeActivityV2 extends BaseActivity implements HttpRequestListener<MineInviteCodeResult> {
 
     @BindView(R.id.viewQrImg)
     ImageView qrcodeImage;
@@ -59,10 +65,12 @@ public class GroupQrCodeActivityV2 extends BaseActivity {
         qrcodeImage.setImageBitmap(mBitmap);
 
         User user = Global.getCurrentUser();
-        String text=String.format(getString(R.string.hint_say_hello),user.name);
-      viewTVName.setText(text);
+        String text = String.format(getString(R.string.hint_say_hello), user.name);
+        viewTVName.setText(text);
 
-      viewInvitationCode.setText("NHJHHGG");
+        viewInvitationCode.setText("NHJHHGG");
+        HttpServiceManager.getMineInviteCode(this);
+
     }
 
     @Override
@@ -71,25 +79,40 @@ public class GroupQrCodeActivityV2 extends BaseActivity {
     }
 
     @OnClick(R.id.back_btn)
-    public void onBack(){
+    public void onBack() {
         finish();
     }
 
     @OnClick(R.id.viewCopyInvitationCode)
-    public void copyInvite(){
-       String inviteCode=viewInvitationCode.getText().toString();
-        ClipboardUtils.copy(this,inviteCode);
+    public void copyInvite() {
+        String inviteCode = viewInvitationCode.getText().toString();
+        ClipboardUtils.copy(this, inviteCode);
         showToastView(getResources().getString(R.string.label_copy_bitmap_success));
     }
 
     @OnClick(R.id.viewBtnSaveQrBitmap)
-    public void downloadBitmapToLocal(){
+    public void downloadBitmapToLocal() {
         new fileFromBitmap(mBitmap, getApplicationContext()).execute();
     }
+
     @OnClick(R.id.viewInvitationInfo)
-    public void gotoInvitationInfo(){
-        Intent intent=new Intent(this,MineInvitationActivityV2.class);
+    public void gotoInvitationInfo() {
+        Intent intent = new Intent(this, MineInvitationActivityV2.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onHttpRequestSucceed(MineInviteCodeResult result, OriginalCall call) {
+        if (result.isSuccess()) {
+            viewInvitationCode.setText("NHJHHGG");
+        } else {
+            ToastUtils.s(this, result.message);
+        }
+    }
+
+    @Override
+    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+        ToastUtils.s(this, "获取邀请码失败");
     }
 
 
@@ -100,7 +123,7 @@ public class GroupQrCodeActivityV2 extends BaseActivity {
 
         public fileFromBitmap(Bitmap bitmap, Context context) {
             this.bitmap = bitmap;
-            this.context= context;
+            this.context = context;
         }
 
         @Override

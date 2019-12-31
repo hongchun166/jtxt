@@ -72,6 +72,7 @@ import com.linkb.jstx.network.result.MicroAppListResult;
 import com.linkb.jstx.network.result.MicroServerListResult;
 import com.linkb.jstx.network.result.MicroServerMenuListResult;
 import com.linkb.jstx.network.result.MicroServerResult;
+import com.linkb.jstx.network.result.MineInviteCodeResult;
 import com.linkb.jstx.network.result.MineInviteInfoResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.network.result.MomentListResult;
@@ -1429,6 +1430,15 @@ public class HttpServiceManager {
      */
     public static void getInviteInfo(HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.GET_INVITE_INFO, MineInviteInfoResult.class);
+        requestBody.addParameter("redFlag", 1);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 获取我的邀请码
+     */
+    public static void getMineInviteCode(HttpRequestListener<MineInviteCodeResult> listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.GET_MINE_INVITE_CODE, MineInviteCodeResult.class);
         requestBody.addParameter("redFlag", 1);
         HttpRequestLauncher.execute(requestBody, listener);
     }

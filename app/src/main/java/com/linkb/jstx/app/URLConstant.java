@@ -367,6 +367,7 @@ public class URLConstant {
      * 获取个人邀请详情
      */
     public static String GET_INVITE_INFO;
+    public static String GET_MINE_INVITE_CODE;
 
     static {
         initialize();
@@ -573,6 +574,7 @@ public class URLConstant {
 
         QUERY_COIN_TRANSFER_STATUS = API_URL + "account/checkTransferOfAccountState";
         GET_INVITE_INFO = API_URL + "user/getInviteInfo";
+        GET_MINE_INVITE_CODE = API_URL + "user/getInviteCode";
 
     }
 }
