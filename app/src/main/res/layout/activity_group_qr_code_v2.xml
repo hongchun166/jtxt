@@ -24,29 +24,32 @@
     <RelativeLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/background_blue_1068ed"
         android:orientation="vertical"
-        android:paddingTop="@dimen/appbar_padding_top"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="@dimen/appbar_padding_top"
         >
-
-        <FrameLayout
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:paddingEnd="10dp">
-
-            <ImageView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/wallet_appbar_title_margin_top">
+            <FrameLayout
+                android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/back" />
-        </FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/back" />
+            </FrameLayout>
+        </RelativeLayout>
     </RelativeLayout>
     <ScrollView
         android:layout_width="0dp"
@@ -95,7 +98,7 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/background_blue_1068ed"
                 app:layout_constraintTop_toTopOf="parent"
@@ -151,7 +154,7 @@
                     android:id="@+id/viewInvitationCodeHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/hint_self_Invitation_code"
                     android:textSize="@dimen/text_15sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline29"
@@ -161,10 +164,10 @@
                 <View
                     android:id="@+id/viewInvitationCodeGroup"
                     android:layout_width="0dp"
-                    android:layout_height="86dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/divider_color_gray_D5D5D5"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -176,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:text="KANDHF"
                     android:textColor="@color/tex_color_blue_113db2"
-                    android:textSize="@dimen/text_30sp"
+                    android:textSize="@dimen/text_26sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/viewInvitationCodeGroup"
                     app:layout_constraintLeft_toLeftOf="@+id/viewInvitationCodeGroup"
@@ -188,7 +191,7 @@
                     android:id="@+id/viewCopyInvitationCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/copy_group_qrcode"
                     android:textColor="@color/tex_color_gray_666"
                     android:textSize="@dimen/text_15sp"
@@ -198,9 +201,9 @@
 
                 <View
                     android:id="@+id/viewQrCodeGroup"
-                    android:layout_width="158dp"
-                    android:layout_height="170dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_width="127dp"
+                    android:layout_height="137dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/qrcode_group_bg"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -208,8 +211,8 @@
 
                 <ImageView
                     android:id="@+id/viewQrImg"
-                    android:layout_width="133dp"
-                    android:layout_height="133dp"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
                     app:layout_constraintLeft_toLeftOf="@+id/viewQrCodeGroup"
                     app:layout_constraintRight_toRightOf="@+id/viewQrCodeGroup"
                     app:layout_constraintTop_toTopOf="@+id/viewQrCodeGroup"
@@ -220,7 +223,7 @@
                     android:id="@+id/viewDownHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/hint_scan_download_app"
                     android:textColor="@color/tex_color_gray_666"
                     android:textSize="@dimen/text_15sp"
@@ -232,7 +235,7 @@
                     android:id="@+id/viewWebHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="10dp"
                     android:text="www.kikichat.com"
                     android:textColor="@color/tex_color_gray_333"
                     android:textSize="@dimen/text_15sp"
@@ -243,7 +246,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewWebHint" />
@@ -253,7 +256,7 @@
                 android:id="@+id/viewBtnSaveQrBitmap"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/button_background_yellow_to_yellow"
                 android:text="@string/label_save_bitmap"
                 android:textColor="@color/tex_color_330000"
@@ -266,7 +269,7 @@
                 android:id="@+id/viewInvitationInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="59dp"
+                android:layout_marginTop="25dp"
                 android:text="@string/invite_info"
                 android:textColor="@color/tex_color_white"
                 android:textSize="@dimen/text_15sp"

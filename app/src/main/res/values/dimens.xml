@@ -34,7 +34,7 @@
     <dimen name="row_padding_right">20dp</dimen>
 
     <dimen name="card_elevation">2dp</dimen>
-    <dimen name="user_center_item_img_size">35dp</dimen>
+    <dimen name="user_center_item_img_size">32dp</dimen>
     <dimen name="user_center_item_tx_size">@dimen/text_15sp</dimen>
     <dimen name="user_center_item_size">50dp</dimen>
     <!--通讯录-->
@@ -61,6 +61,8 @@
     <dimen name="text_22sp">22sp</dimen>
     <dimen name="text_23sp">23sp</dimen>
     <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_26sp">26sp</dimen>
+    <dimen name="text_28sp">28sp</dimen>
     <dimen name="text_30sp">30sp</dimen>
     <dimen name="text_38sp">38sp</dimen>
     <dimen name="text_49sp">49sp</dimen>

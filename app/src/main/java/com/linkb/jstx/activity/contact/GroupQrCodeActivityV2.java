@@ -103,8 +103,9 @@ public class GroupQrCodeActivityV2 extends BaseActivity implements HttpRequestLi
 
     @Override
     public void onHttpRequestSucceed(MineInviteCodeResult result, OriginalCall call) {
-        if (result.isSuccess()) {
-            viewInvitationCode.setText("NHJHHGG");
+        if (result !=null && result.isSuccess() && result.getData()!=null) {
+            String code=result.getData().getInviteCode();
+            viewInvitationCode.setText(""+code);
         } else {
             ToastUtils.s(this, result.message);
         }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BLink</string>
+    <string name="app_name">KiKiChat</string>
     <string name="accept">接受</string>
+    <string name="refuse">拒绝</string>
     <string name="manager">管理员</string>
     <string name="exit_app_tips">再按一次退出程序</string>
     <string name="dialog_loading">加载中...</string>
@@ -19,6 +20,8 @@
     <string name="language_en" >English</string>
     <string name="language_auto" >自动</string>
     <string name="language_traditional" >繁體</string>
+    <string name="operation_suc" >操作成功</string>
+    <string name="operation_faill" >操作失败</string>
 
     <string name="language_select" >当前选择的语言: %s</string>
 
@@ -125,6 +128,8 @@
     <string name="forgot_password">忘记密码?</string>
     <string name="forgot_password2">忘记密码</string>
     <string name="platform_describe">安全、便捷、高效的社交平台</string>
+    <string name="platform_describe2">全球社交，全球商务</string>
+    <string name="platform_describe2_en">GLOBAL SOCIAL,GLOBAL BUSINESS</string>
     <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
     <string name="service_rule_tips">注册即代表阅读并同意</string>
     <string name="service_rule">服务条款</string>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BLink</string>
+    <string name="app_name">KiKiChat</string>
     <string name="accept">Accept</string>
+    <string name="refuse">Refuse</string>
     <string name="manager">manager</string>
     <string name="exit_app_tips">press again to exit the programm</string>
     <string name="dialog_loading">loading...</string>
@@ -100,6 +101,8 @@
     <string name="forgot_password">forget password?</string>
     <string name="forgot_password2">Forget password</string>
     <string name="platform_describe">A safe, convenient and efficient social platform</string>
+    <string name="platform_describe2">Global social, global business</string>
+    <string name="platform_describe2_en">GLOBAL SOCIAL,GLOBAL BUSINESS</string>
     <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
     <string name="service_rule_tips">Registration means read and agreed</string>
     <string name="service_rule">service rule</string>

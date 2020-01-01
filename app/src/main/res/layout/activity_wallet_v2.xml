@@ -56,46 +56,60 @@
         app:layout_constraintGuide_percent="0.28" />
 
     <RelativeLayout
-        android:id="@+id/viewTopBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/background_blue_1068ed"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="@dimen/appbar_padding_top"
+        >
 
-        <ImageView
-            android:id="@+id/imageView_image_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:src="@mipmap/back"
-            android:textColor="@android:color/white" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/wallet_appbar_title_margin_top">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/wallet_title2"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_navigation" />
-
-        <FrameLayout
-            android:id="@+id/money_visible_fly"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
-
-            <ImageView
-                android:id="@+id/money_visible_img"
+            <FrameLayout
+                android:id="@+id/imageView_image_back"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="8dp"
-                android:src="@mipmap/open" />
-        </FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/back" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/wallet_title2"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_navigation" />
+
+            <FrameLayout
+                android:id="@+id/money_visible_fly"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/money_visible_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:src="@mipmap/open" />
+            </FrameLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -104,7 +118,7 @@
         android:layout_height="150dp"
         android:background="@color/background_blue_1068ed"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTopBar">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <View
             android:id="@+id/viewcenter"

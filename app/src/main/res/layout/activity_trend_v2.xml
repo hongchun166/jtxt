@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="@drawable/background_white_to_gray"
         android:paddingLeft="16dp"
         >
 
@@ -36,6 +36,7 @@
             android:layout_toEndOf="@+id/discuss_image"
             android:text="@string/label_function_moment"
             android:textSize="@dimen/text_15sp"
+            android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
@@ -53,7 +54,7 @@
         android:id="@+id/popular_group_rly"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
-        android:background="@android:color/white"
+        android:background="@drawable/background_white_to_gray"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
         >
@@ -73,6 +74,7 @@
             android:layout_toEndOf="@+id/popular_group_image"
             android:text="@string/find_find"
             android:textSize="@dimen/text_15sp"
+            android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
@@ -96,7 +98,7 @@
         android:id="@+id/information_rly"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
-        android:background="@android:color/white"
+        android:background="@drawable/background_white_to_gray"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
         >
@@ -116,6 +118,7 @@
             android:layout_toEndOf="@+id/information_image"
             android:text="@string/information"
             android:textSize="@dimen/text_15sp"
+            android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
@@ -143,7 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="@drawable/background_white_to_gray"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
         >
@@ -182,7 +185,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="@drawable/background_white_to_gray"
         android:paddingLeft="16dp"
         android:layout_marginTop="1dp"
         >

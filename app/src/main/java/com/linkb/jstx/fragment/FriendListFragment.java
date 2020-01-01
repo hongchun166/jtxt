@@ -126,6 +126,13 @@ public class FriendListFragment extends CIMMonitorFragment implements OnTouchMov
             mContactsSize = result.getDataList().size();
            new GetPingYingTask().execute(result.getDataList());
         }else {
+            FriendListResult.FriendShip friendShip=new FriendListResult.FriendShip();
+            String friend=getContext().getResources().getString(R.string.new_friend2);
+            friendShip.setName(friend);
+            friendShip.setId(LOCAL_NEW_FRIEND_ID);
+            List<Object> contentList =new ArrayList<>();
+            contentList.add(friendShip);
+            adapter.notifyDataSetChanged(1,contentList);
             hideProgressDialog();
 //            showToastView(result.message);
         }

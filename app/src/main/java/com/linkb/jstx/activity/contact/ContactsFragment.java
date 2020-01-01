@@ -200,7 +200,7 @@ public class ContactsFragment extends CIMMonitorFragment implements  View.OnClic
 
     @Override
     public void addFriends() {
-        startActivity(new Intent(getActivity(), SearchFriendActivity.class));
+        startActivity(new Intent(getActivity(), SearchFriendActivityV2.class));
     }
 
     @Override

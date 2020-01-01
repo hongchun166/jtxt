@@ -24,7 +24,7 @@ import com.linkb.jstx.activity.HomeActivity;
 import com.linkb.jstx.activity.QrcodeScanActivity;
 import com.linkb.jstx.activity.base.CIMMonitorFragment;
 import com.linkb.jstx.activity.contact.CreateGroupActivity;
-import com.linkb.jstx.activity.contact.SearchFriendActivity;
+import com.linkb.jstx.activity.contact.SearchFriendActivityV2;
 import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.adapter.ConversationListViewAdapter;
 import com.linkb.jstx.app.Constant;
@@ -440,7 +440,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
 
     @Override
     public void addFriends() {
-        startActivity(new Intent(getActivity(), SearchFriendActivity.class));
+        startActivity(new Intent(getActivity(), SearchFriendActivityV2.class));
     }
 
     @Override

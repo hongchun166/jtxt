@@ -154,6 +154,7 @@ public class URLConstant {
      */
     public static String GET_FRIENDS_LIST;
 
+
     /**
      * 添加好友
      */
@@ -162,6 +163,27 @@ public class URLConstant {
      * 申请好友关系
      */
     public static String APPLY_FRIEND;
+    /**
+     * 申请好友关系
+     */
+    public static String ADD_FRIEND_APPLY_V2;
+    /**
+     * 同意、拒绝好友申请
+     */
+    public static String APPLY_FRIENDV_ANSWER_V2;
+    /**
+     * 删除好友
+     */
+    public static String APPLY_FRIENDV_DELETE_V2;
+    /**
+     * 好友申请列表
+     */
+    public static String LIST_FRIEND_APPLY_V2;
+    /**
+     * 我的好友列表
+     */
+    public static String LIST_MY_FRIENDS_V2;
+
     /**
      * 删除好友
      */
@@ -371,8 +393,16 @@ public class URLConstant {
 
     static {
         initialize();
+        initializeV2();
     }
+    public static void initializeV2(){
 
+        ADD_FRIEND_APPLY_V2= API_URL + "userFriend/addFriendApply";
+        APPLY_FRIENDV_ANSWER_V2=API_URL +"userFriend/agreeFriendApply";
+        APPLY_FRIENDV_DELETE_V2=API_URL +"userFriend/delete";
+        LIST_FRIEND_APPLY_V2=API_URL +"userFriend/listFriendApply";
+        LIST_MY_FRIENDS_V2=API_URL +"userFriend/listMyFriends";
+    }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";
 

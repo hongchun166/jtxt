@@ -29,7 +29,7 @@
         android:layout_below="@+id/image_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
-        android:text="@string/platform_describe"
+        android:text="@string/platform_describe2"
         android:textColor="@color/f8fbff"
         android:textSize="21dp" />
 
@@ -39,6 +39,6 @@
         android:layout_below="@+id/platform_describe"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
-        android:text="@string/platform_describe_en"
+        android:text="@string/platform_describe2_en"
         android:textColor="@color/f8fbff" />
 </RelativeLayout>

@@ -37,7 +37,7 @@
             android:id="@+id/textView9"
             android:layout_width="199dp"
             android:layout_height="57dp"
-            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/welcome_title"
             android:src="@mipmap/ic_v2_welcome_title"
             android:textColor="@color/tex_color_blue_1068ed"
@@ -56,7 +56,7 @@
             style="@style/LoginEditTx"
             android:id="@+id/editText_account"
             android:layout_width="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="@string/account_tips"
             android:inputType="phone"
@@ -69,7 +69,7 @@
             style="@style/LoginEditTx"
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/editText_account">
@@ -108,7 +108,7 @@
             style="@style/LoginEditTx"
             android:id="@+id/constraintLayout3"
             android:layout_width="0dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -152,7 +152,7 @@
             style="@style/LoginEditTx"
             android:id="@+id/constraintLayout4"
             android:layout_width="0dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
@@ -193,7 +193,7 @@
             style="@style/LoginEditTx"
             android:id="@+id/editText_nickname"
             android:layout_width="0dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="15dp"
             android:drawableBottom="@drawable/edit_tx_bottom_line"
             android:ems="10"
             android:hint="@string/nick_name"
@@ -272,7 +272,13 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintStart_toStartOf="@+id/guideline8"
             app:layout_constraintTop_toBottomOf="@+id/next_button" />
-
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView127"
+                />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
