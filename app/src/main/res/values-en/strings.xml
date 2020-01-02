@@ -389,16 +389,21 @@
     <string name="label_user_org">structure：</string>
     <string name="label_user_icon">icon：</string>
     <string name="label_user_name">name：</string>
+    <string name="label_user_marriage">Marital status：</string>
     <string name="label_user_gender">gender：</string>
     <string name="label_user_motto">motto：</string>
+    <string name="label_user_sign">sign:</string>
     <string name="label_ablbum_all">all images</string>
     <string name="label_rule">permission limit</string>
     <string name="label_chat">chat</string>
     <string name="label_starark">star mark</string>
     <string name="label_set_remark">set remark</string>
-
+    <string name="label_user_industry">industry:</string>
+    <string name="label_user_position">position"/jobs:</string>
+    <string name="label_user_region">region:</string>
     <string name="label_contacts_org">structure</string>
     <string name="label_contacts_group_chat">group</string>
+    <string name="label_user_label">label:</string>
     <string name="label_contacts_public">microserver</string>
     <string name="label_contacts_tag">label</string>
     <string name="label_contacts_frend_count">%d contacts</string>

@@ -187,7 +187,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     }
     @OnClick(R.id.viewIVEdit)
     public void gotoEditInfoAvatar(){
-        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivity.class),  0x11);
+        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivityV2.class),  0x11);
     }
     @OnClick(R.id.xiangce_cly)
     public void onGallery(){

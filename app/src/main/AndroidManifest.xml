@@ -102,6 +102,9 @@
             android:name="com.linkb.jstx.activity.setting.ProfileEditActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.linkb.jstx.activity.setting.ProfileEditActivityV2"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.linkb.jstx.activity.setting.ModifyPasswordActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".jstx.activity.setting.ModifyApplyPasswordActivity"
@@ -114,6 +117,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyNameActivityV2"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivity"
