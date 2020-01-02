@@ -3,6 +3,9 @@
     <string name="app_name">KiKiChat</string>
     <string name="accept">接受</string>
     <string name="refuse">拒绝</string>
+    <string name="be_accept">已同意</string>
+    <string name="be_refuse">已拒绝</string>
+    <string name="be_timeout">已过期</string>
     <string name="manager">管理员</string>
     <string name="exit_app_tips">再按一次退出程序</string>
     <string name="dialog_loading">加载中...</string>

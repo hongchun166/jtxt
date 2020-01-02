@@ -19,9 +19,13 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseDataResult;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
+import com.linkb.jstx.network.result.FriendResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -37,7 +41,7 @@ import butterknife.Unbinder;
 /**
  * 别人申请我的好友
  */
-public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequestListener<FriendListResult> {
+public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequestListener<FriendApplyBeResult> {
 
     @BindView(R.id.lv_friend_data)
     RecyclerView recyclerView;
@@ -89,7 +93,7 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
 
     private void loadFriendDate() {
         showProgressDialog("");
-        HttpServiceManager.getListFriendApplyV2(Global.getCurrentUser().account, this);
+        HttpServiceManagerV2.getListFriendApplyV2(Global.getCurrentUser().account, this);
 
     }
 
@@ -100,12 +104,13 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
      */
     private void accrptFriend(String friendId) {
         showProgressDialog("");
-        HttpServiceManager.agreeFriendV2(Global.getCurrentUser().account, friendId, "1", new HttpRequestListener<BaseDataResult>() {
+        HttpServiceManagerV2.agreeFriendV2(Global.getCurrentUser().account, friendId, "1", new HttpRequestListener<BaseResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseDataResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
                 hideProgressDialog();
                 if (result.isSuccess()) {
                     showToastView(getString(R.string.operation_suc));
+                    loadFriendDate();
                 }
             }
 
@@ -119,12 +124,13 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
 
     private void refuseFriend(String friendId) {
         showProgressDialog("");
-        HttpServiceManager.agreeFriendV2(Global.getCurrentUser().account, friendId, "2", new HttpRequestListener<BaseDataResult>() {
+        HttpServiceManagerV2.agreeFriendV2(Global.getCurrentUser().account, friendId, "2", new HttpRequestListener<BaseResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseDataResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
                 hideProgressDialog();
                 if (result.isSuccess()) {
                     showToastView(getString(R.string.operation_suc));
+                    loadFriendDate();
                 }
             }
 
@@ -142,10 +148,10 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
     }
 
     @Override
-    public void onHttpRequestSucceed(FriendListResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(FriendApplyBeResult result, OriginalCall call) {
         hideProgressDialog();
         if (result.isSuccess() && result.isNotEmpty()) {
-            mAdapter.addDataAll(result.getDataList());
+            mAdapter.addDataAll(result.getData());
         } else {
             hideProgressDialog();
         }
@@ -156,16 +162,16 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
         hideProgressDialog();
     }
 
-    class ApplyBeFriendAdapt extends RecyclerView.Adapter<ApplyBeHodler> implements View.OnClickListener {
+    class ApplyBeFriendAdapt extends RecyclerView.Adapter<ApplyBeHodler>  {
         Context context;
-        List<FriendListResult.FriendShip> mContentList;
+        List<FriendApplyBeResult.FriendBeAppLy> mContentList;
 
         public ApplyBeFriendAdapt(Context context) {
             this.context = context;
             mContentList = new ArrayList<>();
         }
 
-        public void addDataAll(List<FriendListResult.FriendShip> data) {
+        public void addDataAll(List<FriendApplyBeResult.FriendBeAppLy> data) {
             mContentList.clear();
             mContentList.addAll(data);
             super.notifyDataSetChanged();
@@ -182,24 +188,44 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
             ApplyBeHodler hodler = new ApplyBeHodler(view);
             return hodler;
         }
-
+        /**
+         * 0未处理
+         * 1、已同意
+         * 2、已拒绝
+         * 3、已过期
+         */
         @Override
         public void onBindViewHolder(ApplyBeHodler contactsHolder, int position) {
-            FriendListResult.FriendShip friend = (FriendListResult.FriendShip) mContentList.get(position);
+            FriendApplyBeResult.FriendBeAppLy friend = (FriendApplyBeResult.FriendBeAppLy) mContentList.get(position);
             contactsHolder.friend = friend;
-            contactsHolder.viewHead.load(FileURLBuilder.getUserIconUrl(friend.getFriendAccount()), R.mipmap.lianxiren, 999);
+//            contactsHolder.viewHead.load(FileURLBuilder.getUserIconUrl(friend.getId()), R.mipmap.lianxiren, 999);
             contactsHolder.viewApplyUName.setText(friend.getName());
             contactsHolder.itemView.setTag(friend);
+            if("0".equals(friend.getState())){
+                contactsHolder.viewBtnAccept.setVisibility(View.VISIBLE);
+                contactsHolder.viewBtnRefuse.setVisibility(View.VISIBLE);
+                contactsHolder.viewHandlerDesc.setVisibility(View.GONE);
+            }else if("1".equals(friend.getState())){
+                contactsHolder.viewBtnAccept.setVisibility(View.GONE);
+                contactsHolder.viewBtnRefuse.setVisibility(View.GONE);
+                contactsHolder.viewHandlerDesc.setVisibility(View.VISIBLE);
+                contactsHolder.viewHandlerDesc.setText(R.string.be_accept);
+            }else if("2".equals(friend.getState())){
+                contactsHolder.viewBtnAccept.setVisibility(View.GONE);
+                contactsHolder.viewBtnRefuse.setVisibility(View.GONE);
+                contactsHolder.viewHandlerDesc.setVisibility(View.VISIBLE);
+                contactsHolder.viewHandlerDesc.setText(R.string.be_refuse);
+            }else if("3".equals(friend.getState())){
+                contactsHolder.viewBtnAccept.setVisibility(View.GONE);
+                contactsHolder.viewBtnRefuse.setVisibility(View.GONE);
+                contactsHolder.viewHandlerDesc.setVisibility(View.VISIBLE);
+                contactsHolder.viewHandlerDesc.setText(R.string.be_timeout);
+            }
         }
 
         @Override
         public int getItemCount() {
             return mContentList.size();
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 
@@ -210,7 +236,8 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
         public WebImageView viewHead;
         public Button viewBtnAccept;
         public Button viewBtnRefuse;
-        FriendListResult.FriendShip friend;
+        public TextView viewHandlerDesc;
+        FriendApplyBeResult.FriendBeAppLy friend;
 
         public ApplyBeHodler(View itemView) {
             super(itemView);
@@ -219,6 +246,7 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
             viewHead = itemView.findViewById(R.id.viewHead);
             viewBtnAccept = itemView.findViewById(R.id.viewBtnAccept);
             viewBtnRefuse = itemView.findViewById(R.id.viewBtnRefuse);
+            viewHandlerDesc = itemView.findViewById(R.id.viewHandlerDesc);
             viewBtnAccept.setOnClickListener(this);
             viewBtnRefuse.setOnClickListener(this);
         }

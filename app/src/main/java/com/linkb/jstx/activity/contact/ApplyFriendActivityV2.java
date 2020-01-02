@@ -13,6 +13,7 @@ import com.linkb.jstx.bean.User;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.video.utils.ToastUtils;
@@ -58,7 +59,7 @@ public class ApplyFriendActivityV2 extends BaseActivity implements HttpRequestLi
     @OnClick(R.id.send_btn)
     public void onSend() {
         showProgressDialog("");
-        HttpServiceManager.applyFriendV2(mSelt.account,mFriend.account, mFriend.getName(),addFriendRequest);
+        HttpServiceManagerV2.applyFriendV2(mSelt.account,mFriend.account, mFriend.getName(),addFriendRequest);
     }
 
     private HttpRequestListener<BaseResult> addFriendRequest = new HttpRequestListener<BaseResult>() {

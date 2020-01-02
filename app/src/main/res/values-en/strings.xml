@@ -3,6 +3,9 @@
     <string name="app_name">KiKiChat</string>
     <string name="accept">Accept</string>
     <string name="refuse">Refuse</string>
+    <string name="be_accept">Agreed</string>
+    <string name="be_refuse">Rejected</string>
+    <string name="be_timeout">Expired</string>
     <string name="manager">manager</string>
     <string name="exit_app_tips">press again to exit the programm</string>
     <string name="dialog_loading">loading...</string>

@@ -22,7 +22,7 @@ import com.linkb.jstx.activity.base.CIMMonitorFragment;
 import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.adapter.wallet.ContentPagerAdapter;
 import com.linkb.jstx.component.QuickOperationPopupWindow;
-import com.linkb.jstx.fragment.FriendListFragment;
+import com.linkb.jstx.fragment.FriendListFragmentV2;
 import com.linkb.jstx.fragment.GroupListFragment;
 import com.linkb.jstx.fragment.PhoneContactsFragment;
 import com.linkb.jstx.util.ConvertUtils;
@@ -83,7 +83,7 @@ public class ContactsFragment extends CIMMonitorFragment implements  View.OnClic
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FriendListFragment friendListFragment = new FriendListFragment();
+        FriendListFragmentV2 friendListFragment = new FriendListFragmentV2();
         GroupListFragment friendListFragment2 = new GroupListFragment();
         PhoneContactsFragment friendListFragment3 = new PhoneContactsFragment();
         mFragmentList.add(friendListFragment);

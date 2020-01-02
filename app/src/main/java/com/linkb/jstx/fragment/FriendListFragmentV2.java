@@ -23,15 +23,15 @@ import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.comparator.FriendShipNameAscComparator;
-import com.linkb.jstx.comparator.NameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
 import com.linkb.jstx.database.StarMarkRepository;
 import com.linkb.jstx.listener.OnTouchMoveCharListener;
-import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.FriendListResult;
+import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.util.CharacterParser;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -46,7 +46,8 @@ import butterknife.ButterKnife;
 
 /** BLINK好友列表
 * */
-public class FriendListFragment extends CIMMonitorFragment implements OnTouchMoveCharListener , View.OnClickListener, HttpRequestListener<FriendListResult> {
+public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchMoveCharListener , View.OnClickListener, HttpRequestListener<FriendListResultV2> {
+    public static String LOCAL_NEW_FRIEND_ID="-123";
 
     @BindView(R.id.contact_recyclerView) RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
@@ -119,14 +120,21 @@ public class FriendListFragment extends CIMMonitorFragment implements OnTouchMov
     }
 
     @Override
-    public void onHttpRequestSucceed(FriendListResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(FriendListResultV2 result, OriginalCall call) {
         refreshLayout.finishRefresh();
         if (result.isSuccess() && result.isNotEmpty()){
             mContactsSize = result.getDataList().size();
            new GetPingYingTask().execute(result.getDataList());
         }else {
+            FriendListResult.FriendShip friendShip=new FriendListResult.FriendShip();
+            String friend=getContext().getResources().getString(R.string.new_friend2);
+            friendShip.setName(friend);
+            friendShip.setId(LOCAL_NEW_FRIEND_ID);
+            List<Object> contentList =new ArrayList<>();
+            contentList.add(friendShip);
+            adapter.notifyDataSetChanged(1,contentList);
             hideProgressDialog();
-            showToastView(result.message);
+//            showToastView(result.message);
         }
     }
 
@@ -151,7 +159,7 @@ public class FriendListFragment extends CIMMonitorFragment implements OnTouchMov
     * */
     private void loadFriendDate(boolean showLoading) {
         if (showLoading ) showProgressDialog("");
-        HttpServiceManager.getFriendsList(this);
+        HttpServiceManagerV2.listMyFriendV2(Global.getCurrentUser().account,this);
         mStarMarkList.clear();
         mStarMarkList.addAll(StarMarkRepository.queryAccountList());
     }
@@ -186,6 +194,11 @@ public class FriendListFragment extends CIMMonitorFragment implements OnTouchMov
                 }
                 contentList.add(friend);
             }
+            FriendListResult.FriendShip friendShip=new FriendListResult.FriendShip();
+            String friend=getContext().getResources().getString(R.string.new_friend2);
+            friendShip.setName(friend);
+            friendShip.setId(LOCAL_NEW_FRIEND_ID);
+            contentList.add(0,friendShip);
             return contentList;
         }
 

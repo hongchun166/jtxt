@@ -10,12 +10,8 @@ import android.view.View;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.adapter.wallet.ContentPagerAdapter;
-import com.linkb.jstx.fragment.FriendListFragment;
-import com.linkb.jstx.fragment.GroupListFragment;
 import com.linkb.jstx.fragment.MineReceivedRedPacketFragment;
 import com.linkb.jstx.fragment.MineSendedRedPacketFragment;
-import com.linkb.jstx.fragment.PhoneContactsFragment;
-
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
