@@ -24,8 +24,10 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.comparator.FriendShipNameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.StarMarkRepository;
 import com.linkb.jstx.listener.OnTouchMoveCharListener;
+import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
@@ -124,6 +126,12 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
         refreshLayout.finishRefresh();
         if (result.isSuccess() && result.isNotEmpty()){
             mContactsSize = result.getDataList().size();
+            List<Friend> friendList=new ArrayList<>();
+            for (FriendListResult.FriendShip friendShip : result.getDataList()) {
+                friendList.add(Friend.friendShipToFriend(friendShip));
+            }
+            FriendRepository.saveAll(friendList);
+
            new GetPingYingTask().execute(result.getDataList());
         }else {
             FriendListResult.FriendShip friendShip=new FriendListResult.FriendShip();

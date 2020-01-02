@@ -15,7 +15,10 @@ import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.FriendListResult;
+import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.FriendQueryResult;
+import com.linkb.jstx.network.result.FriendResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -188,6 +191,13 @@ public class Friend extends MessageSource implements Serializable {
         friend.account = dataBean.getAccount();
         friend.gender = dataBean.getGender();
         friend.code = dataBean.getCode();
+        return friend;
+    }
+    public static Friend friendShipToFriend(FriendListResultV2.FriendShip friendShip){
+        Friend friend = new Friend();
+        friend.name = friendShip.getName();
+        friend.account = friendShip.getAccount();
+        friend.code = friendShip.getCode();
         return friend;
     }
 }

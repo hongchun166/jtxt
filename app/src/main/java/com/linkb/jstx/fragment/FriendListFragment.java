@@ -25,6 +25,7 @@ import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.comparator.FriendShipNameAscComparator;
 import com.linkb.jstx.comparator.NameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.StarMarkRepository;
 import com.linkb.jstx.listener.OnTouchMoveCharListener;
 import com.linkb.jstx.model.Friend;
