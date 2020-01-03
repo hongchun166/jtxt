@@ -196,8 +196,9 @@ public class Friend extends MessageSource implements Serializable {
     public static Friend friendShipToFriend(FriendListResultV2.FriendShip friendShip){
         Friend friend = new Friend();
         friend.name = friendShip.getName();
-        friend.account = friendShip.getAccount();
+        friend.account = friendShip.getFriendAccount();
         friend.code = friendShip.getCode();
+        friend.friendAccount=friendShip.getAccount();
         return friend;
     }
 }
