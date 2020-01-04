@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray_f0f1f3"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_gray_f0f1f3"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:text="@string/common_cancel"
+                android:textColor="@color/tex_color_gray_333"
+                android:textSize="@dimen/text_14sp" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/label_setting_modify_name"
+                android:textColor="@color/tex_color_gray_333"
+                android:textSize="17.3dp" />
+
+            <TextView
+                android:id="@+id/tv_ok"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/button_background_blue_to_plhe"
+                android:gravity="center"
+                android:text="@string/finish"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_switch_region"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/countries_region"
+            android:textColor="@color/tex_color_gray_333"
+            android:textSize="@dimen/text_14sp" />
+
+        <TextView
+            android:id="@+id/tv_region"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="中国"
+            android:textColor="@color/tex_color_gray_333"
+            android:textSize="@dimen/text_12sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_step" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/background_gray_f1f1f1" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_region_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+86"
+            android:textColor="@color/tex_color_gray_333"
+            android:textSize="@dimen/text_12sp" />
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:background="@color/background_gray_f1f1f1" />
+
+        <EditText
+            android:id="@+id/modify_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:hint="@string/input_phone_code"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/tex_color_gray_333"
+            android:textColorHint="@color/divider_color_gray_999999"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+    </LinearLayout>
+
+</LinearLayout>

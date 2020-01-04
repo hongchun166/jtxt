@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:text="@string/common_cancel"
+            android:textColor="@color/divider_color_gray_999999"
+            android:textSize="@dimen/text_22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:text="@string/finish"
+            android:textColor="@color/color_2e76e5"
+            android:textSize="@dimen/text_22sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/background_gray_f1f1f1"
+        android:orientation="horizontal">
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/lv_province"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/lv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

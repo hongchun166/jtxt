@@ -205,4 +205,15 @@
         <item name="android:textColorHint">@color/tex_color_gray_8A8A8A</item>
         <item name="android:textColor">@color/tex_color_gray_333</item>
     </style>
+
+    <style name="DialogBaseTheme" parent="@android:style/Theme.Dialog"></style>
+    <style name="DialogTheme" parent="DialogBaseTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
 </resources>

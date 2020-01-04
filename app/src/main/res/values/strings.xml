@@ -938,6 +938,9 @@
     <string name="reawrd__300kkc">1.成功注册奖励300KKC</string>
     <string name="directly_reward_des">2.直接邀请好友赠送200KKC,间接邀请赠送100个KKC（直邀满18人后）</string>
     <string name="invitation_reward_commission_des">3.邀请奖励每天0.05%逐步释放，自己和社群的线上活跃会加速释放。</string>
-
+    <string name="countries_region">国家/地区</string>
+    <string name="input_phone_code">请输入手机号</string>
+    <string name="unmarried">未婚</string>
+    <string name="marriage">已婚</string>
 
 </resources>

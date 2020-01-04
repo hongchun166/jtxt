@@ -697,4 +697,8 @@
     <string name="reawrd__300kkc">Reward 300KKC for successful registration</string>
     <string name="directly_reward_des">Directly invite friends to present 200KKC, indirectly invite 100 KKCS (after 18 people have been invited)</string>
     <string name="invitation_reward_commission_des">Invite rewards are released gradually by 0.05% per day. The online activity of yourself and your community will accelerate the release.</string>
+    <string name="countries_region">countries/region</string>
+    <string name="input_phone_code">Please enter your phone number</string>
+    <string name="unmarried">unmarried</string>
+    <string name="marriage">marriage</string>
 </resources>

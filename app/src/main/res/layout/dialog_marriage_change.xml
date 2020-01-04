@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:background="@drawable/white_dialog_cursor_v2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_no"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/unmarried"
+                android:textColor="@color/tex_color_gray_333"
+                android:textSize="@dimen/text_14sp" />
+
+            <ImageView
+                android:id="@+id/image_check_no"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_successful" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:background="@color/background_gray_f1f1f1" />
+
+        <LinearLayout
+            android:id="@+id/ll_yes"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/marriage"
+                android:textColor="@color/tex_color_gray_333"
+                android:textSize="@dimen/text_14sp" />
+
+            <ImageView
+                android:id="@+id/image_check_yes"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_successful"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="11dp"
+        android:background="@drawable/white_dialog_cursor_v2"
+        android:gravity="center"
+        android:text="@string/finish"
+        android:textColor="@color/tex_color_gray_333"
+        android:textSize="@dimen/text_14sp" />
+
+</LinearLayout>

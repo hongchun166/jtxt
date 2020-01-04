@@ -27,6 +27,7 @@ public class User implements Serializable {
     public String motto;
     public int grade;
     public boolean disabled;
+    public int marrriage;
 
     @Override
     public boolean equals(Object o) {
@@ -45,7 +46,7 @@ public class User implements Serializable {
     }
 
 
-    public static Friend UserToFriend(User user){
+    public static Friend UserToFriend(User user) {
         Friend friend = new Friend();
         friend.account = user.account;
         friend.name = user.name;

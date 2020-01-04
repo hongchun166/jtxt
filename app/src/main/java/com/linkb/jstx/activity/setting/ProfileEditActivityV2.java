@@ -4,13 +4,19 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.farsunset.cim.sdk.android.CIMPushManager;
+import com.farsunset.cim.sdk.android.model.SentBody;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
+import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.FileResource;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
+import com.linkb.jstx.dialog.MarriageChangeDialogV2;
+import com.linkb.jstx.dialog.RegionChangeDialogV2;
+import com.linkb.jstx.dialog.SexChangeDialogV2;
 import com.linkb.jstx.fragment.SexChangeDialogFragment;
 import com.linkb.jstx.listener.OSSFileUploadListener;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -22,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUploadListener, SexChangeDialogFragment.OnBottomDialogSelectListener, HttpRequestListener<ModifyPersonInfoResult> {
+public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUploadListener, HttpRequestListener<ModifyPersonInfoResult> {
     @BindView(R.id.title_tv)
     TextView titleTv;
     @BindView(R.id.save_btn)
@@ -55,7 +61,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     TextView tvEmail;
 
 
-    private SexChangeDialogFragment mSexChangeDialogFragment;
+    private SexChangeDialogV2 mSexChangeDialog;
+    private MarriageChangeDialogV2 mMarriageChangeDialog;
+    private RegionChangeDialogV2 mRegionChangeDialog;
     private WebImageView icon;
     private User user;
     private String mGender;
@@ -86,6 +94,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (user == null) return;
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
+        tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
+        tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
         tvNAme.setText(TextUtils.isEmpty(user.name) ? "佚名" : user.name);
@@ -126,11 +136,25 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_gender_rly)
     public void modifyGender() {
-        if (mSexChangeDialogFragment == null) {
-            mSexChangeDialogFragment = new SexChangeDialogFragment();
-            mSexChangeDialogFragment.setListener(this);
-        }
-        mSexChangeDialogFragment.show(getSupportFragmentManager(), "SexChangeDialogFragment");
+        if (mSexChangeDialog == null) mSexChangeDialog = new SexChangeDialogV2(this);
+        mSexChangeDialog.updateStatus((user == null || User.GENDER_MAN.equals(user.gender)) ? 0 : 1);
+        mSexChangeDialog.setOnSexCheckListener(new SexChangeDialogV2.OnSexCheckListener() {
+            @Override
+            public void checkSex(int type) {
+                user.gender = type == 0 ? getString(R.string.common_man) : getString(R.string.common_female);
+                tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
+                Global.modifyAccount(user);
+                SentBody sent = new SentBody();
+                sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
+                sent.put("account", user.account);
+                sent.put("motto", user.motto);
+                sent.put("name", user.name);
+                CIMPushManager.sendRequest(ProfileEditActivityV2.this, sent);
+                showToastView(R.string.tip_save_complete);
+                mSexChangeDialog.dismiss();
+            }
+        });
+        mSexChangeDialog.show();
     }
 
 
@@ -139,6 +163,25 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.ll_modify_marriage)
     public void marriage() {
+        if (mMarriageChangeDialog == null) mMarriageChangeDialog = new MarriageChangeDialogV2(this);
+        mMarriageChangeDialog.updateStatus(user == null ? 0 : user.marrriage);
+        mMarriageChangeDialog.setOnMarriageCheckListener(new MarriageChangeDialogV2.OnMarriageCheckListener() {
+            @Override
+            public void marriageStatus(int type) {
+                user.marrriage = type;
+                tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
+                Global.modifyAccount(user);
+                SentBody sent = new SentBody();
+                sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
+                sent.put("account", user.account);
+                sent.put("motto", user.motto);
+                sent.put("name", user.name);
+                CIMPushManager.sendRequest(ProfileEditActivityV2.this, sent);
+                showToastView(R.string.tip_save_complete);
+                mMarriageChangeDialog.dismiss();
+            }
+        });
+        mMarriageChangeDialog.show();
     }
 
 
@@ -147,7 +190,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_phone_rly)
     public void modifyPhone() {
-        startActivityForResult(new Intent(this, ModifyPhoneActivity.class), 0x12);
+        startActivityForResult(new Intent(this, ModifyPhoneActivityV2.class), 0x12);
     }
 
 
@@ -172,7 +215,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_region_rly)
     public void region() {
-
+        if (mRegionChangeDialog == null) mRegionChangeDialog = new RegionChangeDialogV2(this);
+        mRegionChangeDialog.show();
     }
 
 
@@ -189,7 +233,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_sign_rly)
     public void sign() {
-        startActivity(new Intent(this, ModifyMottoActivity.class));
+        startActivity(new Intent(this, ModifyMottoActivityV2.class));
     }
 
 
@@ -198,19 +242,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_email_rly)
     public void modifyEmail() {
-        startActivityForResult(new Intent(this, ModifyEmailActivity.class), 0x13);
+        startActivityForResult(new Intent(this, ModifyEmailActivityV2.class), 0x13);
     }
 
-
-    @Override
-    public void selectFirstItem() {
-
-    }
-
-    @Override
-    public void selectSecondItem() {
-
-    }
 
     @Override
     public void onUploadCompleted(FileResource resource) {
@@ -235,5 +269,14 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     @Override
     public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mSexChangeDialog != null) {
+            mSexChangeDialog.dismiss();
+            mSexChangeDialog = null;
+        }
     }
 }

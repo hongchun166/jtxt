@@ -214,6 +214,7 @@ dependencies {
     /** 第三方Banner
     * */
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 
     implementation project(':blink_lib')
 
