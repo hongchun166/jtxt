@@ -40,13 +40,13 @@
 
         <com.contrarywind.view.WheelView
             android:id="@+id/lv_province"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
 
         <com.contrarywind.view.WheelView
             android:id="@+id/lv_city"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
 
     </LinearLayout>
 

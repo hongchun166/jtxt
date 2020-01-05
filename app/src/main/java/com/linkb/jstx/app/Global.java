@@ -25,6 +25,8 @@ public class Global {
     private static final String KEY_USER_NAME = "KEY_USER_NAME";
     private static final String KEY_USER_MOTTO = "KEY_USER_MOTTO";
     private static final String KEY_USER_GENDER = "KEY_USER_GENDER";
+    public static final String KEY_USER_REGION = "KEY_USER_REGION";
+    public static final String KEY_USER_MARRIAGE = "KEY_USER_MARRIAGE";
 
     private static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
     private static final String KEY_USER_TELEPHONE = "KEY_USER_TELEPHONE";
@@ -66,7 +68,8 @@ public class Global {
             mUser.email = accountManager.getUserData(account, KEY_USER_EMAIL);
             mUser.telephone = accountManager.getUserData(account, KEY_USER_TELEPHONE);
             mUser.code = accountManager.getUserData(account, KEY_USER_ORGCODE);
-
+            mUser.region = accountManager.getUserData(account, KEY_USER_REGION);
+            mUser.marrriage = accountManager.getUserData(account, KEY_USER_MARRIAGE);
             return mUser;
         }
 
@@ -83,10 +86,11 @@ public class Global {
             bundle.putString(KEY_USER_NAME, user.name);
             bundle.putString(KEY_USER_GENDER, user.gender);
             bundle.putString(KEY_USER_MOTTO, user.motto);
-
             bundle.putString(KEY_USER_EMAIL, user.email);
             bundle.putString(KEY_USER_TELEPHONE, user.telephone);
             bundle.putString(KEY_USER_ORGCODE, user.code);
+            bundle.putString(KEY_USER_REGION, user.region);
+            bundle.putString(KEY_USER_MARRIAGE, user.marrriage);
 
             accountManager.addAccountExplicitly(account, user.password, bundle);
         }
@@ -102,6 +106,9 @@ public class Global {
             accountManager.setUserData(account, KEY_USER_TELEPHONE, user.telephone);
             accountManager.setUserData(account, KEY_USER_EMAIL, user.email);
             accountManager.setPassword(account, user.password);
+            accountManager.setUserData(account, KEY_USER_REGION, user.region);
+            accountManager.setUserData(account, KEY_USER_MARRIAGE, user.marrriage);
+
         }
     }
 
@@ -153,13 +160,14 @@ public class Global {
 
     public static int getChatTextMaxWidth() {
         return LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE)
-                .getInt(KEY_CHATING_TEXTVIEW_WIDTH,0);
+                .getInt(KEY_CHATING_TEXTVIEW_WIDTH, 0);
     }
 
     public static void setChatTextMaxWidth(int w) {
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
         sp.edit().putInt(KEY_CHATING_TEXTVIEW_WIDTH, w).apply();
     }
+
     /**
      * 获取拍照的照片文件地址
      *
@@ -273,7 +281,7 @@ public class Global {
     public static void saveAlreadyLogin(String account) {
 
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
-        sp.edit().putBoolean(String.format(KEY_FRIST_LOGIN,account), true).apply();
+        sp.edit().putBoolean(String.format(KEY_FRIST_LOGIN, account), true).apply();
 
     }
 
@@ -282,12 +290,12 @@ public class Global {
      */
     public static boolean getAlreadyLogin(String account) {
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
-        return sp.getBoolean(String.format(KEY_FRIST_LOGIN,account), false);
+        return sp.getBoolean(String.format(KEY_FRIST_LOGIN, account), false);
     }
 
     public static String getAccessToken() {
         Account account = getLoginedAccount();
-        if (account!=null){
+        if (account != null) {
             AccountManager accountManager = AccountManager.get(LvxinApplication.getInstance());
             return accountManager.getUserData(account, AccountManager.KEY_AUTHTOKEN);
         }
@@ -296,9 +304,9 @@ public class Global {
 
     public static void saveAccessToken(String token) {
         Account account = getLoginedAccount();
-        if (account!=null){
+        if (account != null) {
             AccountManager accountManager = AccountManager.get(LvxinApplication.getInstance());
-            accountManager.setUserData(account,AccountManager.KEY_AUTHTOKEN,token);
+            accountManager.setUserData(account, AccountManager.KEY_AUTHTOKEN, token);
         }
     }
 
@@ -329,9 +337,9 @@ public class Global {
      */
     public static Location getLocation() {
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
-        String data = sp.getString(KEY_CURRENT_LOCATION,null);
-        if (data != null){
-            return new Gson().fromJson(data,Location.class);
+        String data = sp.getString(KEY_CURRENT_LOCATION, null);
+        if (data != null) {
+            return new Gson().fromJson(data, Location.class);
         }
         return null;
     }

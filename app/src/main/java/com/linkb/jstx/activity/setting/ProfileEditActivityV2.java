@@ -1,11 +1,23 @@
 package com.linkb.jstx.activity.setting;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.farsunset.cim.sdk.android.CIMPushManager;
 import com.farsunset.cim.sdk.android.model.SentBody;
+import com.google.gson.Gson;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
@@ -15,14 +27,19 @@ import com.linkb.jstx.bean.FileResource;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.dialog.MarriageChangeDialogV2;
-import com.linkb.jstx.dialog.RegionChangeDialogV2;
 import com.linkb.jstx.dialog.SexChangeDialogV2;
-import com.linkb.jstx.fragment.SexChangeDialogFragment;
 import com.linkb.jstx.listener.OSSFileUploadListener;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
+import com.linkb.jstx.network.result.RegionResult;
 import com.linkb.jstx.util.FileURLBuilder;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,10 +77,11 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     @BindView(R.id.tv_email)
     TextView tvEmail;
 
-
     private SexChangeDialogV2 mSexChangeDialog;
     private MarriageChangeDialogV2 mMarriageChangeDialog;
-    private RegionChangeDialogV2 mRegionChangeDialog;
+    protected OptionsPickerView pvCustomOptions;
+    private List<String> provinces = new ArrayList<>();
+    private List<List<String>> citys = new ArrayList<>();
     private WebImageView icon;
     private User user;
     private String mGender;
@@ -94,13 +112,13 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (user == null) return;
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
-        tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
-        tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
+        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
         tvNAme.setText(TextUtils.isEmpty(user.name) ? "佚名" : user.name);
         tvEmail.setText(TextUtils.isEmpty(user.email) ? "" : user.email);
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
+        tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
     }
 
 
@@ -144,13 +162,6 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 user.gender = type == 0 ? getString(R.string.common_man) : getString(R.string.common_female);
                 tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
                 Global.modifyAccount(user);
-                SentBody sent = new SentBody();
-                sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
-                sent.put("account", user.account);
-                sent.put("motto", user.motto);
-                sent.put("name", user.name);
-                CIMPushManager.sendRequest(ProfileEditActivityV2.this, sent);
-                showToastView(R.string.tip_save_complete);
                 mSexChangeDialog.dismiss();
             }
         });
@@ -164,20 +175,14 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     @OnClick(R.id.ll_modify_marriage)
     public void marriage() {
         if (mMarriageChangeDialog == null) mMarriageChangeDialog = new MarriageChangeDialogV2(this);
-        mMarriageChangeDialog.updateStatus(user == null ? 0 : user.marrriage);
+        mMarriageChangeDialog.updateStatus(user == null ? 0 : TextUtils.isEmpty(user.marrriage) ? 0 : Integer.parseInt(user.marrriage));
         mMarriageChangeDialog.setOnMarriageCheckListener(new MarriageChangeDialogV2.OnMarriageCheckListener() {
             @Override
             public void marriageStatus(int type) {
-                user.marrriage = type;
-                tvMarriage.setText(user.marrriage == 0 ? R.string.unmarried : R.string.marriage);
+                user.marrriage = String.valueOf(type);
+                tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
+
                 Global.modifyAccount(user);
-                SentBody sent = new SentBody();
-                sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
-                sent.put("account", user.account);
-                sent.put("motto", user.motto);
-                sent.put("name", user.name);
-                CIMPushManager.sendRequest(ProfileEditActivityV2.this, sent);
-                showToastView(R.string.tip_save_complete);
                 mMarriageChangeDialog.dismiss();
             }
         });
@@ -215,8 +220,45 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_region_rly)
     public void region() {
-        if (mRegionChangeDialog == null) mRegionChangeDialog = new RegionChangeDialogV2(this);
-        mRegionChangeDialog.show();
+        if (pvCustomOptions == null) {
+            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+                @Override
+                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                    String region = "" + provinces.get(options1) + citys.get(options1).get(options2);
+                    tvRegion.setText(region);
+                    user.region = region;
+                    Global.modifyAccount(user);
+                }
+            })
+                    .isDialog(false)
+                    .setSubmitText(getString(R.string.finish))
+                    .setSubmitColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.color_2e76e5))
+                    .setCancelText(getString(R.string.common_cancel))
+                    .setCancelColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.divider_color_gray_999999))
+                    .setOutSideCancelable(false)
+                    .build();
+            pvCustomOptions.setSelectOptions(0, 1, 1);
+            Dialog mDialog = pvCustomOptions.getDialog();
+            if (mDialog != null) {
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        Gravity.BOTTOM);
+                params.leftMargin = 0;
+                params.rightMargin = 0;
+                pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
+                Window dialogWindow = mDialog.getWindow();
+                if (dialogWindow != null) {
+                    dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+                    dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+                    dialogWindow.setDimAmount(0.1f);
+                }
+            }
+        }
+        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0)
+            getJson("citycode.json");
+        pvCustomOptions.setPicker(provinces, citys);
+        pvCustomOptions.show();
     }
 
 
@@ -245,6 +287,41 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         startActivityForResult(new Intent(this, ModifyEmailActivityV2.class), 0x13);
     }
 
+    /**
+     * 读取assets本地json
+     *
+     * @param fileName 文件名称
+     */
+    public void getJson(final String fileName) {
+
+        //将json数据变成字符串
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            //获取assets资源管理器
+            AssetManager assetManager = ProfileEditActivityV2.this.getAssets();
+            //通过管理器打开文件并读取
+            BufferedReader bf = new BufferedReader(new InputStreamReader(
+                    assetManager.open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Gson gson = new Gson();
+            RegionResult regionResult = gson.fromJson(stringBuilder.toString(), RegionResult.class);
+            provinces = new ArrayList<>();
+            citys = new ArrayList<>();
+            for (int i = 0; i < regionResult.province.size(); i++) {
+                provinces.add(regionResult.province.get(i).a);
+                List<String> marr = new ArrayList<>();
+                for (int j = 0; j < regionResult.province.get(i).city.size(); j++) {
+                    marr.add(regionResult.province.get(i).city.get(j).a);
+                }
+                citys.add(marr);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onUploadCompleted(FileResource resource) {
