@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_gray_f0f1f2">
+    android:background="@color/background_gray_f6f7f9">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
@@ -41,16 +41,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal">
-        <View
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/vertical_shadow" />
+<!--        <View-->
+<!--            android:layout_width="3dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@drawable/vertical_shadow" />-->
         <com.linkb.jstx.component.CharSelectorBar
             android:id="@+id/sidrbar"
             android:layout_width="20dip"
             android:layout_height="match_parent"
             android:layout_gravity="right|center"
-            android:background="@android:color/white" />
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
     <TextView

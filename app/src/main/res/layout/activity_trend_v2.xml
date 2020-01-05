@@ -8,10 +8,20 @@
     android:background="@color/background_gray_f0f1f2"
     android:orientation="vertical">
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="214dp">
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/view_trend_top_img"
+            />
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/circleItem"
         android:layout_width="match_parent"
@@ -34,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/discuss_image"
-            android:text="@string/label_function_moment"
+            android:text="@string/label_function_moment_my"
             android:textSize="@dimen/text_15sp"
             android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
@@ -108,7 +118,7 @@
             android:layout_width="@dimen/user_center_item_img_size"
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
-            app:srcCompat="@mipmap/information" />
+            app:srcCompat="@mipmap/information_v2" />
 
         <TextView
             android:id="@+id/information_text_view"
@@ -157,7 +167,7 @@
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
-            app:srcCompat="@mipmap/youxi" />
+            app:srcCompat="@mipmap/youxi_v2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -196,7 +206,7 @@
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
             android:layout_marginStart="2dp"
-            app:srcCompat="@mipmap/fujinderen" />
+            app:srcCompat="@mipmap/fujinderen_v2" />
 
         <TextView
             android:layout_width="wrap_content"

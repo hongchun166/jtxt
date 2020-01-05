@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.app.Constant;
@@ -73,7 +74,10 @@ public class RegisterActivityV2 extends BaseActivity {
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
-
+        ImmersionBar.with(this)
+                .keyboardEnable(true)
+                .statusBarDarkFont(true)
+                .init();
         changeUI(enableEmailRegister);
         changeSexStatus(enableMan);
 

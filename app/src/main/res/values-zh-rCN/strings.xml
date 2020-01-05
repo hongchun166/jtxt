@@ -113,6 +113,11 @@
     <string name="platform_describe2">全球社交，全球商务</string>
     <string name="platform_describe2_en">GLOBAL SOCIAL,GLOBAL BUSINESS</string>
     <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
+    <string name="platform_describe3">安全、便捷、高效的通讯工具</string>
+    <string name="platform_describe_en3">Safe, efficient and convenient communication tool</string>
+    <string name="platform_describe4">琪琪聊  全新上线</string>
+    <string name="platform_describe_en4">kikichat is online</string>
+
     <string name="service_rule_tips">注册即代表阅读并同意</string>
     <string name="service_rule">服务条款</string>
     <string name="switch_language">切换语言</string>
@@ -480,6 +485,7 @@
     <string name="label_moment_me">我的空间</string>
 
     <string name="label_function_moment">朋友圈</string>
+    <string name="label_function_moment_my">我的圈子</string>
     <string name="label_function_microapp">小应用</string>
 
     <string name="label_chat_soundrecord_normal">按住,说话</string>

@@ -3,6 +3,7 @@
 <resources>
     <color name="app_splash_bg">#1068ED</color>
     <color name="haf_theme_green">#7f45C01A</color>
+    <color name="haf_theme_blue">#7f2e76e5</color>
     <color name="theme_text_color">#505050</color>
 
 
@@ -21,6 +22,7 @@
     <color name="background_blue_E1E8F0">#E1E8F0</color>
     <color name="background_gray_C7CCD2">#C7CCD2</color>
     <color name="background_gray_f0f1f2">#f0f1f2</color>
+    <color name="background_gray_f6f7f9">#f6f7f9</color>
     <color name="background_gray_f0f1f3">#f0f1f3</color>
     <color name="background_gray_f0f0f0">#f0f0f0</color>
     <color name="background_gray_f1f1f1">#f1f1f1</color>
@@ -52,6 +54,7 @@
     <color name="tex_color_330000">#330000</color>
 
     <color name="tex_color_blue_015DD6">#015DD6</color>
+    <color name="tex_color_blue_0E5DD6">#0E5DD6</color>
     <color name="tex_color_blue_1068ed">#1068ED</color>
     <color name="tex_color_blue_3266B2">#3266B2</color>
     <color name="tex_color_blue_113db2">#ff113db2</color>

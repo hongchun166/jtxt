@@ -107,6 +107,11 @@
     <string name="platform_describe2">Global social, global business</string>
     <string name="platform_describe2_en">GLOBAL SOCIAL,GLOBAL BUSINESS</string>
     <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
+    <string name="platform_describe3">Safe, efficient and convenient communication tool</string>
+    <string name="platform_describe_en3">Safe, efficient and convenient communication tool</string>
+    <string name="platform_describe4">kikichat is online</string>
+    <string name="platform_describe_en4">kikichat is online</string>
+
     <string name="service_rule_tips">Registration means read and agreed</string>
     <string name="service_rule">service rule</string>
     <string name="switch_language">switch language</string>
@@ -477,6 +482,7 @@
     <string name="label_moment_me">my moment</string>
 
     <string name="label_function_moment">moment</string>
+    <string name="label_function_moment_my">My Moment</string>
     <string name="label_function_microapp">microapp</string>
 
     <string name="label_chat_soundrecord_normal">Hold and talk</string>

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/tex_color_blue_015DD6">
-
+    android:background="@color/tex_color_blue_0E5DD6"
+    >
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/splash_image_bg" />
-
+        android:scaleType="centerInside"
+        android:src="@mipmap/splash_image_bg"
+        android:layout_centerHorizontal="true"
+        />
     <ImageView
         android:id="@+id/image_logo"
         android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
         android:layout_marginTop="47dp"
         android:text="@string/platform_describe2"
         android:textColor="@color/f8fbff"
-        android:textSize="21dp" />
+        android:textSize="@dimen/text_30sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,5 +41,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
         android:text="@string/platform_describe2_en"
-        android:textColor="@color/f8fbff" />
+        android:textColor="@color/f8fbff"
+        android:textSize="@dimen/text_18sp" />
+
+
 </RelativeLayout>

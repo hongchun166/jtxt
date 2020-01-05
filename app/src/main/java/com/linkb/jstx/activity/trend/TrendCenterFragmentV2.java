@@ -51,11 +51,6 @@ public class TrendCenterFragmentV2 extends CIMMonitorFragment implements OnClick
         gameRly.setOnClickListener(this);
         mBanner = view.findViewById(R.id.banner);
 
-
-        ArrayList<Integer> arrayList=new ArrayList<>();
-        arrayList.add(R.mipmap.ic_trend_top_bg_v2);
-        mBanner.setImages(arrayList);
-        mBanner.start();
     }
 
 

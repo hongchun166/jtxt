@@ -47,8 +47,10 @@ public class CharSelectorBar extends View {
 
             if (i == current) {
 
-                paint.setColor(Color.parseColor("#45C01A"));
+                paint.setColor(Color.parseColor("#2e76e5"));
                 paint.setFakeBoldText(true);
+                int size2 = getResources().getDimensionPixelOffset(R.dimen.sort_char_sizeCur);
+                paint.setTextSize(size2);
             }
 
             String charStr = String.valueOf(ARRAYS[i]);
@@ -66,7 +68,7 @@ public class CharSelectorBar extends View {
         final int c = (int) (y / getHeight() * ARRAYS.length);
 
         if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-            setBackgroundResource(android.R.color.white);
+            setBackgroundResource(android.R.color.transparent);
             current = -1;
             mTextDialog.setVisibility(View.INVISIBLE);
             return true;
@@ -82,6 +84,7 @@ public class CharSelectorBar extends View {
             mTextDialog.setText(charStr);
             mTextDialog.setVisibility(View.VISIBLE);
             current = c;
+            invalidate();
         }
 
         return true;

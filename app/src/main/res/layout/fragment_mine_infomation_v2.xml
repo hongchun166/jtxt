@@ -63,7 +63,7 @@
             android:layout_alignLeft="@+id/viewTopCenterLine"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/imageView29"
-            android:text="sing"
+            android:text=""
             android:textColor="@color/tex_color_white"
             android:textSize="@dimen/text_13sp" />
 
