@@ -1,10 +1,13 @@
 package com.linkb.jstx.activity.setting;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +26,30 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
+import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.FileResource;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
+import com.linkb.jstx.database.GlideImageRepository;
 import com.linkb.jstx.dialog.MarriageChangeDialogV2;
 import com.linkb.jstx.dialog.SexChangeDialogV2;
+import com.linkb.jstx.event.UserInfoChangeEvent;
 import com.linkb.jstx.listener.OSSFileUploadListener;
+import com.linkb.jstx.network.CloudFileUploader;
+import com.linkb.jstx.network.CloudImageLoaderFactory;
 import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.network.result.RegionResult;
+import com.linkb.jstx.util.AppTools;
+import com.linkb.jstx.util.BackgroundThreadHandler;
 import com.linkb.jstx.util.FileURLBuilder;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -82,9 +96,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     protected OptionsPickerView pvCustomOptions;
     private List<String> provinces = new ArrayList<>();
     private List<List<String>> citys = new ArrayList<>();
-    private WebImageView icon;
     private User user;
-    private String mGender;
 
     @Override
     protected int getToolbarTitle() {
@@ -159,6 +171,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         mSexChangeDialog.setOnSexCheckListener(new SexChangeDialogV2.OnSexCheckListener() {
             @Override
             public void checkSex(int type) {
+                HttpServiceManager.modifyPersonInfo("gender", type == 0 ? String.valueOf(1) : String.valueOf(0), ProfileEditActivityV2.this);
                 user.gender = type == 0 ? getString(R.string.common_man) : getString(R.string.common_female);
                 tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
                 Global.modifyAccount(user);
@@ -275,7 +288,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_sign_rly)
     public void sign() {
-        startActivity(new Intent(this, ModifyMottoActivityV2.class));
+        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class),15);
     }
 
 
@@ -324,23 +337,82 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     }
 
     @Override
-    public void onUploadCompleted(FileResource resource) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 9) {
+            AppTools.startIconPhotoCrop(this, data.getData());
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == Constant.RESULT_ZOOM && data != null) {
+            CloudImageLoaderFactory.get().clearMemory();
+            File photo = new File(Global.getCropPhotoFilePath());
+            CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_USER_ICON, user.account, photo, this);
+            showProgressDialog(getString(R.string.tip_file_uploading, 0));
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == 0x11) {
+            user = Global.getCurrentUser();
+            tvNAme.setText(user.name);
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == 0x12) {
+            user = Global.getCurrentUser();
+            tvTelephone.setText(user.telephone);
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == 0x13) {
+            user = Global.getCurrentUser();
+            tvEmail.setText(user.email);
+        }
+        if (requestCode==Activity.RESULT_OK ){
+                user= Global.getCurrentUser();
+                tvSign.setText(user.motto);
+        }
+    }
 
+    @Override
+    public void onUploadCompleted(FileResource resource) {
+        hideProgressDialog();
+        SentBody sent = new SentBody();
+        sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_LOGO);
+        sent.put("account", user.account);
+        CIMPushManager.sendRequest(this, sent);
+
+        BackgroundThreadHandler.postUIThread(new Runnable() {
+            @Override
+            public void run() {
+                showToastView(R.string.tip_logo_updated);
+            }
+        });
+
+        GlideImageRepository.save(FileURLBuilder.getUserIconUrl(user.account), String.valueOf(System.currentTimeMillis()));
+        Log.d("touxiang", FileURLBuilder.getUserIconUrl(user.account));
+
+        BackgroundThreadHandler.postUIThread(new Runnable() {
+            @Override
+            public void run() {
+                imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
+            }
+        });
+
+        EventBus.getDefault().post(new UserInfoChangeEvent("icon"));
+        LvxinApplication.sendLocalBroadcast(new Intent(Constant.Action.ACTION_LOGO_CHANGED));
     }
 
     @Override
     public void onUploadProgress(String key, float progress) {
-
+        showProgressDialog(getString(R.string.tip_file_uploading, (int) progress));
     }
 
     @Override
     public void onUploadFailured(FileResource resource, Exception e) {
-
+        hideProgressDialog();
+        showToastView(R.string.tip_logo_update_error);
     }
 
     @Override
     public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
-
+        if (result.isSuccess()) {
+            Global.modifyAccount(user);
+            showToastView(R.string.tip_save_complete);
+            setResult(RESULT_OK, getIntent());
+            finish();
+        }
     }
 
     @Override
