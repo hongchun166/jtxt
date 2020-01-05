@@ -70,7 +70,14 @@ android {
 //            storePassword 'lvxinv5'
 //        }
 //    }
-
+    signingConfigs {
+        release {
+            keyAlias 'kikichat'
+            keyPassword 'kikichat'
+            storeFile file("$rootDir/keystore/kikichat.jks")
+            storePassword 'kikichat'
+        }
+    }
 
     andResGuard {
         mappingFile = null
