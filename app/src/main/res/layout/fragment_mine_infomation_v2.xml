@@ -63,7 +63,7 @@
             android:layout_alignLeft="@+id/viewTopCenterLine"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/imageView29"
-            android:text=""
+            android:text="sing"
             android:textColor="@color/tex_color_white"
             android:textSize="@dimen/text_13sp" />
 
@@ -142,6 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView108"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView108" />
@@ -161,14 +162,14 @@
                 android:id="@+id/xiangce_cly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="12dp"
-                android:layout_marginTop="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/background_white_to_gray"
                 app:layout_constraintTop_toBottomOf="@+id/invite_cly">
 
                 <ImageView
@@ -199,6 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView109"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView109" />
@@ -209,8 +211,8 @@
                 android:id="@+id/message_set_cly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_white_to_gray"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="15dp"
@@ -247,6 +249,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView111"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView111" />
@@ -267,12 +270,12 @@
                 android:id="@+id/version_update_cly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="15dp"
-                android:background="@drawable/background_white_to_gray"
                 android:paddingBottom="12dp"
-                android:layout_marginTop="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/message_set_cly">
@@ -305,6 +308,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView112"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView112" />
@@ -336,12 +340,12 @@
                 android:id="@+id/modify_password_cly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="12dp"
-                android:layout_marginTop="1dp"
-                android:background="@drawable/background_white_to_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/version_update_cly">
@@ -374,6 +378,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView12" />
@@ -395,11 +400,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="12dp"
-                android:background="@drawable/background_white_to_gray"
                 app:layout_constraintEnd_toStartOf="@+id/modify_password_cly"
                 app:layout_constraintStart_toStartOf="@+id/modify_password_cly"
                 app:layout_constraintTop_toBottomOf="@+id/modify_password_cly">

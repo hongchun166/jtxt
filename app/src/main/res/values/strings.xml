@@ -511,8 +511,8 @@
     <string name="label_setting_modify_phone">修改电话</string>
     <string name="label_setting_modify_email">修改邮箱</string>
     <string name="label_setting_modify_summary">修改群公告</string>
-
     <string name="email_format_error">邮箱格式错误</string>
+    <string name="label_setting_modify_industry">行业</string>
 
     <string name="label_setting_profile">个人信息</string>
     <string name="label_setting_notify">消息设置</string>
@@ -950,4 +950,19 @@
     <string name="unmarried">未婚</string>
     <string name="marriage">已婚</string>
 
+
+<!--    industry-->
+    <string name="item_industry_buxiang">不限</string>
+    <string name="item_industry_jishuaji">计算机</string>
+    <string name="item_industry_shengc">生产/工艺/制造</string>
+    <string name="item_industry_yiliao">医疗/护理/制药</string>
+    <string name="item_industry_jingrong">金融/银行/投资/保险</string>
+    <string name="item_industry_shangye">商业/服务/个体经营</string>
+    <string name="item_industry_wenhua">文化/广告/传媒</string>
+    <string name="item_industry_yule">娱乐/艺术/表演</string>
+    <string name="item_industry_lvsi">律师/法务</string>
+    <string name="item_industry_jiaoyu">教育/培训</string>
+    <string name="item_industry_gongwuyuan">公务员/行政/事业单位</string>
+    <string name="item_industry_xuesheng">学生</string>
+    <string name="item_industry_qita">其他</string>
 </resources>

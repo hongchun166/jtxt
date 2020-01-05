@@ -27,6 +27,7 @@ public class Global {
     private static final String KEY_USER_GENDER = "KEY_USER_GENDER";
     public static final String KEY_USER_REGION = "KEY_USER_REGION";
     public static final String KEY_USER_MARRIAGE = "KEY_USER_MARRIAGE";
+    public static final String KEY_USER_INDUSTRY = "KEY_USER_INDUSTRY";
 
     private static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
     private static final String KEY_USER_TELEPHONE = "KEY_USER_TELEPHONE";
@@ -70,6 +71,7 @@ public class Global {
             mUser.code = accountManager.getUserData(account, KEY_USER_ORGCODE);
             mUser.region = accountManager.getUserData(account, KEY_USER_REGION);
             mUser.marrriage = accountManager.getUserData(account, KEY_USER_MARRIAGE);
+            mUser.industry = accountManager.getUserData(account, KEY_USER_INDUSTRY);
             return mUser;
         }
 
@@ -91,6 +93,7 @@ public class Global {
             bundle.putString(KEY_USER_ORGCODE, user.code);
             bundle.putString(KEY_USER_REGION, user.region);
             bundle.putString(KEY_USER_MARRIAGE, user.marrriage);
+            bundle.putString(KEY_USER_INDUSTRY, user.industry);
 
             accountManager.addAccountExplicitly(account, user.password, bundle);
         }
@@ -108,7 +111,7 @@ public class Global {
             accountManager.setPassword(account, user.password);
             accountManager.setUserData(account, KEY_USER_REGION, user.region);
             accountManager.setUserData(account, KEY_USER_MARRIAGE, user.marrriage);
-
+            accountManager.setUserData(account, KEY_USER_INDUSTRY, user.industry);
         }
     }
 

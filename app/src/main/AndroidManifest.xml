@@ -133,6 +133,9 @@
             android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivityV2"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyIndustryActivityV2"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.linkb.jstx.activity.setting.ModifyEmailActivity"
             android:screenOrientation="portrait" />
         <activity

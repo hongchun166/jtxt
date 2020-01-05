@@ -29,6 +29,7 @@ public class User implements Serializable {
     public boolean disabled;
     public String marrriage;
     public String region;
+    public String industry;
 
     @Override
     public boolean equals(Object o) {

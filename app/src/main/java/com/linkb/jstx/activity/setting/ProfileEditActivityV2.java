@@ -60,6 +60,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUploadListener, HttpRequestListener<ModifyPersonInfoResult> {
+
     @BindView(R.id.title_tv)
     TextView titleTv;
     @BindView(R.id.save_btn)
@@ -131,6 +132,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvEmail.setText(TextUtils.isEmpty(user.email) ? "" : user.email);
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
+        tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
     }
 
 
@@ -217,6 +219,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_industry_rly)
     public void industry() {
+        ModifyIndustryActivityV2.nacToAct(this,0x14);
     }
 
 
@@ -237,7 +240,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                    String region = "" + provinces.get(options1) + citys.get(options1).get(options2);
+                    String region = "" + provinces.get(options1) +"-"+ citys.get(options1).get(options2);
                     tvRegion.setText(region);
                     user.region = region;
                     Global.modifyAccount(user);
@@ -358,6 +361,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (resultCode == Activity.RESULT_OK && requestCode == 0x13) {
             user = Global.getCurrentUser();
             tvEmail.setText(user.email);
+        }
+        if(resultCode == Activity.RESULT_OK && requestCode == 0x14){
+            user = Global.getCurrentUser();
+            tvIndustry.setText(user.industry);
         }
         if (requestCode==Activity.RESULT_OK ){
                 user= Global.getCurrentUser();
