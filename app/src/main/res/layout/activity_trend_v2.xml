@@ -14,12 +14,13 @@
         <com.youth.banner.Banner
             android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/view_trend_top_img"
-            />
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/view_trend_top_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.youth.banner.Banner>
     </RelativeLayout>
 
     <RelativeLayout

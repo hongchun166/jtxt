@@ -1,6 +1,8 @@
 
 package com.linkb.jstx.network.http;
 
+import android.text.TextUtils;
+
 import com.linkb.jstx.app.URLConstant;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
@@ -8,7 +10,32 @@ import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
 
 public class HttpServiceManagerV2 {
+    /**
+     * 注册账号
+     *
+     * @param locale 0是中国，1是外国
+     */
+    public static void registerAccount(String account, String sex, String name
+            , String password, String vertcode, String locale,String inviteCode
+            , HttpRequestListener listener) {
 
+        HttpRequestBody requestBody = new HttpRequestBody(URLConstant.REGISTER_ACCOUNT, BaseResult.class);
+        requestBody.addParameter("account", account);
+        requestBody.addParameter("name", name);
+        requestBody.addParameter("gender", sex);
+        requestBody.addParameter("password", password);
+        requestBody.addParameter("vertcode", vertcode);
+        requestBody.addParameter("locale", locale);
+        if(!TextUtils.isEmpty(inviteCode)){
+            requestBody.addParameter("inviteCode", locale);
+        }
+        String tradePassword=null;
+        if(!TextUtils.isEmpty(tradePassword)) {
+            requestBody.addParameter("tradePassword", "");
+        }
+
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
     /**
      * 获取好友申请列表
      * /api/userFriend/listFriendApply

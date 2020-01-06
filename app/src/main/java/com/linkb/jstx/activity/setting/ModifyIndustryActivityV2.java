@@ -188,7 +188,7 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
 
             hodler.viewTVName.setText(bean.name);
             if(selectMap.containsKey(bean.code)){
-                hodler.viewIVSelectState.setBackgroundResource(R.mipmap.icon_successful);
+                hodler.viewIVSelectState.setBackgroundResource(R.mipmap.ic_industry_blue_hook);
             }else {
                 hodler.viewIVSelectState.setBackgroundResource(android.R.color.transparent);
             }

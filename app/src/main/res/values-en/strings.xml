@@ -398,6 +398,7 @@
     <string name="label_user_icon">icon：</string>
     <string name="label_user_name">name：</string>
     <string name="label_user_marriage">Marital status：</string>
+    <string name="label_user_marriage2">Single or not：</string>
     <string name="label_user_gender">gender：</string>
     <string name="label_user_motto">motto：</string>
     <string name="label_user_sign">sign:</string>
@@ -428,6 +429,7 @@
     <string name="group_qrcode">group QR code</string>
     <string name="copy_group_qrcode">copy group QR code</string>
     <string name="hint_self_Invitation_code">Invitation code</string>
+    <string name="hint_Invitation_code">Invitation code</string>
     <string name="hint_scan_download_app">Download App</string>
     <string name="hint_come_experience_kikichat">Come Experience kikichat</string>
     <string name="hint_say_hello">Hi,My %1$s</string>
@@ -708,6 +710,8 @@
     <string name="input_phone_code">Please enter your phone number</string>
     <string name="unmarried">unmarried</string>
     <string name="marriage">marriage</string>
+    <string name="unmarried2">Single</string>
+    <string name="marriage2">Non Single</string>
 
     <!--    industry-->
     <string name="item_industry_buxiang">不限</string>

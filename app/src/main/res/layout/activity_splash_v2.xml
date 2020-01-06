@@ -44,7 +44,7 @@
         android:layout_marginTop="47dp"
         android:text="@string/platform_describe2"
         android:textColor="@color/f8fbff"
-        android:textSize="@dimen/text_26sp" />
+        android:textSize="@dimen/text_20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
         android:layout_marginTop="1dp"
         android:text="@string/platform_describe2_en"
         android:textColor="@color/f8fbff"
-        android:textSize="@dimen/text_18sp" />
+        android:textSize="@dimen/text_15sp" />
 
 
 </RelativeLayout>

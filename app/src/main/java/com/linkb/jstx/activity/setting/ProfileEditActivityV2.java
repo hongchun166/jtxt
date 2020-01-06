@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
@@ -69,6 +70,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     WebImageView imgHeader;
     @BindView(R.id.account)
     TextView tvAccount;
+    @BindView(R.id.llPassword)
+    LinearLayout llPassword;
     @BindView(R.id.tv_password)
     TextView tvPassword;
     @BindView(R.id.tv_name)
@@ -89,6 +92,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     TextView tvLabel;
     @BindView(R.id.tv_sign)
     TextView tvSign;
+    @BindView(R.id.modify_email_rly)
+    LinearLayout modify_email_rly;
     @BindView(R.id.tv_email)
     TextView tvEmail;
 
@@ -109,6 +114,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         ButterKnife.bind(this);
         user = Global.getCurrentUser();
         titleTv.setText(getString(R.string.label_setting_profile));
+        llPassword.setVisibility(View.GONE);
+        modify_email_rly.setVisibility(View.GONE);
         initUserData();
     }
 
@@ -125,10 +132,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (user == null) return;
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
-        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
+        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2: "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
-        tvNAme.setText(TextUtils.isEmpty(user.name) ? "佚名" : user.name);
+        tvNAme.setText(TextUtils.isEmpty(user.name) ? "" : user.name);//佚名
         tvEmail.setText(TextUtils.isEmpty(user.email) ? "" : user.email);
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);

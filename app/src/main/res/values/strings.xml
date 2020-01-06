@@ -428,6 +428,7 @@
     <string name="label_user_icon">头像：</string>
     <string name="label_user_name">名称：</string>
     <string name="label_user_marriage">婚姻状况：</string>
+    <string name="label_user_marriage2">单身与否：</string>
     <string name="label_user_gender">性别：</string>
     <string name="label_user_motto">签名：</string>
     <string name="label_ablbum_all">所有图片</string>
@@ -457,6 +458,7 @@
     <string name="qrcode">二维码</string>
     <string name="copy_group_qrcode">复制二维码</string>
     <string name="hint_self_Invitation_code">我的邀请码</string>
+    <string name="hint_Invitation_code">邀请码</string>
     <string name="hint_scan_download_app">扫描下载安装App</string>
     <string name="hint_come_experience_kikichat">快来体验下kikichat吧</string>
     <string name="hint_say_hello">Hi,我是%1$s</string>
@@ -949,7 +951,8 @@
     <string name="input_phone_code">请输入手机号</string>
     <string name="unmarried">未婚</string>
     <string name="marriage">已婚</string>
-
+    <string name="unmarried2">单身</string>
+    <string name="marriage2">非单身</string>
 
 <!--    industry-->
     <string name="item_industry_buxiang">不限</string>

@@ -25,6 +25,7 @@ import com.linkb.jstx.component.countdownbutton.CountDownButton;
 import com.linkb.jstx.database.GlobalDatabaseHelper;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.LoginResult;
@@ -54,6 +55,7 @@ public class RegisterActivityV2 extends BaseActivity {
 
     @BindView(R.id.password_confirm_visible_image) ImageView passwordConfirmVisibleImage;
     @BindView(R.id.password_visible_image) ImageView passwordVisibleImage;
+    @BindView(R.id.viewETInviteCode) TextView viewETInviteCode;
 
     /** 是邮箱注册还是 手机注册
      * */
@@ -218,7 +220,9 @@ public class RegisterActivityV2 extends BaseActivity {
         nextStepBtn.setEnabled(false);
         String sex = enableMan ? "1" : "0";
         String locale = enableEmailRegister ? "1" : "0";
-        HttpServiceManager.registerAccount(account, sex, nickMame, password, verifyCode ,locale ,  registerListener);
+        String inviteCode=viewETInviteCode.getText().toString();
+        HttpServiceManagerV2.registerAccount(account, sex, nickMame, password,
+                verifyCode ,locale,inviteCode ,  registerListener);
     }
 
     private void gotoLogin(String account, String password) {
