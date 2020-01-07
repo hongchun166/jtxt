@@ -59,8 +59,8 @@ public class MineInvitationActivityV2 extends BaseActivity implements HttpReques
     public void onHttpRequestSucceed(MineInviteInfoResult result, OriginalCall call) {
         if (result.isSuccess()) {
             String amount = TextUtils.isEmpty(result.data.prize) ? "0.00" : result.data.prize;
-            String directlyNumber = TextUtils.isEmpty(result.data.inviteCount) ? "0" : result.data.inviteCount;
-            String indirectNumber = TextUtils.isEmpty(result.data.inviteCount2) ? "0" : result.data.inviteCount2;
+            String directlyNumber = TextUtils.isEmpty(result.data.referrerNumber) ? "0" : result.data.referrerNumber;
+            String indirectNumber = TextUtils.isEmpty(result.data.jianjieReferrerNumber) ? "0" : result.data.jianjieReferrerNumber;
             tvAmount.setText(amount);
             tvDirectlyNumber.setText(directlyNumber);
             tvIndirectNumber.setText(indirectNumber);
