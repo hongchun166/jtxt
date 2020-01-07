@@ -19,21 +19,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
-
+    <View
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:background="@color/colorToolbarBlue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
     <RelativeLayout
         android:id="@+id/viewTop"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="116dp"
         android:background="@color/colorToolbarBlue"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/status"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        >
 
         <com.linkb.jstx.component.WebImageView
             android:id="@+id/imageView29"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="14dp"
             app:srcCompat="@drawable/icon_def_head" />
 
         <View
@@ -41,7 +50,7 @@
             android:layout_width="1dp"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@+id/imageView29" />
 
         <TextView
@@ -53,7 +62,7 @@
             android:layout_toRightOf="@+id/imageView29"
             android:text="name"
             android:textColor="@color/tex_color_white"
-            android:textSize="@dimen/text_22sp" />
+            android:textSize="@dimen/text_20sp" />
 
         <TextView
             android:id="@+id/viewUserSing"
@@ -61,30 +70,28 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/viewTopCenterLine"
             android:layout_alignLeft="@+id/viewTopCenterLine"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/imageView29"
             android:text="sing"
             android:textColor="@color/tex_color_white"
-            android:textSize="@dimen/text_13sp" />
+            android:textSize="@dimen/text_12sp" />
 
         <ImageView
             android:id="@+id/viewIVEdit"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="10dp"
             android:src="@mipmap/ic_user_center_edit_v2" />
 
         <ImageView
             android:id="@+id/viewIVQRCode"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="32dp"
+            android:layout_marginRight="21dp"
             android:layout_toLeftOf="@+id/viewIVEdit"
             android:src="@mipmap/ic_user_center_qrcode_v2" />
     </RelativeLayout>
@@ -99,17 +106,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewTop">
+            app:layout_constraintTop_toBottomOf="@+id/viewTop"
+            >
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/invite_cly"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:background="@drawable/background_white_to_gray"
                 android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -119,7 +125,6 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
                     android:src="@mipmap/ic_user_center_yqfriend_v2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -128,8 +133,8 @@
                 <TextView
                     android:id="@+id/textView108"
                     android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
                     android:text="@string/invite_friend"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"
@@ -151,8 +156,6 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="15dp"
                 android:background="@color/divider_color_gray_ebebeb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -161,13 +164,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/xiangce_cly"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/background_white_to_gray"
-                android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/invite_cly">
@@ -177,7 +178,6 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
                     android:src="@mipmap/ic_user_center_photo_v2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +187,7 @@
                     android:id="@+id/textView109"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="11dp"
                     android:text="@string/label_menu_album"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"
@@ -210,13 +210,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/message_set_cly"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/background_white_to_gray"
-                android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/xiangce_cly">
@@ -226,7 +224,6 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
                     android:src="@mipmap/ic_user_center_msg_v2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +233,7 @@
                     android:id="@+id/textView111"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="11dp"
                     android:text="@string/label_setting_notify"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"
@@ -259,8 +256,6 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="15dp"
                 android:background="@color/divider_color_gray_ebebeb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -269,13 +264,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/version_update_cly"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/background_white_to_gray"
-                android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/message_set_cly">
@@ -285,7 +278,6 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
                     android:src="@mipmap/ic_user_center_update_v2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -295,7 +287,7 @@
                     android:id="@+id/textView112"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="11dp"
                     android:text="@string/label_setting_update"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"
@@ -329,8 +321,6 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="15dp"
                 android:background="@color/divider_color_gray_ebebeb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -339,13 +329,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/modify_password_cly"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:layout_marginTop="1dp"
                 android:background="@drawable/background_white_to_gray"
-                android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/version_update_cly">
@@ -355,7 +343,6 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
                     android:src="@mipmap/ic_user_center_psw_v2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -365,7 +352,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="11dp"
                     android:text="@string/label_setting_modify_password"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"
@@ -388,8 +375,6 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="15dp"
                 android:background="@color/divider_color_gray_ebebeb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -398,13 +383,11 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/exit_login_card_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/user_center_item_size"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/background_white_to_gray"
-                android:paddingStart="15dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 app:layout_constraintEnd_toStartOf="@+id/modify_password_cly"
                 app:layout_constraintStart_toStartOf="@+id/modify_password_cly"
                 app:layout_constraintTop_toBottomOf="@+id/modify_password_cly">
@@ -413,7 +396,6 @@
                     android:id="@+id/imageView35"
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
-                    android:layout_marginStart="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -422,8 +404,8 @@
                 <TextView
                     android:id="@+id/textView115"
                     android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
                     android:text="@string/exit_login"
                     android:textColor="@color/tex_color_gray_191919"
                     android:textSize="@dimen/user_center_item_tx_size"

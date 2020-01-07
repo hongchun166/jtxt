@@ -2,16 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@mipmap/ic_trend_top_bg_v2"
-    android:paddingLeft="29dp"
     >
     <TextView
         android:id="@+id/tvTrendTop1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:textSize="@dimen/text_30sp"
+        android:layout_marginTop="39dp"
+        android:textSize="@dimen/text_20sp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/tex_color_white"
         android:text="@string/platform_describe4"
         />
@@ -20,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTrendTop1"
-        android:textSize="@dimen/text_15sp"
+        android:textSize="@dimen/text_12sp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/tex_color_white"
         android:text="@string/platform_describe_en4"
         />
@@ -29,8 +30,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTrendTop2"
-        android:layout_marginTop="25dp"
-        android:textSize="@dimen/text_18sp"
+        android:layout_marginTop="17dp"
+        android:textSize="@dimen/text_14sp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/tex_color_white"
         android:text="@string/platform_describe3"
         />
@@ -39,7 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTrendTop3"
-        android:textSize="@dimen/text_13sp"
+        android:textSize="@dimen/text_9sp"
+        android:layout_marginLeft="16dp"
         android:textColor="@color/tex_color_white"
         android:text="@string/platform_describe_en3"
         />

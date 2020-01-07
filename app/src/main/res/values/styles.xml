@@ -193,7 +193,7 @@
         <item name="android:background">@drawable/edit_tx_bg_transparent_bottom_black_line</item>
         <item name="android:layout_height">45dp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">@dimen/text_15sp</item>
+        <item name="android:textSize">@dimen/text_content</item>
         <item name="android:textColorHint">@color/tex_color_gray_8A8A8A</item>
         <item name="android:textColor">@color/tex_color_gray_333</item>
     </style>

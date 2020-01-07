@@ -7,10 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/background_gray_f0f1f2"
     android:orientation="vertical">
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:background="@color/bg_blue_2c62f5"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="214dp">
+        android:layout_height="150dp"
+        >
         <com.youth.banner.Banner
             android:id="@+id/banner"
             android:layout_width="match_parent"
@@ -29,7 +34,8 @@
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@drawable/background_white_to_gray"
-        android:paddingLeft="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         >
 
         <ImageView
@@ -37,16 +43,15 @@
             android:layout_width="@dimen/user_center_item_img_size"
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
-            android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/ic_trend_circle_v2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/discuss_image"
             android:text="@string/label_function_moment_my"
-            android:textSize="@dimen/text_15sp"
+            android:textSize="@dimen/user_center_item_tx_size"
             android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
@@ -55,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
             android:src="@mipmap/more"/>
 
 
@@ -66,7 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
         android:background="@drawable/background_white_to_gray"
-        android:paddingLeft="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         android:layout_marginTop="1dp"
         >
 
@@ -81,10 +86,10 @@
             android:id="@+id/popular_group_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/popular_group_image"
             android:text="@string/find_find"
-            android:textSize="@dimen/text_15sp"
+            android:textSize="@dimen/user_center_item_tx_size"
             android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
@@ -93,7 +98,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
             android:src="@mipmap/more"/>
 
         <View
@@ -110,7 +114,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_center_item_size"
         android:background="@drawable/background_white_to_gray"
-        android:paddingLeft="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         android:layout_marginTop="1dp"
         >
 
@@ -125,10 +130,10 @@
             android:id="@+id/information_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/information_image"
             android:text="@string/information"
-            android:textSize="@dimen/text_15sp"
+            android:textSize="@dimen/user_center_item_tx_size"
             android:layout_centerVertical="true"
             android:textColor="@color/tex_color_gray_333" />
 
@@ -137,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
             android:src="@mipmap/more"/>
 
         <View
@@ -158,7 +162,8 @@
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@drawable/background_white_to_gray"
-        android:paddingLeft="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         android:layout_marginTop="1dp"
         >
 
@@ -167,17 +172,16 @@
             android:layout_width="@dimen/user_center_item_img_size"
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
-            android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/youxi_v2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/game__image"
             android:text="@string/game"
-            android:textSize="@dimen/text_15sp"
+            android:textSize="@dimen/user_center_item_tx_size"
             android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
@@ -185,7 +189,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
             android:src="@mipmap/more"/>
 
 
@@ -197,7 +200,8 @@
         android:layout_height="@dimen/user_center_item_size"
         android:gravity="center_vertical"
         android:background="@drawable/background_white_to_gray"
-        android:paddingLeft="16dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         android:layout_marginTop="1dp"
         >
 
@@ -206,17 +210,16 @@
             android:layout_width="@dimen/user_center_item_img_size"
             android:layout_height="@dimen/user_center_item_img_size"
             android:layout_centerVertical="true"
-            android:layout_marginStart="2dp"
             app:srcCompat="@mipmap/fujinderen_v2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/nearly_people_image"
             android:text="@string/nearly_people"
-            android:textSize="@dimen/text_15sp"
+            android:textSize="@dimen/user_center_item_tx_size"
             android:textColor="@color/tex_color_gray_333" />
 
         <ImageView
@@ -224,7 +227,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
             android:src="@mipmap/more"/>
 
 

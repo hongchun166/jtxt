@@ -6,21 +6,22 @@
     android:layout_height="match_parent"
     android:background="@color/tex_color_blue_0E5DD6"
     >
+
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitEnd"
-        android:src="@mipmap/splash_image_flag_bottom"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        />
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/splash_image_flag_bottom" />
+
     <ImageView
         android:id="@+id/image_logo"
-        android:layout_width="83dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="93dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/splash_image_flag_log" />
     <TextView
@@ -28,10 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:text="kikichat"
         android:textStyle="bold"
-        android:textSize="@dimen/text_38sp"
+        android:textSize="@dimen/text_27sp"
         android:textColor="@color/tex_color_white"
         android:layout_below="@+id/image_logo"
         />
@@ -41,10 +42,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="31dp"
         android:text="@string/platform_describe2"
         android:textColor="@color/f8fbff"
-        android:textSize="@dimen/text_20sp" />
+        android:textSize="@dimen/text_17sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:layout_marginTop="1dp"
         android:text="@string/platform_describe2_en"
         android:textColor="@color/f8fbff"
-        android:textSize="@dimen/text_15sp" />
+        android:textSize="@dimen/text_8sp" />
 
 
 </RelativeLayout>

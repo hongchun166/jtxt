@@ -35,8 +35,8 @@
     <dimen name="row_padding_right">20dp</dimen>
 
     <dimen name="card_elevation">2dp</dimen>
-    <dimen name="user_center_item_img_size">28dp</dimen>
-    <dimen name="user_center_item_tx_size">@dimen/text_15sp</dimen>
+    <dimen name="user_center_item_img_size">25dp</dimen>
+    <dimen name="user_center_item_tx_size">@dimen/text_13sp</dimen>
     <dimen name="user_center_item_size">50dp</dimen>
     <!--通讯录-->
     <dimen name="contacts_avatar_width">40dp</dimen>
@@ -49,6 +49,10 @@
 
     <dimen name="text_content">14sp</dimen>
     <dimen name="text_tips">12sp</dimen>
+    <dimen name="text_8sp">8sp</dimen>
+    <dimen name="text_9sp">9sp</dimen>
+    <dimen name="text_10sp">10sp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
     <dimen name="text_12sp">12sp</dimen>
     <dimen name="text_13sp">13sp</dimen>
     <dimen name="text_14sp">14sp</dimen>
@@ -63,8 +67,13 @@
     <dimen name="text_23sp">23sp</dimen>
     <dimen name="text_24sp">24sp</dimen>
     <dimen name="text_26sp">26sp</dimen>
+    <dimen name="text_27sp">27sp</dimen>
     <dimen name="text_28sp">28sp</dimen>
+    <dimen name="text_29sp">29sp</dimen>
     <dimen name="text_30sp">30sp</dimen>
+    <dimen name="text_31sp">31sp</dimen>
+    <dimen name="text_32sp">32sp</dimen>
+    <dimen name="text_35sp">35sp</dimen>
     <dimen name="text_38sp">38sp</dimen>
     <dimen name="text_49sp">49sp</dimen>
     <dimen name="text_51sp">51sp</dimen>
