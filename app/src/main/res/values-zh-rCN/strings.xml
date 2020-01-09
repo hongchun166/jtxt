@@ -116,7 +116,7 @@
     <string name="platform_describe3">安全、便捷、高效的通讯工具</string>
     <string name="platform_describe_en3">Safe, efficient and convenient communication tool</string>
     <string name="platform_describe4">琪琪聊  全新上线</string>
-    <string name="platform_describe_en4">kikichat is online</string>
+    <string name="platform_describe_en4">KikiChat is online</string>
 
     <string name="service_rule_tips">注册即代表阅读并同意</string>
     <string name="service_rule">服务条款</string>
@@ -433,7 +433,7 @@
     <string name="hint_self_Invitation_code">我的邀请码</string>
     <string name="hint_Invitation_code">邀请码</string>
     <string name="hint_scan_download_app">扫描下载安装App</string>
-    <string name="hint_come_experience_kikichat">快来体验下kikichat吧</string>
+    <string name="hint_come_experience_kikichat">快来体验下KikiChat吧</string>
     <string name="hint_say_hello">Hi,我是%1$s</string>
     <string name="invite_info">邀请详情</string>
     <string name="copy_group_qrcode_success_tips">二维码已经存储到手机相册</string>

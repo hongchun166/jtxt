@@ -36,6 +36,7 @@ import com.linkb.jstx.dialog.MarriageChangeDialogV2;
 import com.linkb.jstx.dialog.SexChangeDialogV2;
 import com.linkb.jstx.event.UserInfoChangeEvent;
 import com.linkb.jstx.listener.OSSFileUploadListener;
+import com.linkb.jstx.model.world_area.WorlAreaOpt;
 import com.linkb.jstx.network.CloudFileUploader;
 import com.linkb.jstx.network.CloudImageLoaderFactory;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -104,6 +105,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     private List<List<String>> citys = new ArrayList<>();
     private User user;
 
+    WorlAreaOpt worlAreaOpt;
+
     @Override
     protected int getToolbarTitle() {
         return super.getToolbarTitle();
@@ -140,6 +143,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
         tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
+        worlAreaOpt=new WorlAreaOpt();
+        worlAreaOpt.loadWorldAreaData(this);
     }
 
 
@@ -278,8 +283,12 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 }
             }
         }
-        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0)
-            getJson("citycode.json");
+        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
+//            getJson("citycode.json");
+            List<List<String>> provincesDouList=worlAreaOpt.qureyProvinceList("226");
+            provinces=provincesDouList.get(1);
+            citys=worlAreaOpt.qureyCityList(provincesDouList.get(0));
+        }
         pvCustomOptions.setPicker(provinces, citys);
         pvCustomOptions.show();
     }

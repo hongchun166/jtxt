@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:text="kikichat"
+        android:text="KikiChat"
         android:textStyle="bold"
         android:textSize="@dimen/text_27sp"
         android:textColor="@color/tex_color_white"

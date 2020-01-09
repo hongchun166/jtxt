@@ -109,8 +109,8 @@
     <string name="platform_describe_en">Safe, convenient and efficient social platform</string>
     <string name="platform_describe3">Safe, efficient and convenient communication tool</string>
     <string name="platform_describe_en3">Safe, efficient and convenient communication tool</string>
-    <string name="platform_describe4">kikichat is online</string>
-    <string name="platform_describe_en4">kikichat is online</string>
+    <string name="platform_describe4">KikiChat is online</string>
+    <string name="platform_describe_en4">KikiChat is online</string>
 
     <string name="service_rule_tips">Registration means read and agreed</string>
     <string name="service_rule">service rule</string>
@@ -431,7 +431,7 @@
     <string name="hint_self_Invitation_code">Invitation code</string>
     <string name="hint_Invitation_code">Invitation code</string>
     <string name="hint_scan_download_app">Download App</string>
-    <string name="hint_come_experience_kikichat">Come Experience kikichat</string>
+    <string name="hint_come_experience_kikichat">Come Experience KikiChat</string>
     <string name="hint_say_hello">Hi,My %1$s</string>
     <string name="invite_info">Invite info</string>
     <string name="copy_group_qrcode_success_tips">group QR code stored in gallery</string>

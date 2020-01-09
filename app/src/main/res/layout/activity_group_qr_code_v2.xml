@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_blue_1068ed">
+    android:background="@color/bg_blue_116AEC">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline5"
@@ -25,7 +26,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/background_blue_1068ed"
+        android:background="@color/bg_blue_116AEC"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
         >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="48dp"
             android:layout_marginTop="@dimen/wallet_appbar_title_margin_top">
             <FrameLayout
                 android:id="@+id/back_btn"
@@ -52,12 +53,14 @@
         </RelativeLayout>
     </RelativeLayout>
     <ScrollView
+        android:id="@+id/viewScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        android:background="@color/bg_blue_116AEC"
         >
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -100,11 +103,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/background_blue_1068ed"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 >
-
                 <TextView
                     android:id="@+id/viewTVName"
                     android:layout_width="wrap_content"
@@ -112,7 +113,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/hint_say_hello"
                     android:textColor="@color/tex_color_white"
-                    android:textSize="@dimen/text_23sp"
+                    android:textSize="@dimen/text_21sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -123,7 +124,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/hint_come_experience_kikichat"
                     android:textColor="@color/tex_color_white"
-                    android:textSize="@dimen/text_18sp" />
+                    android:textSize="@dimen/text_16sp" />
             </RelativeLayout>
 
             <View
@@ -156,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/hint_self_Invitation_code"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_13sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline29"
                     app:layout_constraintStart_toStartOf="@+id/guideline29"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -164,9 +165,9 @@
                 <View
                     android:id="@+id/viewInvitationCodeGroup"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/divider_color_gray_D5D5D5"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -177,9 +178,9 @@
                     android:id="@+id/viewInvitationCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="KANDHF"
+                    android:text=""
                     android:textColor="@color/tex_color_blue_113db2"
-                    android:textSize="@dimen/text_26sp"
+                    android:textSize="@dimen/text_35sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/viewInvitationCodeGroup"
                     app:layout_constraintLeft_toLeftOf="@+id/viewInvitationCodeGroup"
@@ -194,15 +195,15 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/copy_group_qrcode"
                     android:textColor="@color/tex_color_gray_666"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_13sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewInvitationCodeGroup" />
 
                 <View
                     android:id="@+id/viewQrCodeGroup"
-                    android:layout_width="127dp"
-                    android:layout_height="137dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/qrcode_group_bg"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -211,8 +212,8 @@
 
                 <ImageView
                     android:id="@+id/viewQrImg"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
                     app:layout_constraintLeft_toLeftOf="@+id/viewQrCodeGroup"
                     app:layout_constraintRight_toRightOf="@+id/viewQrCodeGroup"
                     app:layout_constraintTop_toTopOf="@+id/viewQrCodeGroup"
@@ -223,10 +224,10 @@
                     android:id="@+id/viewDownHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text="@string/hint_scan_download_app"
                     android:textColor="@color/tex_color_gray_666"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_13sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewQrCodeGroup" />
@@ -235,10 +236,9 @@
                     android:id="@+id/viewWebHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="www.kikichat.com"
                     android:textColor="@color/tex_color_gray_333"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_13sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewDownHint" />
@@ -246,7 +246,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewWebHint" />
@@ -255,12 +255,12 @@
             <Button
                 android:id="@+id/viewBtnSaveQrBitmap"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_background_yellow_to_yellow"
                 android:text="@string/label_save_bitmap"
                 android:textColor="@color/tex_color_330000"
-                android:textSize="@dimen/text_15sp"
+                android:textSize="@dimen/text_13sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutCenter" />
@@ -269,10 +269,10 @@
                 android:id="@+id/viewInvitationInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="35dp"
                 android:text="@string/invite_info"
                 android:textColor="@color/tex_color_white"
-                android:textSize="@dimen/text_15sp"
+                android:textSize="@dimen/text_13sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewBtnSaveQrBitmap" />
@@ -280,7 +280,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewInvitationInfo" />
