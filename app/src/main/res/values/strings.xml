@@ -968,4 +968,5 @@
     <string name="item_industry_gongwuyuan">公务员/行政/事业单位</string>
     <string name="item_industry_xuesheng">学生</string>
     <string name="item_industry_qita">其他</string>
+    <string name="item_hot_labels">热门标签</string>
 </resources>
