@@ -1,13 +1,14 @@
 package com.linkb.jstx.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.linkb.R;
 
 import java.util.List;
 
@@ -15,6 +16,15 @@ public class ModifyLabelAdapterV2 extends BaseAdapter {
     public int selectedItem = 0;  //选中的条目
     public Context mContext;
     public List<String> data;
+
+
+    public int getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(int selectedItem) {
+        this.selectedItem = selectedItem;
+    }
 
     public ModifyLabelAdapterV2(Context context, List<String> datas, int selectedItem) {
         this.data = datas;
@@ -39,7 +49,19 @@ public class ModifyLabelAdapterV2 extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        LabelHolder holder = null;
+        if (view == null) {
+            holder = new LabelHolder();
+            view = LayoutInflater.from(mContext).inflate(R.layout.item_modify_label, null, false);
+            holder.tvName = view.findViewById(R.id.tv_label_name);
+            holder.imgSelected = view.findViewById(R.id.img_selected);
+            view.setTag(holder);
+        } else {
+            holder = (LabelHolder) view.getTag();
+        }
+        holder.tvName.setText(data.get(i));
+        holder.imgSelected.setVisibility(selectedItem == i ? View.VISIBLE : View.GONE);
+        return view;
     }
 
     public class LabelHolder {

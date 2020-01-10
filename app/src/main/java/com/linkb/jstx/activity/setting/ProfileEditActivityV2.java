@@ -22,6 +22,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.farsunset.cim.sdk.android.CIMPushManager;
 import com.farsunset.cim.sdk.android.model.SentBody;
 import com.google.gson.Gson;
+import com.j256.ormlite.stmt.query.In;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
@@ -135,7 +136,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (user == null) return;
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
-        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2: "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
+        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
         tvNAme.setText(TextUtils.isEmpty(user.name) ? "" : user.name);//佚名
@@ -143,7 +144,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
         tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
-        worlAreaOpt=new WorlAreaOpt();
+        worlAreaOpt = new WorlAreaOpt();
         worlAreaOpt.loadWorldAreaData(this);
     }
 
@@ -231,7 +232,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_industry_rly)
     public void industry() {
-        ModifyIndustryActivityV2.nacToAct(this,0x14);
+        ModifyIndustryActivityV2.nacToAct(this, 0x14);
     }
 
 
@@ -252,7 +253,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                    String region = "" + provinces.get(options1) +"-"+ citys.get(options1).get(options2);
+                    String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
                     tvRegion.setText(region);
                     user.region = region;
                     Global.modifyAccount(user);
@@ -285,9 +286,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         }
         if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
 //            getJson("citycode.json");
-            List<List<String>> provincesDouList=worlAreaOpt.qureyProvinceList("226");
-            provinces=provincesDouList.get(1);
-            citys=worlAreaOpt.qureyCityList(provincesDouList.get(0));
+            List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList("226");
+            provinces = provincesDouList.get(1);
+            citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
         }
         pvCustomOptions.setPicker(provinces, citys);
         pvCustomOptions.show();
@@ -299,6 +300,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_label_rly)
     public void label() {
+        Intent intent = new Intent(this, ModifyLabelActivityV2.class);
+        intent.putExtra("labelItem", 1);
+        startActivityForResult(intent, 1001);
+
     }
 
 
@@ -307,7 +312,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_sign_rly)
     public void sign() {
-        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class),15);
+        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class), 15);
     }
 
 
@@ -378,13 +383,13 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             user = Global.getCurrentUser();
             tvEmail.setText(user.email);
         }
-        if(resultCode == Activity.RESULT_OK && requestCode == 0x14){
+        if (resultCode == Activity.RESULT_OK && requestCode == 0x14) {
             user = Global.getCurrentUser();
             tvIndustry.setText(user.industry);
         }
-        if (requestCode==Activity.RESULT_OK ){
-                user= Global.getCurrentUser();
-                tvSign.setText(user.motto);
+        if (requestCode == Activity.RESULT_OK) {
+            user = Global.getCurrentUser();
+            tvSign.setText(user.motto);
         }
     }
 

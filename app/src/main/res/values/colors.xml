@@ -193,7 +193,7 @@
     <color name="popupWindowBackground">#353535</color>
     <color name="f8fbff">#f8fbff</color>
     <color name="color_e0bd7c">#e0bd7c</color>
-
+    <color name="color_e4e4e4">#e4e4e4</color>
     <integer-array name="audioBackgroundColors">
         <item>@color/app_splash_bg</item>
         <item>@color/gray_voice_connect</item>
