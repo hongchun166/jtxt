@@ -5,12 +5,14 @@ import android.content.res.AssetManager;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,12 @@ public class WorlAreaOpt {
         if(onQureyCountryCB!=null)onQureyCountryCB.onQureyCountryCB(countryList);
         return countryList;
     }
+    public List<CountryBean> loadCountryList(Context context){
+        return getCountryList(context);
+    }
+    public List<CountryCodeBean> qureyCountryCodeList(Context context){
+        return getCountryCodeList(context);
+    }
     public List<List<String>> qureyProvinceList(String countryId){
         List<String> listCB=new ArrayList<>();
         List<String> listCBId=new ArrayList<>();
@@ -48,6 +56,7 @@ public class WorlAreaOpt {
         listsDou.add(listCB);
         return listsDou;
     }
+
     public  List<List<String>>  qureyCityList(List<String> provinceList){
         List<List<String>>  listCB=new ArrayList<>();
         for (String pro : provinceList) {
@@ -92,6 +101,10 @@ public class WorlAreaOpt {
         CountryResultBean resultBean=getJson(context,"world_area/countries.json",CountryResultBean.class);
         return resultBean.getRECORDS();
     }
+    private List<CountryCodeBean> getCountryCodeList(Context context){
+        List<CountryCodeBean> resultan=getJsonList(context,"world_area/country-code.json");
+        return resultan;
+    }
     private List<ProvinceBean> getProvinceList(Context context){
         ProvinceResultBean resultBean=getJson(context,"world_area/states.json",ProvinceResultBean.class);
         return resultBean.getRECORDS();
@@ -100,6 +113,7 @@ public class WorlAreaOpt {
         CityResultBean resultBean=getJson(context,"world_area/cities.json",CityResultBean.class);
         return resultBean.getRECORDS();
     }
+
     private List<CountryBean> getCountyList(Context context){
 //        CountryResultBean countryResultBean=getJson(context,"world_area/regions.json",CountryResultBean.class);
 //        return countryResultBean.getRECORDS();
@@ -130,6 +144,27 @@ public class WorlAreaOpt {
         }
         return resultBean;
     }
-    
+    private   List<CountryCodeBean> getJsonList(Context context, String fileName) {
+        //将json数据变成字符串
+        StringBuilder stringBuilder = new StringBuilder();
+        List<CountryCodeBean> list =new ArrayList<>();
+        try {
+            //获取assets资源管理器
+            AssetManager assetManager = context.getAssets();
+            //通过管理器打开文件并读取
+            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Gson gson=new Gson();
+            Type type = new TypeToken<ArrayList<CountryCodeBean>>(){}.getType();
+            list = gson.fromJson(stringBuilder.toString(), type);
+            System.out.println("world_area==getJson=="+list.size()+"==");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 }

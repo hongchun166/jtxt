@@ -21,10 +21,10 @@ import com.linkb.BuildConfig;
 import com.linkb.R;
 import com.linkb.jstx.activity.AppNewVersionActivity;
 import com.linkb.jstx.activity.base.BaseFragment;
+import com.linkb.jstx.activity.contact.GroupQrCodeActivity;
 import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 import com.linkb.jstx.activity.contact.PhoneContactsActivity;
 import com.linkb.jstx.activity.trend.MineMomentActivity;
-import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
@@ -214,7 +214,11 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
     @OnClick(R.id.invite_cly)
     public void goInvite() {
-        startActivity(new Intent(this.getActivity(), PhoneContactsActivity.class));
+//        startActivity(new Intent(this.getActivity(), PhoneContactsActivity.class));
+        Intent intent = new Intent(getContext(), GroupQrCodeActivityV2.class);
+        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
+                user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
+        startActivity(intent);
     }
 
     @OnClick(R.id.modify_password_cly)
@@ -224,16 +228,13 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
     @OnClick(R.id.viewIVQRCode)
     public void onQrCode() {
-        Intent intent = new Intent(getContext(), GroupQrCodeActivityV2.class);
-        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
+        Intent intent = new Intent(getContext(), GroupQrCodeActivity.class);
+        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE +
+                Constant.QrCodeFormater.QR_CODE_SPLIT +
                 user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
         startActivity(intent);
     }
 
-    @OnClick(R.id.tv_wallet)
-    public void wallet() {
-        startActivity(new Intent(getContext(), WalletActivityV2.class));
-    }
 
     @OnClick(R.id.exit_login_card_view)
     public void goExitLogin() {

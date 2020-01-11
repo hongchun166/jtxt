@@ -51,18 +51,60 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <EditText
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout5"
             style="@style/LoginEditTx"
-            android:id="@+id/editText_account"
             android:layout_width="0dp"
-            android:layout_marginTop="28dp"
-            android:ems="10"
-            android:hint="@string/account_tips"
-            android:inputType="phone"
-            android:maxLength="11"
+            android:layout_marginTop="65dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+
+
+            <EditText
+                style="@style/LoginEditTx"
+                android:id="@+id/editText_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:hint="@string/account_tips"
+                android:layout_marginLeft="8dp"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/viewCountryCode"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:id="@+id/viewCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@mipmap/drop_down"
+                android:drawablePadding="5dp"
+                android:text="+86"
+                android:textColor="@color/tex_color_gray_333"
+                android:textSize="@dimen/text_13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+        </android.support.constraint.ConstraintLayout>
+<!--        <EditText-->
+<!--            style="@style/LoginEditTx"-->
+<!--            android:id="@+id/editText_account"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:ems="10"-->
+<!--            android:hint="@string/account_tips"-->
+<!--            android:inputType="phone"-->
+<!--            android:maxLength="11"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline2"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView9" />-->
 
         <android.support.constraint.ConstraintLayout
             style="@style/LoginEditTx"
@@ -71,7 +113,7 @@
             android:layout_marginTop="13dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/editText_account">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
 
             <EditText
@@ -230,6 +272,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:checked="true"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_circle_blue"
+            android:drawablePadding="5dp"
             android:text="男"
             android:textColor="@color/tex_color_blue_1068ed"
             app:layout_constraintBottom_toBottomOf="@+id/sex_tips_textView"
@@ -241,6 +286,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_circle_blue"
+            android:drawablePadding="5dp"
             android:text="女"
             android:textColor="@color/tex_color_blue_1068ed"
             app:layout_constraintBottom_toBottomOf="@+id/sex_tips_textView"

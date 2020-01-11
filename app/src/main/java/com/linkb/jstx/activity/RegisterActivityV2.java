@@ -2,8 +2,10 @@ package com.linkb.jstx.activity;
 
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.app.Activity;
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -56,6 +58,8 @@ public class RegisterActivityV2 extends BaseActivity {
     @BindView(R.id.password_confirm_visible_image) ImageView passwordConfirmVisibleImage;
     @BindView(R.id.password_visible_image) ImageView passwordVisibleImage;
     @BindView(R.id.viewETInviteCode) TextView viewETInviteCode;
+    @BindView(R.id.viewCountryCode)
+    TextView viewCountryCode;
 
     /** 是邮箱注册还是 手机注册
      * */
@@ -197,7 +201,10 @@ public class RegisterActivityV2 extends BaseActivity {
         }
         changePasswordVisible(passwordVisibleStatus, passwordEdt, passwordVisibleImage);
     }
-
+    @OnClick(R.id.viewCountryCode)
+    public void selectCounytry(){
+        startActivityForResult(new Intent(this,SelectCountryCodeActivity.class),100);
+    }
     private void changePasswordVisible(Boolean enablePasswordVisible, EditText editText, ImageView imageView){
         if (enablePasswordVisible){
             imageView.setImageResource(R.mipmap.open_gray);
@@ -214,7 +221,14 @@ public class RegisterActivityV2 extends BaseActivity {
     public void gotoLogin(){
         finish();
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100 && resultCode== Activity.RESULT_OK){
+            String countryCode=data.getStringExtra("CountryCode");
+            viewCountryCode.setText(countryCode);
+        }
+    }
     private void gotoRegister(String account, String password, String nickMame, Boolean enableMan, String verifyCode) {
         showProgressDialog(getString(R.string.tip_loading, getString(R.string.register)));
         nextStepBtn.setEnabled(false);

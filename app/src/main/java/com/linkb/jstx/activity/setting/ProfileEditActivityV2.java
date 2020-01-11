@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.farsunset.cim.sdk.android.CIMPushManager;
@@ -24,6 +25,7 @@ import com.farsunset.cim.sdk.android.model.SentBody;
 import com.google.gson.Gson;
 import com.j256.ormlite.stmt.query.In;
 import com.linkb.R;
+import com.linkb.jstx.activity.SelectCountryActivity;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.app.Constant;
@@ -37,6 +39,7 @@ import com.linkb.jstx.dialog.MarriageChangeDialogV2;
 import com.linkb.jstx.dialog.SexChangeDialogV2;
 import com.linkb.jstx.event.UserInfoChangeEvent;
 import com.linkb.jstx.listener.OSSFileUploadListener;
+import com.linkb.jstx.model.world_area.CountryBean;
 import com.linkb.jstx.model.world_area.WorlAreaOpt;
 import com.linkb.jstx.network.CloudFileUploader;
 import com.linkb.jstx.network.CloudImageLoaderFactory;
@@ -98,6 +101,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     LinearLayout modify_email_rly;
     @BindView(R.id.tv_email)
     TextView tvEmail;
+
 
     private SexChangeDialogV2 mSexChangeDialog;
     private MarriageChangeDialogV2 mMarriageChangeDialog;
@@ -244,12 +248,65 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     public void position() {
     }
 
-
+    CountryBean countryBean;
     /**
      * 地址
      */
     @OnClick(R.id.modify_region_rly)
     public void region() {
+        showRegionDialog();
+//        if (pvCustomOptions == null) {
+//            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+//                @Override
+//                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+//                    String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
+//                    tvRegion.setText(region);
+//                    user.region = region;
+//                    Global.modifyAccount(user);
+//                }
+//            })
+//                    .isDialog(false)
+//                    .setSubmitText(getString(R.string.finish))
+//                    .setSubmitColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.color_2e76e5))
+//                    .setCancelText(getString(R.string.common_cancel))
+//                    .setCancelColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.divider_color_gray_999999))
+//                    .setOutSideCancelable(false)
+//                    .build();
+//            pvCustomOptions.setSelectOptions(0, 1, 1);
+//            Dialog mDialog = pvCustomOptions.getDialog();
+//            if (mDialog != null) {
+//                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+//                        ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT,
+//                        Gravity.BOTTOM);
+//                params.leftMargin = 0;
+//                params.rightMargin = 0;
+//                pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
+//                Window dialogWindow = mDialog.getWindow();
+//                if (dialogWindow != null) {
+//                    dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+//                    dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+//                    dialogWindow.setDimAmount(0.1f);
+//                }
+//            }
+//        }
+//        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
+//            getJson("citycode.json");
+//            List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList("226");
+//            provinces = provincesDouList.get(1);
+//            citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
+//        }
+//        pvCustomOptions.setPicker(provinces, citys);
+//        pvCustomOptions.show();
+    }
+
+    private void showRegionDialog(){
+        if(countryBean==null){
+            countryBean=new CountryBean();
+            countryBean.setId("44");//中国
+            countryBean.setCname("中国");
+            countryBean.setName("China");
+        }
         if (pvCustomOptions == null) {
             pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
                 @Override
@@ -258,6 +315,35 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                     tvRegion.setText(region);
                     user.region = region;
                     Global.modifyAccount(user);
+                }
+            }).setLayoutRes(R.layout.view_region_options_layout, new CustomListener() {
+                @Override
+                public void customLayout(View v) {
+                    final TextView viewCancel = (TextView) v.findViewById(R.id.viewCancel);
+                    final TextView viewFinish = (TextView) v.findViewById(R.id.viewFinish);
+                    TextView viewCountry = (TextView) v.findViewById(R.id.viewCountry);
+                    viewCountry.setText(countryBean.getCname());
+                    viewFinish.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pvCustomOptions.returnData();
+                            pvCustomOptions.dismiss();
+                        }
+                    });
+                    viewCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pvCustomOptions.dismiss();
+                        }
+                    });
+                    viewCountry.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivityForResult(
+                                    new Intent(ProfileEditActivityV2.this, SelectCountryActivity.class)
+                                    ,0x15);
+                        }
+                    });
                 }
             })
                     .isDialog(false)
@@ -285,17 +371,50 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 }
             }
         }
-        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
-//            getJson("citycode.json");
-            List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList("226");
-            provinces = provincesDouList.get(1);
-            citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
+        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
+                if(countryBean.getId().equals("44")){
+                    getJson("citycode.json");
+                }else {
+                    List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
+                    provinces = provincesDouList.get(1);
+                    citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
+                    if(provinces.size()==1 && provinces.get(0).equals("")){
+                        provinces.clear();
+                        provinces.add(countryBean.getCname());
+                    }
+                }
         }
-        pvCustomOptions.setPicker(provinces, citys);
-        pvCustomOptions.show();
+        if(provinces.size()==0 ){
+            tvRegion.setText(countryBean.getCname());
+            user.region = countryBean.getCname();
+            Global.modifyAccount(user);
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else if(citys.size()==0){
+            tvRegion.setText(countryBean.getCname());
+            user.region = countryBean.getCname();
+            Global.modifyAccount(user);
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else {
+            pvCustomOptions.setPicker(provinces, citys);
+            pvCustomOptions.show();
+        }
     }
-
-
+    private void changeRegion(CountryBean countryBean){
+        this.countryBean=countryBean;
+        if(pvCustomOptions!=null){
+            pvCustomOptions.dismiss();
+            pvCustomOptions=null;
+        }
+        if(provinces!=null)provinces.clear();
+        if(citys!=null)citys.clear();
+        showRegionDialog();
+    }
     /**
      * 标签
      */
@@ -363,6 +482,11 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode==0x15 && Activity.RESULT_OK==resultCode){
+            CountryBean countryBean= (CountryBean) data.getSerializableExtra("CountryBean");
+            changeRegion(countryBean);
+            return;
+        }
         if (resultCode == Activity.RESULT_OK && requestCode == 9) {
             AppTools.startIconPhotoCrop(this, data.getData());
         }

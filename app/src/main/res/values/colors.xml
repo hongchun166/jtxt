@@ -34,7 +34,8 @@
     <color name="background_gray_EDEDED">#EDEDED</color>
     <color name="background_gray_F2F2F2">#F2F2F2</color>
     <color name="color_1c71f0">#1c71f0</color>
-
+    <color name="bg_EEEFF3">#EEEFF3</color>
+    <color name="bg_EDEEF2">#EDEEF2</color>
     <color name="background_brown_4C4C4C">#4C4C4C</color>
     <color name="half_transparent">#88000000</color>
     <color name="color_2e76e5">#2e76e5</color>

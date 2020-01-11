@@ -80,7 +80,12 @@
             android:name="com.linkb.jstx.activity.LoginActivityV2"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.linkb.jstx.activity.SelectCountryCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.SelectCountryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.RegisterActivityV2"
             android:screenOrientation="portrait" />
@@ -331,6 +336,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".jstx.activity.contact.SearchFriendActivityV2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.contact.SearchFriendActivityV3"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jstx.activity.contact.SearchGroupActivity"

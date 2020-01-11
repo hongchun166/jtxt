@@ -1,6 +1,8 @@
 package com.linkb.jstx.model.world_area;
 
-public class CountryBean {
+import java.io.Serializable;
+
+public class CountryBean implements Serializable {
     private String id;
    
     private String continent_id;

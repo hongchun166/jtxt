@@ -3,9 +3,11 @@ package com.linkb.jstx.activity;
 import android.Manifest;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -53,6 +55,8 @@ public class LoginActivityV2 extends BaseActivity  {
     @BindView(R.id.next_button) Button nextStepBtn;
 
     @BindView(R.id.password_visible_image) ImageView passwordVisibleImg;
+    @BindView(R.id.viewCountryCode)
+    TextView viewCountryCode;
 
     /** 是邮箱登录还是 手机登录
      * */
@@ -177,7 +181,10 @@ public class LoginActivityV2 extends BaseActivity  {
     public void findPassword(){
         startActivity(new Intent(this, FindPasswordActivity.class));
     }
-
+    @OnClick(R.id.viewCountryCode)
+    public void selectCounytry(){
+        startActivityForResult(new Intent(this,SelectCountryCodeActivity.class),100);
+    }
     private void changePasswordVisible(Boolean enablePasswordVisible){
         if (enablePasswordVisible){
             passwordVisibleImg.setImageResource(R.mipmap.open_gray);
@@ -207,6 +214,15 @@ public class LoginActivityV2 extends BaseActivity  {
         }else {
             showToastView(R.string.exit_app_tips);
             lastBackClickTime = currentTime;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100 && resultCode== Activity.RESULT_OK){
+            String countryCode=data.getStringExtra("CountryCode");
+            viewCountryCode.setText(countryCode);
         }
     }
 
