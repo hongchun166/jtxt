@@ -146,7 +146,7 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
     @OnClick(R.id.bill_tv)
     public void gotoBill(){
-        startActivity(new Intent(WalletActivityV2.this, BillActivity.class));
+        startActivity(new Intent(WalletActivityV2.this, BillActivityV2.class));
     }
 
     @OnClick(R.id.exchange_tv)

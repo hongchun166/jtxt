@@ -137,6 +137,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyLabelActivityV2"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyEmailActivity"
@@ -321,6 +322,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".jstx.activity.wallet.BillActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.BillActivityV2"
             android:screenOrientation="portrait" />
         <activity
             android:name=".jstx.activity.contact.SearchFriendActivity"

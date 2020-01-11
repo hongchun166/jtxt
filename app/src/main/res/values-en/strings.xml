@@ -10,21 +10,21 @@
     <string name="exit_app_tips">press again to exit the programm</string>
     <string name="dialog_loading">loading...</string>
     <string name="recommend_contacts">contacts recommend</string>
-    <string name="already_new_version_tips" >already last version</string>
-    <string name="no_install_wx" >No install wechat</string>
-    <string name="wechat_loging" >Geting wechat auth...</string>
-    <string name="register_gift_money" >125.50</string>
-    <string name="register_gift_money_unit" >DPC</string>
-    <string name="register_gift_tips" >First Login, Gift with %1$dDPC!</string>
-    <string name="click_confirm" >click_confirm</string>
-    <string name="find_password" >find password</string>
+    <string name="already_new_version_tips">already last version</string>
+    <string name="no_install_wx">No install wechat</string>
+    <string name="wechat_loging">Geting wechat auth...</string>
+    <string name="register_gift_money">125.50</string>
+    <string name="register_gift_money_unit">DPC</string>
+    <string name="register_gift_tips">First Login, Gift with %1$dDPC!</string>
+    <string name="click_confirm">click_confirm</string>
+    <string name="find_password">find password</string>
 
-    <string name="language_cn" >Chinese</string>
-    <string name="language_en" >English</string>
-    <string name="language_auto" >auto</string>
-    <string name="language_traditional" >Chinese tradition</string>
+    <string name="language_cn">Chinese</string>
+    <string name="language_en">English</string>
+    <string name="language_auto">auto</string>
+    <string name="language_traditional">Chinese tradition</string>
 
-    <string name="language_select" >current language: %s</string>
+    <string name="language_select">current language: %s</string>
     <!--message page-->
     <string name="start_group_chat">start group chat</string>
     <string name="add_friends">add friends</string>
@@ -44,34 +44,34 @@
     <string name="phone_contacts">phone contacts</string>
     <string name="invite_contacts">invite</string>
     <string name="invite_contacts_sms_content">Your friend will leave a message to you via BLink. Please register to check it out. Download address:%1$s</string>
-    <string name="go_share" >share</string>
-    <string name="received" >receive</string>
-    <string name="go_login" >login</string>
-    <string name="login_time" >login time</string>
-    <string name="exit_login" >login out</string>
+    <string name="go_share">share</string>
+    <string name="received">receive</string>
+    <string name="go_login">login</string>
+    <string name="login_time">login time</string>
+    <string name="exit_login">login out</string>
 
-    <string name="popular_group" >popular group</string>
-    <string name="find_find" >Find</string>
-    <string name="information" >information</string>
-    <string name="discuss_group" >Discuss Group</string>
-    <string name="favorite" >Collection</string>
-    <string name="comment" >Comment</string>
-    <string name="share" >Share</string>
+    <string name="popular_group">popular group</string>
+    <string name="find_find">Find</string>
+    <string name="information">information</string>
+    <string name="discuss_group">Discuss Group</string>
+    <string name="favorite">Collection</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
 
-    <string name="search" >search</string>
-    <string name="search_edit" >search : </string>
-    <string name="new_friend" >new Friend</string>
-    <string name="new_friend2" >new Friend</string>
-    <string name="create_chat_group" >create group chat</string>
-    <string name="search_account" >search account</string>
-    <string name="search_group" >search group</string>
-    <string name="apply_join_group_tips" >Waiting Group Creator Review</string>
-    <string name="read_qr_code_error" >invaild qrcode</string>
-    <string name="apply_join_group_error_tips" >You had joined this Group</string>
-    <string name="search_no_result" >search no result</string>
-    <string name="blink_friend" >BLink Friend</string>
-    <string name="my_friend" >Mine Friend</string>
-    <string name="mine_group" >Mine Group</string>
+    <string name="search">search</string>
+    <string name="search_edit">search : </string>
+    <string name="new_friend">new Friend</string>
+    <string name="new_friend2">new Friend</string>
+    <string name="create_chat_group">create group chat</string>
+    <string name="search_account">search account</string>
+    <string name="search_group">search group</string>
+    <string name="apply_join_group_tips">Waiting Group Creator Review</string>
+    <string name="read_qr_code_error">invaild qrcode</string>
+    <string name="apply_join_group_error_tips">You had joined this Group</string>
+    <string name="search_no_result">search no result</string>
+    <string name="blink_friend">BLink Friend</string>
+    <string name="my_friend">Mine Friend</string>
+    <string name="mine_group">Mine Group</string>
     <!--login/register-->
     <string name="welcome_title">welcome to BLink</string>
     <string name="welcome_title_accent">The world\'s first community-autonomous instant messaging platform</string>
@@ -120,19 +120,19 @@
     <string name="password_empty_error">password can\'t be empty</string>
     <string name="apply_password_empty_error">payment password can\'t be empty</string>
     <string name="nick_name_empty_error">nick name can\'t be empty</string>
-    <string name="password_confirm_tips" >password confirm</string>
-    <string name="apply_password_confirm_tips" >Apply password confirm</string>
-    <string name="password_confirm_error" >password input wrong</string>
-    <string name="apply_password_confirm_error" >password input wrong</string>
-    <string name="verify_code_empty_error" >verify code empty</string>
-    <string name="old_apply_password_empty_error" >old password empty</string>
-    <string name="new_apply_password_empty_error" >new password empty</string>
+    <string name="password_confirm_tips">password confirm</string>
+    <string name="apply_password_confirm_tips">Apply password confirm</string>
+    <string name="password_confirm_error">password input wrong</string>
+    <string name="apply_password_confirm_error">password input wrong</string>
+    <string name="verify_code_empty_error">verify code empty</string>
+    <string name="old_apply_password_empty_error">old password empty</string>
+    <string name="new_apply_password_empty_error">new password empty</string>
 
     <!--wallet module-->
-    <string name="red_packet_restore_to_wallet" >already put in balance</string>
-    <string name="red_packet_received_tips" >waited Receive</string>
-    <string name="red_packet_received_tips_default" >Red packet waited Receive</string>
-    <string name="send_red_packer_count_default" >send red packet total 0</string>
+    <string name="red_packet_restore_to_wallet">already put in balance</string>
+    <string name="red_packet_received_tips">waited Receive</string>
+    <string name="red_packet_received_tips_default">Red packet waited Receive</string>
+    <string name="send_red_packer_count_default">send red packet total 0</string>
     <string name="wallet_title">BLink Wallet</string>
     <string name="wallet_title2">Kiki Wallet</string>
     <string name="scan">scan</string>
@@ -197,10 +197,10 @@
     <string name="withdraw_finish_tips">Congratulations for the success of the coin</string>
     <string name="accelerate_develop">Speeding up development...</string>
 
-    <string name="label_user_old_apply_password" >old apply password:</string>
-    <string name="label_user_new_apply_password" >new apply password:</string>
-    <string name="label_setting_modify_apply_password" >modify apply password</string>
-    <string name="label_setting_default_apply_password" >default apply password: 000000</string>
+    <string name="label_user_old_apply_password">old apply password:</string>
+    <string name="label_user_new_apply_password">new apply password:</string>
+    <string name="label_setting_modify_apply_password">modify apply password</string>
+    <string name="label_setting_default_apply_password">default apply password: 000000</string>
 
     <!--red wallet page-->
     <string name="red_packet">red pecket</string>
@@ -222,7 +222,7 @@
     <string name="general_red_packet">normal red packet</string>
     <string name="luck_red_packet">fighting for red packet</string>
     <string name="received_red_packet">received red packet</string>
-    <string name="click_check_balance" >Saved to wallet, click to view</string>
+    <string name="click_check_balance">Saved to wallet, click to view</string>
     <string name="red_packet_open_detail">Receive %1$s/%2$s</string>
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">Please enter the payment password</string>
@@ -398,7 +398,6 @@
     <string name="label_user_icon">icon：</string>
     <string name="label_user_name">name：</string>
     <string name="label_user_marriage">Marital status：</string>
-    <string name="label_user_marriage2">Single or not：</string>
     <string name="label_user_gender">gender：</string>
     <string name="label_user_motto">motto：</string>
     <string name="label_user_sign">sign:</string>
@@ -610,7 +609,7 @@
     <string name="label_message_preview_video">[video]</string>
     <string name="label_message_preview_red_packet">[BLink red packet]</string>
     <string name="label_message_from_red_packet">%1$s</string>
-    <string name="label_message_to_red_packet" >[BLink red packet]%1$s</string>
+    <string name="label_message_to_red_packet">[BLink red packet]%1$s</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">Please configure your server information first.</string>
@@ -695,8 +694,8 @@
     <string name="label_modify_group_logo">modify group logo</string>
     <string name="label_new_version_format">find new version:<Data><![CDATA[<font color="#45C01A"><strong>%1$s</strong></font>]]></Data></string>
 
-    <string name="tip_permission_camera_audio_disable" >You do not have permission to take photos for instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permission to Allow Photographing</string>
-    <string name="tip_permission_deny_tips" >You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
+    <string name="tip_permission_camera_audio_disable">You do not have permission to take photos for instant messaging, please go to Application Info > Instant Messaging > Permissions > Set Permission to Allow Photographing</string>
+    <string name="tip_permission_deny_tips">You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
     <!--Abnormal tips-->
     <string name="error_get_assets">Get an abnormal balance of assets</string>
     <string name="mine_invitation">mine invitation</string>
@@ -710,6 +709,12 @@
     <string name="input_phone_code">Please enter your phone number</string>
     <string name="unmarried">unmarried</string>
     <string name="marriage">marriage</string>
+    <string name="find_people">find people</string>
+    <string name="find_group">find people</string>
+    <string name="find_find_hint">amount/phone/nick name/keyword</string>
+    <string name="no_limit">no limit</string>
+    <string name="other">other</string>
+    <string name="find">find</string>
     <string name="unmarried2">Single</string>
     <string name="marriage2">Non Single</string>
 
@@ -728,4 +733,12 @@
     <string name="item_industry_xuesheng">学生</string>
     <string name="item_industry_qita">其他</string>
     <string name="item_hot_labels">hot labels</string>
+    <string name="please_search_content">Please enter your search</string>
+    <string name="select_record_type">select record type</string>
+    <string name="all">all</string>
+    <string name="withdrawal">withdrawal</string>
+    <string name="top_up">充值</string>
+    <string name="all_coin_record">All the records</string>
+    <string name="red_coin_record">A red envelope to record</string>
+    <string name="top_up_coin_record">Prepaid phone records</string>
 </resources>

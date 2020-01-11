@@ -144,6 +144,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
         tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
+        tvLabel.setText(TextUtils.isEmpty(user.label) ? "" : user.label);
         worlAreaOpt = new WorlAreaOpt();
         worlAreaOpt.loadWorldAreaData(this);
     }
@@ -301,7 +302,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     @OnClick(R.id.modify_label_rly)
     public void label() {
         Intent intent = new Intent(this, ModifyLabelActivityV2.class);
-        intent.putExtra("labelItem", 1);
+        intent.putExtra("labelItem", tvLabel.getText().toString().trim());
         startActivityForResult(intent, 1001);
 
     }
@@ -390,6 +391,13 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (requestCode == Activity.RESULT_OK) {
             user = Global.getCurrentUser();
             tvSign.setText(user.motto);
+        }
+        if (requestCode == 1001 && resultCode == 200) {
+            String labelName = data.getStringExtra("labelItem");
+            tvLabel.setText(labelName);
+            user.label = labelName;
+            tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
+            Global.modifyAccount(user);
         }
     }
 

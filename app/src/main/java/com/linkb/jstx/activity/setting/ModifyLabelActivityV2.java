@@ -1,6 +1,8 @@
 package com.linkb.jstx.activity.setting;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,7 +25,8 @@ public class ModifyLabelActivityV2 extends BaseActivity {
 
     private ModifyLabelAdapterV2 adapterV2;
     private List<String> datas = new ArrayList<>();
-    private int labelItem = 0;
+    private String labelString;
+    private int labelItem;
 
     @Override
     protected void initComponents() {
@@ -37,7 +40,7 @@ public class ModifyLabelActivityV2 extends BaseActivity {
     }
 
     private void initData() {
-        labelItem = getIntent().hasExtra("labelItem") ? getIntent().getIntExtra("labelItem", 0) : 0;
+        labelString = getIntent().hasExtra("labelItem") ? getIntent().getStringExtra("labelItem") : "";
         datas.add("不限");
         datas.add("金融");
         datas.add("互联网");
@@ -63,6 +66,7 @@ public class ModifyLabelActivityV2 extends BaseActivity {
     }
 
     private void initUI() {
+        labelItem = TextUtils.isEmpty(labelString) ? 0 : datas.indexOf(labelString);
         adapterV2 = new ModifyLabelAdapterV2(this, datas, labelItem);
         lvLabels.setAdapter(adapterV2);
         lvLabels.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,6 +75,9 @@ public class ModifyLabelActivityV2 extends BaseActivity {
                 adapterV2.setSelectedItem(i);
                 adapterV2.notifyDataSetChanged();
                 String labelName = datas.get(i);
+                Intent intent = new Intent();
+                intent.putExtra("labelItem", labelName);
+                setResult(200, intent);
                 finish();
             }
         });

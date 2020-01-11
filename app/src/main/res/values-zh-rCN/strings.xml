@@ -17,7 +17,7 @@
     <string name="register_gift_money_unit">DPC</string>
     <string name="register_gift_tips">首次登陆，BLink送您%1$dDPC!</string>
     <string name="click_confirm">点击确认</string>
-    <string name="find_password" >找回密码</string>
+    <string name="find_password">找回密码</string>
 
     <string name="language_cn">简体中文</string>
     <string name="language_en">English</string>
@@ -50,7 +50,7 @@
 
     <!--发现页面-->
     <string name="popular_group">热门群</string>
-    <string name="find_find" >找一找</string>
+    <string name="find_find">找一找</string>
     <string name="information">资讯</string>
     <string name="discuss_group">贴吧</string>
     <string name="favorite">收藏</string>
@@ -61,16 +61,16 @@
     <string name="search">搜索</string>
     <string name="search_edit">搜索 : </string>
     <string name="new_friend">新朋友</string>
-    <string name="new_friend2" >新好友</string>
+    <string name="new_friend2">新好友</string>
     <string name="create_chat_group">创建群聊</string>
     <string name="search_account">搜索账号</string>
-    <string name="search_group" >搜索群组功能</string>
-    <string name="apply_join_group_tips" >已经提交申请,等待群主审核通过</string>
-    <string name="apply_join_group_error_tips" >您已经在该群里</string>
-    <string name="read_qr_code_error" >无效的二维码</string>
+    <string name="search_group">搜索群组功能</string>
+    <string name="apply_join_group_tips">已经提交申请,等待群主审核通过</string>
+    <string name="apply_join_group_error_tips">您已经在该群里</string>
+    <string name="read_qr_code_error">无效的二维码</string>
     <string name="search_no_result">搜索无结果</string>
     <string name="blink_friend">BLink好友</string>
-    <string name="my_friend" >我的好友</string>
+    <string name="my_friend">我的好友</string>
     <string name="mine_group">我的群组</string>
     <string name="phone_contacts">手机通讯录</string>
     <string name="invite_contacts">邀请</string>
@@ -270,7 +270,6 @@
     <string name="mine_home_page">我的主页</string>
     <string name="goto_modify">去修改 >></string>
     <string name="un_verify">未认证</string>
-
 
 
     <string name="common_comment">回复</string>
@@ -714,6 +713,12 @@
     <string name="input_phone_code">请输入手机号</string>
     <string name="unmarried">未婚</string>
     <string name="marriage">已婚</string>
+    <string name="find_people">找人</string>
+    <string name="find_group">找群</string>
+    <string name="find_find_hint">搜账号/电话/昵称/关键字</string>
+    <string name="no_limit">不限</string>
+    <string name="other">其他</string>
+    <string name="find">查找</string>
     <string name="unmarried2">单身</string>
     <string name="marriage2">非单身</string>
 
@@ -732,4 +737,12 @@
     <string name="item_industry_xuesheng">学生</string>
     <string name="item_industry_qita">其他</string>
     <string name="item_hot_labels">热门标签</string>
+    <string name="please_search_content">请输入搜索内容</string>
+    <string name="select_record_type">选择记录类型</string>
+    <string name="all">全部</string>
+    <string name="withdrawal">提现</string>
+    <string name="top_up">充值</string>
+    <string name="all_coin_record">全部记录</string>
+    <string name="red_coin_record">红包记录</string>
+    <string name="top_up_coin_record">充值记录</string>
 </resources>

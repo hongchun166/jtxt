@@ -77,6 +77,16 @@ public class WithdrawBillResult extends BaseResult {
         private double rate_money;
         private String money_remark;
 
+        public int getBillType() {
+            return billType;
+        }
+
+        public void setBillType(int billType) {
+            this.billType = billType;
+        }
+
+        private int billType;
+
         public double getMoney() {
             return money;
         }

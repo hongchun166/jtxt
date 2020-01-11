@@ -28,6 +28,7 @@ public final class TimeUtils {
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
     private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
+    public static final String ALL_FORMAT = "yyyy-MM-dd HH:mm";
 
     private static final ThreadLocal<SimpleDateFormat> SDF_THREAD_LOCAL = new ThreadLocal<>();
 
@@ -211,6 +212,16 @@ public final class TimeUtils {
      */
     public static String date2String(final Date date, @NonNull final DateFormat format) {
         return format.format(date);
+    }
+    /**
+     * 格式化时间
+     *
+     * @param time   时间戳毫秒
+     * @param format 时间格式
+     * @return 格式化后的时间
+     */
+    public static String formatTime(long time, String format) {
+        return (new SimpleDateFormat(format, Locale.CHINA)).format(new Date(time));
     }
 
     /**

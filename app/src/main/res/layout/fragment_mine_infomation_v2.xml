@@ -19,24 +19,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
+
     <View
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="19dp"
         android:background="@color/colorToolbarBlue"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RelativeLayout
         android:id="@+id/viewTop"
         android:layout_width="match_parent"
         android:layout_height="116dp"
         android:background="@color/colorToolbarBlue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/status"
         android:paddingLeft="13dp"
         android:paddingRight="13dp"
-        >
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/status">
 
         <com.linkb.jstx.component.WebImageView
             android:id="@+id/imageView29"
@@ -106,8 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewTop"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/viewTop">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/invite_cly"
@@ -413,6 +412,18 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView35"
                     app:layout_constraintTop_toTopOf="@+id/imageView35" />
             </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="钱包"
+                android:textSize="@dimen/text_20sp"
+                app:layout_constraintEnd_toStartOf="@+id/exit_login_card_view"
+                app:layout_constraintStart_toStartOf="@+id/exit_login_card_view"
+                app:layout_constraintTop_toBottomOf="@+id/exit_login_card_view" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

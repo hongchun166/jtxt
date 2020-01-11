@@ -30,6 +30,7 @@ public class User implements Serializable {
     public String marrriage;
     public String region;
     public String industry;
+    public String label;
 
     @Override
     public boolean equals(Object o) {

@@ -10,88 +10,88 @@
     <string name="exit_app_tips">再按一次退出程序</string>
     <string name="dialog_loading">加载中...</string>
     <string name="recommend_contacts">推荐联系人</string>
-    <string name="already_new_version_tips" >已是最新版本</string>
-    <string name="no_install_wx" >没有安装微信</string>
-    <string name="wechat_loging" >正在获取微信授权...</string>
-    <string name="register_gift_money" >125.50</string>
-    <string name="register_gift_money_unit" >DPC</string>
-    <string name="register_gift_tips" >首次登陆，BLink送您%1$dDPC!</string>
-    <string name="click_confirm" >点击确认</string>
-    <string name="find_password" >设置新密码</string>
+    <string name="already_new_version_tips">已是最新版本</string>
+    <string name="no_install_wx">没有安装微信</string>
+    <string name="wechat_loging">正在获取微信授权...</string>
+    <string name="register_gift_money">125.50</string>
+    <string name="register_gift_money_unit">DPC</string>
+    <string name="register_gift_tips">首次登陆，BLink送您%1$dDPC!</string>
+    <string name="click_confirm">点击确认</string>
+    <string name="find_password">设置新密码</string>
 
-    <string name="language_cn" >简体中文</string>
-    <string name="language_en" >English</string>
-    <string name="language_auto" >自动</string>
-    <string name="language_traditional" >繁體</string>
-    <string name="operation_suc" >操作成功</string>
-    <string name="operation_faill" >操作失败</string>
+    <string name="language_cn">简体中文</string>
+    <string name="language_en">English</string>
+    <string name="language_auto">自动</string>
+    <string name="language_traditional">繁體</string>
+    <string name="operation_suc">操作成功</string>
+    <string name="operation_faill">操作失败</string>
 
-    <string name="language_select" >当前选择的语言: %s</string>
+    <string name="language_select">当前选择的语言: %s</string>
 
     <!--消息页面-->
     <string name="start_group_chat">发起群聊</string>
     <string name="add_friends">添加朋友</string>
     <string name="mine_wallet">我的钱包</string>
     <!--我的页面-->
-    <string name="wallet" >钱包</string>
-    <string name="verify_name" >实名认证</string>
-    <string name="system_setting" >系统设置</string>
-    <string name="task_center" > 任务中心</string>
-    <string name="invite_friend" >邀请好友</string>
-    <string name="invite_friend_tips" >分享会员赠送DPC币</string>
-    <string name="register_share" >注册分享</string>
-    <string name="register_share_tips" >注册分享赠送DPC币</string>
-    <string name="login_prisent" >登录即送</string>
-    <string name="login_prisent_tips" >登录时长赠送DPC币</string>
-    <string name="go_invite" >去邀请</string>
-    <string name="go_share" >去分享</string>
-    <string name="received" >领取</string>
-    <string name="go_login" >去登录</string>
-    <string name="login_time" >登录时长</string>
-    <string name="exit_login" >退出登录</string>
+    <string name="wallet">钱包</string>
+    <string name="verify_name">实名认证</string>
+    <string name="system_setting">系统设置</string>
+    <string name="task_center"> 任务中心</string>
+    <string name="invite_friend">邀请好友</string>
+    <string name="invite_friend_tips">分享会员赠送DPC币</string>
+    <string name="register_share">注册分享</string>
+    <string name="register_share_tips">注册分享赠送DPC币</string>
+    <string name="login_prisent">登录即送</string>
+    <string name="login_prisent_tips">登录时长赠送DPC币</string>
+    <string name="go_invite">去邀请</string>
+    <string name="go_share">去分享</string>
+    <string name="received">领取</string>
+    <string name="go_login">去登录</string>
+    <string name="login_time">登录时长</string>
+    <string name="exit_login">退出登录</string>
 
     <!--发现页面-->
-    <string name="popular_group" >热门群</string>
-    <string name="find_find" >找一找</string>
-    <string name="information" >资讯</string>
-    <string name="discuss_group" >贴吧</string>
-    <string name="favorite" >收藏</string>
-    <string name="comment" >评论</string>
-    <string name="share" >分享</string>
-    <string name="news" >新闻</string>
-    <string name="express" >快讯</string>
-    <string name="good_reception_number" >%1$d赞</string>
-    <string name="check_more_subject" >查看更多专题</string>
-    <string name="express_source" >快讯来源: %1$s</string>
-    <string name="good_news_number" >利好 %1$d</string>
-    <string name="bad_news_number" >利空 %1$d</string>
-    <string name="just_now" >刚刚</string>
-    <string name="one_minutes_ago" >1分钟前</string>
-    <string name="minutes_ago" >%1$d分钟前</string>
-    <string name="one_hours_ago" >1小时前</string>
-    <string name="hours_ago" >%1$d小时前</string>
-    <string name="days_ago" >%1$d天前</string>
+    <string name="popular_group">热门群</string>
+    <string name="find_find">找一找</string>
+    <string name="information">资讯</string>
+    <string name="discuss_group">贴吧</string>
+    <string name="favorite">收藏</string>
+    <string name="comment">评论</string>
+    <string name="share">分享</string>
+    <string name="news">新闻</string>
+    <string name="express">快讯</string>
+    <string name="good_reception_number">%1$d赞</string>
+    <string name="check_more_subject">查看更多专题</string>
+    <string name="express_source">快讯来源: %1$s</string>
+    <string name="good_news_number">利好 %1$d</string>
+    <string name="bad_news_number">利空 %1$d</string>
+    <string name="just_now">刚刚</string>
+    <string name="one_minutes_ago">1分钟前</string>
+    <string name="minutes_ago">%1$d分钟前</string>
+    <string name="one_hours_ago">1小时前</string>
+    <string name="hours_ago">%1$d小时前</string>
+    <string name="days_ago">%1$d天前</string>
     <string name="yesterday"> 昨天</string>
 
     <!--通讯录-->
-    <string name="search" >搜索</string>
-    <string name="search_edit" >搜索 : </string>
-    <string name="new_friend" >新朋友</string>
-    <string name="new_friend2" >新好友</string>
-    <string name="create_chat_group" >创建群聊</string>
-    <string name="search_account" >搜索账号</string>
-    <string name="search_group" >搜索群组功能</string>
-    <string name="apply_join_group_tips" >已经提交申请,等待群主审核通过</string>
-    <string name="add_friend_success_tips" >已经添加好友成功</string>
-    <string name="apply_join_group_error_tips" >您已经在该群里</string>
-    <string name="read_qr_code_error" >无效的二维码,请确认二维码是否是有效的群二维码或者个人信息二维码</string>
-    <string name="search_no_result" >搜索无结果</string>
-    <string name="blink_friend" >BLink好友</string>
-    <string name="my_friend" >我的好友</string>
-    <string name="mine_group" >我的群组</string>
-    <string name="phone_contacts" >手机通讯录</string>
-    <string name="invite_contacts" >邀请</string>
-    <string name="invite_contacts_sms_content" >你的好友通过BLink给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+    <string name="search">搜索</string>
+    <string name="search_edit">搜索 : </string>
+    <string name="new_friend">新朋友</string>
+    <string name="new_friend2">新好友</string>
+    <string name="create_chat_group">创建群聊</string>
+    <string name="search_account">搜索账号</string>
+    <string name="search_group">搜索群组功能</string>
+    <string name="apply_join_group_tips">已经提交申请,等待群主审核通过</string>
+    <string name="add_friend_success_tips">已经添加好友成功</string>
+    <string name="apply_join_group_error_tips">您已经在该群里</string>
+    <string name="read_qr_code_error">无效的二维码,请确认二维码是否是有效的群二维码或者个人信息二维码</string>
+    <string name="search_no_result">搜索无结果</string>
+    <string name="blink_friend">BLink好友</string>
+    <string name="my_friend">我的好友</string>
+    <string name="mine_group">我的群组</string>
+    <string name="phone_contacts">手机通讯录</string>
+    <string name="invite_contacts">邀请</string>
+    <string name="invite_contacts_sms_content">你的好友通过BLink给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
 
     <!--登录/注册-->
     <string name="welcome_title">欢迎来到BLink</string>
@@ -119,9 +119,9 @@
     <string name="sex">性别</string>
     <string name="password_tips">密码(至少6位)</string>
     <string name="new_password_tips">新密码(至少6位)</string>
-    <string name="password_confirm_tips" >密码确认(至少6位)</string>
+    <string name="password_confirm_tips">密码确认(至少6位)</string>
     <string name="apply_password_tips">支付密码(6位)</string>
-    <string name="apply_password_confirm_tips" >支付密码确认(6位)</string>
+    <string name="apply_password_confirm_tips">支付密码确认(6位)</string>
     <string name="password_tip_accent">密码</string>
     <string name="image_verify">图形验证码</string>
     <string name="verify_code">验证码</string>
@@ -147,14 +147,14 @@
     <string name="account_empty_error">账号不能为空</string>
     <string name="password_empty_error">密码不能为空</string>
     <string name="new_password_empty_error">新密码不能为空</string>
-    <string name="password_confirm_error" >两次输入的密码不一致</string>
+    <string name="password_confirm_error">两次输入的密码不一致</string>
     <string name="apply_password_empty_error">支付密码不能为空</string>
-    <string name="apply_password_confirm_error" >两次输入的支付密码不一致</string>
+    <string name="apply_password_confirm_error">两次输入的支付密码不一致</string>
     <string name="nick_name_empty_error">昵称不能为空</string>
-    <string name="verify_code_empty_error" >验证码不能为空</string>
-    <string name="old_apply_password_empty_error" >旧支付密码不能为空</string>
-    <string name="new_apply_password_empty_error" >新支付密码不能为空</string>
-    <string name="set_new_password_success" >设置新密码成功</string>
+    <string name="verify_code_empty_error">验证码不能为空</string>
+    <string name="old_apply_password_empty_error">旧支付密码不能为空</string>
+    <string name="new_apply_password_empty_error">新支付密码不能为空</string>
+    <string name="set_new_password_success">设置新密码成功</string>
 
     <!--钱包模块-->
     <string name="wallet_title">BLink Wallet</string>
@@ -242,14 +242,14 @@
     <string name="general_red_packet">普通红包</string>
     <string name="luck_red_packet">拼手气红包</string>
     <string name="received_red_packet">收到的红包</string>
-    <string name="click_check_balance" >点击查看</string>
-    <string name="red_packet_restore_to_wallet" >已存入账户余额</string>
+    <string name="click_check_balance">点击查看</string>
+    <string name="red_packet_restore_to_wallet">已存入账户余额</string>
     <string name="red_packet_open_detail">领取 %1$d/%2$d</string>
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">请输入支付密码</string>
     <string name="BLink_red_packet">BLink红包</string>
-    <string name="red_packet_received_tips" >红包等待对方领取</string>
-    <string name="red_packet_received_tips_default" >红包等待对方领取</string>
+    <string name="red_packet_received_tips">红包等待对方领取</string>
+    <string name="red_packet_received_tips_default">红包等待对方领取</string>
     <string name="BLink_Pay">BLink Pay</string>
     <string name="more_currency">更多币种</string>
     <string name="sending_red_packet">红包发送中</string>
@@ -277,7 +277,7 @@
     <string name="time_out_red_packet_count">已过期%1$d/%2$d个</string>
     <string name="red_packet_send_count">%1$d/%2$d个</string>
     <string name="send_red_packer_count">发出红包总数%1$d个</string>
-    <string name="send_red_packer_count_default" >发出红包总数0个</string>
+    <string name="send_red_packer_count_default">发出红包总数0个</string>
 
     <!--个人信息-->
     <string name="person_info">个人信息</string>
@@ -414,8 +414,8 @@
     <string name="label_user_oldpassword">旧密码：</string>
     <string name="label_user_newpassword">新密码(至少6位)：</string>
     <string name="label_user_newpassword_confirm">确认新密码</string>
-    <string name="label_user_old_apply_password" >旧支付密码：</string>
-    <string name="label_user_new_apply_password" >新支付密码：</string>
+    <string name="label_user_old_apply_password">旧支付密码：</string>
+    <string name="label_user_new_apply_password">新支付密码：</string>
     <string name="label_user_account">帐号：</string>
     <string name="label_user_telephone">电话：</string>
     <string name="label_user_industry">行业:</string>
@@ -506,8 +506,8 @@
     <string name="label_menu_theme">主题设置</string>
     <string name="label_menu_album">我的相册</string>
     <string name="label_setting_modify_password">修改密码</string>
-    <string name="label_setting_modify_apply_password" >修改支付密码</string>
-    <string name="label_setting_default_apply_password" >默认支付密码为000000</string>
+    <string name="label_setting_modify_apply_password">修改支付密码</string>
+    <string name="label_setting_default_apply_password">默认支付密码为000000</string>
     <string name="label_setting_modify_motto">修改签名</string>
     <string name="label_setting_modify_name">修改名称</string>
     <string name="label_setting_modify_phone">修改电话</string>
@@ -661,7 +661,7 @@
     <string name="label_message_preview_video">[视频]</string>
     <string name="label_message_preview_red_packet">[BLink 红包]</string>
     <string name="label_message_from_red_packet">%1$s</string>
-    <string name="label_message_to_red_packet" >[BLink 红包]%1$s</string>
+    <string name="label_message_to_red_packet">[BLink 红包]%1$s</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">请先配置好你的服务器信息</string>
@@ -677,17 +677,17 @@
     <string name="tip_permission_audio_rejected">申请录音权限被拒绝，暂时不能使用录音功能</string>
     <string name="tip_permission_audio_disable">您没有允许即时通信的录音权限，请在应用信息>即时通信>权限>设置允许录音的权限</string>
 
-    <string name="tip_permission_location_disable" >您没有允许即时通信的定位权限，请在应用信息>即时通信>权限>设置允许定位的权限</string>
+    <string name="tip_permission_location_disable">您没有允许即时通信的定位权限，请在应用信息>即时通信>权限>设置允许定位的权限</string>
     <string name="tip_permission_location_rejected">申请定位权限被拒绝，暂时无法使用地图功能</string>
 
     <string name="tip_permission_camera_rejected">申请拍摄权限被拒绝，暂时不能进行拍摄视频和照片</string>
     <string name="tip_permission_album_rejected">您拒绝了即时通信的查看相册的请求，暂时不能选择图片</string>
     <string name="tip_permission_album_disable">您没有允许即时通信的读取系统相册的权限，请在应用信息>即时通信>权限>设置允许查看相册的权限</string>
     <string name="tip_permission_camera_disable">您没有允许即时通信的拍照权限，请在应用信息>即时通信>权限>设置允许拍照的权限</string>
-    <string name="tip_permission_camera_audio_disable" >您没有允许即时通信的录制音频权限，请在应用信息>即时通信>权限>设置允许录制音频的权限</string>
+    <string name="tip_permission_camera_audio_disable">您没有允许即时通信的录制音频权限，请在应用信息>即时通信>权限>设置允许录制音频的权限</string>
 
     <string name="tip_permission_open">您永久拒绝了这个权限，请在应用信息>即时通信>权限中重新开启这个权限</string>
-    <string name="tip_permission_deny_tips" >您永久拒绝了这个权限，可能导致某些功能无法正常使用</string>
+    <string name="tip_permission_deny_tips">您永久拒绝了这个权限，可能导致某些功能无法正常使用</string>
 
     <string name="title_apk_downloading">安装包下载中</string>
     <string name="title_apk_downloading_progress">进度%d%%</string>
@@ -839,7 +839,7 @@
     <string name="game_game_introduce_end">更多棋牌品种持续更新中...</string>
 
     <string name="video_source_delected">视频文件已经被删除</string>
-    
+
     <!--钱包搜索增加-->
     <string name="search_coin_address_tips">搜索Token名称或合约地址</string>
     <string name="search_coin_address_hint">请根据合约地址进行搜索</string>
@@ -860,7 +860,7 @@
     <string name="person_card">个人名片</string>
     <string name="leave_message_to_friend">给朋友留言</string>
     <string name="label_message_from_send_cards">%1$s</string>
-    <string name="label_message_to_send_cards" >[BLink 名片]%1$s</string>
+    <string name="label_message_to_send_cards">[BLink 名片]%1$s</string>
 
     <!--上传文件失败-->
     <string name="upload_file_failure">上传文件失败</string>
@@ -896,10 +896,10 @@
     <string name="coin_transfer_received">已接收</string>
     <string name="coin_transfer_to_amount">%1$s USDT</string>
     <string name="coin_transfer_invailable">转账已失效</string>
-    <string name="label_message_to_coin_transfer" >[BLink 转账]%1$s</string>
-    <string name="self_can_not_receive_coin_transfer" >本人不可领取</string>
-    <string name="coin_transfer_store_to_wallet" >已存入钱包中</string>
-    <string name="coin_transfer_received_tips" >已被对方领取</string>
+    <string name="label_message_to_coin_transfer">[BLink 转账]%1$s</string>
+    <string name="self_can_not_receive_coin_transfer">本人不可领取</string>
+    <string name="coin_transfer_store_to_wallet">已存入钱包中</string>
+    <string name="coin_transfer_received_tips">已被对方领取</string>
 
     <!--实名认证页面-->
     <string name="id_verify">身份认证</string>
@@ -951,6 +951,12 @@
     <string name="input_phone_code">请输入手机号</string>
     <string name="unmarried">未婚</string>
     <string name="marriage">已婚</string>
+    <string name="find_people">找人</string>
+    <string name="find_group">找群</string>
+    <string name="find_find_hint">搜账号/电话/昵称/关键字</string>
+    <string name="no_limit">不限</string>
+    <string name="other">其他</string>
+    <string name="find">查找</string>
     <string name="unmarried2">单身</string>
     <string name="marriage2">非单身</string>
 
@@ -969,4 +975,14 @@
     <string name="item_industry_xuesheng">学生</string>
     <string name="item_industry_qita">其他</string>
     <string name="item_hot_labels">热门标签</string>
+    <string name="please_search_content">请输入搜索内容</string>
+    <string name="select_record_type">选择记录类型</string>
+    <string name="all">全部</string>
+    <string name="withdrawal">提现</string>
+    <string name="top_up">充值</string>
+    <string name="all_coin_record">全部记录</string>
+    <string name="red_coin_record">红包记录</string>
+    <string name="top_up_coin_record">充值记录</string>
+    <string name="add_bill_amount">+%1$dKKC</string>
+    <string name="minus_bill_amount">-%1$dKKC</string>
 </resources>

@@ -33,10 +33,12 @@
     <color name="background_gray_F6F6F6">#F6F6F6</color>
     <color name="background_gray_EDEDED">#EDEDED</color>
     <color name="background_gray_F2F2F2">#F2F2F2</color>
+    <color name="color_1c71f0">#1c71f0</color>
 
     <color name="background_brown_4C4C4C">#4C4C4C</color>
     <color name="half_transparent">#88000000</color>
     <color name="color_2e76e5">#2e76e5</color>
+    <color name="color_552e76e5">#552e76e5</color>
 
     <!--字体-->
     <color name="tex_color_white">#FFFFFF</color>
@@ -80,6 +82,7 @@
     <color name="haf_transparent">#50000000</color>
     <color name="black">#000000</color>
     <color name="haf_white">#7fffffff</color>
+    <color name="color_transparent">#00000000</color>
 
     <color name="obscure_white">#F8FFFFFF</color>
     <color name="text_chat_to_color">#2f3b23</color>
@@ -98,6 +101,7 @@
     <color name="green_btn_border_color">#1a9819</color>
     <color name="green_btn_text_color_disable">#D0EFC6</color>
     <color name="color_d4d4d4">#d4d4d4</color>
+    <color name="color_126aec">#126aec</color>
 
 
     <color name="gray_pressed">#dddddd</color>

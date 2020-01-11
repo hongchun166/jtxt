@@ -24,6 +24,7 @@ import com.linkb.jstx.activity.base.BaseFragment;
 import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 import com.linkb.jstx.activity.contact.PhoneContactsActivity;
 import com.linkb.jstx.activity.trend.MineMomentActivity;
+import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
@@ -77,8 +78,9 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     private QuitAppDialog quitAppDialog;
     private LogoChangedReceiver logoChangedReceiver;
 
-    /** 微信分享
-     * */
+    /**
+     * 微信分享
+     */
     private IWXAPI iwxapi;
     private static final int MAX_DECODE_PICTURE_SIZE = 1920 * 1440;
 
@@ -118,6 +120,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
 
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -129,7 +132,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 0x11){
+        if (resultCode == RESULT_OK && requestCode == 0x11) {
             user = Global.getCurrentUser();
             viewUserName.setText(user.name);
             viewUserSing.setText(user.code);
@@ -137,14 +140,15 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
         }
     }
 
-    /** 将本APP注册到微信
-     * */
+    /**
+     * 将本APP注册到微信
+     */
     private void registerToWeixin() {
         iwxapi = WXAPIFactory.createWXAPI(getActivity(), BuildConfig.WX_APP_ID, true);
         iwxapi.registerApp(BuildConfig.WX_APP_ID);
     }
 
-    private void getWechatToken(){
+    private void getWechatToken() {
         final SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "wechat_sdk_linkb";
@@ -175,58 +179,68 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(WechatShareEvent event) {
-        if (event.isSuccess()){
-        }else {
+        if (event.isSuccess()) {
+        } else {
             showToastView("分享失败");
         }
     }
 
     @OnClick(R.id.imageView29)
-    public void gotoModifyInfoAvatar(){
-        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivity.class),  0x11);
+    public void gotoModifyInfoAvatar() {
+        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivity.class), 0x11);
     }
+
     @OnClick(R.id.viewIVEdit)
-    public void gotoEditInfoAvatar(){
-        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivityV2.class),  0x11);
+    public void gotoEditInfoAvatar() {
+        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivityV2.class), 0x11);
     }
+
     @OnClick(R.id.xiangce_cly)
-    public void onGallery(){
+    public void onGallery() {
         startActivity(new Intent(this.getActivity(), MineMomentActivity.class));
     }
 
 
     @OnClick(R.id.message_set_cly)
-    public void onMessageSet(){
+    public void onMessageSet() {
         startActivity(new Intent(this.getActivity(), MessageSettingActivity.class));
     }
 
     @OnClick(R.id.version_update_cly)
-    public void onVersionUpdate(){
+    public void onVersionUpdate() {
         showProgressDialog("");
         HttpServiceManager.queryNewAppVersion(checkVersionListener);
     }
 
     @OnClick(R.id.invite_cly)
-    public void goInvite(){
+    public void goInvite() {
         startActivity(new Intent(this.getActivity(), PhoneContactsActivity.class));
     }
+
     @OnClick(R.id.modify_password_cly)
-    public void modifyPassword(){
+    public void modifyPassword() {
         startActivity(new Intent(getActivity(), ModifyPasswordActivity.class));
     }
+
     @OnClick(R.id.viewIVQRCode)
-    public void onQrCode(){
+    public void onQrCode() {
         Intent intent = new Intent(getContext(), GroupQrCodeActivityV2.class);
         intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
                 user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
         startActivity(intent);
     }
+
+    @OnClick(R.id.tv_wallet)
+    public void wallet() {
+        startActivity(new Intent(getContext(), WalletActivityV2.class));
+    }
+
     @OnClick(R.id.exit_login_card_view)
-    public void goExitLogin(){
+    public void goExitLogin() {
         quitAppDialog.show();
     }
 
-    private class ShareAsyncTask extends AsyncTask<String, Void,  byte[]>{
+    private class ShareAsyncTask extends AsyncTask<String, Void, byte[]> {
 
         @Override
         protected byte[] doInBackground(String... strings) {
@@ -235,7 +249,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
 //            Bitmap shareOriginQrCode = ZXingUtils.createQRImage(strings[0], bitmapBackground.getWidth(), bitmapBackground.getHeight());
 
-            Bitmap bitmap = ZXingUtils.createQRCodeBitmap(strings[0], 800, 800,"UTF-8","H", "1", getResources().getColor(R.color.app_splash_bg), Color.WHITE, bitmapBackground,0.2F);
+            Bitmap bitmap = ZXingUtils.createQRCodeBitmap(strings[0], 800, 800, "UTF-8", "H", "1", getResources().getColor(R.color.app_splash_bg), Color.WHITE, bitmapBackground, 0.2F);
 
 //            Bitmap bitmap = ZXingUtils.createQRImage(strings[0], 800, 800);
 //            PointF pointF = new PointF(bitmapBackground.getWidth() / 3, bitmapBackground.getHeight()  / 3);
@@ -277,11 +291,11 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
         public void onHttpRequestSucceed(AppVersionResult result, OriginalCall call) {
             hideProgressDialog();
             if (result.code.equals(Constant.ReturnCode.CODE_200)) {
-                Intent  intent = new Intent(getActivity(), AppNewVersionActivity.class);
-                intent.putExtra(AppVersion.class.getName(),result.data);
+                Intent intent = new Intent(getActivity(), AppNewVersionActivity.class);
+                intent.putExtra(AppVersion.class.getName(), result.data);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-            }else {
+            } else {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -301,6 +315,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
         @Override
         public void onReceive(Context context, Intent intent) {
         }
+
         IntentFilter getIntentFilter() {
             IntentFilter filter = new IntentFilter();
             filter.addAction(Constant.Action.ACTION_LOGO_CHANGED);
