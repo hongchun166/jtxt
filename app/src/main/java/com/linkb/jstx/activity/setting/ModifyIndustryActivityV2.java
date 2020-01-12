@@ -149,9 +149,10 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
 //        if(sele.size()>0){
 //            curIndustrySt=sele.get(sele.size()-1).name;
 //        }
-        user.industry = curIndustrySt;
-        Global.modifyAccount(user);
-        setResult(RESULT_OK);
+        Intent intent=new Intent();
+        intent.putExtra("curIndustrySt",curIndustrySt);
+
+        setResult(RESULT_OK,intent);
         finish();
     }
 

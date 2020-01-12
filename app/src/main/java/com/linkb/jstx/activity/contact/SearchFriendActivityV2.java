@@ -95,6 +95,8 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
                 .init();
         tvFindPeople.setSelected(true);
         mAdapter = new SearchFriendAdapter(this, mSearchList, this);
+        worlAreaOpt=new WorlAreaOpt();
+        worlAreaOpt.loadWorldAreaData(this);
     }
 
     @OnClick(R.id.next_button)
@@ -128,7 +130,11 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
         Intent intent = new Intent(this, ModifyIndustryActivityV2.class);
         startActivityForResult(intent, REQUEST_INDUSTRY_CODE);
     }
-
+    @OnClick(R.id.ll_region_item)
+    public void findRegion() {
+        changeRegion(null);
+        showRegionDialog();
+    }
     @OnClick(R.id.ll_label)
     public void findLabel() {
         Intent intent = new Intent(this, ModifyLabelActivityV2.class);
@@ -187,8 +193,8 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
             return;
         }
         if (requestCode == REQUEST_INDUSTRY_CODE && resultCode == Activity.RESULT_OK) {
-            industr = data.getStringExtra("111");
-
+            industr = data.getStringExtra("curIndustrySt");
+            tvIndustry.setText(industr);
         }
         if (requestCode == REQUEST_LABE_CODE && resultCode == 200) {
             label = data == null ? "" : data.getStringExtra("labelItem");
@@ -210,12 +216,6 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
 
     private void showRegionDialog(){
         final Context context=this;
-        if(countryBean==null){
-            countryBean=new CountryBean();
-            countryBean.setId("44");//中国
-            countryBean.setCname("中国");
-            countryBean.setName("China");
-        }
         if (pvCustomOptions == null) {
             pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
                 @Override
@@ -278,6 +278,42 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
                 }
             }
         }
+
+        pvCustomOptions.setPicker(provinces, citys);
+        pvCustomOptions.show();
+    }
+    private void changeRegion(CountryBean countryBean){
+        this.countryBean=countryBean;
+        if(pvCustomOptions!=null){
+            pvCustomOptions.dismiss();
+            pvCustomOptions=null;
+        }
+        if(provinces!=null)provinces.clear();
+        if(citys!=null)citys.clear();
+        loadRegionData();
+        if(provinces.size()==0 ){
+            tv_region.setText(countryBean.getCname());
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else if(citys.size()==0){
+            tv_region.setText(countryBean.getCname());
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else {
+            showRegionDialog();
+        }
+    }
+    private void loadRegionData(){
+        if(countryBean==null){
+            countryBean=new CountryBean();
+            countryBean.setId("44");//中国
+            countryBean.setCname("中国");
+            countryBean.setName("China");
+        }
         if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
             if(countryBean.getId().equals("44")){
                 getJson("citycode.json");
@@ -291,18 +327,6 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
                 }
             }
         }
-        pvCustomOptions.setPicker(provinces, citys);
-        pvCustomOptions.show();
-    }
-    private void changeRegion(CountryBean countryBean){
-        this.countryBean=countryBean;
-        if(pvCustomOptions!=null){
-            pvCustomOptions.dismiss();
-            pvCustomOptions=null;
-        }
-        if(provinces!=null)provinces.clear();
-        if(citys!=null)citys.clear();
-        showRegionDialog();
     }
     /**
      * 读取assets本地json

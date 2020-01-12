@@ -254,6 +254,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_region_rly)
     public void region() {
+        changeRegion(null);
         showRegionDialog();
 //        if (pvCustomOptions == null) {
 //            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
@@ -301,12 +302,6 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     }
 
     private void showRegionDialog(){
-        if(countryBean==null){
-            countryBean=new CountryBean();
-            countryBean.setId("44");//中国
-            countryBean.setCname("中国");
-            countryBean.setName("China");
-        }
         if (pvCustomOptions == null) {
             pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
                 @Override
@@ -371,39 +366,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 }
             }
         }
-        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
-                if(countryBean.getId().equals("44")){
-                    getJson("citycode.json");
-                }else {
-                    List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
-                    provinces = provincesDouList.get(1);
-                    citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
-                    if(provinces.size()==1 && provinces.get(0).equals("")){
-                        provinces.clear();
-                        provinces.add(countryBean.getCname());
-                    }
-                }
-        }
-        if(provinces.size()==0 ){
-            tvRegion.setText(countryBean.getCname());
-            user.region = countryBean.getCname();
-            Global.modifyAccount(user);
-            if(pvCustomOptions!=null){
-                pvCustomOptions.dismiss();
-                pvCustomOptions=null;
-            }
-        }else if(citys.size()==0){
-            tvRegion.setText(countryBean.getCname());
-            user.region = countryBean.getCname();
-            Global.modifyAccount(user);
-            if(pvCustomOptions!=null){
-                pvCustomOptions.dismiss();
-                pvCustomOptions=null;
-            }
-        }else {
-            pvCustomOptions.setPicker(provinces, citys);
-            pvCustomOptions.show();
-        }
+        pvCustomOptions.setPicker(provinces, citys);
+        pvCustomOptions.show();
     }
     private void changeRegion(CountryBean countryBean){
         this.countryBean=countryBean;
@@ -413,7 +377,43 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         }
         if(provinces!=null)provinces.clear();
         if(citys!=null)citys.clear();
-        showRegionDialog();
+        loadRegionData();
+        if(provinces.size()==0 ){
+            tvRegion.setText(countryBean.getCname());
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else if(citys.size()==0){
+            tvRegion.setText(countryBean.getCname());
+            if(pvCustomOptions!=null){
+                pvCustomOptions.dismiss();
+                pvCustomOptions=null;
+            }
+        }else {
+            showRegionDialog();
+        }
+    }
+    private void loadRegionData(){
+        if(countryBean==null){
+            countryBean=new CountryBean();
+            countryBean.setId("44");//中国
+            countryBean.setCname("中国");
+            countryBean.setName("China");
+        }
+        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
+            if(countryBean.getId().equals("44")){
+                getJson("citycode.json");
+            }else {
+                List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
+                provinces = provincesDouList.get(1);
+                citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
+                if(provinces.size()==1 && provinces.get(0).equals("")){
+                    provinces.clear();
+                    provinces.add(countryBean.getCname());
+                }
+            }
+        }
     }
     /**
      * 标签
@@ -509,6 +509,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             tvEmail.setText(user.email);
         }
         if (resultCode == Activity.RESULT_OK && requestCode == 0x14) {
+            String curIndustrySt=data.getStringExtra("curIndustrySt");
+            user.industry = curIndustrySt;
+            Global.modifyAccount(user);
             user = Global.getCurrentUser();
             tvIndustry.setText(user.industry);
         }
