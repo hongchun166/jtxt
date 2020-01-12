@@ -8,6 +8,7 @@ import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
+import com.linkb.jstx.network.result.WithdrawBillResult;
 
 public class HttpServiceManagerV2 {
     /**
@@ -101,4 +102,22 @@ public class HttpServiceManagerV2 {
         requestBody.addParameter("account", account);
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
+    /**
+     * 获取提币账单
+     * @param account
+     * @param type
+     *  流水类型(1收入2支出3奖励)(不填则查询所有流水类型)
+     * @param currencyId
+     *  钱包I(不填则查询所有币种余额)（
+     * @param listener
+     */
+    public static void getWithdrawBill(String account, String type,String currencyId, HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.GET_WITHDRAW_BILL_V2, WithdrawBillResult.class);
+        requestBody.addParameter("account", account);
+       if(!TextUtils.isEmpty(type)) requestBody.addParameter("type", type);
+       if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
 }

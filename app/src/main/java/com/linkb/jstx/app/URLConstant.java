@@ -255,7 +255,10 @@ public class URLConstant {
      * 提币账单获取
      */
     public static String GET_WITHDRAW_BILL;
-
+    /**
+     * 提币账单获取
+     */
+    public static String GET_WITHDRAW_BILL_V2;
     /**
      * 查询红包是否已经领取
      */
@@ -535,6 +538,7 @@ public class URLConstant {
         REGISTER_MESSAGE_VERIFY_CODE = BuildConfig.API_HOST + "/web/sendWeiquVCode.action";
 
         GET_WITHDRAW_BILL = API_URL + "account/queryBill";
+        GET_WITHDRAW_BILL_V2 = API_URL + "currency/listMyBalanceFlow";
 
         QUERY_RED_PACKET_RECEIVEDED = API_URL + "account/redIsReceive";
 
