@@ -43,7 +43,8 @@
     <string name="go_invite">invite</string>
     <string name="phone_contacts">phone contacts</string>
     <string name="invite_contacts">invite</string>
-    <string name="invite_contacts_sms_content">Your friend will leave a message to you via BLink. Please register to check it out. Download address:%1$s</string>
+    <string name="invite_contacts_sms_content">Your friend will leave a message to you via KiKi. Please register to check it out. Download address:%1$s</string>
+    <string name="no_information">No information. Message box is empty</string>
     <string name="go_share">share</string>
     <string name="received">receive</string>
     <string name="go_login">login</string>
@@ -69,11 +70,11 @@
     <string name="read_qr_code_error">invaild qrcode</string>
     <string name="apply_join_group_error_tips">You had joined this Group</string>
     <string name="search_no_result">search no result</string>
-    <string name="blink_friend">BLink Friend</string>
+    <string name="blink_friend">KiKi Friend</string>
     <string name="my_friend">Mine Friend</string>
     <string name="mine_group">Mine Group</string>
     <!--login/register-->
-    <string name="welcome_title">welcome to BLink</string>
+    <string name="welcome_title">welcome to KiKi</string>
     <string name="welcome_title_accent">The world\'s first community-autonomous instant messaging platform</string>
     <string name="login">login</string>
     <string name="register">register</string>
@@ -133,14 +134,14 @@
     <string name="red_packet_received_tips">waited Receive</string>
     <string name="red_packet_received_tips_default">Red packet waited Receive</string>
     <string name="send_red_packer_count_default">send red packet total 0</string>
-    <string name="wallet_title">BLink Wallet</string>
+    <string name="wallet_title">KiKi Wallet</string>
     <string name="wallet_title2">Kiki Wallet</string>
     <string name="scan">scan</string>
     <string name="charge_coin">coin charge</string>
     <string name="withdraw_coin">coin withdraw</string>
     <string name="withdraw_coin_record">coin withdraw record</string>
     <string name="withdraw_coin_finish">coin withdraw finished</string>
-    <string name="blink_service">BLink service</string>
+    <string name="blink_service">KiKi service</string>
     <string name="exchange">exchange</string>
     <string name="finances">finance</string>
     <string name="bill">bill</string>
@@ -226,8 +227,8 @@
     <string name="red_packet_open_detail">Receive %1$s/%2$s</string>
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">Please enter the payment password</string>
-    <string name="BLink_red_packet">BLink red packet</string>
-    <string name="BLink_Pay">BLink Pay</string>
+    <string name="BLink_red_packet">KiKi red packet</string>
+    <string name="BLink_Pay">KiKi Pay</string>
     <string name="more_currency">more currency</string>
     <string name="sending_red_packet">sending red packet</string>
     <string name="red_packet_empty_error">red envelope cannot be empty</string>
@@ -265,7 +266,7 @@
     <string name="join_blacklist">join blacklist</string>
     <string name="send_msg">send message</string>
     <string name="voice_call">voice call</string>
-    <string name="blink_account">Blink account :</string>
+    <string name="blink_account">KiKi account :</string>
     <string name="signature">signature :</string>
     <string name="apply_friend">apply friend</string>
     <string name="mine_home_page">my home page</string>
@@ -486,6 +487,7 @@
     <string name="label_function_moment">moment</string>
     <string name="label_function_moment_my">My Moment</string>
     <string name="label_function_microapp">microapp</string>
+    <string name="detailed_info">Detailed Info</string>
 
     <string name="label_chat_soundrecord_normal">Hold and talk</string>
     <string name="label_chat_soundrecord_abort">Release, and end</string>
@@ -607,9 +609,9 @@
     <string name="label_message_preview_voice">[voice]</string>
     <string name="label_message_preview_map">[map]</string>
     <string name="label_message_preview_video">[video]</string>
-    <string name="label_message_preview_red_packet">[BLink red packet]</string>
+    <string name="label_message_preview_red_packet">[KiKi red packet]</string>
     <string name="label_message_from_red_packet">%1$s</string>
-    <string name="label_message_to_red_packet">[BLink red packet]%1$s</string>
+    <string name="label_message_to_red_packet">[KiKi red packet]%1$s</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">Please configure your server information first.</string>

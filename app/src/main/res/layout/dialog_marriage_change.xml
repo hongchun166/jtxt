@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/unmarried"
+                android:text="@string/unmarried2"
                 android:textColor="@color/tex_color_gray_333"
                 android:textSize="@dimen/text_14sp" />
 
@@ -54,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/marriage"
+                android:text="@string/marriage2"
                 android:textColor="@color/tex_color_gray_333"
                 android:textSize="@dimen/text_14sp" />
 

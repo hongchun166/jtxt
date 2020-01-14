@@ -49,14 +49,21 @@
         android:paddingBottom="@dimen/home_tab_widget_height"
         android:scrollbars="none" />
 
-    <ImageView
+
+    <com.linkb.jstx.component.EmptyViewV2
         android:id="@+id/emptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        app:srcCompat="@drawable/contact_user_null_bg" />
+        android:layout_centerInParent="true"
+        />
+<!--    <ImageView-->
+<!--        android:id="@+id/emptyView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:visibility="visible"-->
+<!--        app:srcCompat="@drawable/contact_user_null_bg" />-->
 
     <View
         android:id="@+id/mask_view"

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.chat.FriendChatActivity;
@@ -66,6 +67,11 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
+        ImmersionBar.with(this)
+                .keyboardEnable(true)
+                .statusBarDarkFont(true)
+                .init();
+
         setToolbarTitle(getResources().getString(R.string.person_info));
 
         mUser = Global.getCurrentUser();
@@ -92,7 +98,7 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_person_info;
+        return R.layout.activity_person_info_v2;
     }
 
     @Override
@@ -129,7 +135,11 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
         }
     }
 
+    @OnClick(R.id.viewDetailedInfoItem)
+    public void gotoDetailedInfo(){
+        //详细信息
 
+    }
     @OnClick(R.id.bar_album_cly)
     public void gotoMomentRule(){
         //朋友圈

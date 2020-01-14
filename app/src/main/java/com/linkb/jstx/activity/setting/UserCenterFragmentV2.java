@@ -25,6 +25,7 @@ import com.linkb.jstx.activity.contact.GroupQrCodeActivity;
 import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 import com.linkb.jstx.activity.contact.PhoneContactsActivity;
 import com.linkb.jstx.activity.trend.MineMomentActivity;
+import com.linkb.jstx.activity.wallet.WalletActivityV2;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
@@ -198,6 +199,10 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     @OnClick(R.id.xiangce_cly)
     public void onGallery() {
         startActivity(new Intent(this.getActivity(), MineMomentActivity.class));
+    }
+    @OnClick(R.id.mine_wallet_cly)
+    public void onMineWallet(){
+        startActivity(new Intent(getActivity(), WalletActivityV2.class));
     }
 
 

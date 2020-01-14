@@ -213,7 +213,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             @Override
             public void marriageStatus(int type) {
                 user.marrriage = String.valueOf(type);
-                tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
+                tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
 
                 Global.modifyAccount(user);
                 mMarriageChangeDialog.dismiss();
@@ -246,6 +246,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_position_rly)
     public void position() {
+
+
     }
 
     CountryBean countryBean;
@@ -256,49 +258,6 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     public void region() {
         changeRegion(null);
         showRegionDialog();
-//        if (pvCustomOptions == null) {
-//            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
-//                @Override
-//                public void onOptionsSelect(int options1, int options2, int options3, View v) {
-//                    String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
-//                    tvRegion.setText(region);
-//                    user.region = region;
-//                    Global.modifyAccount(user);
-//                }
-//            })
-//                    .isDialog(false)
-//                    .setSubmitText(getString(R.string.finish))
-//                    .setSubmitColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.color_2e76e5))
-//                    .setCancelText(getString(R.string.common_cancel))
-//                    .setCancelColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.divider_color_gray_999999))
-//                    .setOutSideCancelable(false)
-//                    .build();
-//            pvCustomOptions.setSelectOptions(0, 1, 1);
-//            Dialog mDialog = pvCustomOptions.getDialog();
-//            if (mDialog != null) {
-//                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-//                        ViewGroup.LayoutParams.MATCH_PARENT,
-//                        ViewGroup.LayoutParams.WRAP_CONTENT,
-//                        Gravity.BOTTOM);
-//                params.leftMargin = 0;
-//                params.rightMargin = 0;
-//                pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
-//                Window dialogWindow = mDialog.getWindow();
-//                if (dialogWindow != null) {
-//                    dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
-//                    dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
-//                    dialogWindow.setDimAmount(0.1f);
-//                }
-//            }
-//        }
-//        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
-//            getJson("citycode.json");
-//            List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList("226");
-//            provinces = provincesDouList.get(1);
-//            citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
-//        }
-//        pvCustomOptions.setPicker(provinces, citys);
-//        pvCustomOptions.show();
     }
 
     private void showRegionDialog(){
@@ -432,7 +391,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_sign_rly)
     public void sign() {
-        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class), 15);
+        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class), 0x16);
     }
 
 
@@ -515,6 +474,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             user = Global.getCurrentUser();
             tvIndustry.setText(user.industry);
         }
+        if (resultCode == Activity.RESULT_OK && requestCode == 0x16) {
+            user = Global.getCurrentUser();
+            tvSign.setText(user.motto);
+        }
         if (requestCode == Activity.RESULT_OK) {
             user = Global.getCurrentUser();
             tvSign.setText(user.motto);
@@ -573,8 +536,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (result.isSuccess()) {
             Global.modifyAccount(user);
             showToastView(R.string.tip_save_complete);
-            setResult(RESULT_OK, getIntent());
-            finish();
+//            setResult(RESULT_OK, getIntent());
+//            finish();
         }
     }
 

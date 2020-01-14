@@ -164,11 +164,12 @@
                 android:id="@+id/xiangce_cly"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/user_center_item_size"
-                android:layout_marginTop="1dp"
                 android:background="@drawable/background_white_to_gray"
                 android:paddingStart="14dp"
                 android:paddingEnd="14dp"
+                android:layout_marginTop="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/invite_cly">
 
@@ -205,7 +206,60 @@
                     app:layout_constraintTop_toTopOf="@+id/textView109" />
 
             </android.support.constraint.ConstraintLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider_color_gray_ebebeb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/xiangce_cly" />
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/mine_wallet_cly"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_center_item_size"
+                android:background="@drawable/background_white_to_gray"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:layout_marginTop="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/xiangce_cly">
+
+                <ImageView
+                    android:id="@+id/imageView_wallet"
+                    android:layout_width="@dimen/user_center_item_img_size"
+                    android:layout_height="@dimen/user_center_item_img_size"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_user_center_photo_v2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/viewTVWallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:text="@string/mine_wallet"
+                    android:textColor="@color/tex_color_gray_191919"
+                    android:textSize="@dimen/user_center_item_tx_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_wallet"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_wallet"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_wallet" />
+
+                <ImageView
+                    android:id="@+id/viewIVWalletRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gengduo"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewTVWallet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/viewTVWallet" />
+
+            </android.support.constraint.ConstraintLayout>
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/message_set_cly"
                 android:layout_width="match_parent"
@@ -216,7 +270,7 @@
                 android:paddingEnd="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/xiangce_cly">
+                app:layout_constraintTop_toBottomOf="@+id/mine_wallet_cly">
 
                 <ImageView
                     android:id="@+id/imageView_message_set"

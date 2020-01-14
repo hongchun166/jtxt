@@ -1,5 +1,6 @@
 package com.linkb.jstx.activity.setting;
 
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -72,6 +73,7 @@ public class ModifyMottoActivityV2 extends BaseActivity implements TextWatcher {
             sent.put("name", user.name);
             CIMPushManager.sendRequest(this, sent);
             showToastView(R.string.tip_save_complete);
+            setResult(Activity.RESULT_OK);
             finish();
         }
     }

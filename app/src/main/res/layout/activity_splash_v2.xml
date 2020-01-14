@@ -55,7 +55,7 @@
         android:layout_marginTop="1dp"
         android:text="@string/platform_describe2_en"
         android:textColor="@color/f8fbff"
-        android:textSize="@dimen/text_8sp" />
+        android:textSize="@dimen/text_12sp" />
 
 
 </RelativeLayout>

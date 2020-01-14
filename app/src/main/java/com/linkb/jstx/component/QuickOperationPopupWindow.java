@@ -33,6 +33,8 @@ public class QuickOperationPopupWindow extends PopupWindow {
         mine_wallet_cly = view.findViewById(R.id.mine_wallet_cly);
         qr_scan_cly = view.findViewById(R.id.qr_scan_cly);
 
+        mine_wallet_cly.setVisibility(View.GONE);
+
         canImageView = view.findViewById(R.id.qr_scan_imageView);
         this.setContentView(view);
         //设置SelectPicPopupWindow弹出窗体的宽

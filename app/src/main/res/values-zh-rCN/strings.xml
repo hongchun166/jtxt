@@ -15,7 +15,7 @@
     <string name="wechat_loging">正在获取微信授权...</string>
     <string name="register_gift_money">125.50</string>
     <string name="register_gift_money_unit">DPC</string>
-    <string name="register_gift_tips">首次登陆，BLink送您%1$dDPC!</string>
+    <string name="register_gift_tips">首次登陆，KiKi送您%1$dDPC!</string>
     <string name="click_confirm">点击确认</string>
     <string name="find_password">找回密码</string>
 
@@ -69,15 +69,16 @@
     <string name="apply_join_group_error_tips">您已经在该群里</string>
     <string name="read_qr_code_error">无效的二维码</string>
     <string name="search_no_result">搜索无结果</string>
-    <string name="blink_friend">BLink好友</string>
+    <string name="blink_friend">KiKi好友</string>
     <string name="my_friend">我的好友</string>
     <string name="mine_group">我的群组</string>
     <string name="phone_contacts">手机通讯录</string>
     <string name="invite_contacts">邀请</string>
-    <string name="invite_contacts_sms_content">你的好友通过BLink给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+    <string name="invite_contacts_sms_content">你的好友通过KiKi给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+    <string name="no_information">暂无会话消息</string>
 
     <!--登录/注册-->
-    <string name="welcome_title">欢迎来到BLink</string>
+    <string name="welcome_title">欢迎来到KiKi</string>
     <string name="welcome_title_accent">全球首款社区自治化即时通信平台</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
@@ -133,14 +134,14 @@
     <string name="new_apply_password_empty_error">新支付密码不能为空</string>
 
     <!--钱包模块-->
-    <string name="wallet_title">BLink Wallet</string>
+    <string name="wallet_title">KiKi Wallet</string>
     <string name="wallet_title2">Kiki Wallet</string>
     <string name="scan">扫一扫</string>
     <string name="charge_coin">充币</string>
     <string name="withdraw_coin">提币</string>
     <string name="withdraw_coin_record">提币记录</string>
     <string name="withdraw_coin_finish">提币完成</string>
-    <string name="blink_service">BLink服务</string>
+    <string name="blink_service">KiKi服务</string>
     <string name="exchange">兑汇</string>
     <string name="finances">理财</string>
     <string name="bill">账单</string>
@@ -222,10 +223,10 @@
     <string name="red_packet_open_detail">领取 %1$d/%2$d</string>
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">请输入支付密码</string>
-    <string name="BLink_red_packet">BLink红包</string>
+    <string name="BLink_red_packet">KiKi红包</string>
     <string name="red_packet_received_tips">红包等待对方领取</string>
     <string name="red_packet_received_tips_default">红包等待对方领取</string>
-    <string name="BLink_Pay">BLink Pay</string>
+    <string name="BLink_Pay">KiKi Pay</string>
     <string name="more_currency">更多币种</string>
     <string name="sending_red_packet">红包发送中</string>
     <string name="red_packet_empty_error">红包不能为空</string>
@@ -264,7 +265,7 @@
     <string name="join_blacklist">加入黑名单</string>
     <string name="send_msg">发消息</string>
     <string name="voice_call">语音通话</string>
-    <string name="blink_account">Blink账户 :</string>
+    <string name="blink_account">KiKi账户 :</string>
     <string name="signature">签名 :</string>
     <string name="apply_friend">申请好友</string>
     <string name="mine_home_page">我的主页</string>
@@ -490,6 +491,7 @@
     <string name="label_function_moment">朋友圈</string>
     <string name="label_function_moment_my">我的圈子</string>
     <string name="label_function_microapp">小应用</string>
+    <string name="detailed_info">详细信息</string>
 
     <string name="label_chat_soundrecord_normal">按住,说话</string>
     <string name="label_chat_soundrecord_abort">松开,结束</string>
@@ -610,9 +612,9 @@
     <string name="label_message_preview_voice">[语音]</string>
     <string name="label_message_preview_map">[地图]</string>
     <string name="label_message_preview_video">[视频]</string>
-    <string name="label_message_preview_red_packet">[BLink 红包]</string>
+    <string name="label_message_preview_red_packet">[KiKi 红包]</string>
     <string name="label_message_from_red_packet">%1$s</string>
-    <string name="label_message_to_red_packet">[BLink 红包]%1$s</string>
+    <string name="label_message_to_red_packet">[KiKi 红包]%1$s</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">请先配置好你的服务器信息</string>

@@ -15,7 +15,7 @@
     <string name="wechat_loging">正在获取微信授权...</string>
     <string name="register_gift_money">125.50</string>
     <string name="register_gift_money_unit">DPC</string>
-    <string name="register_gift_tips">首次登陆，BLink送您%1$dDPC!</string>
+    <string name="register_gift_tips">首次登陆，KiKi送您%1$dDPC!</string>
     <string name="click_confirm">点击确认</string>
     <string name="find_password">设置新密码</string>
 
@@ -86,15 +86,16 @@
     <string name="apply_join_group_error_tips">您已经在该群里</string>
     <string name="read_qr_code_error">无效的二维码,请确认二维码是否是有效的群二维码或者个人信息二维码</string>
     <string name="search_no_result">搜索无结果</string>
-    <string name="blink_friend">BLink好友</string>
+    <string name="blink_friend">KiKi好友</string>
     <string name="my_friend">我的好友</string>
     <string name="mine_group">我的群组</string>
     <string name="phone_contacts">手机通讯录</string>
     <string name="invite_contacts">邀请</string>
-    <string name="invite_contacts_sms_content">你的好友通过BLink给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+    <string name="invite_contacts_sms_content">你的好友通过KiKi给你留言啦,赶快注册去查看吧,下载地址:%1$s</string>
+    <string name="no_information">暂无会话消息</string>
 
     <!--登录/注册-->
-    <string name="welcome_title">欢迎来到BLink</string>
+    <string name="welcome_title">欢迎来到KiKi</string>
     <string name="welcome_title_accent">全球首款社区自治化即时通信平台</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
@@ -157,7 +158,7 @@
     <string name="set_new_password_success">设置新密码成功</string>
 
     <!--钱包模块-->
-    <string name="wallet_title">BLink Wallet</string>
+    <string name="wallet_title">K Wallet</string>
     <string name="wallet_title2">Kiki Wallet</string>
 
     <string name="scan">扫一扫</string>
@@ -165,7 +166,7 @@
     <string name="withdraw_coin">提币</string>
     <string name="withdraw_coin_record">提币记录</string>
     <string name="withdraw_coin_finish">提币完成</string>
-    <string name="blink_service">BLink服务</string>
+    <string name="blink_service">KiKi服务</string>
     <string name="exchange">兑汇</string>
     <string name="finances">理财</string>
     <string name="bill">账单</string>
@@ -247,10 +248,10 @@
     <string name="red_packet_open_detail">领取 %1$d/%2$d</string>
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">请输入支付密码</string>
-    <string name="BLink_red_packet">BLink红包</string>
+    <string name="BLink_red_packet">KiKi红包</string>
     <string name="red_packet_received_tips">红包等待对方领取</string>
     <string name="red_packet_received_tips_default">红包等待对方领取</string>
-    <string name="BLink_Pay">BLink Pay</string>
+    <string name="BLink_Pay">KiKi Pay</string>
     <string name="more_currency">更多币种</string>
     <string name="sending_red_packet">红包发送中</string>
     <string name="red_packet_empty_error">红包不能为空</string>
@@ -289,7 +290,7 @@
     <string name="join_blacklist">加入黑名单</string>
     <string name="send_msg">发消息</string>
     <string name="voice_call">语音通话</string>
-    <string name="blink_account">Blink账户 :</string>
+    <string name="blink_account">KiKi账户 :</string>
     <string name="signature">签名 :</string>
     <string name="apply_friend">申请好友</string>
     <string name="mine_home_page">我的主页</string>
@@ -538,6 +539,7 @@
     <string name="label_function_moment">朋友圈</string>
     <string name="label_function_moment_my">我的圈子</string>
     <string name="label_function_microapp">小应用</string>
+    <string name="detailed_info">详细信息</string>
 
     <string name="label_chat_soundrecord_normal">按住,说话</string>
     <string name="label_chat_soundrecord_abort">松开,结束</string>
@@ -659,9 +661,9 @@
     <string name="label_message_preview_voice">[语音]</string>
     <string name="label_message_preview_map">[地图]</string>
     <string name="label_message_preview_video">[视频]</string>
-    <string name="label_message_preview_red_packet">[BLink 红包]</string>
+    <string name="label_message_preview_red_packet">[KiKi 红包]</string>
     <string name="label_message_from_red_packet">%1$s</string>
-    <string name="label_message_to_red_packet">[BLink 红包]%1$s</string>
+    <string name="label_message_to_red_packet">[KiKi 红包]%1$s</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">请先配置好你的服务器信息</string>
@@ -834,7 +836,7 @@
     <string name="game_type">%1$s | %2$s</string>
     <string name="game_introduce">游戏介绍</string>
     <string name="game_game_introduce_title">体验期超多房卡赠送，免费畅玩！！</string>
-    <string name="game_game_introduce_content_1">1、【账号互联】使用Blink相同手机号码下载注册,即可免费畅玩</string>
+    <string name="game_game_introduce_content_1">1、【账号互联】使用KiKi相同手机号码下载注册,即可免费畅玩</string>
     <string name="game_game_introduce_content_2">2、【一币通用】游戏使用平台DPC进行充值兑换,账户充值秒到账。更多游戏玩法持续更新中...</string>
     <string name="game_game_introduce_end">更多棋牌品种持续更新中...</string>
 
@@ -852,7 +854,7 @@
     <string name="confirm_delete_friend">确定删除与%1$s的好友关系?</string>
 
     <!--发送名片-->
-    <string name="person_cards_name_default">BLink客服</string>
+    <string name="person_cards_name_default">KiKi客服</string>
     <string name="send_cards">发送名片</string>
     <string name="select_contacts">选择联系人</string>
     <string name="send_to">发送给:</string>
@@ -860,7 +862,7 @@
     <string name="person_card">个人名片</string>
     <string name="leave_message_to_friend">给朋友留言</string>
     <string name="label_message_from_send_cards">%1$s</string>
-    <string name="label_message_to_send_cards">[BLink 名片]%1$s</string>
+    <string name="label_message_to_send_cards">[KiKi 名片]%1$s</string>
 
     <!--上传文件失败-->
     <string name="upload_file_failure">上传文件失败</string>
@@ -896,7 +898,7 @@
     <string name="coin_transfer_received">已接收</string>
     <string name="coin_transfer_to_amount">%1$s USDT</string>
     <string name="coin_transfer_invailable">转账已失效</string>
-    <string name="label_message_to_coin_transfer">[BLink 转账]%1$s</string>
+    <string name="label_message_to_coin_transfer">[KiKi 转账]%1$s</string>
     <string name="self_can_not_receive_coin_transfer">本人不可领取</string>
     <string name="coin_transfer_store_to_wallet">已存入钱包中</string>
     <string name="coin_transfer_received_tips">已被对方领取</string>
@@ -918,7 +920,7 @@
     <string name="shoot_front">拍摄正面</string>
     <string name="shoot_north">拍摄北面</string>
     <string name="submit_verify">提交验证</string>
-    <string name="identify_verify_statement">本人知晓虚拟货币投资风险巨大，自愿参与，自担风险，保证身份信息不提供给他人，不适用BLink账号进行非法行为，如有违反，本人自愿承担法律风险。</string>
+    <string name="identify_verify_statement">本人知晓虚拟货币投资风险巨大，自愿参与，自担风险，保证身份信息不提供给他人，不适用KiKi账号进行非法行为，如有违反，本人自愿承担法律风险。</string>
 
 
     <!--币币交易-->

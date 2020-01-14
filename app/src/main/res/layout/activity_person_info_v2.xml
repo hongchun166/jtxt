@@ -141,7 +141,50 @@
         app:layout_constraintStart_toEndOf="@+id/textView54"
         app:layout_constraintTop_toTopOf="@+id/textView54" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/viewDetailedInfoItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView55">
 
+        <ImageView
+            android:id="@+id/viewDetailedInfoImg"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@mipmap/ic_p_detailed_info"
+            />
+
+        <TextView
+            android:id="@+id/viewDetailedInfoTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/detailed_info"
+            android:textColor="@color/tex_color_gray_191919"
+            android:textSize="@dimen/text_title"
+            app:layout_constraintBottom_toBottomOf="@+id/viewDetailedInfoImg"
+            app:layout_constraintStart_toEndOf="@+id/viewDetailedInfoImg"
+            app:layout_constraintTop_toTopOf="@+id/viewDetailedInfoImg" />
+
+        <ImageView
+            android:id="@+id/viewDetailedInfoRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/viewDetailedInfoImgItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewDetailedInfoImgItem"
+            app:srcCompat="@mipmap/next_step" />
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bar_album_cly"
@@ -154,26 +197,18 @@
         android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView55">
+        app:layout_constraintTop_toBottomOf="@+id/viewDetailedInfoItem">
 
-        <FrameLayout
+
+        <ImageView
             android:id="@+id/fly13"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/background_green_with_radius">
-
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/pyq_white" />
-        </FrameLayout>
-
-
+            android:src="@mipmap/ic_trend_circle_v2"
+            />
 
         <TextView
             android:id="@+id/textView56"
@@ -210,23 +245,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bar_album_cly">
 
-        <FrameLayout
+        <ImageView
             android:id="@+id/fly14"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/background_yellow_with_radius">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/qxsz" />
-        </FrameLayout>
-
-
+            android:src="@mipmap/ic_p_permission"
+            />
         <TextView
             android:id="@+id/textView58"
             android:layout_width="wrap_content"
@@ -263,23 +290,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/permission_cly">
 
-        <FrameLayout
+        <ImageView
             android:id="@+id/fly15"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/user_center_item_img_size"
+            android:layout_height="@dimen/user_center_item_img_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/background_blue_shape">
-
-            <ImageView
-                android:id="@+id/icon_starmark"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/xinbiao" />
-        </FrameLayout>
-
+            android:src="@mipmap/ic_p_permission"
+            />
         <TextView
             android:id="@+id/textView59"
             android:layout_width="wrap_content"

@@ -150,7 +150,7 @@ public class GroupQrCodeActivityV2 extends BaseActivity implements HttpRequestLi
 
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);//DIRECTORY_PICTURES
             System.out.println("saveQRCodePath:"+path);
             File file = new File(path, "group_id.jpg");
             try {
