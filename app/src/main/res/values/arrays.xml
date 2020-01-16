@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+   <!-- 页面用户自己填写-->
     <string-array name="position">
         <item>经理及以上</item>
-        <item>部门领导</item>
-        <item>技术成员</item>
-        <item>普通成员</item>
+        <item>程序员</item>
+        <item>技工</item>
+        <item>销售</item>
+        <item>工人</item>
+        <item>公务员</item>
+        <item>会计</item>
+        <item>学生</item>
         <item>其他</item>
     </string-array>
 </resources>
