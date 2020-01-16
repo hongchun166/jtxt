@@ -124,7 +124,18 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
     private void initDate(){
         showProgressDialog("");
-        HttpServiceManager.queryAssetsBalance(this);
+    //        HttpServiceManager.queryAssetsBalance(this);
+        User user=Global.getCurrentUser();
+        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+        HttpServiceManagerV2.listMyCurrency(user.account, "", this);
     }
 
     /*获取当前实时汇率*/
