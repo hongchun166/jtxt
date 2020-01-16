@@ -103,20 +103,58 @@ public class HttpServiceManagerV2 {
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
-    /**
-     * 获取提币账单
+     /**
+     * 获取账户总余额
      * @param account
-     * @param type
-     *  流水类型(1收入2支出3奖励)(不填则查询所有流水类型)
-     * @param currencyId
-     *  钱包I(不填则查询所有币种余额)（
      * @param listener
      */
-    public static void getWithdrawBill(String account, String type,String currencyId, HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.GET_WITHDRAW_BILL_V2, WithdrawBillResult.class);
+    public static void getAccountBalance(String account,  HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getAccountBalance, FriendListResultV2.class);
         requestBody.addParameter("account", account);
-       if(!TextUtils.isEmpty(type)) requestBody.addParameter("type", type);
-       if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 查询我的钱包某个币种余额信息
+     * @param account
+     * @param currencyId  钱包ID
+     * @param listener
+     */
+    public static void getMyCurrencyById(String account,String currencyId,  HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMyCurrencyById, FriendListResultV2.class);
+        requestBody.addParameter("account", account);
+        requestBody.addParameter("currencyId", currencyId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 查询钱包账户流水
+     * @param account
+     * @param type
+     * 流水类型(1收入2支出3奖励)(不填则查询所有流水类型)
+     * @param currencyId
+     * 钱包I(不填则查询所有币种余额)（
+     * @param listener
+     */
+    public static void listMyBalanceFlow(String account,String type,String currencyId,  HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listMyBalanceFlow, WithdrawBillResult.class);
+        requestBody.addParameter("account", account);//
+        if(!TextUtils.isEmpty(type)) requestBody.addParameter("type", type);
+        if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 查询我的钱包列表
+     * @param account
+     * @param currencyId
+     * 钱包ID（不填则查询所有币种）
+     * @param listener
+     */
+    public static void listMyCurrency(String account,String currencyId,  HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listMyCurrency, WithdrawBillResult.class);
+        requestBody.addParameter("account", account);//
+        if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
