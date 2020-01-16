@@ -197,6 +197,10 @@ public class URLConstant {
      * 查询账户资产余额
      */
     public static String QUERY_ASSETS_BALANCE;
+     /**
+     * 查询账户资产余额V2
+     */
+    public static String QUERY_ASSETS_BALANCEV2;
     /**
      * 查询当前货币的汇率
      */
@@ -516,6 +520,8 @@ public class URLConstant {
         QUERY_FRIEND = API_URL + "userFriend/query";
 
         QUERY_ASSETS_BALANCE = API_URL + "account/query";
+        
+        QUERY_ASSETS_BALANCEV2 = API_URL + "currency/listMyCurrencyBalance";
 
         QUERY_COIN_EXCHANGE_RATE = API_URL + "account/queryCoinPrice";
 
