@@ -259,10 +259,7 @@ public class URLConstant {
      * 提币账单获取
      */
     public static String GET_WITHDRAW_BILL;
-    /**
-     * 提币账单获取
-     */
-    public static String GET_WITHDRAW_BILL_V2;
+
     /**
      * 查询红包是否已经领取
      */
@@ -398,17 +395,27 @@ public class URLConstant {
     public static String GET_INVITE_INFO;
     public static String GET_MINE_INVITE_CODE;
 
+
+    public static String getAccountBalance;// 获取账户总余额
+    public static String getMyCurrencyById;//查询我的钱包某个币种余额信息
+    public static String listMyBalanceFlow;//查询钱包账户流水
+    public static String listMyCurrency;//查询我的钱包列表
     static {
         initialize();
         initializeV2();
     }
     public static void initializeV2(){
-
         ADD_FRIEND_APPLY_V2= API_URL + "userFriend/addFriendApply";
         APPLY_FRIENDV_ANSWER_V2=API_URL +"userFriend/agreeFriendApply";
         APPLY_FRIENDV_DELETE_V2=API_URL +"userFriend/delete";
         LIST_FRIEND_APPLY_V2=API_URL +"userFriend/listFriendApply";
         LIST_MY_FRIENDS_V2=API_URL +"userFriend/listMyFriends";
+
+        getAccountBalance=API_URL +"currency/getAccountBalance";
+        getMyCurrencyById=API_URL +"currency/getMyCurrencyById";
+        listMyBalanceFlow=API_URL +"currency/listMyBalanceFlow";
+        listMyCurrency=API_URL +"currency/listMyCurrency";
+        QUERY_ASSETS_BALANCEV2 = API_URL + "currency/listMyCurrencyBalance";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";
@@ -520,8 +527,6 @@ public class URLConstant {
         QUERY_FRIEND = API_URL + "userFriend/query";
 
         QUERY_ASSETS_BALANCE = API_URL + "account/query";
-        
-        QUERY_ASSETS_BALANCEV2 = API_URL + "currency/listMyCurrencyBalance";
 
         QUERY_COIN_EXCHANGE_RATE = API_URL + "account/queryCoinPrice";
 
@@ -544,7 +549,6 @@ public class URLConstant {
         REGISTER_MESSAGE_VERIFY_CODE = BuildConfig.API_HOST + "/web/sendWeiquVCode.action";
 
         GET_WITHDRAW_BILL = API_URL + "account/queryBill";
-        GET_WITHDRAW_BILL_V2 = API_URL + "currency/listMyBalanceFlow";
 
         QUERY_RED_PACKET_RECEIVEDED = API_URL + "account/redIsReceive";
 
