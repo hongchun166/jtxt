@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/viewFindGroupRoot"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:id="@+id/viewSearchGroupInputItem"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_white2_radius"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13.3dp"
+            android:layout_marginRight="13.3dp"
+            android:src="@mipmap/sousuo2" />
+
+        <EditText
+            android:id="@+id/viewSearchGroupInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/find_find_groupHint"
+            android:maxLength="20"
+            android:lines="1"
+            android:imeOptions="actionSearch"
+            android:textColor="@color/tex_color_gray_333"
+            android:textColorHint="@color/divider_color_gray_CCCCCC"
+            android:textSize="@dimen/text_14sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/viewSearchHotHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="热门搜索"
+        android:textColor="@color/tex_color_gray_999999"
+        android:textSize="@dimen/text_12sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/viewSearchGroupInputItem"
+        />
+    <RelativeLayout
+        android:id="@+id/viewHot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewSearchHotHint"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_gray_radius"
+            android:text="科技金融"
+            android:textSize="@dimen/text_12sp"
+            android:textColor="@color/tex_color_gray_333"
+            />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/viewBtnSearchGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="找一找"
+        android:layout_below="@+id/viewHot"
+        />
+</RelativeLayout>

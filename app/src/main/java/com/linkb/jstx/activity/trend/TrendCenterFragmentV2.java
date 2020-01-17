@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.CIMMonitorFragment;
-import com.linkb.jstx.activity.contact.GroupListActivity;
-import com.linkb.jstx.activity.contact.SearchFriendActivityV2;
+import com.linkb.jstx.activity.contact.FindFindActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.component.GlideImageLoader;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -87,7 +86,7 @@ public class TrendCenterFragmentV2 extends CIMMonitorFragment implements OnClick
 
             case R.id.popular_group_rly:
 //                this.startActivity(new Intent(this.getActivity(), GroupListActivity.class));
-                 startActivity(new Intent(getActivity(), SearchFriendActivityV2.class));
+                 startActivity(new Intent(getActivity(), FindFindActivity.class));
                 break;
             case R.id.information_rly:
                 this.startActivity(new Intent(this.getActivity(), InformationActivity.class));

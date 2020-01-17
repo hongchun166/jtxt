@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="53dp"
+    android:background="@drawable/background_white_to_gray"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/viewCurrencyItem"
+    >
+    
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/viewCurrencyImg"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        />
+        <TextView
+            android:id="@+id/viewCurrencyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_16sp"
+            android:textColor="@color/color_455A64"
+            android:layout_toRightOf="@+id/viewCurrencyImg"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+    <TextView
+        android:id="@+id/viewCurrencyQuota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_13sp"
+        android:textColor="@color/color_121212"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/viewCurrencyEffective"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_13sp"
+        android:textColor="@color/tex_color_gray_999999"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/viewCurrencyQuota"
+        />
+</RelativeLayout>

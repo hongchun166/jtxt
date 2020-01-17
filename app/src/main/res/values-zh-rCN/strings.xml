@@ -718,6 +718,7 @@
     <string name="find_people">找人</string>
     <string name="find_group">找群</string>
     <string name="find_find_hint">搜账号/电话/昵称/关键字</string>
+    <string name="find_find_groupHint">搜群号/群名</string>
     <string name="no_limit">不限</string>
     <string name="other">其他</string>
     <string name="find">查找</string>

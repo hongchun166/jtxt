@@ -11,13 +11,21 @@ public class FriendQueryResult extends BaseResult {
      */
 
     private List<DataListBean> dataList;
-
+    private List<DataListBean> data;
     public List<DataListBean> getDataList() {
         return dataList;
     }
 
     public void setDataList(List<DataListBean> dataList) {
         this.dataList = dataList;
+    }
+
+    public List<DataListBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataListBean> data) {
+        this.data = data;
     }
 
     public static class DataListBean {

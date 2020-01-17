@@ -128,7 +128,7 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
         if(billType!=0){
             cid=String.valueOf(billType);
         }
-        HttpServiceManagerV2.getWithdrawBill(user.account ,"",cid,this);
+        HttpServiceManagerV2.listMyBalanceFlow(user.account ,"",cid,this);
     }
 
     @Override

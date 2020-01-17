@@ -52,6 +52,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 找一找
+ */
 public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestListener<FriendQueryResult>, SearchFriendAdapter.OnSearchFriendClickedListener {
 
     @BindView(R.id.search_edit_text)

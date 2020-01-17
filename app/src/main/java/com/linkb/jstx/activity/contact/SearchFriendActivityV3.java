@@ -107,7 +107,7 @@ public class SearchFriendActivityV3 extends BaseActivity implements HttpRequestL
             emptyView.setVisibility(View.INVISIBLE);
             searchContentCly.setVisibility(View.VISIBLE);
             mSearchList.clear();
-            mSearchList.addAll(result.getDataList());
+            mSearchList.addAll(result.getData());
             mAdapter.notifyDataSetChanged();
 //            LvxinApplication.sendLocalBroadcast(new Intent(Constant.Action.ACTION_RELOAD_CONTACTS));
 ////            finish();

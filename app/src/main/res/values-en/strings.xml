@@ -714,6 +714,7 @@
     <string name="find_people">find people</string>
     <string name="find_group">find people</string>
     <string name="find_find_hint">amount/phone/nick name/keyword</string>
+    <string name="find_find_groupHint">Group code/Group name</string>
     <string name="no_limit">no limit</string>
     <string name="other">other</string>
     <string name="find">find</string>

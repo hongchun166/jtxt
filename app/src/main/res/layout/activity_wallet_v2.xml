@@ -134,8 +134,18 @@
             android:layout_centerHorizontal="true"
             android:text="0.00"
             android:textColor="@color/tex_color_white"
-            android:textSize="@dimen/text_49sp" />
-
+            android:textSize="@dimen/text_32sp" />
+        <TextView
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/total_assets_btc_tv"
+            android:layout_alignBottom="@+id/total_assets_btc_tv"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="8dp"
+            android:text="≈"
+            android:textColor="@color/tex_color_white"
+            android:textSize="@dimen/text_14sp" />
         <TextView
             android:id="@+id/zongzichang"
             android:layout_width="wrap_content"
@@ -144,7 +154,7 @@
             android:layout_centerInParent="true"
             android:text="@string/total_assets2"
             android:textColor="@color/tex_color_white"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_14sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -154,9 +164,10 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/total_assets_btc_tv"
-            android:text="¥"
+            android:text="USD"
             android:textColor="@color/tex_color_white"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_12sp" />
+        <!--¥-->
     </RelativeLayout>
 
     <View

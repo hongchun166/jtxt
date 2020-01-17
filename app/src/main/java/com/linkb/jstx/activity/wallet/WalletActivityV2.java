@@ -14,14 +14,15 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
-import com.linkb.jstx.adapter.wallet.CoinExchangeListAdapter;
+import com.linkb.jstx.adapter.wallet.MyCurrencyListAdapter;
+import com.linkb.jstx.app.Global;
+import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.GlobalEmptyView;
 import com.linkb.jstx.network.http.HttpRequestListener;
-import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
-import com.linkb.jstx.network.result.BaseResult;
-import com.linkb.jstx.network.result.QueryAssetsResult;
-import com.linkb.jstx.network.result.QueryExchangeRateResult;
+import com.linkb.jstx.network.result.v2.AccountBalanceResult;
+import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.util.ConvertUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -33,18 +34,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WalletActivityV2 extends BaseActivity implements HttpRequestListener<BaseResult> {
+public class WalletActivityV2 extends BaseActivity{
     private static final int ADD_COIN_REQUEST_CODE = 0x11;
 
     @BindView(R.id.emptyView) GlobalEmptyView emptyView;
-    private CoinExchangeListAdapter mAdapter;
-    private List<QueryAssetsResult.DataListBean> mList = new ArrayList<>();
+    private MyCurrencyListAdapter mAdapter;
+    private List<ListMyCurrencyResult.DataBean> mList = new ArrayList<>();
+
     @BindView(R.id.recyclerView) RecyclerView recyclerView;
     @BindView(R.id.refreshLayout) RefreshLayout refreshLayout;
     @BindView(R.id.money_visible_fly) View moneyHideFly;
     @BindView(R.id.money_visible_img) ImageView moneyHideImg;
     @BindView(R.id.total_assets_btc_tv) TextView total_assets_btc_tv;
-//    @BindView(R.id.total_assets_cny_tv) TextView total_assets_cny_tv;
     @BindView(R.id.hide_currency_ckb) CheckBox hideCurrencyCkb;
 
     @BindView(R.id.exchange_tv) TextView exchange_tv;
@@ -54,19 +55,16 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
     private boolean enableMoneyVisible = true;
     private String totalAssetsBtc = "0.00";
-    private String totalAssetsCny = "0.00";
-
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
-
         hideCurrencyCkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    List<QueryAssetsResult.DataListBean> list = new ArrayList<>();
+                    List<ListMyCurrencyResult.DataBean> list = new ArrayList<>();
                     for (int i = 0; i < mList.size(); i++) {
-                        if (mList.get(i).getAmount() > 0){
+                        if (mList.get(i).getLockBalance() > 0){
                             list.add(mList.get(i));
                         }else {
                             continue;
@@ -90,7 +88,7 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         VerticalSpaceItemDecoration itemDecor = new VerticalSpaceItemDecoration(ConvertUtils.dp2px(8));
         recyclerView.addItemDecoration(itemDecor);
-        recyclerView.setAdapter(mAdapter = new CoinExchangeListAdapter(this, mList));
+        recyclerView.setAdapter(mAdapter = new MyCurrencyListAdapter(this, mList));
 
         int imgSize=66;
         {
@@ -111,12 +109,6 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
         initDate();
     }
-
-//    private void initData(boolean refresh){
-//
-//        mAdapter.replaceAll(mList);
-//    }
-
     @Override
     protected int getContentLayout() {
         return R.layout.activity_wallet_v2;
@@ -124,23 +116,38 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
     private void initDate(){
         showProgressDialog("");
-    //        HttpServiceManager.queryAssetsBalance(this);
         User user=Global.getCurrentUser();
-        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener() {
+        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener<AccountBalanceResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    total_assets_btc_tv.setText(String.valueOf(result.getData().getBalance()));
+                }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
             }
         });
-        HttpServiceManagerV2.listMyCurrency(user.account, "", this);
-    }
-
-    /*获取当前实时汇率*/
-    private void getCurrentExchangeRate() {
-        HttpServiceManager.queryCoinCurrentExchangeRate(this);
+        HttpServiceManagerV2.listMyCurrency(user.account, "", new HttpRequestListener<ListMyCurrencyResult>() {
+            @Override
+            public void onHttpRequestSucceed(ListMyCurrencyResult result, OriginalCall call) {
+                hideProgressDialog();
+                refreshLayout.finishRefresh();
+                if (result.isSuccess()){
+                    List<ListMyCurrencyResult.DataBean> dataBeanList=result.getData();
+                    mList.clear();
+                    mList.addAll(dataBeanList);
+                    mAdapter.replaceAll(dataBeanList);
+                }else {
+                    showToastView(result.message);
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                hideProgressDialog();
+                refreshLayout.finishRefresh();
+            }
+        });
     }
 
     @OnClick(R.id.money_visible_fly)
@@ -172,7 +179,6 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
 
     private void changeMoneyVisibleState() {
         total_assets_btc_tv.setText(enableMoneyVisible ? String.valueOf(totalAssetsBtc) : "******");
-//        total_assets_cny_tv.setText(enableMoneyVisible ? String.valueOf(totalAssetsCny) : "******");
     }
 
     @OnClick(R.id.financial_btn)
@@ -184,44 +190,11 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
     public void onSearchCoin() {
         startActivityForResult(new Intent(WalletActivityV2.this, CoinSearchActivity.class), ADD_COIN_REQUEST_CODE);
     }
-
-    @Override
-    public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-        hideProgressDialog();
-        refreshLayout.finishRefresh();
-        if (result.isSuccess()){
-            if (result instanceof QueryAssetsResult){
-                QueryAssetsResult result1 = (QueryAssetsResult) result;
-                totalAssetsBtc = ConvertUtils.doubleToString(result1.getData().getTotalBTC());
-                totalAssetsCny = ConvertUtils.doubleToString(result1.getData().getTotalCNY());
-                total_assets_btc_tv.setText(totalAssetsBtc);
-//                total_assets_cny_tv.setText(totalAssetsCny);
-                mList.clear();
-                mList.addAll(result1.getDataList());
-                mAdapter.replaceAll(result1.getDataList());
-            }else if (result instanceof QueryExchangeRateResult){
-                QueryExchangeRateResult result2 = (QueryExchangeRateResult) result;
-            }
-
-        }else {
-            showToastView(result.message);
-        }
-    }
-
-    @Override
-    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-        hideProgressDialog();
-        refreshLayout.finishRefresh();
-    }
-
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-
         private final int verticalSpaceHeight;
-
         public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
             this.verticalSpaceHeight = verticalSpaceHeight;
         }
-
         @Override
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                    RecyclerView.State state) {
@@ -235,7 +208,6 @@ public class WalletActivityV2 extends BaseActivity implements HttpRequestListene
         if (resultCode == RESULT_OK && requestCode == 0x10){
             initDate();
         }
-
         if (resultCode == RESULT_OK && requestCode == ADD_COIN_REQUEST_CODE){
             initDate();
         }

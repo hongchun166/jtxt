@@ -9,6 +9,8 @@ import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.WithdrawBillResult;
+import com.linkb.jstx.network.result.v2.AccountBalanceResult;
+import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 
 public class HttpServiceManagerV2 {
     /**
@@ -103,13 +105,13 @@ public class HttpServiceManagerV2 {
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
-     /**
+    /**
      * 获取账户总余额
      * @param account
      * @param listener
      */
     public static void getAccountBalance(String account,  HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getAccountBalance, FriendListResultV2.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getAccountBalance, AccountBalanceResult.class);
         requestBody.addParameter("account", account);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -152,10 +154,9 @@ public class HttpServiceManagerV2 {
      * @param listener
      */
     public static void listMyCurrency(String account,String currencyId,  HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listMyCurrency, WithdrawBillResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listMyCurrency, ListMyCurrencyResult.class);
         requestBody.addParameter("account", account);//
         if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
         HttpRequestLauncher.execute(requestBody, listener);
     }
-
 }

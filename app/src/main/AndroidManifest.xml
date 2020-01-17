@@ -338,6 +338,12 @@
             android:name=".jstx.activity.contact.SearchFriendActivityV2"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".jstx.activity.contact.FindFindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.contact.SearchUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".jstx.activity.contact.SearchFriendActivityV3"
             android:screenOrientation="portrait" />
         <activity
