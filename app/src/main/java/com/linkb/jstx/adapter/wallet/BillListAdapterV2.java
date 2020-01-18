@@ -11,21 +11,22 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.network.result.WithdrawBillResult;
+import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.util.BigDecimalUtils;
 import com.linkb.jstx.util.TimeUtils;
 
 import java.util.List;
 
 public class BillListAdapterV2 extends BaseAdapter {
-    private List<WithdrawBillResult.DataBean> mList;
+    private List<ListMyBalanceFlowResult.DataBean> mList;
     private Context mContext;
 
-    public BillListAdapterV2(List<WithdrawBillResult.DataBean> mList, Context mContext) {
+    public BillListAdapterV2(List<ListMyBalanceFlowResult.DataBean> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
     }
 
-    public void setData(List<WithdrawBillResult.DataBean> data) {
+    public void setData(List<ListMyBalanceFlowResult.DataBean> data) {
         this.mList = data;
         notifyDataSetChanged();
     }
@@ -59,42 +60,50 @@ public class BillListAdapterV2 extends BaseAdapter {
         } else {
             holder = (Holder) view.getTag();
         }
-        WithdrawBillResult.DataBean dataBean = mList.get(i);
+        ListMyBalanceFlowResult.DataBean dataBean = mList.get(i);
         setTypeView(holder.imgType, holder.tvType, dataBean);
-        holder.tvTime.setText(TimeUtils.formatTime(dataBean.getAdd_date(), TimeUtils.ALL_FORMAT));
-        int amountColor = dataBean.getRed_type() == 0 ? ContextCompat.getColor(mContext, R.color.color_E75B28) :
+        holder.tvTime.setText(dataBean.getAddTimeFinal());
+
+        int amountColor = dataBean.getType() == 0 ? ContextCompat.getColor(mContext, R.color.color_E75B28) :
                 ContextCompat.getColor(mContext, R.color.tex_color_gray_333);
         holder.tvAmount.setTextColor(amountColor);
-        String amount = BigDecimalUtils.mul2(String.valueOf(1), String.valueOf(dataBean.getMoney()));
-        String amountStr = dataBean.getRed_type() == 0 ? "+" + amount + "KKC" :
-                "-" + amount + "KKC";
+        String amountStr = dataBean.getType() == 0 ? "+" + dataBean.getAmount() + "KKC" : "-" + dataBean.getAmount() + "KKC";
         holder.tvAmount.setText(amountStr);
+
+//        holder.tvTime.setText(TimeUtils.formatTime(dataBean.getAdd_date(), TimeUtils.ALL_FORMAT));
+//        int amountColor = dataBean.getRed_type() == 0 ? ContextCompat.getColor(mContext, R.color.color_E75B28) :
+//                ContextCompat.getColor(mContext, R.color.tex_color_gray_333);
+//        holder.tvAmount.setTextColor(amountColor);
+//        String amount = BigDecimalUtils.mul2(String.valueOf(1), String.valueOf(dataBean.getMoney()));
+//        String amountStr = dataBean.getRed_type() == 0 ? "+" + amount + "KKC" :
+//                "-" + amount + "KKC";
+//        holder.tvAmount.setText(amountStr);
         return view;
     }
 
     /**
      * 设置类型
      */
-    private void setTypeView(ImageView imageView, TextView textView, WithdrawBillResult.DataBean bean) {
-        switch (bean.getBillType()) {
+    private void setTypeView(ImageView imageView, TextView textView, ListMyBalanceFlowResult.DataBean bean) {
+        switch (bean.getType()) {
             case 0:
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill1));
-                textView.setText(bean.getEvent());
+                textView.setText(bean.getRemark());
                 break;
             case 1:
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill2));
-                textView.setText(bean.getEvent());
+                textView.setText(bean.getRemark());
                 break;
             case 2:
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill3));
-                textView.setText(bean.getEvent());
+                textView.setText(bean.getRemark());
                 break;
 //            case 3:
 //                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
 //                break;
             default:
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
-                textView.setText(bean.getEvent());
+                textView.setText(bean.getRemark());
                 break;
         }
 

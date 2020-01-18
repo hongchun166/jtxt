@@ -283,6 +283,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="com.linkb.jstx.activity.contact.UserDetailActivityV2"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".jstx.activity.contact.PersonInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />

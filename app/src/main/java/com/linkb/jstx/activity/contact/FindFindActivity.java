@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -31,6 +32,9 @@ import com.linkb.jstx.activity.setting.ModifyLabelActivityV2;
 import com.linkb.jstx.model.intent.SearchUserParam;
 import com.linkb.jstx.model.world_area.CountryBean;
 import com.linkb.jstx.util.InputSoftUtils;
+import com.zhy.view.flowlayout.FlowLayout;
+import com.zhy.view.flowlayout.TagAdapter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,12 +74,17 @@ public class FindFindActivity extends BaseActivity {
     @BindView(R.id.viewSearchGroupInput)
     EditText viewSearchGroupInput;
 
+    @BindView(R.id.viewTagFlowLayout)
+    TagFlowLayout viewTagFlowLayout;
+
     private int searchType = 0;  //0找人  1找群
 
 
     private String industr;
     private String label;
     RegionDigOpt regionDigOpt;
+
+    List<String> hotSearchList=new ArrayList<>();
 
     @Override
     public void onDestroy() {
@@ -126,15 +135,36 @@ public class FindFindActivity extends BaseActivity {
                 if(tv_region!=null)tv_region.setText(region);
             }
         });
+
+        hotSearchList.add("金融");
+        hotSearchList.add("区块链");
+        hotSearchList.add("直销");
+        hotSearchList.add("PE");
+        hotSearchList.add("比特币");
+        hotSearchList.add("互联网");
+        viewTagFlowLayout.setAdapter(new TagAdapter<String>(hotSearchList) {
+            @Override
+            public View getView(FlowLayout parent, int position, String str) {
+                TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_group_hot_search,parent, false);
+                tv.setText(str);
+                return tv;
+            }
+        });
+        viewTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                String str=hotSearchList.get(position);
+                viewSearchGroupInput.setText(str);
+                httpSearchGroup();
+                return false;
+            }
+        });
     }
     @OnClick(R.id.next_button)
     public void search() {
         httpSearchFrient();
     }
-    @OnClick(R.id.viewBtnSearchGroup)
-    public void searchGroup() {
-        httpSearchGroup();
-    }
+
     @OnClick(R.id.back_btn)
     public void onBackBtn() {
         finish();

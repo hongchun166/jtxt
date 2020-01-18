@@ -16,6 +16,7 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.chat.GroupChatActivity;
 import com.linkb.jstx.adapter.SearchFriendAdapter;
 import com.linkb.jstx.adapter.SearchGroupAdapter;
+import com.linkb.jstx.adapter.SearchGroupAdapterV2;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.model.intent.SearchUserParam;
@@ -39,13 +40,10 @@ public class SearchUserListActivity extends BaseActivity {
 
     private static final int SEARCH_TYPE_User=0;
     private static final int SEARCH_TYPE_Group=1;
-
-    @BindView(R.id.viewBack)
-    ImageView viewBack;
     @BindView(R.id.viewTitle)
     TextView viewTitle;
-    @BindView(R.id.viewTopTitle)
-    RelativeLayout viewTopTitle;
+    @BindView(R.id.viewBack)
+    View viewBack;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.viewEmpty)
@@ -53,6 +51,12 @@ public class SearchUserListActivity extends BaseActivity {
     Unbinder unbinder;
 
     SearchUserParam searchUserParam;
+    private List<FriendQueryResult.DataListBean> mSearchUserList = new ArrayList<>();
+    private SearchFriendAdapter mAdapterUser;
+
+    private SearchGroupAdapterV2 mAdapterGroup;
+    private List<GroupQueryResult.DataListBean> mSearchGroupList = new ArrayList<>();
+
 
     public static void navToSearchUser(Context context, SearchUserParam searchUserParam){
         Intent intent=new Intent(context,SearchUserListActivity.class);
@@ -76,8 +80,13 @@ public class SearchUserListActivity extends BaseActivity {
         InputSoftUtils.hideSoftInput(this);
     }
 
-    public SearchUserParam getSearchUserParam() {
-        return searchUserParam;
+
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_search_user_list;
+    }
+    private Context getContext(){
+        return this;
     }
     @Override
     protected void initComponents() {
@@ -86,33 +95,24 @@ public class SearchUserListActivity extends BaseActivity {
         searchUserParam= (SearchUserParam) bundle.getSerializable("SearchParam");
         searchUserParam.setSearchType(bundle.getInt("SearchType",SEARCH_TYPE_User));
         if(searchUserParam.getSearchType()==SEARCH_TYPE_User){
-            viewTitle.setText("搜索用户");
+            viewTitle.setText(R.string.search_user2);
             initSearchUserView();
             httpSearchUserList(searchUserParam);
         }else if(searchUserParam.getSearchType()==SEARCH_TYPE_Group){
-            viewTitle.setText("搜索群组");
+            viewTitle.setText(R.string.search_group2);
             initSearchGroupView();
             httpSearchGroupList(searchUserParam);
         }
     }
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_search_user_list;
-    }
-    private Context getContext(){
-        return this;
-    }
+
     @OnClick(R.id.viewBack)
     public void onBackBtn() {
         finish();
     }
 
-
-    private List<FriendQueryResult.DataListBean> mSearchUserList = new ArrayList<>();
-    private SearchFriendAdapter mAdapterUser;
-
-    private SearchGroupAdapter mAdapterGroup;
-    private List<GroupQueryResult.DataListBean> mSearchGroupList = new ArrayList<>();
+    public SearchUserParam getSearchUserParam() {
+        return searchUserParam;
+    }
 
     private void initSearchUserView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -132,7 +132,7 @@ public class SearchUserListActivity extends BaseActivity {
     private void initSearchGroupView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapterGroup = new SearchGroupAdapter(this, mSearchGroupList, new SearchGroupAdapter.OnSearchGroupClickedListener() {
+        mAdapterGroup = new SearchGroupAdapterV2(this, mSearchGroupList, new SearchGroupAdapterV2.OnSearchGroupClickedListener() {
             @Override
             public void onJoinGroup(GroupQueryResult.DataListBean dataBean) {
                 showProgressDialog("");

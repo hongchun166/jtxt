@@ -66,6 +66,8 @@
     <string name="create_chat_group">create group chat</string>
     <string name="search_account">search account</string>
     <string name="search_group">search group</string>
+    <string name="search_group2">search group</string>
+    <string name="search_user2">search user</string>
     <string name="apply_join_group_tips">Waiting Group Creator Review</string>
     <string name="read_qr_code_error">invaild qrcode</string>
     <string name="apply_join_group_error_tips">You had joined this Group</string>
@@ -338,7 +340,7 @@
     <string name="common_praise">praise</string>
     <string name="common_authorize">authorize</string>
     <string name="common_invite">invite</string>
-
+    <string name="see_trends">See Trends</string>
 
     <string name="label_format_kilometre">%1$.2f kilometre</string>
     <string name="label_format_metre">%1$d meter</string>
@@ -735,7 +737,8 @@
     <string name="item_industry_gongwuyuan">公务员/行政/事业单位</string>
     <string name="item_industry_xuesheng">学生</string>
     <string name="item_industry_qita">其他</string>
-    <string name="item_hot_labels">hot labels</string>
+    <string name="item_hot_labels">Hot Labels</string>
+    <string name="item_hot_search">Hot Search</string>
     <string name="please_search_content">Please enter your search</string>
     <string name="select_record_type">select record type</string>
     <string name="all">all</string>

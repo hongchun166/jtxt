@@ -183,7 +183,10 @@ public class URLConstant {
      * 我的好友列表
      */
     public static String LIST_MY_FRIENDS_V2;
-
+    /**
+     * 获取用户信息
+     */
+    public static String QUERY_USER_INFO_V2;
     /**
      * 删除好友
      */
@@ -410,6 +413,8 @@ public class URLConstant {
         APPLY_FRIENDV_DELETE_V2=API_URL +"userFriend/delete";
         LIST_FRIEND_APPLY_V2=API_URL +"userFriend/listFriendApply";
         LIST_MY_FRIENDS_V2=API_URL +"userFriend/listMyFriends";
+
+        QUERY_USER_INFO_V2=API_URL +"userFriend/query";
 
         getAccountBalance=API_URL +"currency/getAccountBalance";
         getMyCurrencyById=API_URL +"currency/getMyCurrencyById";

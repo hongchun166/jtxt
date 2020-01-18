@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,32 +44,20 @@
         android:id="@+id/viewSearchHotHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="热门搜索"
+        android:text="@string/item_hot_search"
         android:textColor="@color/tex_color_gray_999999"
         android:textSize="@dimen/text_12sp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/viewSearchGroupInputItem"
         />
-    <RelativeLayout
-        android:id="@+id/viewHot"
-        android:layout_width="wrap_content"
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/viewTagFlowLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:layout_below="@+id/viewSearchHotHint"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_gray_radius"
-            android:text="科技金融"
-            android:textSize="@dimen/text_12sp"
-            android:textColor="@color/tex_color_gray_333"
-            />
-    </RelativeLayout>
-    <Button
-        android:id="@+id/viewBtnSearchGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="找一找"
-        android:layout_below="@+id/viewHot"
-        />
+        app:max_select="1">
+
+    </com.zhy.view.flowlayout.TagFlowLayout>
 </RelativeLayout>

@@ -22,6 +22,7 @@ import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.WithdrawBillResult;
+import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -35,7 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BillActivityV2 extends BaseActivity implements HttpRequestListener<WithdrawBillResult>, BillChangeDialogV2.OnBillChangeListener {
+public class BillActivityV2 extends BaseActivity implements HttpRequestListener<ListMyBalanceFlowResult>, BillChangeDialogV2.OnBillChangeListener {
 
     @BindView(R.id.recyclerView)
     ListView recyclerView;
@@ -47,7 +48,7 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
     View emptyView;
 
     private BillListAdapterV2 mAdapter;
-    private List<WithdrawBillResult.DataBean> mList = new ArrayList<>();
+    private List<ListMyBalanceFlowResult.DataBean> mList = new ArrayList<>();
 
     private static final int SELECT_TIME_REQUEST = 0x10;
 
@@ -132,7 +133,7 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
     }
 
     @Override
-    public void onHttpRequestSucceed(WithdrawBillResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(ListMyBalanceFlowResult result, OriginalCall call) {
         refreshLayout.finishRefresh();
         if (result.isSuccess()) {
             mList = result.getData();

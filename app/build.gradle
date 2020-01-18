@@ -226,4 +226,5 @@ dependencies {
 
     implementation project(':blink_lib')
 
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 }

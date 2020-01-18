@@ -138,7 +138,7 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
     @OnClick(R.id.viewDetailedInfoItem)
     public void gotoDetailedInfo(){
         //详细信息
-
+        UserDetailActivityV2.navToAct(this,friend.account);
     }
     @OnClick(R.id.bar_album_cly)
     public void gotoMomentRule(){
