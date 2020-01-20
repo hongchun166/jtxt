@@ -383,6 +383,10 @@
         <activity
             android:name=".jstx.activity.wallet.RedPacketRecordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".jstx.activity.wallet.CurrencyDetailsActivityV2"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".jstx.activity.wallet.WithDrawFinishActivity"
