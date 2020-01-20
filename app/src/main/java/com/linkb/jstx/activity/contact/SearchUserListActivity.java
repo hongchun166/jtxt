@@ -36,6 +36,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * 找个找，
+ * 搜索好友，搜索群组
+ */
 public class SearchUserListActivity extends BaseActivity {
 
     private static final int SEARCH_TYPE_User=0;

@@ -40,24 +40,36 @@
             android:textColorHint="@color/divider_color_gray_CCCCCC"
             android:textSize="@dimen/text_14sp" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/viewSearchHotHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/item_hot_search"
-        android:textColor="@color/tex_color_gray_999999"
-        android:textSize="@dimen/text_12sp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/viewSearchGroupInputItem"
-        />
-
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/viewTagFlowLayout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/vieLatelySearchRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_below="@+id/viewSearchHotHint"
-        app:max_select="1">
+        android:layout_below="@+id/viewSearchGroupInputItem"
+        />
+    <RelativeLayout
+        android:id="@+id/viewSearchHotItemRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vieLatelySearchRecyclerView"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:id="@+id/viewSearchHotHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_hot_search"
+            android:textColor="@color/tex_color_gray_999999"
+            android:textSize="@dimen/text_12sp"
+            />
 
-    </com.zhy.view.flowlayout.TagFlowLayout>
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/viewTagFlowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_below="@+id/viewSearchHotHint"
+            app:max_select="1">
+        </com.zhy.view.flowlayout.TagFlowLayout>
+    </RelativeLayout>
+
 </RelativeLayout>

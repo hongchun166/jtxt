@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,6 +21,7 @@ import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -76,6 +83,12 @@ public class FindFindActivity extends BaseActivity {
 
     @BindView(R.id.viewTagFlowLayout)
     TagFlowLayout viewTagFlowLayout;
+    @BindView(R.id.viewSearchHotItemRoot)
+    RelativeLayout viewSearchHotItemRoot;
+    @BindView(R.id.vieLatelySearchRecyclerView)
+    RecyclerView vieLatelySearchRecyclerView;
+
+
 
     private int searchType = 0;  //0找人  1找群
 
@@ -84,8 +97,9 @@ public class FindFindActivity extends BaseActivity {
     private String label;
     RegionDigOpt regionDigOpt;
 
-    List<String> hotSearchList=new ArrayList<>();
-
+    List<String> hotSearchList=new ArrayList<>();//热门搜索
+    List<String> latelySearchByList=new ArrayList<>();//最近搜索
+    LatelySearchAdapt latelySearchAdapt;//最近搜索适配器
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -112,6 +126,28 @@ public class FindFindActivity extends BaseActivity {
         tvFindPeople.setSelected(true);
         regionDigOpt=new RegionDigOpt();
         regionDigOpt.loadData(this);
+        httpHotSearchByGroup();
+        viewTagFlowLayout.setAdapter(new TagAdapter<String>(hotSearchList) {
+            @Override
+            public View getView(FlowLayout parent, int position, String str) {
+                TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_group_hot_search,parent, false);
+                tv.setText(str);
+                return tv;
+            }
+        });
+        initEven();
+    }
+
+    private void initEven(){
+        viewSearchHotItemRoot.setVisibility(View.GONE);
+        viewSearchGroupInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    viewSearchHotItemRoot.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         viewSearchGroupInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -135,30 +171,62 @@ public class FindFindActivity extends BaseActivity {
                 if(tv_region!=null)tv_region.setText(region);
             }
         });
-
-        hotSearchList.add("金融");
-        hotSearchList.add("区块链");
-        hotSearchList.add("直销");
-        hotSearchList.add("PE");
-        hotSearchList.add("比特币");
-        hotSearchList.add("互联网");
-        viewTagFlowLayout.setAdapter(new TagAdapter<String>(hotSearchList) {
-            @Override
-            public View getView(FlowLayout parent, int position, String str) {
-                TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_group_hot_search,parent, false);
-                tv.setText(str);
-                return tv;
-            }
-        });
         viewTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 String str=hotSearchList.get(position);
-                viewSearchGroupInput.setText(str);
-                httpSearchGroup();
+                inputGroupStrToSearch(str);
                 return false;
             }
         });
+        viewSearchGroupInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                String inputText=viewSearchGroupInput.getText().toString();
+                updateLatelySearchByGroup(inputText);
+            }
+        });
+    }
+
+    private void addSearLog(String str){
+        if(!latelySearchByList.contains(str)){
+            latelySearchByList.add(str);
+        }
+    }
+    private void removeSearchLog(String str){
+        latelySearchAdapt.removeData(str);
+    }
+    private void updateLatelySearchByGroup(String inputStr){
+        if(latelySearchByList.size()==0){
+            latelySearchByList.add("金融");
+            latelySearchByList.add("比特币");
+            latelySearchByList.add("互联网");
+        }
+        List<String> findLatelyList=new ArrayList<>();
+        if(!TextUtils.isEmpty(inputStr)){
+            for (String str : latelySearchByList) {
+                if(str.contains(inputStr)){
+                    findLatelyList.add(str);
+                }
+            }
+        }
+        if(latelySearchAdapt==null){
+            latelySearchAdapt=new LatelySearchAdapt();
+            vieLatelySearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            vieLatelySearchRecyclerView.setAdapter(latelySearchAdapt);
+        }
+        latelySearchAdapt.setData(findLatelyList);
+    }
+    private void inputGroupStrToSearch(String inputStr){
+        if(inputStr==null)return;
+        viewSearchGroupInput.setText(inputStr);
+        httpSearchGroup();
     }
     @OnClick(R.id.next_button)
     public void search() {
@@ -285,10 +353,77 @@ public class FindFindActivity extends BaseActivity {
         SearchUserListActivity.navToSearchUser(this,searchUserParam);
     }
     private void httpSearchGroup(){
+
         String groupKey = viewSearchGroupInput.getText().toString();
+        addSearLog(groupKey);
         SearchUserParam searchUserParam=new SearchUserParam();
         searchUserParam.setInputStr(groupKey);
         SearchUserListActivity.navToSearchGroup(this,searchUserParam);
     }
+    private void httpHotSearchByGroup(){
+        hotSearchList.add("金融");
+        hotSearchList.add("区块链");
+        hotSearchList.add("直销");
+        hotSearchList.add("PE");
+        hotSearchList.add("比特币");
+        hotSearchList.add("互联网");
+    }
 
+   public  class LatelySearchAdapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+        List<String> mData=new ArrayList<>();
+        public void setData(List<String> data){
+            mData.clear();
+            mData.addAll(data);
+            notifyDataSetChanged();
+        }
+        public void removeData(String str){
+            if(mData.contains(str)){
+                mData.remove(str);
+                notifyDataSetChanged();
+            }
+        }
+       @NonNull
+       @Override
+       public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+           View view = LayoutInflater.from(getContext()).inflate(R.layout.item_lately_sear,viewGroup, false);
+           LatelySearchAdaptHodler hodler=new LatelySearchAdaptHodler(view);
+           return hodler;
+       }
+
+       @Override
+       public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+           LatelySearchAdaptHodler hodler= (LatelySearchAdaptHodler) viewHolder;
+           String bean=mData.get(position);
+           hodler.bean=bean;
+           hodler.viewSearchStr.setText(bean);
+       }
+
+       @Override
+       public int getItemCount() {
+           return mData.size();
+       }
+   }
+   public class LatelySearchAdaptHodler extends RecyclerView.ViewHolder implements View.OnClickListener{
+        View viewSearchRoot;
+        TextView  viewSearchStr;
+        ImageView viewIVX;
+        String bean;
+       public LatelySearchAdaptHodler(@NonNull View itemView) {
+           super(itemView);
+           viewSearchRoot=itemView.findViewById(R.id.viewSearchRoot);
+           viewSearchStr=itemView.findViewById(R.id.viewSearchStr);
+           viewIVX=itemView.findViewById(R.id.viewIVX);
+           viewIVX.setOnClickListener(this);
+           viewSearchRoot.setOnClickListener(this);
+       }
+
+       @Override
+       public void onClick(View v) {
+           if(v.getId()==R.id.viewIVX){
+                removeSearchLog(bean);
+           }else if(v.getId()==R.id.viewSearchRoot){
+               inputGroupStrToSearch(bean);
+           }
+       }
+   }
 }
