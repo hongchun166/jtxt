@@ -36,7 +36,7 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_my_currency, viewGroup, false);
-        return new MyCurrencyListHolder(view);
+        return new MyCurrencyListHolder(view, i);
     }
 
     @Override
@@ -79,15 +79,23 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @BindView(R.id.viewCurrencyEffective)
         TextView viewCurrencyEffective;
 
-        public MyCurrencyListHolder(@NonNull View itemView) {
+        private int position;
+
+        public MyCurrencyListHolder(@NonNull View itemView, int i) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            position = i;
             viewCurrencyItem.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View v) {
-            context.startActivity(new Intent(context, CurrencyDetailsActivityV2.class));
+            ListMyCurrencyResult.DataBean dataBean = mDate.get(position);
+            Intent intent = new Intent(context, CurrencyDetailsActivityV2.class);
+            intent.putExtra("currencyId", dataBean.getCurrencyId());
+            intent.putExtra("currencyName", dataBean.getCurrencyName());
+            context.startActivity(intent);
         }
     }
 }

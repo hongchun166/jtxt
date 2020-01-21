@@ -1,30 +1,31 @@
 
 package com.linkb.jstx.network.http;
 
-        import android.content.Intent;
+import android.content.Intent;
 
-        import com.linkb.jstx.activity.LoginActivityV2;
-        import com.linkb.jstx.app.Constant;
-        import com.linkb.jstx.app.LvxinApplication;
-        import com.linkb.jstx.network.result.BaseResult;
-        import com.linkb.jstx.util.BackgroundThreadHandler;
-        import com.linkb.jstx.util.MLog;
-        import com.google.gson.Gson;
+import com.linkb.jstx.activity.LoginActivityV2;
+import com.linkb.jstx.app.Constant;
+import com.linkb.jstx.app.LvxinApplication;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.util.BackgroundThreadHandler;
+import com.linkb.jstx.util.MLog;
+import com.google.gson.Gson;
 
-        import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.IOUtils;
 
-        import java.io.IOException;
+import java.io.IOException;
 
-        import okhttp3.Call;
-        import okhttp3.Callback;
-        import okhttp3.Response;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 abstract class CustomOkHttpCallback implements Callback {
     private final static String TAG = CustomOkHttpCallback.class.getSimpleName();
     private Class<? extends BaseResult> mClass;
     private boolean mainThread;
-    public CustomOkHttpCallback(Class<? extends BaseResult> clazs,boolean mainThread) {
+
+    public CustomOkHttpCallback(Class<? extends BaseResult> clazs, boolean mainThread) {
         mClass = clazs;
         this.mainThread = mainThread;
     }
@@ -36,27 +37,27 @@ abstract class CustomOkHttpCallback implements Callback {
 
     private void onInnerFailure(final Call call, final Exception e) {
         MLog.e(TAG, "", e);
-        if (mainThread){
+        if (mainThread) {
             BackgroundThreadHandler.postUIThread(new Runnable() {
                 @Override
                 public void run() {
                     onFailured(call, e);
                 }
             });
-        }else {
+        } else {
             onFailured(call, e);
         }
     }
 
-    private void onInnerSuccess( final Call call, final BaseResult result){
-        if (mainThread){
+    private void onInnerSuccess(final Call call, final BaseResult result) {
+        if (mainThread) {
             BackgroundThreadHandler.postUIThread(new Runnable() {
                 @Override
                 public void run() {
                     onResponse(call, result);
                 }
             });
-        }else {
+        } else {
             onResponse(call, result);
         }
 
@@ -70,7 +71,7 @@ abstract class CustomOkHttpCallback implements Callback {
             if (mClass == null) {
                 return;
             }
-
+            System.out.println("当去年暑假:" + data + "----对应数据模型:" + mClass.getName());
             final BaseResult baseResult = new Gson().fromJson(data, mClass);
 
             if (Constant.ReturnCode.CODE_401.equals(String.valueOf(response.code()))) {
@@ -79,10 +80,10 @@ abstract class CustomOkHttpCallback implements Callback {
                 LvxinApplication.getInstance().startActivity(intent);
                 return;
             }
-            if (baseResult != null){
-                onInnerSuccess(call,baseResult);
-            }else {
-                onInnerFailure(call,new IllegalAccessException());
+            if (baseResult != null) {
+                onInnerSuccess(call, baseResult);
+            } else {
+                onInnerFailure(call, new IllegalAccessException());
             }
         } catch (Exception e) {
             onInnerFailure(call, e);

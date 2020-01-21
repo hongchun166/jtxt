@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="63.6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.github.siyamed.shapeimageview.RoundedImageView
+                android:id="@+id/image_header"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="13.3dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher"
+                app:siRadius="100dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/tex_color_gray_333"
+                    android:textSize="@dimen/text_12sp"
+                    tools:text="张三" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/divider_color_gray_999999"
+                    android:textSize="@dimen/text_8sp"
+                    tools:text="2020-01-23 13:25" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center_vertical|right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/color_1450f7"
+                    android:textSize="@dimen/text_14sp"
+                    tools:text="+100.00 kkc" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/divider_color_gray_999999"
+                    android:textSize="@dimen/text_9sp"
+                    tools:text="完成" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="13.3dp"
+                android:src="@mipmap/next_step" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginStart="44dp"
+            android:background="@color/color_e4e4e4" />
+    </LinearLayout>
+</LinearLayout>

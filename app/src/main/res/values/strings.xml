@@ -300,7 +300,6 @@
     <string name="un_verify">未认证</string>
 
 
-
     <string name="common_comment">回复</string>
     <string name="common_send">发送</string>
     <string name="common_cancel">取消</string>
@@ -965,7 +964,7 @@
     <string name="unmarried2">单身</string>
     <string name="marriage2">非单身</string>
 
-<!--    industry-->
+    <!--    industry-->
     <string name="item_industry_buxiang">不限</string>
     <string name="item_industry_jishuaji">计算机</string>
     <string name="item_industry_shengc">生产/工艺/制造</string>
@@ -991,4 +990,6 @@
     <string name="top_up_coin_record">充值记录</string>
     <string name="add_bill_amount">+%1$dKKC</string>
     <string name="minus_bill_amount">-%1$dKKC</string>
+    <string name="collection">收款</string>
+    <string name="transaction_records">交易记录</string>
 </resources>

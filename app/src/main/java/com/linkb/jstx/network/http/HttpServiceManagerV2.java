@@ -10,6 +10,7 @@ import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
+import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
@@ -138,8 +139,8 @@ public class HttpServiceManagerV2 {
      * @param currencyId  钱包ID
      * @param listener
      */
-    public static void getMyCurrencyById(String account,String currencyId,  HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMyCurrencyById, FriendListResultV2.class);
+    public static void getMyCurrencyById(String account,String currencyId,  HttpRequestListener<CurrencyInfoResult> listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMyCurrencyById, CurrencyInfoResult.class);
         requestBody.addParameter("account", account);
         requestBody.addParameter("currencyId", currencyId);
         HttpRequestLauncher.execute(requestBody, listener);
@@ -175,4 +176,5 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
 }
