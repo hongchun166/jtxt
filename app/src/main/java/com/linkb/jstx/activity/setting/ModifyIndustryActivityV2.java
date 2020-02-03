@@ -20,8 +20,12 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
+import com.linkb.jstx.network.result.v2.ListIndustryResult;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,15 +35,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ModifyIndustryActivityV2 extends BaseActivity implements HttpRequestListener<ModifyPersonInfoResult> {
-    static class IndustryBean{
-        public String name;
-        public String code;
-        public IndustryBean(String name,String code) {
-            this.name = name;
-            this.code=code;
-        }
-    }
+public class ModifyIndustryActivityV2 extends BaseActivity {
+
 
     @BindView(R.id.tv_title)
     TextView titleTv;
@@ -77,12 +74,24 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new IndustryAdapt(this);
         recyclerView.setAdapter(mAdapter);
+        httpLoadIndustryList();
+    }
 
-        List<IndustryBean> industryBeanList=loadIndustryList();
-        IndustryBean curIndus=null;
+    @OnClick(R.id.back_btn)
+    public void onBack() {
+        finish();
+    }
+    @Override
+    public int getContentLayout() {
+        return R.layout.activity_update_industry_v2;
+    }
+
+    private void resultData(List<ListIndustryResult.DataBean> industryBeanList){
+        String curIndustryStr=user.industry;
+        ListIndustryResult.DataBean curIndus=null;
         if(!TextUtils.isEmpty(curIndustryStr)){
-            for (IndustryBean industryBean : industryBeanList) {
-                if(industryBean.name.equals(curIndustryStr)){
+            for (ListIndustryResult.DataBean industryBean : industryBeanList) {
+                if(industryBean.getIndustryName().equals(curIndustryStr)){
                     curIndus=industryBean;
                     break;
                 }
@@ -95,78 +104,79 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
         }else {
             curIndus=industryBeanList.get(0);
         }
-        selectMap.put(curIndus.code,curIndus);
+        selectMap.put(curIndus.getIndustryCode(),curIndus);
         mAdapter.addDataAll(industryBeanList);
     }
 
-    @OnClick(R.id.back_btn)
-    public void onBack() {
-        finish();
-    }
-    @Override
-    public int getContentLayout() {
-        return R.layout.activity_update_industry_v2;
-    }
+    private List<ListIndustryResult.DataBean > loadNativeIndustryList(){
+     List<ListIndustryResult.DataBean> list=new ArrayList<>();
 
-    @Override
-    public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
-        if (result.isSuccess()) {
-
-            showToastView(R.string.tip_save_complete);
-            setResult(RESULT_OK, getIntent());
-            finish();
-        }
-    }
-
-    @Override
-    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-    }
-
-    private List<IndustryBean> loadIndustryList(){
-     List<IndustryBean> list=new ArrayList<>();
-
-        list.add(new IndustryBean(getString(R.string.item_industry_buxiang),"10"));
-        list.add(new IndustryBean(getString(R.string.item_industry_jishuaji),"20"));
-        list.add(new IndustryBean(getString(R.string.item_industry_shengc),"30"));
-        list.add(new IndustryBean(getString(R.string.item_industry_yiliao),"40"));
-        list.add(new IndustryBean(getString(R.string.item_industry_jingrong),"50"));
-        list.add(new IndustryBean(getString(R.string.item_industry_shangye),"60"));
-        list.add(new IndustryBean(getString(R.string.item_industry_wenhua),"70"));
-        list.add(new IndustryBean(getString(R.string.item_industry_yule),"80"));
-        list.add(new IndustryBean(getString(R.string.item_industry_lvsi),"90"));
-        list.add(new IndustryBean(getString(R.string.item_industry_jiaoyu),"100"));
-        list.add(new IndustryBean(getString(R.string.item_industry_gongwuyuan),"110"));
-        list.add(new IndustryBean(getString(R.string.item_industry_xuesheng),"120"));
-        list.add(new IndustryBean(getString(R.string.item_industry_qita),"130"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_buxiang),"10"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_jishuaji),"20"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_shengc),"30"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_yiliao),"40"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_jingrong),"50"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_shangye),"60"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_wenhua),"70"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_yule),"80"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_lvsi),"90"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_jiaoyu),"100"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_gongwuyuan),"110"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_xuesheng),"120"));
+//        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_qita),"130"));
         return list;
     }
 
-    private void updateIndustryToServer(IndustryBean industryBean){
-//        ArrayList<IndustryBean> sele=new ArrayList<>();
-//        sele.addAll(selectMap.values());
-        String curIndustrySt=industryBean.name;
-//        if(sele.size()>0){
-//            curIndustrySt=sele.get(sele.size()-1).name;
-//        }
-        Intent intent=new Intent();
-        intent.putExtra("curIndustrySt",curIndustrySt);
+    private void httpLoadIndustryList(){
+        String account=user.account;
+        HttpServiceManagerV2.getListIndustry(account,new HttpRequestListener<ListIndustryResult>() {
+            @Override
+            public void onHttpRequestSucceed(ListIndustryResult result, OriginalCall call) {
+                if(result.isSuccess() && result.getData()!=null){
+                    resultData(result.getData());
+                }else {
+                    resultData(loadNativeIndustryList());
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
-        setResult(RESULT_OK,intent);
-        finish();
+            }
+        });
     }
 
-    HashMap<String,IndustryBean> selectMap=new HashMap();
+    private void httpUpdateIndustry(ListIndustryResult.DataBean industryBean){
+        final String curIndustrySt=industryBean.getIndustryName();
+        User user=new User();
+        user.industry=curIndustrySt;
+        HttpServiceManagerV2.updateUserInfo(user, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    Intent intent=new Intent();
+                    intent.putExtra("curIndustrySt",curIndustrySt);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+
+    HashMap<String,ListIndustryResult.DataBean> selectMap=new HashMap();
     class IndustryAdapt extends RecyclerView.Adapter<IndustryHodler>  {
         Context context;
-        List<IndustryBean> beanList;
+        List<ListIndustryResult.DataBean> beanList;
 
         public IndustryAdapt(Context context) {
             this.context = context;
             beanList = new ArrayList<>();
         }
 
-        public void addDataAll(List<IndustryBean> data) {
+        public void addDataAll(List<ListIndustryResult.DataBean> data) {
             beanList.clear();
             beanList.addAll(data);
             super.notifyDataSetChanged();
@@ -184,11 +194,11 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
         }
         @Override
         public void onBindViewHolder(IndustryHodler hodler, int position) {
-            IndustryBean bean=  beanList.get(position);
+            ListIndustryResult.DataBean bean=  beanList.get(position);
             hodler.curBean=bean;
 
-            hodler.viewTVName.setText(bean.name);
-            if(selectMap.containsKey(bean.code)){
+            hodler.viewTVName.setText(bean.getIndustryName());
+            if(selectMap.containsKey(bean.getIndustryCode())){
                 hodler.viewIVSelectState.setBackgroundResource(R.mipmap.ic_industry_blue_hook);
             }else {
                 hodler.viewIVSelectState.setBackgroundResource(android.R.color.transparent);
@@ -204,7 +214,7 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
     class IndustryHodler extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView viewTVName;
         public ImageView viewIVSelectState;
-        IndustryBean curBean;
+        ListIndustryResult.DataBean curBean;
         public IndustryHodler(View itemView) {
             super(itemView);
             viewTVName = itemView.findViewById(R.id.viewTVName);
@@ -213,10 +223,7 @@ public class ModifyIndustryActivityV2 extends BaseActivity implements HttpReques
         }
         @Override
         public void onClick(View v) {
-//            selectMap.clear();
-//            selectMap.put(curBean.code,curBean);
-//            mAdapter.notifyDataSetChanged();
-            updateIndustryToServer(curBean);
+            httpUpdateIndustry(curBean);
         }
     }
 }

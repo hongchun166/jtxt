@@ -16,21 +16,22 @@ public class User implements Serializable {
     public transient static final String GENDER_MAN = "1";
 
     public transient static final String GENDER_FEMALE = "0";
-
+    public String headUrl;
     public String account;
     public String password;
     public String name;
-    public String gender;
+    public String gender;//性别
     public String telephone;
     public String email;
     public String code;
-    public String motto;
+    public String motto;//签名
     public int grade;
     public boolean disabled;
-    public String marrriage;
-    public String region;
-    public String industry;
-    public String label;
+    public String marrriage;//婚姻
+    public String region;//区域
+    public String industry;//行业
+    public String label;//标签
+    public String job;//职务
 
     @Override
     public boolean equals(Object o) {

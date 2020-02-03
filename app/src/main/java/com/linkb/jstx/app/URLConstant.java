@@ -403,6 +403,11 @@ public class URLConstant {
     public static String getMyCurrencyById;//查询我的钱包某个币种余额信息
     public static String listMyBalanceFlow;//查询钱包账户流水
     public static String listMyCurrency;//查询我的钱包列表
+
+    public static String lisTags;//获取标签列表
+    public static String listIndustry;//获取行业列表
+    public static String updateUserInfo;//修改个人资料
+
     static {
         initialize();
         initializeV2();
@@ -421,6 +426,9 @@ public class URLConstant {
         listMyBalanceFlow=API_URL +"currency/listMyBalanceFlow";
         listMyCurrency=API_URL +"currency/listMyCurrency";
         QUERY_ASSETS_BALANCEV2 = API_URL + "currency/listMyCurrencyBalance";
+        lisTags = API_URL + "/public/lisTags";
+        listIndustry = API_URL + "/public/listIndustry";
+        updateUserInfo=API_URL + "/user/updateUserInfo";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

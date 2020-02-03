@@ -4,6 +4,7 @@ package com.linkb.jstx.network.http;
 import android.text.TextUtils;
 
 import com.linkb.jstx.app.URLConstant;
+import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
@@ -11,8 +12,10 @@ import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
+import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
 
 public class HttpServiceManagerV2 {
@@ -176,5 +179,44 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(currencyId)) requestBody.addParameter("currencyId", currencyId);
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
+    /**
+     * 获取标签列表
+     * @param listener
+     */
+    public static void getLisTags(String account,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.lisTags, ListTagsResult.class);
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取行业列表
+     * @param listener
+     */
+    public static void getListIndustry(String account,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listIndustry, ListIndustryResult.class);
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 修改个人资料
+     * @param listener
+     */
+    public static void updateUserInfo(User user, HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.updateUserInfo, BaseResult.class);
+        if(!TextUtils.isEmpty(user.headUrl)) requestBody.addParameter("headUrl", user.headUrl);
+        if(!TextUtils.isEmpty(user.name)) requestBody.addParameter("name", user.name);
+        if(!TextUtils.isEmpty(user.gender)) requestBody.addParameter("gender", user.gender);
+        if(!TextUtils.isEmpty(user.marrriage)) requestBody.addParameter("marrriage", user.marrriage);
+        if(!TextUtils.isEmpty(user.telephone)) requestBody.addParameter("telephone", user.telephone);
+        if(!TextUtils.isEmpty(user.industry)) requestBody.addParameter("industry", user.industry);
+        if(!TextUtils.isEmpty(user.job)) requestBody.addParameter("position", user.job);
+        if(!TextUtils.isEmpty(user.region)) requestBody.addParameter("area", user.region);
+        if(!TextUtils.isEmpty(user.region)) requestBody.addParameter("area", user.region);
+        if(!TextUtils.isEmpty(user.label)) requestBody.addParameter("tag", user.label);
+        if(!TextUtils.isEmpty(user.motto)) requestBody.addParameter("motto", user.motto);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
 
 }

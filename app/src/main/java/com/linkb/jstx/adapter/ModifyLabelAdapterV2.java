@@ -9,13 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkb.R;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 
 import java.util.List;
 
 public class ModifyLabelAdapterV2 extends BaseAdapter {
     public int selectedItem = 0;  //选中的条目
     public Context mContext;
-    public List<String> data;
+    public List<ListTagsResult.DataBean> data;
 
 
     public int getSelectedItem() {
@@ -26,7 +27,7 @@ public class ModifyLabelAdapterV2 extends BaseAdapter {
         this.selectedItem = selectedItem;
     }
 
-    public ModifyLabelAdapterV2(Context context, List<String> datas, int selectedItem) {
+    public ModifyLabelAdapterV2(Context context, List<ListTagsResult.DataBean> datas, int selectedItem) {
         this.data = datas;
         this.mContext = context;
         this.selectedItem = selectedItem;
@@ -59,7 +60,8 @@ public class ModifyLabelAdapterV2 extends BaseAdapter {
         } else {
             holder = (LabelHolder) view.getTag();
         }
-        holder.tvName.setText(data.get(i));
+        ListTagsResult.DataBean dataBean=data.get(i);
+        holder.tvName.setText(dataBean.getName());
         holder.imgSelected.setVisibility(selectedItem == i ? View.VISIBLE : View.GONE);
         return view;
     }

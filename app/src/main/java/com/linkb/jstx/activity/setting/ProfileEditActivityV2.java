@@ -89,8 +89,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     TextView tvTelephone;
     @BindView(R.id.tv_industry)
     TextView tvIndustry;
-    @BindView(R.id.tv_position)
-    TextView tvPosition;
+    @BindView(R.id.tv_job)
+    TextView tv_job;
     @BindView(R.id.tv_region)
     TextView tvRegion;
     @BindView(R.id.tv_label)
@@ -149,6 +149,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
         tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
         tvLabel.setText(TextUtils.isEmpty(user.label) ? "" : user.label);
+        tv_job.setText(TextUtils.isEmpty(user.job) ? "" : user.job);
         worlAreaOpt = new WorlAreaOpt();
         worlAreaOpt.loadWorldAreaData(this);
     }

@@ -20,7 +20,7 @@ public class Global {
 
     private static final String MODEL_KEY = "CURRENT_USER";
 
-
+    public static final String KEY_USER_HeadUrl= "KEY_USER_HeadUrl";
     private static final String KEY_USER_ACCOUNT = "KEY_USER_ACCOUNT";
     private static final String KEY_USER_NAME = "KEY_USER_NAME";
     private static final String KEY_USER_MOTTO = "KEY_USER_MOTTO";
@@ -29,6 +29,7 @@ public class Global {
     public static final String KEY_USER_MARRIAGE = "KEY_USER_MARRIAGE";
     public static final String KEY_USER_INDUSTRY = "KEY_USER_INDUSTRY";
     public static final String KEY_USER_LABEL = "KEY_USER_LABEL";
+    public static final String KEY_USER_JOB = "KEY_USER_JOB";
 
     private static final String KEY_USER_EMAIL = "KEY_USER_EMAIL";
     private static final String KEY_USER_TELEPHONE = "KEY_USER_TELEPHONE";
@@ -74,6 +75,8 @@ public class Global {
             mUser.marrriage = accountManager.getUserData(account, KEY_USER_MARRIAGE);
             mUser.industry = accountManager.getUserData(account, KEY_USER_INDUSTRY);
             mUser.label = accountManager.getUserData(account, KEY_USER_LABEL);
+            mUser.job = accountManager.getUserData(account, KEY_USER_JOB);
+            mUser.headUrl = accountManager.getUserData(account, KEY_USER_HeadUrl);
             return mUser;
         }
 
@@ -97,7 +100,8 @@ public class Global {
             bundle.putString(KEY_USER_MARRIAGE, user.marrriage);
             bundle.putString(KEY_USER_INDUSTRY, user.industry);
             bundle.putString(KEY_USER_LABEL,user.label);
-
+            bundle.putString(KEY_USER_JOB,user.job);
+            bundle.putString(KEY_USER_HeadUrl,user.headUrl);
             accountManager.addAccountExplicitly(account, user.password, bundle);
         }
     }
@@ -116,6 +120,8 @@ public class Global {
             accountManager.setUserData(account, KEY_USER_MARRIAGE, user.marrriage);
             accountManager.setUserData(account, KEY_USER_INDUSTRY, user.industry);
             accountManager.setUserData(account, KEY_USER_LABEL, user.label);
+            accountManager.setUserData(account, KEY_USER_JOB, user.job);
+            accountManager.setUserData(account, KEY_USER_HeadUrl, user.headUrl);
         }
     }
 

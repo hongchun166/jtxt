@@ -53,7 +53,7 @@ public class WebImageView extends AppCompatImageView implements View.OnClickList
 
     public void load(String url, @DrawableRes int defBackgroundId, int rounded) {
 
-//        Log.d("imageViewWebImageView", url);
+        Log.d("imageViewWebImageView", url);
         this.originalUrl = url;
         load(url, defBackgroundId, rounded, null);
     }

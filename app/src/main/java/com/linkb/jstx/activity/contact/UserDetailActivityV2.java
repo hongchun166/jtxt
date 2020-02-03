@@ -14,9 +14,11 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.trend.FriendMomentActivity;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
+import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
@@ -66,13 +68,17 @@ public class UserDetailActivityV2 extends BaseActivity {
     TagFlowLayout viewTagFlowLayout;
 
     Unbinder unbinder;
+    Friend friend;
 
-    public static void navToAct(Context context,String friendAccount){
+    public static void navToAct(Context context,Friend friend){
         Intent intent=new Intent(context,UserDetailActivityV2.class);
-        intent.putExtra("friendAccount",friendAccount);
+        intent.putExtra("friend",friend);
         context.startActivity(intent);
     }
-
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_user_detailed_v2;
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -81,16 +87,14 @@ public class UserDetailActivityV2 extends BaseActivity {
             unbinder=null;
         }
     }
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_user_detailed_v2;
-    }
+
     @Override
     protected void initComponents() {
         unbinder=ButterKnife.bind(this);
 
         Bundle bundle=getIntent().getExtras();
-        String friendAccount=bundle.getString("friendAccount");
+        friend= (Friend) bundle.getSerializable("friend");
+        String friendAccount=friend.account;
         User user=Global.getCurrentUser();
 
         viewIVHead.load(FileURLBuilder.getUserIconUrl(friendAccount), R.mipmap.lianxiren, 999);
@@ -115,7 +119,12 @@ public class UserDetailActivityV2 extends BaseActivity {
     public void onBack(){
         finish();
     }
-
+    @OnClick(R.id.viewBtnLookDT)
+    public void onLookMomentRule(){
+        Intent uintent = new Intent(this, FriendMomentActivity.class);
+        uintent.putExtra(Friend.class.getName(), friend);
+        startActivity(uintent);
+    }
     private Context getContext(){
         return this;
     }

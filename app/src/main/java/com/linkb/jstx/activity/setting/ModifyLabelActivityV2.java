@@ -11,6 +11,14 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.adapter.ModifyLabelAdapterV2;
+import com.linkb.jstx.app.Global;
+import com.linkb.jstx.bean.User;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
+import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.ListIndustryResult;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +32,8 @@ public class ModifyLabelActivityV2 extends BaseActivity {
     ListView lvLabels;
 
     private ModifyLabelAdapterV2 adapterV2;
-    private List<String> datas = new ArrayList<>();
+
+
     private String labelString;
     private int labelItem;
 
@@ -35,25 +44,11 @@ public class ModifyLabelActivityV2 extends BaseActivity {
                 .keyboardEnable(true)
                 .statusBarDarkFont(true)
                 .init();
-        initData();
-        initUI();
+        labelString = getIntent().hasExtra("labelItem") ? getIntent().getStringExtra("labelItem") : "";
+        httpLoadTagsList();
     }
 
-    private void initData() {
-        labelString = getIntent().hasExtra("labelItem") ? getIntent().getStringExtra("labelItem") : "";
-        datas.add("不限");
-        datas.add("金融");
-        datas.add("互联网");
-        datas.add("VC");
-        datas.add("PE");
-        datas.add("直销");
-        datas.add("保险");
-        datas.add("区块链");
-        datas.add("比特币");
-        datas.add("投资方");
-        datas.add("项目方");
-        datas.add("创业者");
-    }
+
 
     @Override
     protected int getContentLayout() {
@@ -65,7 +60,7 @@ public class ModifyLabelActivityV2 extends BaseActivity {
         finish();
     }
 
-    private void initUI() {
+    private void refreshData(final List<ListTagsResult.DataBean> datas) {
         labelItem = TextUtils.isEmpty(labelString) ? 0 : datas.indexOf(labelString);
         adapterV2 = new ModifyLabelAdapterV2(this, datas, labelItem);
         lvLabels.setAdapter(adapterV2);
@@ -74,12 +69,62 @@ public class ModifyLabelActivityV2 extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 adapterV2.setSelectedItem(i);
                 adapterV2.notifyDataSetChanged();
-                String labelName = datas.get(i);
-                Intent intent = new Intent();
-                intent.putExtra("labelItem", labelName);
-                setResult(200, intent);
-                finish();
+                ListTagsResult.DataBean dataBean=datas.get(i);
+                httpUpdateIndustry(dataBean);
             }
         });
+    }
+    private void httpLoadTagsList(){
+        String account= Global.getCurrentUser().account;
+        HttpServiceManagerV2.getLisTags(account,new HttpRequestListener<ListTagsResult>() {
+            @Override
+            public void onHttpRequestSucceed(ListTagsResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    refreshData(result.getData());
+                }else {
+                    refreshData(loadNativeList());
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+            }
+        });
+    }
+    private void httpUpdateIndustry(ListTagsResult.DataBean industryBean){
+        final String labelName=industryBean.getName();
+        User user=new User();
+        user.label=labelName;
+        HttpServiceManagerV2.updateUserInfo(user, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    Intent intent = new Intent();
+                    intent.putExtra("labelItem", labelName);
+                    setResult(200, intent);
+                    finish();
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+
+    private List<ListTagsResult.DataBean> loadNativeList() {
+        List<ListTagsResult.DataBean> datas=new ArrayList<>();
+//        datas.add(new ListTagsResult.DataBean("不限"));
+//        datas.add(new ListTagsResult.DataBean("金融"));
+//        datas.add(new ListTagsResult.DataBean("互联网"));
+//        datas.add(new ListTagsResult.DataBean("VC"));
+//        datas.add(new ListTagsResult.DataBean("PE"));
+//        datas.add(new ListTagsResult.DataBean("直销"));
+//        datas.add(new ListTagsResult.DataBean("保险"));
+//        datas.add(new ListTagsResult.DataBean("区块链"));
+//        datas.add(new ListTagsResult.DataBean("比特币"));
+//        datas.add(new ListTagsResult.DataBean("投资方"));
+//        datas.add(new ListTagsResult.DataBean("项目方"));
+//        datas.add(new ListTagsResult.DataBean("创业者"));
+        return datas;
     }
 }
