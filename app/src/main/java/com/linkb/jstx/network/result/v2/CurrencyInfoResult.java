@@ -14,7 +14,7 @@ public class CurrencyInfoResult extends BaseResult {
         public String currencyIcon;
         public String addTime;
         public float lockBalance;
-
+        public String currencyAddress;
     }
 
 }

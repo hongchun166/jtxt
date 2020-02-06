@@ -704,6 +704,9 @@
     <string name="tip_permission_deny_tips">You have permanently denied this permission, please re-enable this permission in App Info > Instant Messaging > Permissions</string>
     <!--Abnormal tips-->
     <string name="error_get_assets">Get an abnormal balance of assets</string>
+    <string name="pay_in">pay in</string>
+    <string name="pay_out">pay out</string>
+
     <string name="mine_invitation">mine invitation</string>
     <string name="invitation_reward">invitation reward</string>
     <string name="directly_invitation">directly invitation (people)</string>

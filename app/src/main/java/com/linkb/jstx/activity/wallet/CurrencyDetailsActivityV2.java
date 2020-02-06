@@ -102,8 +102,8 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
      * 初始化界面
      */
     private void initView() {
-        updateType(0);
-        tvCode.setText("dhj1df234dfg5567ddf");
+
+//        tvCode.setText("dhj1df234dfg5567ddf");
         mAdapter = new BillListAdapterV2(mData, this);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,7 +125,7 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
         currencyName = intent.getStringExtra("currencyName");
         tvTile.setText(currencyName);
         httpGetMyCurrencyById();
-        httpListMyBalanceFlow();
+        updateType(0);
     }
 
 
@@ -138,6 +138,7 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
         if (result == null) return;
         if (!result.isSuccess()) return;
         tvAmount.setText(String.valueOf(result.data.lockBalance));
+        tvCode.setText(String.valueOf(result.data.currencyAddress));
 //        records.clear();
 //        //无数据暂用假数据
 //        for (int i = 0; i < 100; i++) {
@@ -164,12 +165,12 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
 
     @OnClick(R.id.tv_transfer)
     public void transferData() {
-        updateType(1);
+        updateType(2);
     }
 
     @OnClick(R.id.tv_collection)
     public void collectionData() {
-        updateType(2);
+        updateType(1);
     }
 
     @OnClick(R.id.ll_transfer)
@@ -197,12 +198,13 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
     /**
      * 改变数据类型
      *
-     * @param type 0为全部,1为转账,2为收款
+     * @param type 0为全部,1为收入,2为支出
      */
     private void updateType(int type) {
         tvAll.setSelected(type == 0);
-        tvTransfer.setSelected(type == 1);
-        tvCollection.setSelected(type == 2);
+        tvCollection.setSelected(type == 1);
+        tvTransfer.setSelected(type == 2);
+        httpListMyBalanceFlow(type);
     }
 
     /**
@@ -251,9 +253,17 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
                     }
                 });
     }
-    private void httpListMyBalanceFlow(){
+
+    /**
+     * 0 全部
+     * 1、收入
+     * 2、支出
+     * @param type
+     */
+    private void httpListMyBalanceFlow(int type){
         User user = Global.getCurrentUser();
-        HttpServiceManagerV2.listMyBalanceFlow(user == null ? "" : user.account, "", String.valueOf(currencyId), new HttpRequestListener<ListMyBalanceFlowResult>() {
+        String typeStr=type==0?"":String.valueOf(type);
+        HttpServiceManagerV2.listMyBalanceFlow(user == null ? "" : user.account, typeStr, String.valueOf(currencyId), new HttpRequestListener<ListMyBalanceFlowResult>() {
             @Override
             public void onHttpRequestSucceed(ListMyBalanceFlowResult result, OriginalCall call) {
                 if (result.isSuccess()) {

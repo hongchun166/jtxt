@@ -708,6 +708,9 @@
 
     <!--异常提示-->
     <string name="error_get_assets">获取资产余额异常</string>
+    <string name="pay_in">收入</string>
+    <string name="pay_out">支出</string>
+
     <string name="mine_invitation">我的邀请</string>
     <string name="invitation_reward">邀请奖励</string>
     <string name="directly_invitation">直接邀请 (人)</string>

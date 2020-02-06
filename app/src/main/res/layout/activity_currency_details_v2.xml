@@ -217,7 +217,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/transaction_records_inde_back"
                 android:gravity="center"
-                android:text="@string/coin_transfer"
+                android:text="@string/pay_out"
                 android:textColor="@color/transaction_records_text_color" />
 
             <TextView
@@ -227,7 +227,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/transaction_records_inde_back"
                 android:gravity="center"
-                android:text="@string/collection"
+                android:text="@string/pay_in"
                 android:textColor="@color/transaction_records_text_color" />
         </LinearLayout>
 

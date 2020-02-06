@@ -756,6 +756,8 @@
 
     <!--异常提示-->
     <string name="error_get_assets">获取资产余额异常</string>
+    <string name="pay_in">收入</string>
+    <string name="pay_out">支出</string>
 
     <!--音视频通话-->
     <string name="ok">OK</string>
