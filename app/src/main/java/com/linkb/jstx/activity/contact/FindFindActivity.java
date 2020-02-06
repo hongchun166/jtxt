@@ -93,8 +93,7 @@ public class FindFindActivity extends BaseActivity {
     private int searchType = 0;  //0找人  1找群
 
 
-    private String industr;
-    private String label;
+
     RegionDigOpt regionDigOpt;
 
     List<String> hotSearchList=new ArrayList<>();//热门搜索
@@ -250,8 +249,7 @@ public class FindFindActivity extends BaseActivity {
 
     @OnClick(R.id.ll_industry)
     public void findIndustry() {
-        Intent intent = new Intent(this, ModifyIndustryActivityV2.class);
-        startActivityForResult(intent, REQUEST_INDUSTRY_CODE);
+        ModifyIndustryActivityV2.navToActBySelectTag(this,REQUEST_INDUSTRY_CODE,"");
     }
     @OnClick(R.id.ll_region_item)
     public void findRegion() {
@@ -262,10 +260,8 @@ public class FindFindActivity extends BaseActivity {
     }
     @OnClick(R.id.ll_label)
     public void findLabel() {
-        Intent intent = new Intent(this, ModifyLabelActivityV2.class);
         String label = tvLabel.getText().toString().trim();
-        intent.putExtra("labelItem", label);
-        startActivityForResult(intent, REQUEST_LABE_CODE);
+        ModifyLabelActivityV2.navToActBySelectTag(this,REQUEST_LABE_CODE,label);
     }
     @OnClick(R.id.viewOtherCondition)
     public void otherCondition() {
@@ -278,10 +274,10 @@ public class FindFindActivity extends BaseActivity {
             CountryBean countryBean= (CountryBean) data.getSerializableExtra("CountryBean");
             if(regionDigOpt!=null)regionDigOpt.changeRegion(countryBean);
         }else if(requestCode == REQUEST_INDUSTRY_CODE && resultCode == Activity.RESULT_OK){
-            industr = data.getStringExtra("curIndustrySt");
+            String industr = data.getStringExtra("curIndustrySt");
             tvIndustry.setText(industr);
-        }else if(requestCode == REQUEST_LABE_CODE && resultCode == 200){
-            label = data == null ? "" : data.getStringExtra("labelItem");
+        }else if(requestCode == REQUEST_LABE_CODE && resultCode == RESULT_OK){
+            String  label = data == null ? "" : data.getStringExtra("labelItem");
             tvLabel.setText(label);
         }
     }
@@ -350,10 +346,13 @@ public class FindFindActivity extends BaseActivity {
         String friendName = viewSearchUserInput.getText().toString();
         SearchUserParam searchUserParam=new SearchUserParam();
         searchUserParam.setInputStr(friendName);
+        searchUserParam.setIndustry(tvIndustry.getText().toString());
+        searchUserParam.setLabel(tvLabel.getText().toString());
+        searchUserParam.setRegion(tv_region.getText().toString());
+        searchUserParam.setOtherKey(viewOtherCondition.getText().toString());
         SearchUserListActivity.navToSearchUser(this,searchUserParam);
     }
     private void httpSearchGroup(){
-
         String groupKey = viewSearchGroupInput.getText().toString();
         addSearLog(groupKey);
         SearchUserParam searchUserParam=new SearchUserParam();

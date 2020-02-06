@@ -1,5 +1,7 @@
 package com.linkb.jstx.activity.setting;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -28,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ModifyLabelActivityV2 extends BaseActivity {
+    static final int ACT_TYPE_Select=1;
+    static final int ACT_TYPE_Update=2;
     @BindView(R.id.lv_labels)
     ListView lvLabels;
 
@@ -36,7 +40,20 @@ public class ModifyLabelActivityV2 extends BaseActivity {
 
     private String labelString;
     private int labelItem;
+    int actType;
 
+    public static void navToActBySelectTag(Context context,int requestCode,String label){
+        Intent intent = new Intent(context, ModifyLabelActivityV2.class);
+        intent.putExtra("labelItem", label);
+        intent.putExtra("actType", ACT_TYPE_Select);
+        ((Activity)context).startActivityForResult(intent, requestCode);
+    }
+    public static void navToActByUpdateTag(Context context,int requestCode,String label){
+        Intent intent = new Intent(context, ModifyLabelActivityV2.class);
+        intent.putExtra("labelItem", label);
+        intent.putExtra("actType", ACT_TYPE_Update);
+        ((Activity)context).startActivityForResult(intent, requestCode);
+    }
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
@@ -45,6 +62,7 @@ public class ModifyLabelActivityV2 extends BaseActivity {
                 .statusBarDarkFont(true)
                 .init();
         labelString = getIntent().hasExtra("labelItem") ? getIntent().getStringExtra("labelItem") : "";
+        actType= getIntent().hasExtra("actType") ? getIntent().getIntExtra("actType",ACT_TYPE_Update) : ACT_TYPE_Update;
         httpLoadTagsList();
     }
 
@@ -70,9 +88,19 @@ public class ModifyLabelActivityV2 extends BaseActivity {
                 adapterV2.setSelectedItem(i);
                 adapterV2.notifyDataSetChanged();
                 ListTagsResult.DataBean dataBean=datas.get(i);
-                httpUpdateIndustry(dataBean);
+                if(actType==ACT_TYPE_Select){
+                    finshActByIntent(dataBean.getName());
+                }else {
+                    httpUpdateLabel(dataBean);
+                }
             }
         });
+    }
+    public void finshActByIntent(String labelName){
+        Intent intent = new Intent();
+        intent.putExtra("labelItem", labelName);
+        setResult(RESULT_OK, intent);
+        finish();
     }
     private void httpLoadTagsList(){
         String account= Global.getCurrentUser().account;
@@ -90,18 +118,15 @@ public class ModifyLabelActivityV2 extends BaseActivity {
             }
         });
     }
-    private void httpUpdateIndustry(ListTagsResult.DataBean industryBean){
+    private void httpUpdateLabel(ListTagsResult.DataBean industryBean){
         final String labelName=industryBean.getName();
-        User user=new User();
-        user.label=labelName;
-        HttpServiceManagerV2.updateUserInfo(user, new HttpRequestListener() {
+        User userTemp=new User();
+        userTemp.tag=labelName;
+        HttpServiceManagerV2.updateUserInfo(userTemp, new HttpRequestListener() {
             @Override
             public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
                 if(result.isSuccess()){
-                    Intent intent = new Intent();
-                    intent.putExtra("labelItem", labelName);
-                    setResult(200, intent);
-                    finish();
+                    finshActByIntent(labelName);
                 }
             }
             @Override

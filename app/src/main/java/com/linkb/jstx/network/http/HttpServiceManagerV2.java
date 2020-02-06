@@ -9,9 +9,14 @@ import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
+import com.linkb.jstx.network.result.FriendQueryResult;
+import com.linkb.jstx.network.result.GroupQueryResult;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
+import com.linkb.jstx.network.result.v2.CheckInGroupResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
+import com.linkb.jstx.network.result.v2.FindGroupsResult;
+import com.linkb.jstx.network.result.v2.FindPersonsResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
@@ -210,13 +215,48 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(user.marrriage)) requestBody.addParameter("marrriage", user.marrriage);
         if(!TextUtils.isEmpty(user.telephone)) requestBody.addParameter("telephone", user.telephone);
         if(!TextUtils.isEmpty(user.industry)) requestBody.addParameter("industry", user.industry);
-        if(!TextUtils.isEmpty(user.job)) requestBody.addParameter("position", user.job);
-        if(!TextUtils.isEmpty(user.region)) requestBody.addParameter("area", user.region);
-        if(!TextUtils.isEmpty(user.region)) requestBody.addParameter("area", user.region);
-        if(!TextUtils.isEmpty(user.label)) requestBody.addParameter("tag", user.label);
+        if(!TextUtils.isEmpty(user.position)) requestBody.addParameter("position", user.position);
+        if(!TextUtils.isEmpty(user.area)) requestBody.addParameter("area", user.area);
+        if(!TextUtils.isEmpty(user.tag)) requestBody.addParameter("tag", user.tag);
         if(!TextUtils.isEmpty(user.motto)) requestBody.addParameter("motto", user.motto);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
-
+    /**
+     * 找一找（群）
+     * @param listener
+     */
+    public static void findGroups(String content,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findGroups, FindGroupsResult.class);
+        requestBody.addParameter("content", content);//
+        requestBody.addParameter("currentPage", 0);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 找一找（群）
+     * @param listener
+     */
+    public static void checkInGroup(String account,String groupId,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.checkInGroup, CheckInGroupResult.class);
+        requestBody.addParameter("account", account);//
+        requestBody.addParameter("groupId", groupId);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 找一找（人）
+     * @param content
+     * @param area  区域
+     * @param industry  行业
+     * @param tag      标签
+     * @param listener
+     */
+    public static void findPersons(String content,String area,String industry,String tag,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findPersons, FindPersonsResult.class);
+        requestBody.addParameter("content", content);//
+        requestBody.addParameter("currentPage", 0);//
+        if(!TextUtils.isEmpty(area)) requestBody.addParameter("area", area);//
+        if(!TextUtils.isEmpty(industry)) requestBody.addParameter("industry", industry);//
+        if(!TextUtils.isEmpty(tag))requestBody.addParameter("tag", tag);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
 }

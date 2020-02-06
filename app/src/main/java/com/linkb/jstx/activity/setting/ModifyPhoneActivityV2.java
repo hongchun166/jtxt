@@ -11,7 +11,9 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.util.InputSoftUtils;
 import com.linkb.jstx.util.RegexUtil;
@@ -20,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ModifyPhoneActivityV2 extends BaseActivity implements HttpRequestListener<ModifyPersonInfoResult> {
+public class ModifyPhoneActivityV2 extends BaseActivity  {
     @BindView(R.id.tv_title)
     TextView titleTv;
     @BindView(R.id.tv_region)
@@ -53,7 +55,26 @@ public class ModifyPhoneActivityV2 extends BaseActivity implements HttpRequestLi
         if (RegexUtil.checkMobile(phone)) {
             if (!TextUtils.isEmpty(phone)) {
                 mPhone = phone;
-                HttpServiceManager.modifyPersonInfo("telephone", mPhone, this);
+//                HttpServiceManager.modifyPersonInfo("telephone", mPhone, this);
+                final User userTemp=new User();
+                userTemp.telephone=mPhone;
+                HttpServiceManagerV2.updateUserInfo(userTemp, new HttpRequestListener() {
+                    @Override
+                    public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                        if (result.isSuccess()) {
+                            user.telephone = mPhone;
+                            Global.modifyAccount(user);
+                            showToastView(R.string.tip_save_complete);
+                            setResult(RESULT_OK, getIntent());
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+                    }
+                });
             }
         } else {
             showToastView(getResources().getString(R.string.account_error));
@@ -71,21 +92,21 @@ public class ModifyPhoneActivityV2 extends BaseActivity implements HttpRequestLi
         return R.layout.activity_update_phone_v2;
     }
 
-    @Override
-    public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
-        if (result.isSuccess()) {
-            user.telephone = mPhone;
-            Global.modifyAccount(user);
-            showToastView(R.string.tip_save_complete);
-            setResult(RESULT_OK, getIntent());
-            finish();
-        }
-    }
-
-    @Override
-    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-    }
+//    @Override
+//    public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
+//        if (result.isSuccess()) {
+//            user.telephone = mPhone;
+//            Global.modifyAccount(user);
+//            showToastView(R.string.tip_save_complete);
+//            setResult(RESULT_OK, getIntent());
+//            finish();
+//        }
+//    }
+//
+//    @Override
+//    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+//
+//    }
 
     @Override
     public void finish() {

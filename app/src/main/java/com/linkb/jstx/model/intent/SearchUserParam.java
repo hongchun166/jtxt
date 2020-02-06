@@ -10,6 +10,7 @@ public class SearchUserParam implements Serializable {
     private String region;
     private String industry;
     private String label;
+    private String otherKey;
 
     public String getInputStr() {
         return inputStr;
@@ -49,5 +50,13 @@ public class SearchUserParam implements Serializable {
 
     public void setSearchType(int searchType) {
         this.searchType = searchType;
+    }
+
+    public String getOtherKey() {
+        return otherKey;
+    }
+
+    public void setOtherKey(String otherKey) {
+        this.otherKey = otherKey;
     }
 }

@@ -129,7 +129,10 @@
             android:name="com.linkb.jstx.activity.setting.ModifyNameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyNameActivityV2"
+        android:name="com.linkb.jstx.activity.setting.ModifyNameActivityV2"
+        android:screenOrientation="portrait" />
+        <activity
+            android:name="com.linkb.jstx.activity.setting.ModifyPositionActivityV2"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivity"
@@ -462,10 +465,13 @@
         <activity
             android:name=".jstx.activity.contact.ApplyFriendActivityV2"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".jstx.activity.contact.ApplyFriendBeActivityV2"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".jstx.activity.contact.ApplyGroupActivityV2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".jstx.activity.wallet.CoinTransferActivity"
             android:screenOrientation="portrait" />

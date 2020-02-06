@@ -124,8 +124,7 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
 
     @OnClick(R.id.ll_industry)
     public void findIndustry() {
-        Intent intent = new Intent(this, ModifyIndustryActivityV2.class);
-        startActivityForResult(intent, REQUEST_INDUSTRY_CODE);
+        ModifyIndustryActivityV2.navToActBySelectTag(this,REQUEST_INDUSTRY_CODE,"");
     }
     @OnClick(R.id.ll_region_item)
     public void findRegion() {
@@ -134,10 +133,8 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
     }
     @OnClick(R.id.ll_label)
     public void findLabel() {
-        Intent intent = new Intent(this, ModifyLabelActivityV2.class);
         String label = tvLabel.getText().toString().trim();
-        intent.putExtra("labelItem", label);
-        startActivityForResult(intent, REQUEST_LABE_CODE);
+        ModifyLabelActivityV2.navToActBySelectTag(this,REQUEST_LABE_CODE,label);
     }
 
     @Override
@@ -193,7 +190,7 @@ public class SearchFriendActivityV2 extends BaseActivity implements HttpRequestL
             industr = data.getStringExtra("curIndustrySt");
             tvIndustry.setText(industr);
         }
-        if (requestCode == REQUEST_LABE_CODE && resultCode == 200) {
+        if (requestCode == REQUEST_LABE_CODE && resultCode == RESULT_OK) {
             label = data == null ? "" : data.getStringExtra("labelItem");
             tvLabel.setText(label);
         }

@@ -61,7 +61,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/no_limit" />
+            android:hint="@string/no_limit" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/no_limit" />
+            android:hint="@string/no_limit" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/no_limit" />
+            android:hint="@string/no_limit" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="@string/no_limit" />
+            android:hint="@string/no_limit" />
 
         <ImageView
             android:layout_width="wrap_content"

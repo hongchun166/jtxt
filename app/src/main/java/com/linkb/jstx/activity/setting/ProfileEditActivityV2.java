@@ -45,7 +45,9 @@ import com.linkb.jstx.network.CloudFileUploader;
 import com.linkb.jstx.network.CloudImageLoaderFactory;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.network.result.RegionResult;
 import com.linkb.jstx.util.AppTools;
@@ -66,6 +68,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUploadListener, HttpRequestListener<ModifyPersonInfoResult> {
+    final int REQUEST_CODE_CountryBean=0x10;
+    final int REQUEST_CODE_Name=0x11;
+    final int REQUEST_CODE_Telephone=0x12;
+    final int REQUEST_CODE_Email=0x13;
+    final int REQUEST_CODE_Industry=0x14;
+    final int REQUEST_CODE_Motto=0x15;
+    final int REQUEST_CODE_Label=0x16;
+    final int REQUEST_CODE_Position=0x17;
+    final int REQUEST_CODE_Head=0x18;
 
     @BindView(R.id.title_tv)
     TextView titleTv;
@@ -146,10 +157,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvNAme.setText(TextUtils.isEmpty(user.name) ? "" : user.name);//佚名
         tvEmail.setText(TextUtils.isEmpty(user.email) ? "" : user.email);
         tvSign.setText(TextUtils.isEmpty(user.motto) ? "" : user.motto);
-        tvRegion.setText(TextUtils.isEmpty(user.region) ? "" : user.region);
+        tvRegion.setText(TextUtils.isEmpty(user.area) ? "" : user.area);
         tvIndustry.setText(TextUtils.isEmpty(user.industry) ? "" : user.industry);
-        tvLabel.setText(TextUtils.isEmpty(user.label) ? "" : user.label);
-        tv_job.setText(TextUtils.isEmpty(user.job) ? "" : user.job);
+        tvLabel.setText(TextUtils.isEmpty(user.tag) ? "" : user.tag);
+        tv_job.setText(TextUtils.isEmpty(user.position) ? "" : user.position);
         worlAreaOpt = new WorlAreaOpt();
         worlAreaOpt.loadWorldAreaData(this);
     }
@@ -169,7 +180,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.iconSwicth)
     public void updateHeader() {
-        startActivityForResult(new Intent(this, PhotoAlbumActivity.class), 9);
+        startActivityForResult(new Intent(this, PhotoAlbumActivity.class), REQUEST_CODE_Head);
     }
 
 
@@ -178,7 +189,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_name_rly)
     public void modifyName() {
-        startActivityForResult(new Intent(this, ModifyNameActivityV2.class), 0x11);
+        startActivityForResult(new Intent(this, ModifyNameActivityV2.class), REQUEST_CODE_Name);
     }
 
 
@@ -192,7 +203,11 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         mSexChangeDialog.setOnSexCheckListener(new SexChangeDialogV2.OnSexCheckListener() {
             @Override
             public void checkSex(int type) {
-                HttpServiceManager.modifyPersonInfo("gender", type == 0 ? String.valueOf(1) : String.valueOf(0), ProfileEditActivityV2.this);
+//                HttpServiceManager.modifyPersonInfo("gender", type == 0 ? String.valueOf(1) : String.valueOf(0), ProfileEditActivityV2.this);
+                final User userTemp=new User();
+                userTemp.gender=type == 0 ? String.valueOf(1) : String.valueOf(0);
+                HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+
                 user.gender = type == 0 ? getString(R.string.common_man) : getString(R.string.common_female);
                 tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
                 Global.modifyAccount(user);
@@ -214,6 +229,14 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             @Override
             public void marriageStatus(int type) {
                 user.marrriage = String.valueOf(type);
+
+                String unmarried=getString(R.string.unmarried2);
+                String marriage=getString(R.string.marriage2);
+                final User userTemp=new User();
+                userTemp.marrriage=TextUtils.isEmpty(user.marrriage) ? unmarried : "0".equals(user.marrriage) ? unmarried: marriage;
+                HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+
+
                 tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
 
                 Global.modifyAccount(user);
@@ -229,7 +252,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_phone_rly)
     public void modifyPhone() {
-        startActivityForResult(new Intent(this, ModifyPhoneActivityV2.class), 0x12);
+        startActivityForResult(new Intent(this, ModifyPhoneActivityV2.class),REQUEST_CODE_Telephone);
     }
 
 
@@ -238,7 +261,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_industry_rly)
     public void industry() {
-        ModifyIndustryActivityV2.nacToAct(this, 0x14);
+        ModifyIndustryActivityV2.navToActByUpdateTag(this, REQUEST_CODE_Industry);
     }
 
 
@@ -247,7 +270,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_position_rly)
     public void position() {
-
+        ModifyPositionActivityV2.navToAct(this,REQUEST_CODE_Position);
 
     }
 
@@ -267,8 +290,13 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 @Override
                 public void onOptionsSelect(int options1, int options2, int options3, View v) {
                     String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
+
+                    final User userTemp=new User();
+                    userTemp.area=region;
+                    HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+
                     tvRegion.setText(region);
-                    user.region = region;
+                    user.area = region;
                     Global.modifyAccount(user);
                 }
             }).setLayoutRes(R.layout.view_region_options_layout, new CustomListener() {
@@ -296,7 +324,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                         public void onClick(View v) {
                             startActivityForResult(
                                     new Intent(ProfileEditActivityV2.this, SelectCountryActivity.class)
-                                    ,0x15);
+                                    ,REQUEST_CODE_CountryBean);
                         }
                     });
                 }
@@ -380,9 +408,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_label_rly)
     public void label() {
-        Intent intent = new Intent(this, ModifyLabelActivityV2.class);
-        intent.putExtra("labelItem", tvLabel.getText().toString().trim());
-        startActivityForResult(intent, 1001);
+        ModifyLabelActivityV2.navToActByUpdateTag(this,REQUEST_CODE_Label, tvLabel.getText().toString().trim());
 
     }
 
@@ -392,7 +418,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_sign_rly)
     public void sign() {
-        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class), 0x16);
+        startActivityForResult(new Intent(this, ModifyMottoActivityV2.class), REQUEST_CODE_Motto);
     }
 
 
@@ -401,7 +427,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.modify_email_rly)
     public void modifyEmail() {
-        startActivityForResult(new Intent(this, ModifyEmailActivityV2.class), 0x13);
+        startActivityForResult(new Intent(this, ModifyEmailActivityV2.class), REQUEST_CODE_Email);
     }
 
     /**
@@ -442,12 +468,12 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==0x15 && Activity.RESULT_OK==resultCode){
+        if(requestCode==REQUEST_CODE_CountryBean && Activity.RESULT_OK==resultCode){
             CountryBean countryBean= (CountryBean) data.getSerializableExtra("CountryBean");
             changeRegion(countryBean);
             return;
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 9) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Head) {
             AppTools.startIconPhotoCrop(this, data.getData());
         }
         if (resultCode == Activity.RESULT_OK && requestCode == Constant.RESULT_ZOOM && data != null) {
@@ -456,38 +482,37 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_USER_ICON, user.account, photo, this);
             showProgressDialog(getString(R.string.tip_file_uploading, 0));
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 0x11) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Name) {
             user = Global.getCurrentUser();
             tvNAme.setText(user.name);
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 0x12) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Telephone) {
             user = Global.getCurrentUser();
             tvTelephone.setText(user.telephone);
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 0x13) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Email) {
             user = Global.getCurrentUser();
             tvEmail.setText(user.email);
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 0x14) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Industry) {
             String curIndustrySt=data.getStringExtra("curIndustrySt");
             user.industry = curIndustrySt;
             Global.modifyAccount(user);
             user = Global.getCurrentUser();
             tvIndustry.setText(user.industry);
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 0x16) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Motto) {
             user = Global.getCurrentUser();
             tvSign.setText(user.motto);
         }
-        if (requestCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Position) {
             user = Global.getCurrentUser();
-            tvSign.setText(user.motto);
+            tv_job.setText(user.position);
         }
-        if (requestCode == 1001 && resultCode == 200) {
+        if(requestCode==REQUEST_CODE_Label){
             String labelName = data.getStringExtra("labelItem");
             tvLabel.setText(labelName);
-            user.label = labelName;
-            tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried : "0".equals(user.marrriage) ? R.string.unmarried : R.string.marriage);
+            user.tag = labelName;
             Global.modifyAccount(user);
         }
     }
@@ -555,4 +580,14 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             mSexChangeDialog = null;
         }
     }
+    HttpRequestListener httpRequestListener=new HttpRequestListener() {
+        @Override
+        public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+
+        }
+        @Override
+        public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+        }
+    };
 }

@@ -37,6 +37,8 @@ import butterknife.OnClick;
 
 public class ModifyIndustryActivityV2 extends BaseActivity {
 
+    static final int ACT_TYPE_Select=1;
+    static final int ACT_TYPE_Update=2;
 
     @BindView(R.id.tv_title)
     TextView titleTv;
@@ -47,16 +49,18 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
     private User user;
 
     IndustryAdapt mAdapter;
-
-
-
-    public static void nacToAct(Context context,int requestCode){
-        Intent intent=new Intent(context,ModifyIndustryActivityV2.class);
-        if(context instanceof Activity){
-            ((Activity)context).startActivityForResult(intent,requestCode);
-        }else {
-            context.startActivity(intent);
-        }
+    int actType;
+    String curIndustryStr;
+    public static void navToActBySelectTag(Context context,int requestCode,String industry){
+        Intent intent = new Intent(context, ModifyIndustryActivityV2.class);
+        intent.putExtra("industry", industry);
+        intent.putExtra("actType", ACT_TYPE_Select);
+        ((Activity)context).startActivityForResult(intent, requestCode);
+    }
+    public static void navToActByUpdateTag(Context context,int requestCode ){
+        Intent intent = new Intent(context, ModifyIndustryActivityV2.class);
+        intent.putExtra("actType", ACT_TYPE_Update);
+        ((Activity)context).startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -67,8 +71,12 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
                 .statusBarDarkFont(true)
                 .init();
         user = Global.getCurrentUser();
-
-        String curIndustryStr=user.industry;
+        actType=getIntent().getIntExtra("actType",ACT_TYPE_Update);
+        if(actType==ACT_TYPE_Update){
+            curIndustryStr=user.industry;
+        }else {
+            curIndustryStr=getIntent().getStringExtra("industry");
+        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -87,7 +95,6 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
     }
 
     private void resultData(List<ListIndustryResult.DataBean> industryBeanList){
-        String curIndustryStr=user.industry;
         ListIndustryResult.DataBean curIndus=null;
         if(!TextUtils.isEmpty(curIndustryStr)){
             for (ListIndustryResult.DataBean industryBean : industryBeanList) {
@@ -126,7 +133,12 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
 //        list.add(new ListIndustryResult.DataBean(getString(R.string.item_industry_qita),"130"));
         return list;
     }
-
+    public void finshActByInten(String curIndustrySt){
+        Intent intent=new Intent();
+        intent.putExtra("curIndustrySt",curIndustrySt);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
     private void httpLoadIndustryList(){
         String account=user.account;
         HttpServiceManagerV2.getListIndustry(account,new HttpRequestListener<ListIndustryResult>() {
@@ -145,25 +157,26 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
         });
     }
 
-    private void httpUpdateIndustry(ListIndustryResult.DataBean industryBean){
+    private void clickIndustry(ListIndustryResult.DataBean industryBean){
         final String curIndustrySt=industryBean.getIndustryName();
-        User user=new User();
-        user.industry=curIndustrySt;
-        HttpServiceManagerV2.updateUserInfo(user, new HttpRequestListener() {
-            @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-                if(result.isSuccess()){
-                    Intent intent=new Intent();
-                    intent.putExtra("curIndustrySt",curIndustrySt);
-                    setResult(RESULT_OK,intent);
-                    finish();
+        if(actType==ACT_TYPE_Select){
+            finshActByInten(curIndustrySt);
+        }else {
+            User user=new User();
+            user.industry=curIndustrySt;
+            HttpServiceManagerV2.updateUserInfo(user, new HttpRequestListener() {
+                @Override
+                public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                    if(result.isSuccess()){
+                        finshActByInten(curIndustrySt);
+                    }
                 }
-            }
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                @Override
+                public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     HashMap<String,ListIndustryResult.DataBean> selectMap=new HashMap();
@@ -223,7 +236,7 @@ public class ModifyIndustryActivityV2 extends BaseActivity {
         }
         @Override
         public void onClick(View v) {
-            httpUpdateIndustry(curBean);
+            clickIndustry(curBean);
         }
     }
 }

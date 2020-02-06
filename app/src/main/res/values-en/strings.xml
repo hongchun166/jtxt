@@ -442,6 +442,7 @@
     <string name="label_group_invite">invite to join</string>
     <string name="label_group_ignore">Block group message</string>
     <string name="label_group_apply">apply to join</string>
+    <string name="label_group_apply_join_group">apply to join</string>
     <string name="label_group_create">Create group</string>
     <string name="label_group_modify">modify group</string>
     <string name="label_group_detail">group detail</string>
@@ -466,6 +467,7 @@
     <string name="label_setting_modify_summary">modify group notice</string>
     <string name="email_format_error">email format error</string>
     <string name="label_setting_modify_industry">Industry</string>
+    <string name="label_setting_modify_position">modify position</string>
 
     <string name="label_setting_profile">personnel information</string>
     <string name="label_setting_notify">notify setting</string>

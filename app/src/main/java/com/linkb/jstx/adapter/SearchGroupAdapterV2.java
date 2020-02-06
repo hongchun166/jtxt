@@ -13,6 +13,7 @@ import com.linkb.R;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.database.GroupRepository;
 import com.linkb.jstx.network.result.GroupQueryResult;
+import com.linkb.jstx.network.result.v2.FindGroupsResult;
 import com.linkb.jstx.util.FileURLBuilder;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ import java.util.List;
 public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapterV2.SearchContactsViewHolder> {
 
     private Context mContext;
-    private List<GroupQueryResult.DataListBean> mList = new ArrayList<>();
+    private List<FindGroupsResult.DataBean.ContentBean> mList = new ArrayList<>();
     private OnSearchGroupClickedListener mListener;
 
-    public SearchGroupAdapterV2(Context mContext, List<GroupQueryResult.DataListBean> mList, OnSearchGroupClickedListener listener) {
+    public SearchGroupAdapterV2(Context mContext, List<FindGroupsResult.DataBean.ContentBean> mList, OnSearchGroupClickedListener listener) {
         this.mContext = mContext;
         this.mList = mList;
         this.mListener = listener;
@@ -39,7 +40,7 @@ public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapte
 
     @Override
     public void onBindViewHolder(@NonNull SearchContactsViewHolder hodler, int i) {
-        final GroupQueryResult.DataListBean dataBean = mList.get(i);
+        final FindGroupsResult.DataBean.ContentBean dataBean = mList.get(i);
         hodler.dataBean=dataBean;
         hodler.viewGroupName.setText(dataBean.getName());
         hodler.viewGroupDesc.setText(dataBean.getSummary());
@@ -51,7 +52,7 @@ public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapte
         return mList.size();
     }
 
-    public void replaceAll(List<GroupQueryResult.DataListBean> list){
+    public void replaceAll(List<FindGroupsResult.DataBean.ContentBean> list){
         mList.addAll(list);
         notifyDataSetChanged();
     }
@@ -62,7 +63,7 @@ public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapte
         public TextView viewGroupDesc;
         public Button viewApplyJoinGroup;
         public View viewRoot;
-        GroupQueryResult.DataListBean dataBean;
+        FindGroupsResult.DataBean.ContentBean dataBean;
 
         public SearchContactsViewHolder(View itemView) {
             super(itemView);
@@ -78,24 +79,18 @@ public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapte
         @Override
         public void onClick(View v) {
             if(v.getId()==R.id.viewApplyJoinGroup){
-                if (mListener != null){
-                    if (GroupRepository.queryById(dataBean.getId()) != null){
-                        mListener.onGroupChat(dataBean);
-                    }else {
-                        mListener.onJoinGroup(dataBean);
-                    }
+                if(mListener!=null){
+                    mListener.onClickJoinGroup(dataBean);
                 }
             }else {
-                if (mListener != null){
-                    if (GroupRepository.queryById(dataBean.getId()) != null){
-                        mListener.onGroupChat(dataBean);
-                    }
+                if(mListener!=null){
+                    mListener.onClickItemGroup(dataBean);
                 }
             }
         }
     }
     public interface OnSearchGroupClickedListener{
-        void onJoinGroup(GroupQueryResult.DataListBean dataBean);
-        void onGroupChat(GroupQueryResult.DataListBean dataBean);
+        void onClickJoinGroup(FindGroupsResult.DataBean.ContentBean dataBean);
+        void onClickItemGroup(FindGroupsResult.DataBean.ContentBean dataBean);
     }
 }

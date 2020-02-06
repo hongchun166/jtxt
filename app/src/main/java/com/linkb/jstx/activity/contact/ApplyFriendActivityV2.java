@@ -3,6 +3,7 @@ package com.linkb.jstx.activity.contact;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
@@ -24,7 +25,9 @@ import butterknife.OnClick;
 
 /** 提交好友申请页面
 * */
-public class ApplyFriendActivityV2 extends BaseActivity implements HttpRequestListener<BaseResult> {
+public class ApplyFriendActivityV2 extends BaseActivity  {
+    @BindView(R.id.title_tv)
+    TextView title_tv;
 
     @BindView(R.id.editText5)
     EditText leaveMessageEdt;
@@ -41,7 +44,7 @@ public class ApplyFriendActivityV2 extends BaseActivity implements HttpRequestLi
         ButterKnife.bind(this);
         mSelt = Global.getCurrentUser();
         mFriend = (Friend) getIntent().getSerializableExtra(Friend.class.getName());
-
+        title_tv.setText(R.string.apply_friend);
         leaveMessageEdt.setText(getString(R.string.verify_apply_friend_leave_message_default, mSelt.name));
         if (!TextUtils.isEmpty(leaveMessageEdt.getText())){
             leaveMessageEdt.setSelection(leaveMessageEdt.getText().length());
@@ -89,21 +92,21 @@ public class ApplyFriendActivityV2 extends BaseActivity implements HttpRequestLi
         leaveMessageEdt.setText("");
     }
 
-    @Override
-    public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-        hideProgressDialog();
-        if (result.isSuccess()){
-            ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.already_commit_apply_friend));
-            setResult(RESULT_OK, getIntent());
-            finish();
-        }else {
-            ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.commit_apply_friend_failure));
-        }
-    }
-
-    @Override
-    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-        hideProgressDialog();
-        ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.commit_apply_friend_failure));
-    }
+//    @Override
+//    public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+//        hideProgressDialog();
+//        if (result.isSuccess()){
+//            ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.already_commit_apply_friend));
+//            setResult(RESULT_OK, getIntent());
+//            finish();
+//        }else {
+//            ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.commit_apply_friend_failure));
+//        }
+//    }
+//
+//    @Override
+//    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+//        hideProgressDialog();
+//        ToastUtils.s(ApplyFriendActivityV2.this, getString(R.string.commit_apply_friend_failure));
+//    }
 }

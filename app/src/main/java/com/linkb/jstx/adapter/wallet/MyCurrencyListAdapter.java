@@ -26,10 +26,11 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private List<ListMyCurrencyResult.DataBean> mDate = new ArrayList<>();
     private Context context;
-
-    public MyCurrencyListAdapter(Context mContext, List<ListMyCurrencyResult.DataBean> mDate) {
+    OnItemClick onItemClick;
+    public MyCurrencyListAdapter(Context mContext, List<ListMyCurrencyResult.DataBean> mDate,OnItemClick onItemClick) {
         this.context = mContext;
         this.mDate.addAll(mDate);
+        this.onItemClick=onItemClick;
     }
 
     @NonNull
@@ -42,6 +43,7 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         MyCurrencyListHolder holder = (MyCurrencyListHolder) viewHolder;
+        holder.position=position;
         ListMyCurrencyResult.DataBean dataBean = mDate.get(position);
         holder.viewCurrencyName.setText(dataBean.getCurrencyName());
         holder.viewCurrencyQuota.setText(String.valueOf(dataBean.getLockBalance()));
@@ -92,10 +94,12 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @Override
         public void onClick(View v) {
             ListMyCurrencyResult.DataBean dataBean = mDate.get(position);
-            Intent intent = new Intent(context, CurrencyDetailsActivityV2.class);
-            intent.putExtra("currencyId", dataBean.getCurrencyId());
-            intent.putExtra("currencyName", dataBean.getCurrencyName());
-            context.startActivity(intent);
+            if(onItemClick!=null){
+                onItemClick.onItemClick(dataBean);
+            }
         }
+    }
+    public static interface OnItemClick{
+        void onItemClick(ListMyCurrencyResult.DataBean dataBean);
     }
 }

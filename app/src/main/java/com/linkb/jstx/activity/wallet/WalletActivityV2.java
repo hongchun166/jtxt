@@ -1,5 +1,6 @@
 package com.linkb.jstx.activity.wallet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -38,8 +39,7 @@ public class WalletActivityV2 extends BaseActivity{
     private static final int ADD_COIN_REQUEST_CODE = 0x11;
 
     @BindView(R.id.emptyView) GlobalEmptyView emptyView;
-    private MyCurrencyListAdapter mAdapter;
-    private List<ListMyCurrencyResult.DataBean> mList = new ArrayList<>();
+
 
     @BindView(R.id.recyclerView) RecyclerView recyclerView;
     @BindView(R.id.refreshLayout) RefreshLayout refreshLayout;
@@ -52,6 +52,8 @@ public class WalletActivityV2 extends BaseActivity{
     @BindView(R.id.financial_btn) TextView financial_btn;
     @BindView(R.id.bill_tv) TextView bill_tv;
 
+    private MyCurrencyListAdapter mAdapter;
+    private List<ListMyCurrencyResult.DataBean> mList = new ArrayList<>();
 
     private boolean enableMoneyVisible = true;
     private String totalAssetsBtc = "0.00";
@@ -88,7 +90,13 @@ public class WalletActivityV2 extends BaseActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         VerticalSpaceItemDecoration itemDecor = new VerticalSpaceItemDecoration(ConvertUtils.dp2px(8));
         recyclerView.addItemDecoration(itemDecor);
-        recyclerView.setAdapter(mAdapter = new MyCurrencyListAdapter(this, mList));
+       final Context context=this;
+        recyclerView.setAdapter(mAdapter = new MyCurrencyListAdapter(this, mList, new MyCurrencyListAdapter.OnItemClick() {
+            @Override
+            public void onItemClick(ListMyCurrencyResult.DataBean dataBean) {
+                CurrencyDetailsActivityV2.navToAct(context,String.valueOf(dataBean.getCurrencyId()),dataBean.getCurrencyName());
+            }
+        }));
 
         int imgSize=66;
         {

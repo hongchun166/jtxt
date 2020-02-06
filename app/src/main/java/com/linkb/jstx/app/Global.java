@@ -71,11 +71,11 @@ public class Global {
             mUser.email = accountManager.getUserData(account, KEY_USER_EMAIL);
             mUser.telephone = accountManager.getUserData(account, KEY_USER_TELEPHONE);
             mUser.code = accountManager.getUserData(account, KEY_USER_ORGCODE);
-            mUser.region = accountManager.getUserData(account, KEY_USER_REGION);
+            mUser.area = accountManager.getUserData(account, KEY_USER_REGION);
             mUser.marrriage = accountManager.getUserData(account, KEY_USER_MARRIAGE);
             mUser.industry = accountManager.getUserData(account, KEY_USER_INDUSTRY);
-            mUser.label = accountManager.getUserData(account, KEY_USER_LABEL);
-            mUser.job = accountManager.getUserData(account, KEY_USER_JOB);
+            mUser.tag = accountManager.getUserData(account, KEY_USER_LABEL);
+            mUser.position = accountManager.getUserData(account, KEY_USER_JOB);
             mUser.headUrl = accountManager.getUserData(account, KEY_USER_HeadUrl);
             return mUser;
         }
@@ -96,11 +96,11 @@ public class Global {
             bundle.putString(KEY_USER_EMAIL, user.email);
             bundle.putString(KEY_USER_TELEPHONE, user.telephone);
             bundle.putString(KEY_USER_ORGCODE, user.code);
-            bundle.putString(KEY_USER_REGION, user.region);
+            bundle.putString(KEY_USER_REGION, user.area);
             bundle.putString(KEY_USER_MARRIAGE, user.marrriage);
             bundle.putString(KEY_USER_INDUSTRY, user.industry);
-            bundle.putString(KEY_USER_LABEL,user.label);
-            bundle.putString(KEY_USER_JOB,user.job);
+            bundle.putString(KEY_USER_LABEL,user.tag);
+            bundle.putString(KEY_USER_JOB,user.position);
             bundle.putString(KEY_USER_HeadUrl,user.headUrl);
             accountManager.addAccountExplicitly(account, user.password, bundle);
         }
@@ -116,11 +116,11 @@ public class Global {
             accountManager.setUserData(account, KEY_USER_TELEPHONE, user.telephone);
             accountManager.setUserData(account, KEY_USER_EMAIL, user.email);
             accountManager.setPassword(account, user.password);
-            accountManager.setUserData(account, KEY_USER_REGION, user.region);
+            accountManager.setUserData(account, KEY_USER_REGION, user.area);
             accountManager.setUserData(account, KEY_USER_MARRIAGE, user.marrriage);
             accountManager.setUserData(account, KEY_USER_INDUSTRY, user.industry);
-            accountManager.setUserData(account, KEY_USER_LABEL, user.label);
-            accountManager.setUserData(account, KEY_USER_JOB, user.job);
+            accountManager.setUserData(account, KEY_USER_LABEL, user.tag);
+            accountManager.setUserData(account, KEY_USER_JOB, user.position);
             accountManager.setUserData(account, KEY_USER_HeadUrl, user.headUrl);
         }
     }

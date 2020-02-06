@@ -14,8 +14,11 @@ import com.linkb.jstx.bean.User;
 import com.linkb.jstx.event.UserInfoChangeEvent;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.util.InputSoftUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ModifyEmailActivityV2 extends BaseActivity implements HttpRequestListener<ModifyPersonInfoResult>, TextWatcher {
+public class ModifyEmailActivityV2 extends BaseActivity implements TextWatcher {
     @BindView(R.id.tv_back)
     TextView tvBack;
     @BindView(R.id.tv_title)
@@ -67,7 +70,8 @@ public class ModifyEmailActivityV2 extends BaseActivity implements HttpRequestLi
         String email=editModify.getText().toString();
         if (!TextUtils.isEmpty(email)) {
             mEmail =email;
-            HttpServiceManager.modifyPersonInfo("email", mEmail, this);
+//            HttpServiceManager.modifyPersonInfo("email", mEmail, this);
+            httpUpdateEmail(email);
         }
     }
 
@@ -76,21 +80,41 @@ public class ModifyEmailActivityV2 extends BaseActivity implements HttpRequestLi
         editModify.setText("");
     }
 
-    @Override
-    public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
-        if (result.isSuccess()){
-            user.email = mEmail;
-            Global.modifyAccount(user);
-            showToastView(R.string.tip_save_complete);
-            setResult(RESULT_OK, getIntent());
-            finish();
-        }
-    }
+    private void httpUpdateEmail(String email){
+        User userTemp=new User();
+        userTemp.email=email;
+        HttpServiceManagerV2.updateUserInfo(userTemp, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                if (result.isSuccess()){
+                    user.email = mEmail;
+                    Global.modifyAccount(user);
+                    showToastView(R.string.tip_save_complete);
+                    setResult(RESULT_OK, getIntent());
+                    finish();
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
-    @Override
-    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
+            }
+        });
     }
+//    @Override
+//    public void onHttpRequestSucceed(ModifyPersonInfoResult result, OriginalCall call) {
+//        if (result.isSuccess()){
+//            user.email = mEmail;
+//            Global.modifyAccount(user);
+//            showToastView(R.string.tip_save_complete);
+//            setResult(RESULT_OK, getIntent());
+//            finish();
+//        }
+//    }
+//
+//    @Override
+//    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+//
+//    }
 
     @Override
     public void finish() {

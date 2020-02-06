@@ -475,6 +475,7 @@
     <string name="label_group_uncheck_info_tips">设置不可互加好友时,将不能在群内查看其他人资料</string>
     <string name="label_group_banned_tips">本群已经被群主设置全员禁言</string>
     <string name="label_group_apply">申请加入</string>
+    <string name="label_group_apply_join_group">申请加群</string>
     <string name="label_group_create">创建群组</string>
     <string name="label_group_modify">修改群组</string>
     <string name="label_group_detail">群资料</string>
@@ -517,6 +518,7 @@
     <string name="label_setting_modify_summary">修改群公告</string>
     <string name="email_format_error">邮箱格式错误</string>
     <string name="label_setting_modify_industry">行业</string>
+    <string name="label_setting_modify_position">修改职务</string>
 
     <string name="label_setting_profile">个人信息</string>
     <string name="label_setting_notify">消息设置</string>

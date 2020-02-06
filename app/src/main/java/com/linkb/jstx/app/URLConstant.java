@@ -407,7 +407,9 @@ public class URLConstant {
     public static String lisTags;//获取标签列表
     public static String listIndustry;//获取行业列表
     public static String updateUserInfo;//修改个人资料
-
+    public static String findPersons;//找一找（人）
+    public static String findGroups;//找一找（群）
+    public static String checkInGroup;//找一找（群）
     static {
         initialize();
         initializeV2();
@@ -429,6 +431,9 @@ public class URLConstant {
         lisTags = API_URL + "/public/lisTags";
         listIndustry = API_URL + "/public/listIndustry";
         updateUserInfo=API_URL + "/user/updateUserInfo";
+        findPersons=API_URL + "/public/findPersons";
+        findGroups=API_URL + "/public/findGroups";
+        checkInGroup=API_URL + "/group/checkInGroup";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

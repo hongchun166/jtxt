@@ -18,14 +18,17 @@ import android.widget.TextView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.adapter.wallet.BillListAdapterV2;
 import com.linkb.jstx.adapter.wallet.CurrencyDetailsAdapterV2;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoBean;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
+import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +60,19 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
     TextView tvCode;
 
     private String currencyName;
+    private  int currencyId;
     private int maxMargin = 1;
     private boolean isAnimation = true;
-    private List<CurrencyInfoBean> records = new ArrayList<>();
-    private CurrencyDetailsAdapterV2 adapterV2;
+    private List<ListMyBalanceFlowResult.DataBean> mData = new ArrayList<>();
+//    private CurrencyDetailsAdapterV2 adapterV2;
+    BillListAdapterV2 mAdapter;
+
+    public static void navToAct(Context context,String currencyId,String currencyName){
+        Intent intent = new Intent(context, CurrencyDetailsActivityV2.class);
+        intent.putExtra("currencyId", currencyId);
+        intent.putExtra("currencyName", currencyName);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void initComponents() {
@@ -92,13 +104,13 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
     private void initView() {
         updateType(0);
         tvCode.setText("dhj1df234dfg5567ddf");
-        adapterV2 = new CurrencyDetailsAdapterV2(records, this);
-        listView.setAdapter(adapterV2);
+        mAdapter = new BillListAdapterV2(mData, this);
+        listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CurrencyInfoBean bean = adapterV2.getData().get(i);
-                showToastView(bean.name + "被点击");
+                ListMyBalanceFlowResult.DataBean bean = mData.get(i);
+//                showToastView(bean.getRemark() + "被点击");
             }
         });
     }
@@ -109,23 +121,11 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
      */
     private void initData() {
         Intent intent = getIntent();
-        int currencyId = intent.getIntExtra("currencyId", 0);
+         currencyId = Integer.valueOf(intent.getStringExtra("currencyId"));
         currencyName = intent.getStringExtra("currencyName");
         tvTile.setText(currencyName);
-        User user = Global.getCurrentUser();
-        HttpServiceManagerV2.getMyCurrencyById(user == null ? "" : user.account, String.valueOf(currencyId),
-                new HttpRequestListener<CurrencyInfoResult>() {
-                    @Override
-                    public void onHttpRequestSucceed(CurrencyInfoResult result, OriginalCall call) {
-                        updateData(result);
-                    }
-
-
-                    @Override
-                    public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-                    }
-                });
+        httpGetMyCurrencyById();
+        httpListMyBalanceFlow();
     }
 
 
@@ -138,18 +138,18 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
         if (result == null) return;
         if (!result.isSuccess()) return;
         tvAmount.setText(String.valueOf(result.data.lockBalance));
-        records.clear();
-        //无数据暂用假数据
-        for (int i = 0; i < 100; i++) {
-            CurrencyInfoBean rec = new CurrencyInfoBean();
-            rec.amount = String.valueOf(i * 100.3 + i);
-            rec.icon = "";
-            rec.name = "测试佚名" + i;
-            rec.status = i % 2;
-            rec.time = "2020-01-22 12:25";
-            records.add(rec);
-        }
-        adapterV2.setData(records);
+//        records.clear();
+//        //无数据暂用假数据
+//        for (int i = 0; i < 100; i++) {
+//            CurrencyInfoBean rec = new CurrencyInfoBean();
+//            rec.amount = String.valueOf(i * 100.3 + i);
+//            rec.icon = "";
+//            rec.name = "测试佚名" + i;
+//            rec.status = i % 2;
+//            rec.time = "2020-01-22 12:25";
+//            records.add(rec);
+//        }
+//        mAdapter.setData(records);
     }
 
     @OnClick(R.id.back_btn)
@@ -235,5 +235,37 @@ public class CurrencyDetailsActivityV2 extends BaseActivity {
         });
         valueAnimator.start();
         isAnimation = false;
+    }
+
+    private void httpGetMyCurrencyById(){
+        User user = Global.getCurrentUser();
+        HttpServiceManagerV2.getMyCurrencyById(user == null ? "" : user.account, String.valueOf(currencyId),
+                new HttpRequestListener<CurrencyInfoResult>() {
+                    @Override
+                    public void onHttpRequestSucceed(CurrencyInfoResult result, OriginalCall call) {
+                        updateData(result);
+                    }
+                    @Override
+                    public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+                    }
+                });
+    }
+    private void httpListMyBalanceFlow(){
+        User user = Global.getCurrentUser();
+        HttpServiceManagerV2.listMyBalanceFlow(user == null ? "" : user.account, "", String.valueOf(currencyId), new HttpRequestListener<ListMyBalanceFlowResult>() {
+            @Override
+            public void onHttpRequestSucceed(ListMyBalanceFlowResult result, OriginalCall call) {
+                if (result.isSuccess()) {
+                    mData = result.getData();
+                    mAdapter.setData(mData);
+                }
+            }
+
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
     }
 }

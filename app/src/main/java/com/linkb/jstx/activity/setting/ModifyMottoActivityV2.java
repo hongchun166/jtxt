@@ -1,6 +1,7 @@
 package com.linkb.jstx.activity.setting;
 
 import android.app.Activity;
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,6 +16,10 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
+import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.util.InputSoftUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,17 +69,7 @@ public class ModifyMottoActivityV2 extends BaseActivity implements TextWatcher {
     public void OK() {
         String mptto = editModify.getText().toString().trim();
         if (!TextUtils.isEmpty(mptto)) {
-            user.motto = mptto;
-            Global.modifyAccount(user);
-            SentBody sent = new SentBody();
-            sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
-            sent.put("account", user.account);
-            sent.put("motto", user.motto);
-            sent.put("name", user.name);
-            CIMPushManager.sendRequest(this, sent);
-            showToastView(R.string.tip_save_complete);
-            setResult(Activity.RESULT_OK);
-            finish();
+            httpUpdateMotto(mptto);
         }
     }
 
@@ -100,5 +95,33 @@ public class ModifyMottoActivityV2 extends BaseActivity implements TextWatcher {
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    private void httpUpdateMotto(String motto){
+        final User userTemp=new User();
+        userTemp.motto=motto;
+        final Context context=ModifyMottoActivityV2.this;
+        HttpServiceManagerV2.updateUserInfo(userTemp, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    user.motto = userTemp.motto;
+                    Global.modifyAccount(user);
+                    SentBody sent = new SentBody();
+                    sent.setKey(Constant.CIMRequestKey.CLIENT_MODIFY_PROFILE);
+                    sent.put("account", user.account);
+                    sent.put("motto", user.motto);
+                    sent.put("name", user.name);
+                    CIMPushManager.sendRequest(context, sent);
+                    showToastView(R.string.tip_save_complete);
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
     }
 }
