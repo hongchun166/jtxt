@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <com.linkb.jstx.component.CustomSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_above="@id/inputPanel"
+        android:layout_marginBottom="-2dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height_without_immersiom">
+
+        <com.linkb.jstx.component.ChatRecordListView
+            android:id="@+id/chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.linkb.jstx.component.CustomSwipeRefreshLayout>
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar_without_immersion" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/snake_bar_cooly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <TextView
+        android:elevation="0dp"
+        android:id="@+id/newMessageBar"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_new_message"
+        android:textSize="14sp"
+        android:drawablePadding="3dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_small_green_uparrow"
+        android:textColor="#58b958"
+        android:visibility="gone"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/inputPanel"
+        layout="@layout/layout_custom_inputpanel" />
+    <LinearLayout
+        android:id="@+id/viewReadDeleteSetTimeItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/inputPanel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:background="@color/color_D7DCE0"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_read_delete_settime_startw_hint"
+            android:textColor="@color/tex_color_gray_999999"
+            android:textSize="@dimen/text_14sp"
+            />
+        <TextView
+            android:id="@+id/viewviewReadDeleteSetTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_read_delete_settime_hint"
+            android:textColor="@color/color_116AEC"
+            android:textSize="@dimen/text_14sp"
+            />
+    </LinearLayout>
+</cn.dreamtobe.kpswitch.widget.KPSwitchRootRelativeLayout >

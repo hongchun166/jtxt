@@ -50,6 +50,7 @@ public abstract class BaseToMessageView extends RelativeLayout implements OnMess
     private WebImageView icon;
     EmoticonTextView textView;
     ChatWebImageView imageView;
+    ChatReadDeleteView chatReadDeleteView;
     ChatVoiceView voiceView;
     ChatFileView fileView;
     ChatMapView mapView;
@@ -117,6 +118,9 @@ public abstract class BaseToMessageView extends RelativeLayout implements OnMess
         }
         if (container instanceof ChatCoinTransferView){
             transferView = (ChatCoinTransferView) container;
+        }
+        if (container instanceof ChatReadDeleteView) {
+            chatReadDeleteView = (ChatReadDeleteView) container;
         }
         optionsDialog = new ContentMenuWindow(getContext());
         optionsDialog.setOnMenuClickedListener(this);

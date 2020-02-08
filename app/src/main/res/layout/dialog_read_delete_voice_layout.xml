@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/viewTVTimeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_27sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewFlag1"
+        android:layout_marginTop="-28dp"
+        android:background="@drawable/background_white_with_radius"
+        android:minHeight="100dp">
+
+        <com.linkb.jstx.component.ChatVoiceView
+            android:id="@+id/viewVoiceContent"
+            android:layout_width="@dimen/chat_voice_width"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/chating_background_to"
+            android:clickable="true"
+            android:gravity="center_vertical|left"
+            android:minHeight="40dip"
+            android:padding="5dip" />
+
+        <TextView
+            android:id="@+id/viewTVClose"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/viewVoiceContent"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/background_white_to_gray"
+            android:gravity="center"
+            android:text="@string/common_close"
+            android:textColor="@color/tex_color_gray_333"
+            android:textSize="@dimen/text_14sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/viewFlag1"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_below="@+id/viewTVTimeCount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_msg_read_delete_flag2" />
+</RelativeLayout>

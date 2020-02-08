@@ -333,6 +333,7 @@
     <string name="common_feedback">建议反馈</string>
     <string name="common_delete">删除</string>
     <string name="common_open">打开</string>
+    <string name="common_close">关闭</string>
     <string name="common_location">位置</string>
     <string name="common_map">地图</string>
     <string name="common_about">关于</string>
@@ -667,6 +668,7 @@
     <string name="label_message_preview_red_packet">[KiKi 红包]</string>
     <string name="label_message_from_red_packet">%1$s</string>
     <string name="label_message_to_red_packet">[KiKi 红包]%1$s</string>
+    <string name="label_message_preview_readDelete">[阅读即焚]</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">请先配置好你的服务器信息</string>
@@ -996,4 +998,7 @@
     <string name="minus_bill_amount">-%1$dKKC</string>
     <string name="collection">收款</string>
     <string name="transaction_records">交易记录</string>
+
+    <string name="msg_read_delete_settime_startw_hint">你已开启阅后即焚,</string>
+    <string name="msg_read_delete_settime_hint">设置时间</string>
 </resources>

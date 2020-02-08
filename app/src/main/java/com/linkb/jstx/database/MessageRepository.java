@@ -514,8 +514,10 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
     }
 
     public static void batchReadFriendMessage(String account) {
-        String sql = "update " + Message.TABLE_NAME + " set state = ? where action  = ? and sender = ? ";
-        manager.innerExecuteSQL(sql, new String[]{Message.STATUS_READ,Constant.MessageAction.ACTION_0,account});
+        String sql = "update " + Message.TABLE_NAME + " set state = ? where (action  = ? or action  = ?) and sender = ? ";
+        manager.innerExecuteSQL(sql, new String[]{Message.STATUS_READ,Constant.MessageAction.ACTION_0,Constant.MessageAction.ACTION_ReadDelete,account});
+
+
     }
 
 
@@ -530,7 +532,8 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
             return manager.databaseDao.queryBuilder().offset(start).limit(pageSize)
                     .orderBy("timestamp", false)
                     .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
-                    .and().eq("action", Constant.MessageAction.ACTION_0).query();
+                    .and().eq("action", Constant.MessageAction.ACTION_0)
+                    .or().eq("action", Constant.MessageAction.ACTION_ReadDelete).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }

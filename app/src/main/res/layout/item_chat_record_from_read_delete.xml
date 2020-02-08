@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.linkb.jstx.component.FromMessageReadDeleteView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/from_message_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    >
+
+
+    <com.linkb.jstx.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="1dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/icon_def_head" />
+
+    <ViewStub
+        android:id="@+id/fromNameStub"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-2dp"
+        android:layout_toRightOf="@id/logo"
+        android:layout="@layout/item_chat_from_name" />
+
+    <com.linkb.jstx.component.ChatReadDeleteView
+        android:id="@+id/container"
+        android:layout_width="127dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/fromName"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="2dp"
+        android:layout_toRightOf="@id/logo"
+        android:foreground="?android:selectableItemBackground"
+        android:background="@drawable/blue_top_left_right_radiu"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_msg_read_delete"
+            android:transitionName="imageSenseView"
+            android:layout_centerInParent="true"
+
+            />
+    </com.linkb.jstx.component.ChatReadDeleteView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Will DISAPPEAR after redaing"
+        android:layout_below="@+id/container"
+        android:textColor="@color/tex_color_gray_999999"
+        android:textSize="@dimen/text_10sp"
+        android:layout_alignRight="@+id/container"
+        />
+
+</com.linkb.jstx.component.FromMessageReadDeleteView>

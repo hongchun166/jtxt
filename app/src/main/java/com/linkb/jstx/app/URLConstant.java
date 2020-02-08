@@ -410,6 +410,9 @@ public class URLConstant {
     public static String findPersons;//找一找（人）
     public static String findGroups;//找一找（群）
     public static String checkInGroup;//找一找（群）
+
+    public static String getMessageDestroySwith;// 获取阅读即焚开关状态
+    public static String updateMessageDestroySwith;// 修改阅读即焚开关状态
     static {
         initialize();
         initializeV2();
@@ -434,6 +437,8 @@ public class URLConstant {
         findPersons=API_URL + "/public/findPersons";
         findGroups=API_URL + "/public/findGroups";
         checkInGroup=API_URL + "/group/checkInGroup";
+        getMessageDestroySwith=API_URL + "message/getMessageDestroySwith";
+        updateMessageDestroySwith=API_URL + "message/updateMessageDestroySwith";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

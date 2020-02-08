@@ -17,6 +17,7 @@ import com.linkb.jstx.network.result.v2.CheckInGroupResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
 import com.linkb.jstx.network.result.v2.FindGroupsResult;
 import com.linkb.jstx.network.result.v2.FindPersonsResult;
+import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
@@ -257,6 +258,28 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(area)) requestBody.addParameter("area", area);//
         if(!TextUtils.isEmpty(industry)) requestBody.addParameter("industry", industry);//
         if(!TextUtils.isEmpty(tag))requestBody.addParameter("tag", tag);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 获取阅读即焚开关状态
+     * @param listener
+     */
+    public static void getMessageDestroySwith(String account,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMessageDestroySwith, GetMessageDestroySwithResult.class);
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 修改阅读即焚开关状态
+     * @param account
+     * @param state  阅读即焚状态（0关闭，1开启）
+     * @param listener
+     */
+    public static void updateMessageDestroySwith(String account,int state,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.updateMessageDestroySwith, GetMessageDestroySwithResult.class);
+        requestBody.addParameter("account", account);//
+        requestBody.addParameter("state", String.valueOf(state));//
         HttpRequestLauncher.execute(requestBody, listener);
     }
 }

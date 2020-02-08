@@ -1,19 +1,15 @@
 
 package com.linkb.jstx.activity.chat;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.linkb.R;
@@ -46,12 +42,10 @@ import com.linkb.jstx.listener.OnInputPanelEventListener;
 import com.linkb.jstx.listener.OnMessageSendListener;
 import com.linkb.jstx.listener.OnTouchDownListenter;
 import com.linkb.jstx.model.Friend;
-import com.linkb.jstx.model.Group;
 import com.linkb.jstx.model.Message;
 import com.linkb.jstx.model.MessageSource;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
-import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.model.ChatFile;
 import com.linkb.jstx.network.model.ChatMap;
@@ -60,12 +54,10 @@ import com.linkb.jstx.network.model.SNSChatImage;
 import com.linkb.jstx.network.model.SNSVideo;
 import com.linkb.jstx.network.result.BaseDataResult;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
-import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.CoinTransferResult;
 import com.linkb.jstx.network.result.SendCardsResult;
 import com.linkb.jstx.network.result.SendMessageResult;
 import com.linkb.jstx.network.result.SendRedPacketResult;
-import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
 import com.linkb.jstx.util.AppTools;
 import com.linkb.jstx.util.ClipboardUtils;
 import com.linkb.jstx.util.ConvertUtils;
@@ -83,7 +75,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 import static com.linkb.jstx.activity.contact.SendCardsSelectContactActivity.SELECT_CONTACTS_CARDS_REQUEST;
 
 
-public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion implements SendCardDialog.SendCardsClickListener, EasyPermissions.PermissionCallbacks, OnInputPanelEventListener, OnTouchDownListenter, SwipeRefreshLayout.OnRefreshListener, RecordingButton.OnRecordCompletedListener, OnMessageSendListener, CopyPhotoTipsPopupWindow.BitmapClickListener, ChattingInputPanelView.ChattingPanelClickListener {
+public class FriendChatActivityBackups extends CIMMonitorActivityWithoutImmersion implements SendCardDialog.SendCardsClickListener, EasyPermissions.PermissionCallbacks, OnInputPanelEventListener, OnTouchDownListenter, SwipeRefreshLayout.OnRefreshListener, RecordingButton.OnRecordCompletedListener, OnMessageSendListener, CopyPhotoTipsPopupWindow.BitmapClickListener, ChattingInputPanelView.ChattingPanelClickListener {
 
     private final static int PERMISSION_RADIO_SETTING = 0x101;
 
@@ -93,10 +85,6 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     protected ChatRecordListViewAdapter mAdapter;
     protected ChatRecordListView mChatListView;
     protected ChattingInputPanelView inputPanelView;
-
-    LinearLayout viewReadDeleteSetTimeItem;
-    TextView viewviewReadDeleteSetTime;
-
     protected MessageSource mMessageSource;
 
     private String reMarikName;
@@ -129,12 +117,9 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     * */
     protected String mRootName;
 
-    boolean isSendMsgInReadDelte=false;
-    String frienAccount;
 
     @Override
     public void initComponents() {
-        frienAccount=getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
         reMarikName = getIntent().getStringExtra(Constant.CHAT_OTHRES_NAME);
         if (!TextUtils.isEmpty(reMarikName)) setToolbarTitle(reMarikName);
 
@@ -143,7 +128,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         if (mMessageSource != null){
             postQueryFriend(mMessageSource);
         }
-        httpCheckMessageDestroySwith();
+
     }
 
     @Override
@@ -180,6 +165,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
         mVoiceButton = findViewById(R.id.voiceButton);
         mVoiceButton.setOnRecordCompletedListener(this);
+        mSelf = Global.getCurrentUser();
 
         mChatListView = findViewById(R.id.chat_list);
         mChatListView.setAdapter(mAdapter = new ChatRecordListViewAdapter(mMessageSource));
@@ -190,20 +176,8 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        viewReadDeleteSetTimeItem=findViewById(R.id.viewReadDeleteSetTimeItem);
-        viewviewReadDeleteSetTime=findViewById(R.id.viewviewReadDeleteSetTime);
-        viewReadDeleteSetTimeItem.setVisibility(View.GONE);
-        viewviewReadDeleteSetTime.setOnClickListener(this);
 
         handleReadAllMessage();
-    }
-
-    @Override
-    public void onClick(View view) {
-        super.onClick(view);
-        if(view.getId()==R.id.viewviewReadDeleteSetTime){
-            System.out.println("显示设置阅后即焚时间dialog");
-        }
     }
 
     private HttpRequestListener<BasePersonInfoResult> mListener = new HttpRequestListener<BasePersonInfoResult>() {
@@ -265,11 +239,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     @Override
     public void onMessageReceived(com.farsunset.cim.sdk.android.model.Message message) {
         Message msg = MessageUtil.transform(message);
-        if ((Objects.equals(message.getAction(), Constant.MessageAction.ACTION_0)
-                || Objects.equals(message.getAction(), Constant.MessageAction.ACTION_ReadDelete)
-             )
-                && Objects.equals(msg.sender, mMessageSource.getId())) {
-
+        if (Objects.equals(message.getAction(),Constant.MessageAction.ACTION_0) && Objects.equals(msg.sender,mMessageSource.getId())) {
             mAdapter.addMessage(MessageUtil.transform(message));
             mChatListView.smartScrollToBottom();
         }
@@ -375,18 +345,9 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     }
 
-    protected String getMessageAction(String format,boolean checkReadDelete){
-        if(!checkReadDelete){
-            return Constant.MessageAction.ACTION_0;
-        }else {
-            if(Constant.MessageFormat.FORMAT_TEXT.equals(format)
-                    || Constant.MessageFormat.FORMAT_VOICE.equals(format)
-                    || Constant.MessageFormat.FORMAT_VIDEO.equals(format)){
-                return isSendMsgInReadDelte()?Constant.MessageAction.ACTION_ReadDelete:Constant.MessageAction.ACTION_0;
-            }else {
-                return Constant.MessageAction.ACTION_0;
-            }
-        }
+    protected String getMessageAction(){
+        boolean isReadDelte=true;
+        return isReadDelte?Constant.MessageAction.ACTION_ReadDelete:Constant.MessageAction.ACTION_0;
     }
     protected MessageSource getMessageSource(HttpRequestListener<BasePersonInfoResult> mListener) {
         String account = getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
@@ -437,7 +398,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         message.receiver = mMessageSource.getId();
         message.format = format;
         message.extra = extra;
-        message.action = getMessageAction(format,true);
+        message.action = getMessageAction();
         message.timestamp = System.currentTimeMillis();
         message.state = Constant.MessageStatus.STATUS_NO_SEND;
 
@@ -490,7 +451,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         intent.putExtra(ChatItem.NAME, new ChatItem(mAdapter.getLastMessage(),mMessageSource));
         if (!TextUtils.isEmpty(draft)) {
             Message message = new Message();
-            message.action = getMessageAction("",false);
+            message.action = getMessageAction();
             message.id = System.currentTimeMillis();
             message.timestamp = System.currentTimeMillis();
             intent.putExtra(ChatItem.NAME, new ChatItem(message, mMessageSource));
@@ -510,15 +471,13 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     @Override
     public int getContentLayout() {
-        return R.layout.activity_chatting_friend;
+        return R.layout.activity_chatting;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //single_icon
-        getMenuInflater().inflate(R.menu.chat_friend_icon, menu);
+        getMenuInflater().inflate(R.menu.single_icon, menu);
         menu.findItem(R.id.menu_icon).setIcon(getMenuIcon());
-        menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -526,9 +485,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     protected int getMenuIcon() {
         return R.mipmap.more;
     }
-    protected int getMenuReadDeleteIcon() {
-        return R.mipmap.ic_msg_read_delete_flag2;
-    }
+
 
     protected void onToolbarMenuClicked() {
         Intent intent = new Intent(this, PersonInfoActivity.class);
@@ -541,8 +498,6 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_icon) {
             onToolbarMenuClicked();
-        }else if(item.getItemId() == R.id.menu_read_delete){
-            httpUpdateMessageDestroySwith();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -625,31 +580,31 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     @Override
     public void onChatInputCamera() {
-        Intent intent = new Intent(FriendChatActivity.this, VideoRecorderActivity.class);
+        Intent intent = new Intent(FriendChatActivityBackups.this, VideoRecorderActivity.class);
         startActivityForResult(intent, 1);
     }
 
     @Override
     public void onChatInputPhoto() {
-        Intent intentFromGallery = new Intent(FriendChatActivity.this, PhotoAlbumActivity.class);
+        Intent intentFromGallery = new Intent(FriendChatActivityBackups.this, PhotoAlbumActivity.class);
        startActivityForResult(intentFromGallery, 2);
     }
 
     @Override
     public void onChatInputFile() {
-        Intent intentFile = new Intent(FriendChatActivity.this, FileChoiceActivity.class);
+        Intent intentFile = new Intent(FriendChatActivityBackups.this, FileChoiceActivity.class);
         startActivityForResult(intentFile, 3);
     }
 
     @Override
     public void onChatInputLocation() {
-        Intent intentLoc = new Intent(FriendChatActivity.this, MapLocationActivity.class);
+        Intent intentLoc = new Intent(FriendChatActivityBackups.this, MapLocationActivity.class);
         startActivityForResult(intentLoc, 4);
     }
 
     @Override
     public void onChatInputSendCards() {
-        Intent intent = new Intent(FriendChatActivity.this, SendCardsSelectContactActivity.class);
+        Intent intent = new Intent(FriendChatActivityBackups.this, SendCardsSelectContactActivity.class);
         if (mMessageSource instanceof Friend){
             Friend friend = (Friend)mMessageSource;
             intent.putExtra(Friend.class.getSimpleName(), friend);
@@ -677,7 +632,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     @Override
     public void onChatInputRedPacket() {
-        Intent intentRedPacket = new Intent(FriendChatActivity.this, RedPacketActivity.class);
+        Intent intentRedPacket = new Intent(FriendChatActivityBackups.this, RedPacketActivity.class);
         intentRedPacket.putExtra(Constant.RedPacketType.RED_PACKET_TYPE, Constant.RedPacketType.COMMON_RED_PACKET);
         startActivityForResult(intentRedPacket, SEND_RED_PACKET_REQUEST_CODE);
     }
@@ -686,17 +641,17 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     public void onCoinTransfer() {
         if (mMessageSource instanceof Friend){
             Friend friend = (Friend)mMessageSource;
-            Intent intentTransfer = new Intent(FriendChatActivity.this, CoinTransferActivity.class);
+            Intent intentTransfer = new Intent(FriendChatActivityBackups.this, CoinTransferActivity.class);
             intentTransfer.putExtra(Friend.class.getSimpleName(), friend);
-            startActivityForResult(intentTransfer, FriendChatActivity.COIN_TRANSFER_REQUEST_CODE);
+            startActivityForResult(intentTransfer, FriendChatActivityBackups.COIN_TRANSFER_REQUEST_CODE);
         }else {
-            ToastUtils.s(FriendChatActivity.this, getString(R.string.coin_transfer_usdt_not_enough));
+            ToastUtils.s(FriendChatActivityBackups.this, getString(R.string.coin_transfer_usdt_not_enough));
         }
     }
 
     @Override
     public void onRecommendContact() {
-        startActivity(new Intent(FriendChatActivity.this, PhoneContactsActivity.class));
+        startActivity(new Intent(FriendChatActivityBackups.this, PhoneContactsActivity.class));
     }
 
     protected void videoConnect(){
@@ -750,7 +705,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     /** 进入音视频界面
     * */
     protected void goToVideo(String token) {
-        Intent intent = new Intent(FriendChatActivity.this, RoomActivity.class);
+        Intent intent = new Intent(FriendChatActivityBackups.this, RoomActivity.class);
         intent.putExtra(RoomActivity.EXTRA_ROOM_ID, mRootName);
         intent.putExtra(RoomActivity.EXTRA_ROOM_TOKEN, token);
         intent.putExtra(RoomActivity.EXTRA_USER_ID, mSelf.account);
@@ -816,48 +771,5 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     @Override
     public void onCancelClick() {
 
-    }
-
-
-    public void httpUpdateMessageDestroySwith(){
-        String account=frienAccount;
-        final boolean isOpen=isSendMsgInReadDelte()?false:true;
-        HttpServiceManagerV2.updateMessageDestroySwith(account, isOpen ? 1 : 0, new HttpRequestListener<GetMessageDestroySwithResult>() {
-            @Override
-            public void onHttpRequestSucceed(GetMessageDestroySwithResult result, OriginalCall call) {
-                if(result.isSuccess()){
-                    setSendMsgInReadDelte(result.getData().getMessageDestroySwith()==1?true:false);
-                }
-            }
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-            }
-        });
-    }
-    public void httpCheckMessageDestroySwith(){
-        String account=Global.getCurrentUser().account;
-        HttpServiceManagerV2.getMessageDestroySwith(account, new HttpRequestListener<GetMessageDestroySwithResult>() {
-            @Override
-            public void onHttpRequestSucceed(GetMessageDestroySwithResult result, OriginalCall call) {
-                if(result.isSuccess()){
-                    setSendMsgInReadDelte(result.getData().getMessageDestroySwith()==1);
-                }
-            }
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-            }
-        });
-    }
-
-    public boolean isSendMsgInReadDelte() {
-        return isSendMsgInReadDelte;
-    }
-    public void setSendMsgInReadDelte(boolean sendMsgInReadDelte) {
-        sendMsgInReadDelte=true;
-        isSendMsgInReadDelte = sendMsgInReadDelte;
-        if(viewReadDeleteSetTimeItem!=null){
-            viewReadDeleteSetTimeItem.setVisibility(sendMsgInReadDelte?View.VISIBLE:View.GONE);
-        }
     }
 }

@@ -309,6 +309,7 @@
     <string name="common_feedback">common feedback</string>
     <string name="common_delete">delete</string>
     <string name="common_open">open</string>
+    <string name="common_close">close</string>
     <string name="common_location">location</string>
     <string name="common_map">map</string>
     <string name="common_about">about</string>
@@ -616,6 +617,7 @@
     <string name="label_message_preview_red_packet">[KiKi red packet]</string>
     <string name="label_message_from_red_packet">%1$s</string>
     <string name="label_message_to_red_packet">[KiKi red packet]%1$s</string>
+    <string name="label_message_preview_readDelete">[read delte]</string>
 
     <string name="label_message_preview_normal">%1$s</string>
     <string name="tip_please_configure_serverinfo">Please configure your server information first.</string>
@@ -752,4 +754,7 @@
     <string name="all_coin_record">All the records</string>
     <string name="red_coin_record">A red envelope to record</string>
     <string name="top_up_coin_record">Prepaid phone records</string>
+
+    <string name="msg_read_delete_settime_startw_hint">You opened read delete,</string>
+    <string name="msg_read_delete_settime_hint">set time</string>
 </resources>

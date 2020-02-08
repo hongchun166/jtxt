@@ -55,6 +55,7 @@ public abstract class BaseFromMessageView extends RelativeLayout implements OnMe
     private WebImageView icon;
     EmoticonTextView textView;
     ChatWebImageView imageView;
+    ChatReadDeleteView chatReadDeleteView;
     ChatVoiceView voiceView;
     ChatFileView fileView;
     ChatMapView mapView;
@@ -106,6 +107,9 @@ public abstract class BaseFromMessageView extends RelativeLayout implements OnMe
         }
         if (container instanceof ChatCoinTransferView){
             transferView = (ChatCoinTransferView) container;
+        }
+        if (container instanceof ChatReadDeleteView) {
+            chatReadDeleteView = (ChatReadDeleteView) container;
         }
         getContentView().setOnLongClickListener(this);
         optionsDialog = new ContentMenuWindow(getContext());
@@ -169,6 +173,7 @@ public abstract class BaseFromMessageView extends RelativeLayout implements OnMe
         handleMessageState();
 
     }
+
 
     private HttpRequestListener<BasePersonInfoResult> mListener = new HttpRequestListener<BasePersonInfoResult>() {
         @Override
@@ -376,6 +381,9 @@ public abstract class BaseFromMessageView extends RelativeLayout implements OnMe
 
     public void setOnMessageDeleteListener(OnMessageDeleteListener onMessageDeleteListener) {
         this.onMessageDeleteListener = onMessageDeleteListener;
+        if(chatReadDeleteView!=null){
+            chatReadDeleteView.setOnMessageDeleteListener(onMessageDeleteListener);
+        }
     }
 
     public void setEnableCheckMemberInfo(boolean enableCheckMemberInfo){

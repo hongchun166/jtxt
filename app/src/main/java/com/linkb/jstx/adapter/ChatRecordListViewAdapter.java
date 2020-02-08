@@ -13,8 +13,7 @@ import com.linkb.jstx.util.AppTools;
 
 public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecordViewHolder>{
     private static final int FACTOR = 9999;
-
-
+    private static final int READ_DELETE_MSG_FORM = 9998;
 
     private Boolean enableCheckMemberInfo = true;
 
@@ -38,7 +37,9 @@ public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecor
         Message message = (Message) item;
         String type = message.format;
         boolean isSelf = self.account.equals(message.sender);
-        return isSelf ? Integer.parseInt(type) : Integer.parseInt(type) + FACTOR;
+        boolean isReadDeleteMsg=message.action.equals(Constant.MessageAction.ACTION_ReadDelete);
+
+        return isSelf ? Integer.parseInt(type): (isReadDeleteMsg?READ_DELETE_MSG_FORM:Integer.parseInt(type) + FACTOR);
 
     }
 
@@ -70,6 +71,10 @@ public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecor
         }
         if (String.valueOf(viewType).equals(Constant.MessageFormat.FORMAT_COIN_TRANSFER)) {
             return new ChatRecordViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_record_to_coin_transfer, parent, false));
+        }
+
+        if(viewType==READ_DELETE_MSG_FORM){
+            return new ChatRecordViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_record_from_read_delete, parent, false));
         }
 
         if (viewType == Integer.parseInt(Constant.MessageFormat.FORMAT_TEXT) + FACTOR) {
