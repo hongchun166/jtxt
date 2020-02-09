@@ -757,4 +757,5 @@
 
     <string name="msg_read_delete_settime_startw_hint">You opened read delete,</string>
     <string name="msg_read_delete_settime_hint">set time</string>
+    <string name="msg_read_delete_settime_dig_title">Set reading time</string>
 </resources>

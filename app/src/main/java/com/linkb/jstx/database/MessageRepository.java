@@ -169,6 +169,16 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         String sql = "update " + Message.TABLE_NAME + " set state = ? where id = ? ";
         manager.innerExecuteSQL(sql, new String[]{status, String.valueOf(id)});
     }
+    public static void updateReadDeleteStatus(long id,String readDeleteState, long time) {
+        String sql =null;
+        if(time>1000){
+             sql = "update " + Message.TABLE_NAME + " set readDeleteState = ?,readTime=? where id = ? ";
+            manager.innerExecuteSQL(sql, new String[]{readDeleteState,String.valueOf(time), String.valueOf(id)});
+        }else {
+             sql = "update " + Message.TABLE_NAME + " set readDeleteState = ? where id = ? ";
+            manager.innerExecuteSQL(sql, new String[]{readDeleteState, String.valueOf(id)});
+        }
+    }
     public static List<MessageSource> getRecentContacts(Object[] includedTypes) {
         List<ChatItem> list = getRecentMessage(includedTypes);
         List<MessageSource> sourceList = new ArrayList<>();

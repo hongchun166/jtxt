@@ -1,27 +1,125 @@
 
 package com.linkb.jstx.adapter;
 
+import android.os.Handler;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.linkb.R;
 import com.linkb.jstx.adapter.viewholder.ChatRecordViewHolder;
 import com.linkb.jstx.app.Constant;
+import com.linkb.jstx.dialog.ReadDelteSetTimeDialog;
 import com.linkb.jstx.model.Message;
 import com.linkb.jstx.model.MessageSource;
 import com.linkb.jstx.util.AppTools;
+
+import org.webrtc.ThreadUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecordViewHolder>{
     private static final int FACTOR = 9999;
     private static final int READ_DELETE_MSG_FORM = 9998;
 
     private Boolean enableCheckMemberInfo = true;
+    Handler handler;
+    String friendAccount;
 
     public ChatRecordListViewAdapter(MessageSource friend) {
         super(friend);
+        handler=new Handler();
+        startTime();
     }
 
+    Timer timer;
+    TimerTask timerTask;
+    private void startTime(){
+        timer=new Timer();
+        timer.schedule(timerTask=new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    final List<String> list=checkTime();
+                    if( list.size()>0 && handler!=null){
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (String s : list) {
+                                    notifyItemChanged(Integer.valueOf(s));
+                                }
+                            }
+                        });
+                    }
+                } catch (Exception e){
 
+                }
+            }
+        },1000,2000);
+    }
+    public void stopTime(){
+        if(timer!=null){
+           if(timerTask!=null) timerTask.cancel();
+            timer.cancel();
+            timerTask=null;
+            timer=null;
+        }
+        if(handler!=null){
+            handler.removeCallbacksAndMessages(null);
+            handler=null;
+        }
+    }
+
+    public void setFriendAccount(String friendAccount) {
+        this.friendAccount = friendAccount;
+    }
+
+    public int getCountDownTime(Message message){
+         return ReadDelteSetTimeDialog.getReadDeleteTime(friendAccount);
+    }
+    private List<String> checkTime(){
+        List<String> changeList=new ArrayList<>();
+        int position=-1;
+        for (Object obj : dataList) {
+            position++;
+            if(!(obj instanceof Message)){
+                continue;
+            }
+            Message message= (Message) obj;
+            String type = message.format;
+            boolean isSelf = self.account.equals(message.sender);
+            boolean isReadDeleteMsg=message.action.equals(Constant.MessageAction.ACTION_ReadDelete);
+            int vType= isSelf ? Integer.parseInt(type): (isReadDeleteMsg?READ_DELETE_MSG_FORM:Integer.parseInt(type) + FACTOR);
+            if(vType==READ_DELETE_MSG_FORM){
+                if(Integer.valueOf(message.getReadDeleteState())<=Integer.valueOf(Message.STATUS_READ_DELETE_Read) &&
+                        Integer.valueOf(message.getReadDeleteState())>Integer.valueOf(Message.STATUS_READ_DELETE_TimeOut)){
+                    //点击过阅读
+                    long time=System.currentTimeMillis()-message.getReadTime();
+                    long time2=getCountDownTime(message)*1000-time;
+                    long sysTime=time2<=0?0:time2;
+                    String jiShua=null;
+                    if(sysTime/1000<=0){
+                        jiShua=Message.STATUS_READ_DELETE_TimeOut;
+                    }else if(sysTime/1000<=2){
+                        jiShua=Message.STATUS_READ_DELETE_CountDown2;
+                    }else if(sysTime/1000<=3){
+                        jiShua=Message.STATUS_READ_DELETE_CountDown3;
+                    }else if(sysTime/1000<=5){
+                        jiShua=Message.STATUS_READ_DELETE_CountDown5;
+                    }
+                    if(!TextUtils.isEmpty(jiShua)){
+                        message.setReadDeleteState(jiShua);
+                        changeList.add(String.valueOf(position));
+                    }
+                }
+            }
+        }
+        return changeList;
+    }
     public void setEnableCheckMemberInfo(Boolean enableCheckMemberInfo) {
         this.enableCheckMemberInfo = enableCheckMemberInfo;
         notifyDataSetChanged();

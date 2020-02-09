@@ -22,6 +22,14 @@ public class Message implements Serializable {
     public static final String STATUS_NOT_READ = "0"; //自己还未阅读
     public static final String STATUS_READ = "1";//自己已经阅读
     public static final String STATUS_READ_OF_VOICE = "2";//自己已经阅读
+
+    public static final String STATUS_READ_DELETE_UnRead= "999";//未记时
+    public static final String STATUS_READ_DELETE_Read= "59";//
+    public static final String STATUS_READ_DELETE_CountDown5= "5";//倒计时
+    public static final String STATUS_READ_DELETE_CountDown3= "3";//倒计时
+    public static final String STATUS_READ_DELETE_CountDown2= "2";//倒计时
+    public static final String STATUS_READ_DELETE_TimeOut= "0";//消息过了有效时间
+
     @DatabaseField(id = true)
     public long id;
     @DatabaseField
@@ -47,6 +55,14 @@ public class Message implements Serializable {
      */
     @DatabaseField
     public String handle;
+
+    //20200209
+    @DatabaseField
+    public String readDeleteState=STATUS_READ_DELETE_UnRead;//0、未读，1、已读,2
+    @DatabaseField
+    public long readTime;//阅后-读取时间
+    @DatabaseField
+    public int effectiveTime=10;//阅后-有效时间
 
     private String[] isNeedSoundTypes = new String[]{Constant.MessageAction.ACTION_0,
             Constant.MessageAction.ACTION_2,
@@ -92,4 +108,27 @@ public class Message implements Serializable {
         return getClass().getName().hashCode();
     }
 
+    public String getReadDeleteState() {
+        return readDeleteState;
+    }
+
+    public void setReadDeleteState(String readDeleteState) {
+        this.readDeleteState = readDeleteState;
+    }
+
+    public long getReadTime() {
+        return readTime;
+    }
+
+    public void setReadTime(long readTime) {
+        this.readTime = readTime;
+    }
+
+    public int getEffectiveTime() {
+        return effectiveTime;
+    }
+
+    public void setEffectiveTime(int effectiveTime) {
+        this.effectiveTime = effectiveTime;
+    }
 }

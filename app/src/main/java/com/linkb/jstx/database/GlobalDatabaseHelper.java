@@ -84,6 +84,9 @@ public class GlobalDatabaseHelper extends OrmLiteSqliteOpenHelper {
                 e.printStackTrace();
             }
         }
+//        if(oldVersion< 23){//暂不说明为何要这么判断
+//            DatabaseUtil.upgradeTable(db,connectionSource,Message.class,DatabaseUtil.OPERATION_TYPE.ADD);
+//        }
     }
 
 

@@ -41,6 +41,7 @@ import com.linkb.jstx.component.RecordingButton;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.dialog.PermissionDialog;
+import com.linkb.jstx.dialog.ReadDelteSetTimeDialog;
 import com.linkb.jstx.dialog.SendCardDialog;
 import com.linkb.jstx.listener.OnInputPanelEventListener;
 import com.linkb.jstx.listener.OnMessageSendListener;
@@ -183,7 +184,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
         mChatListView = findViewById(R.id.chat_list);
         mChatListView.setAdapter(mAdapter = new ChatRecordListViewAdapter(mMessageSource));
-
+        mAdapter.setFriendAccount(frienAccount);
         initChatListViewListener();
         loadLocalMessageListView(mMessageSource.getId());
 
@@ -202,7 +203,15 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     public void onClick(View view) {
         super.onClick(view);
         if(view.getId()==R.id.viewviewReadDeleteSetTime){
-            System.out.println("显示设置阅后即焚时间dialog");
+            ReadDelteSetTimeDialog setTimeDialog=new ReadDelteSetTimeDialog(this);
+            setTimeDialog.show();
+            setTimeDialog.setFriendAccount(frienAccount);
+            setTimeDialog.setOnSetTimeCallback(new ReadDelteSetTimeDialog.OnSetTimeCallback() {
+                @Override
+                public void onSetTimeCallback(int state, int time) {
+                    System.out.println("==onSetTimeCallback=="+state+","+time);
+                }
+            });
         }
     }
 
@@ -440,7 +449,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         message.action = getMessageAction(format,true);
         message.timestamp = System.currentTimeMillis();
         message.state = Constant.MessageStatus.STATUS_NO_SEND;
-
+        message.setEffectiveTime(Global.getFriendMsgReadDelteTime(frienAccount));
         mAdapter.addMessage(message);
 
         //发送的消息存储数据库
@@ -506,6 +515,10 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         if (!isDeleteFriend){
             sendRecentRefreshBroadcast();
         }
+        if(mAdapter!=null){
+            mAdapter.stopTime();
+            mAdapter=null;
+        }
     }
 
     @Override
@@ -513,21 +526,25 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         return R.layout.activity_chatting_friend;
     }
 
+    Menu menu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //single_icon
+        this.menu=menu;
         getMenuInflater().inflate(R.menu.chat_friend_icon, menu);
         menu.findItem(R.id.menu_icon).setIcon(getMenuIcon());
         menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
         return super.onCreateOptionsMenu(menu);
     }
 
-
+    public void updateMenuIc(){
+       if(menu!=null) menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
+    }
     protected int getMenuIcon() {
         return R.mipmap.more;
     }
     protected int getMenuReadDeleteIcon() {
-        return R.mipmap.ic_msg_read_delete_flag2;
+        return isSendMsgInReadDelte()?R.mipmap.ic_msg_read_delete_flag2_sma:R.mipmap.ic_msg_read_delete_flag2_un;
     }
 
     protected void onToolbarMenuClicked() {
@@ -820,7 +837,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
 
     public void httpUpdateMessageDestroySwith(){
-        String account=frienAccount;
+        String account=frienAccount;//Global.getCurrentUser().account;
         final boolean isOpen=isSendMsgInReadDelte()?false:true;
         HttpServiceManagerV2.updateMessageDestroySwith(account, isOpen ? 1 : 0, new HttpRequestListener<GetMessageDestroySwithResult>() {
             @Override
@@ -836,7 +853,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         });
     }
     public void httpCheckMessageDestroySwith(){
-        String account=Global.getCurrentUser().account;
+        String account=frienAccount;//Global.getCurrentUser().account;
         HttpServiceManagerV2.getMessageDestroySwith(account, new HttpRequestListener<GetMessageDestroySwithResult>() {
             @Override
             public void onHttpRequestSucceed(GetMessageDestroySwithResult result, OriginalCall call) {
@@ -854,8 +871,8 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         return isSendMsgInReadDelte;
     }
     public void setSendMsgInReadDelte(boolean sendMsgInReadDelte) {
-        sendMsgInReadDelte=true;
         isSendMsgInReadDelte = sendMsgInReadDelte;
+        updateMenuIc();
         if(viewReadDeleteSetTimeItem!=null){
             viewReadDeleteSetTimeItem.setVisibility(sendMsgInReadDelte?View.VISIBLE:View.GONE);
         }

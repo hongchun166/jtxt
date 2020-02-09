@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/menu_read_delete"
-        android:icon="@mipmap/ic_msg_read_delete_flag2"
+        android:icon="@mipmap/ic_msg_read_delete_flag2_sma"
         app:showAsAction="ifRoom" />
 
     <item

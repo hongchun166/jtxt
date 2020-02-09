@@ -365,4 +365,14 @@ public class Global {
         sp.edit().putString(KEY_CURRENT_LOCATION, new Gson().toJson(location)).apply();
 
     }
+
+    public static void saveFriendMsgReadDelteTime(String account,int time){
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        sp.edit().putString(account+"_ReadDelteTime",String.valueOf(time)).apply();
+    }
+    public static int getFriendMsgReadDelteTime(String account){
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        String timeStr=sp.getString(account+"_ReadDelteTime",String.valueOf(10));
+         return Integer.valueOf(timeStr);
+    }
 }

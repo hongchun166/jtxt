@@ -30,7 +30,8 @@ import java.util.Objects;
 public class ChatReadDeleteDigOpt implements View.OnClickListener {
 
   public interface OnReadDelteCallback{
-       void onReadDelteCallback(Message message);
+      void onTimeTick(long time,Message message);
+       void onReadDelteCallback(boolean isTimeOut,Message message);
    }
 
     Message message;
@@ -111,10 +112,10 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
         }
         showToView();
     }
-    public void hide(){
+    public void hide(boolean isTimeOut){
 
         if(onReadDelteCallback!=null){
-            onReadDelteCallback.onReadDelteCallback(message);
+            onReadDelteCallback.onReadDelteCallback(isTimeOut,message);
         }
 
         if(dialog!=null){
@@ -138,7 +139,7 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.viewTVClose){
-            hide();
+            hide(false);
         }
     }
 
@@ -149,6 +150,22 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
            countDownTimer=null;
        }
     }
+
+//    public void onTimeTick(long millisUntilFinished) {
+//        if(viewTVTimeCount!=null){
+//            viewTVTimeCount.setText(String.valueOf(millisUntilFinished/1000));
+//        }
+//        if(onReadDelteCallback!=null){
+//            onReadDelteCallback.onTimeTick(millisUntilFinished,message);
+//        }
+//    }
+//    public void onTimeFinish() {
+//        if(viewTVTimeCount!=null){
+//            viewTVTimeCount.setText("0");
+//        }
+//        hide(true);
+//    }
+
     private void timeCountDownStart(){
         countDownTimer= new CountDownTimer(countDown*1000, 1000) {
             @Override
@@ -156,13 +173,16 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
                 if(viewTVTimeCount!=null){
                     viewTVTimeCount.setText(String.valueOf(millisUntilFinished/1000));
                 }
+                if(onReadDelteCallback!=null){
+                    onReadDelteCallback.onTimeTick(millisUntilFinished,message);
+                }
             }
             @Override
             public void onFinish() {
                 if(viewTVTimeCount!=null){
                     viewTVTimeCount.setText("0");
                 }
-                hide();
+                hide(true);
             }
         }.start();
     }

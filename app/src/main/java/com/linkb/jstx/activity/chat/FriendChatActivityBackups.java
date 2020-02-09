@@ -37,6 +37,7 @@ import com.linkb.jstx.component.RecordingButton;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.dialog.PermissionDialog;
+import com.linkb.jstx.dialog.ReadDelteSetTimeDialog;
 import com.linkb.jstx.dialog.SendCardDialog;
 import com.linkb.jstx.listener.OnInputPanelEventListener;
 import com.linkb.jstx.listener.OnMessageSendListener;
@@ -401,7 +402,6 @@ public class FriendChatActivityBackups extends CIMMonitorActivityWithoutImmersio
         message.action = getMessageAction();
         message.timestamp = System.currentTimeMillis();
         message.state = Constant.MessageStatus.STATUS_NO_SEND;
-
         mAdapter.addMessage(message);
 
         //发送的消息存储数据库

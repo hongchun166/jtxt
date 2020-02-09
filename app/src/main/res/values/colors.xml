@@ -47,6 +47,8 @@
     <color name="color_d6d6d6">#D6D6D6</color>
     <color name="color_3E85ED">#3E85ED</color>
     <color name="color_D7DCE0">#D7DCE0</color>
+    <color name="color_9FC3F7">#9FC3F7</color>
+    <color name="color_E1E1E1">#E1E1E1</color>
     <!--字体-->
     <color name="tex_color_white">#FFFFFF</color>
     <color name="tex_color_gray_FFBB29">#FFBB29</color>
