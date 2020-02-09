@@ -390,7 +390,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         }else {
             if(Constant.MessageFormat.FORMAT_TEXT.equals(format)
                     || Constant.MessageFormat.FORMAT_VOICE.equals(format)
-                    || Constant.MessageFormat.FORMAT_VIDEO.equals(format)){
+                    || Constant.MessageFormat.FORMAT_IMAGE.equals(format)){
                 return isSendMsgInReadDelte()?Constant.MessageAction.ACTION_ReadDelete:Constant.MessageAction.ACTION_0;
             }else {
                 return Constant.MessageAction.ACTION_0;
