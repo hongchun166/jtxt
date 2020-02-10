@@ -67,6 +67,7 @@ import com.linkb.jstx.network.result.SendCardsResult;
 import com.linkb.jstx.network.result.SendMessageResult;
 import com.linkb.jstx.network.result.SendRedPacketResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
+import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
 import com.linkb.jstx.util.AppTools;
 import com.linkb.jstx.util.ClipboardUtils;
 import com.linkb.jstx.util.ConvertUtils;
@@ -215,12 +216,6 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
             ReadDelteSetTimeDialog setTimeDialog=new ReadDelteSetTimeDialog(this);
             setTimeDialog.show();
             setTimeDialog.setFriendAccount(frienAccount);
-            setTimeDialog.setOnSetTimeCallback(new ReadDelteSetTimeDialog.OnSetTimeCallback() {
-                @Override
-                public void onSetTimeCallback(int state, int time) {
-                    System.out.println("==onSetTimeCallback=="+state+","+time);
-                }
-            });
         }
     }
 
@@ -458,7 +453,6 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         message.action = getMessageAction(format,true);
         message.timestamp = System.currentTimeMillis();
         message.state = Constant.MessageStatus.STATUS_NO_SEND;
-        message.setEffectiveTime(Global.getFriendMsgReadDelteTime(frienAccount));
         mAdapter.addMessage(message);
 
         //发送的消息存储数据库
@@ -853,9 +847,13 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
 
     public void httpUpdateMessageDestroySwith(){
-        String account=frienAccount;//Global.getCurrentUser().account;
+        if(!isCurIsFriendAct()){
+            return;
+        }
+        String account=Global.getCurrentUser().account;
+        String frienAccount=this.frienAccount;
         final boolean isOpen=isSendMsgInReadDelte()?false:true;
-        HttpServiceManagerV2.updateMessageDestroySwith(account, isOpen ? 1 : 0, new HttpRequestListener<GetMessageDestroySwithResult>() {
+        HttpServiceManagerV2.updateMessageDestroySwith(account,frienAccount, isOpen ? 1 : 0, new HttpRequestListener<GetMessageDestroySwithResult>() {
             @Override
             public void onHttpRequestSucceed(GetMessageDestroySwithResult result, OriginalCall call) {
                 if(result.isSuccess()){
@@ -869,8 +867,13 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
         });
     }
     public void httpCheckMessageDestroySwith(){
-        String account=frienAccount;//Global.getCurrentUser().account;
-        HttpServiceManagerV2.getMessageDestroySwith(account, new HttpRequestListener<GetMessageDestroySwithResult>() {
+        if(!isCurIsFriendAct()){
+            return;
+        }
+        httpGetMessageDestroyTime();
+        String account=Global.getCurrentUser().account;
+        String frienAccount=this.frienAccount;
+        HttpServiceManagerV2.getMessageDestroySwith(account,frienAccount, new HttpRequestListener<GetMessageDestroySwithResult>() {
             @Override
             public void onHttpRequestSucceed(GetMessageDestroySwithResult result, OriginalCall call) {
                 if(result.isSuccess()){
@@ -893,4 +896,25 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
             viewReadDeleteSetTimeItem.setVisibility(sendMsgInReadDelte?View.VISIBLE:View.GONE);
         }
     }
+
+    public void httpGetMessageDestroyTime(){
+        if(!isCurIsFriendAct()){
+            return;
+        }
+        String account=Global.getCurrentUser().account;
+        final String frienAccount=this.frienAccount;
+        HttpServiceManagerV2.getMessageDestroyTime(account,frienAccount, new HttpRequestListener<UpdateMessageDestroyTimeResult>() {
+            @Override
+            public void onHttpRequestSucceed(UpdateMessageDestroyTimeResult result, OriginalCall call) {
+                if(result.isSuccess()&&result.getData()!=null){
+                    Global.saveFriendToUserMsgTime(frienAccount,result.getData().getMessageDestroyTime());
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+
 }

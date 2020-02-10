@@ -11,14 +11,16 @@ import android.widget.RadioGroup;
 import com.linkb.R;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.dialog.base.BaseDialog;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
+import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
 
 import java.util.HashMap;
 
 public class ReadDelteSetTimeDialog extends BaseDialog implements View.OnClickListener {
 
-    public interface OnSetTimeCallback{
-        void onSetTimeCallback(int state,int time);
-    }
 
 
     RadioGroup viewRadioGroup;
@@ -27,7 +29,6 @@ public class ReadDelteSetTimeDialog extends BaseDialog implements View.OnClickLi
     RadioButton viewRBTime60;
     Button viewBtnConfirm;
 
-    OnSetTimeCallback onSetTimeCallback;
     HashMap<String,String> map=new HashMap<>();
 
     String friendAccount;
@@ -53,7 +54,7 @@ public class ReadDelteSetTimeDialog extends BaseDialog implements View.OnClickLi
         map.put(String.valueOf(10),String.valueOf(R.id.viewRBTime10));
         map.put(String.valueOf(20),String.valueOf(R.id.viewRBTime20));
         map.put(String.valueOf(60),String.valueOf(R.id.viewRBTime60));
-        curTime=ReadDelteSetTimeDialog.getReadDeleteTime(friendAccount);
+        curTime=Global.getUserToFriendMsgValidTime(friendAccount);
         viewRadioGroup.check(Integer.valueOf(map.get(String.valueOf(curTime))));
         viewBtnConfirm.setOnClickListener(this);
     }
@@ -70,18 +71,25 @@ public class ReadDelteSetTimeDialog extends BaseDialog implements View.OnClickLi
         }
     }
 
-    public void setOnSetTimeCallback(OnSetTimeCallback onSetTimeCallback) {
-        this.onSetTimeCallback = onSetTimeCallback;
-    }
 
     private void httpSetTime(int time){
-        Global.saveFriendMsgReadDelteTime(friendAccount,time);
-        if(onSetTimeCallback!=null){
-            onSetTimeCallback.onSetTimeCallback(0,time);
-        }
-        dismiss();
+        httpUpdateMessageDestroyTime(time);
     }
-    public static int getReadDeleteTime(String friendAccount){
-        return Global.getFriendMsgReadDelteTime(friendAccount);
+    public void httpUpdateMessageDestroyTime(final int time){
+        String account=Global.getCurrentUser().account;
+        final String frienAccount=friendAccount;
+        HttpServiceManagerV2.updateMessageDestroyTime(account,frienAccount,time, new HttpRequestListener<UpdateMessageDestroyTimeResult>() {
+            @Override
+            public void onHttpRequestSucceed(UpdateMessageDestroyTimeResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    Global.saveUserToFriendMsgValidTime(friendAccount,time);
+                }
+                dismiss();
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                dismiss();
+            }
+        });
     }
 }

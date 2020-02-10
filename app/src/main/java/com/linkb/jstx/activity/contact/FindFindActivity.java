@@ -300,17 +300,17 @@ public class FindFindActivity extends BaseActivity {
         otherConditionSex.add(getString(R.string.common_man));
         otherConditionSex.add(getString(R.string.common_female));
 
-        final  List<String> otherConditionMarriage=new ArrayList<>();
-        otherConditionMarriage.add(getString(R.string.no_limit));
-        otherConditionMarriage.add(getString(R.string.marriage2));
-        otherConditionMarriage.add(getString(R.string.unmarried2));
+//        final  List<String> otherConditionMarriage=new ArrayList<>();
+//        otherConditionMarriage.add(getString(R.string.no_limit));
+//        otherConditionMarriage.add(getString(R.string.marriage2));
+//        otherConditionMarriage.add(getString(R.string.unmarried2));
 
         OptionsPickerView pvCustomOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String sex=otherConditionSex.get(options1);
-                String marriage=otherConditionMarriage.get(options2);
-                viewOtherCondition.setText(sex+"/"+marriage);
+//                String marriage=otherConditionMarriage.get(options2);
+                viewOtherCondition.setText(sex);
             }
         }).isDialog(false)
                 .setSubmitText(getString(R.string.finish))
@@ -338,7 +338,7 @@ public class FindFindActivity extends BaseActivity {
                 dialogWindow.setDimAmount(0.1f);
             }
         }
-        pvCustomOptions.setNPicker(otherConditionSex, otherConditionMarriage,null);
+        pvCustomOptions.setNPicker(otherConditionSex, null,null);
         pvCustomOptions.show();
     }
 
@@ -349,7 +349,12 @@ public class FindFindActivity extends BaseActivity {
         searchUserParam.setIndustry(tvIndustry.getText().toString());
         searchUserParam.setLabel(tvLabel.getText().toString());
         searchUserParam.setRegion(tv_region.getText().toString());
-        searchUserParam.setOtherKey(viewOtherCondition.getText().toString());
+        String man=getString(R.string.common_man);
+        String female=getString(R.string.common_female);
+        String inputStrSex=viewOtherCondition.getText().toString();
+        if(!TextUtils.isEmpty(inputStrSex)){
+            searchUserParam.setGender(man.equals(inputStrSex)?"1":(female.equals(inputStrSex))?"0":"");
+        }
         SearchUserListActivity.navToSearchUser(this,searchUserParam);
     }
     private void httpSearchGroup(){

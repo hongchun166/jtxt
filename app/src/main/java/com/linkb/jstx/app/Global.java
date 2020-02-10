@@ -366,13 +366,26 @@ public class Global {
 
     }
 
-    public static void saveFriendMsgReadDelteTime(String account,int time){
+    public static void saveFriendToUserMsgTime(String friendAccount,int time){
+        String account=getCurrentUser().account;
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
-        sp.edit().putString(account+"_ReadDelteTime",String.valueOf(time)).apply();
+        sp.edit().putString(friendAccount+"_"+account+"_FriendToUser",String.valueOf(time)).apply();
     }
-    public static int getFriendMsgReadDelteTime(String account){
+    public static void saveUserToFriendMsgValidTime(String friendAccount,int time){
+        String account=getCurrentUser().account;
         SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
-        String timeStr=sp.getString(account+"_ReadDelteTime",String.valueOf(10));
-         return Integer.valueOf(timeStr);
+        sp.edit().putString(account+"_"+friendAccount+"_UserToFriend",String.valueOf(time)).apply();
+    }
+    public static int getFriendToUserMsgTime(String friendAccount){
+        String account=getCurrentUser().account;
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        String timeStr=sp.getString(friendAccount+"_"+account+"_FriendToUser",String.valueOf(10));
+        return Integer.valueOf(timeStr);
+    }
+    public static int getUserToFriendMsgValidTime(String friendAccount){
+        String account=getCurrentUser().account;
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        String timeStr=sp.getString(account+"_"+friendAccount+"_UserToFriend",String.valueOf(10));
+        return Integer.valueOf(timeStr);
     }
 }

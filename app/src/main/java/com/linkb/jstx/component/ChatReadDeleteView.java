@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.chat.ChatReadDeleteDigOpt;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.dialog.ReadDelteSetTimeDialog;
 import com.linkb.jstx.listener.OnMessageDeleteListener;
@@ -115,7 +116,7 @@ public class ChatReadDeleteView extends RelativeLayout implements OnClickListene
         }
     }
     private int getCountDownTime(){
-        return ReadDelteSetTimeDialog.getReadDeleteTime(message.sender);
+        return Global.getFriendToUserMsgTime(message.sender);
     }
     @Override
     public void onTimeTick(long time,Message message) {

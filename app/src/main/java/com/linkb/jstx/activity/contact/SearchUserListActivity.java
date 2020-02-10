@@ -183,7 +183,7 @@ public class SearchUserListActivity extends BaseActivity {
         showProgressDialog(getString(R.string.tip_loading, getString(R.string.label_login)));
 //        HttpServiceManager.queryFriend(searchUserParam.getInputStr(), new HttpRequestListener<FriendQueryResult>(){
         HttpServiceManagerV2.findPersons(searchUserParam.getInputStr(),searchUserParam.getRegion(),
-                searchUserParam.getIndustry(),searchUserParam.getLabel(), new HttpRequestListener<FindPersonsResult>(){
+                searchUserParam.getIndustry(),searchUserParam.getLabel(),searchUserParam.getGender(), new HttpRequestListener<FindPersonsResult>(){
                     @Override
                     public void onHttpRequestSucceed(FindPersonsResult result, OriginalCall call) {
                         hideProgressDialog();

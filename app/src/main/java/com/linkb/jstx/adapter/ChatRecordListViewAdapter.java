@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.linkb.R;
 import com.linkb.jstx.adapter.viewholder.ChatRecordViewHolder;
 import com.linkb.jstx.app.Constant;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.dialog.ReadDelteSetTimeDialog;
 import com.linkb.jstx.model.Message;
 import com.linkb.jstx.model.MessageSource;
@@ -82,7 +83,7 @@ public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecor
     }
 
     public int getCountDownTime(Message message){
-         return ReadDelteSetTimeDialog.getReadDeleteTime(friendAccount);
+         return Global.getFriendToUserMsgTime(friendAccount);
     }
     private List<String> checkTime(){
         List<String> changeList=new ArrayList<>();

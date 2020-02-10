@@ -413,6 +413,10 @@ public class URLConstant {
 
     public static String getMessageDestroySwith;// 获取阅读即焚开关状态
     public static String updateMessageDestroySwith;// 修改阅读即焚开关状态
+
+    public static String updateMessageDestroyTime;// 设置阅读即焚时长
+    public static String getMessageDestroyTime;// 获取阅读即焚时长
+
     static {
         initialize();
         initializeV2();
@@ -439,6 +443,10 @@ public class URLConstant {
         checkInGroup=API_URL + "/group/checkInGroup";
         getMessageDestroySwith=API_URL + "message/getMessageDestroySwith";
         updateMessageDestroySwith=API_URL + "message/updateMessageDestroySwith";
+
+        updateMessageDestroyTime=API_URL + "message/updateMessageDestroyTime";
+        getMessageDestroyTime=API_URL + "message/getMessageDestroyTime";
+
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

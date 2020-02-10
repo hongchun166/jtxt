@@ -3,6 +3,7 @@ package com.linkb.jstx.network.http;
 
 import android.text.TextUtils;
 
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.URLConstant;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.result.BaseResult;
@@ -23,6 +24,7 @@ import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
+import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
 
 public class HttpServiceManagerV2 {
     /**
@@ -249,15 +251,18 @@ public class HttpServiceManagerV2 {
      * @param area  区域
      * @param industry  行业
      * @param tag      标签
+     * @param gender      性别(0女1男)
      * @param listener
      */
-    public static void findPersons(String content,String area,String industry,String tag,HttpRequestListener listener) {
+    public static void findPersons(String content,String area,String industry,String tag,String gender,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findPersons, FindPersonsResult.class);
+        requestBody.addParameter("userAccount", Global.getCurrentUser().account);//
         requestBody.addParameter("content", content);//
         requestBody.addParameter("currentPage", 0);//
         if(!TextUtils.isEmpty(area)) requestBody.addParameter("area", area);//
         if(!TextUtils.isEmpty(industry)) requestBody.addParameter("industry", industry);//
         if(!TextUtils.isEmpty(tag))requestBody.addParameter("tag", tag);//
+        if(!TextUtils.isEmpty(gender))requestBody.addParameter("gender", gender);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -265,9 +270,10 @@ public class HttpServiceManagerV2 {
      * 获取阅读即焚开关状态
      * @param listener
      */
-    public static void getMessageDestroySwith(String account,HttpRequestListener listener) {
+    public static void getMessageDestroySwith(String account,String friendAccount,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMessageDestroySwith, GetMessageDestroySwithResult.class);
         requestBody.addParameter("account", account);//
+        requestBody.addParameter("friendAccount", friendAccount);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
     /**
@@ -276,10 +282,35 @@ public class HttpServiceManagerV2 {
      * @param state  阅读即焚状态（0关闭，1开启）
      * @param listener
      */
-    public static void updateMessageDestroySwith(String account,int state,HttpRequestListener listener) {
+    public static void updateMessageDestroySwith(String account,String friendAccount,int state,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.updateMessageDestroySwith, GetMessageDestroySwithResult.class);
         requestBody.addParameter("account", account);//
+        requestBody.addParameter("friendAccount", friendAccount);//
         requestBody.addParameter("state", String.valueOf(state));//
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
+    /**
+     * 设置阅读即焚时长
+     * @param listener
+     */
+    public static void updateMessageDestroyTime(String account,String receiverMessageAccount,int time,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.updateMessageDestroyTime, UpdateMessageDestroyTimeResult.class);
+        requestBody.addParameter("receiverMessageAccount", receiverMessageAccount);//
+        requestBody.addParameter("time", time);//
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 获取阅读即焚时长
+     * @param listener
+     */
+    public static void getMessageDestroyTime(String account,String receiverMessageAccount,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMessageDestroyTime, UpdateMessageDestroyTimeResult.class);
+        requestBody.addParameter("receiverMessageAccount", account);//
+        requestBody.addParameter("account", receiverMessageAccount);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
 }
