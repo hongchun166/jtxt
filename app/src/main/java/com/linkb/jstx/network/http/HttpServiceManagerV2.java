@@ -308,8 +308,8 @@ public class HttpServiceManagerV2 {
      */
     public static void getMessageDestroyTime(String account,String receiverMessageAccount,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getMessageDestroyTime, UpdateMessageDestroyTimeResult.class);
-        requestBody.addParameter("receiverMessageAccount", account);//
-        requestBody.addParameter("account", receiverMessageAccount);//
+        requestBody.addParameter("sendMessageAccount", receiverMessageAccount);//
+        requestBody.addParameter("account", account);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
 

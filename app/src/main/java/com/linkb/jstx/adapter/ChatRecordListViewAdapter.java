@@ -104,7 +104,7 @@ public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecor
                     //点击过阅读
                     long time=System.currentTimeMillis()-message.getReadTime();
                     long time2=getCountDownTime(message)*1000-time;
-                    long sysTime=time2<=0?0:time2;
+                    long sysTime=time2<=0?0:(time2+300);
                     String jiShua=null;
                     if(sysTime/1000<=0){
                         jiShua=Message.STATUS_READ_DELETE_TimeOut;

@@ -57,6 +57,9 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
     }
     public ChatReadDeleteDigOpt setCountDown(int countDown){
         this.countDown=countDown;
+        if(viewTVTimeCount!=null){
+            viewTVTimeCount.setText(String.valueOf(countDown));
+        }
         return this;
     }
 
@@ -85,6 +88,8 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
         viewTVClose=contentView.findViewById(R.id.viewTVClose);
         viewTVClose.setOnClickListener(this);
 
+
+
         if(Constant.MessageFormat.FORMAT_TEXT.equals(message.format)){
             viewTVMsgContent=contentView.findViewById(R.id.viewTVMsgContent);
             viewTVMsgContent.setText(message.content);
@@ -100,6 +105,8 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
             final String thumbnailUrl = getImageUrl(snsChatImage.image);
             viewImgContent.display(thumbnailUrl, cloudImageApplyListener=new CloudImageApplyListenerImpl());
         }
+        viewTVTimeCount.setText(String.valueOf(countDown));
+        timeCountDownStart();
     }
     private void showToView(){
 
@@ -108,7 +115,7 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
     public void show(){
         if(dialog!=null){
             dialog.show();
-            timeCountDownStart();
+
         }
         showToView();
     }
@@ -171,7 +178,8 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
             @Override
             public void onTick(long millisUntilFinished) {
                 if(viewTVTimeCount!=null){
-                    viewTVTimeCount.setText(String.valueOf(millisUntilFinished/1000));
+                    int va= (int) ((millisUntilFinished+300)/1000);
+                    viewTVTimeCount.setText(String.valueOf(va));
                 }
                 if(onReadDelteCallback!=null){
                     onReadDelteCallback.onTimeTick(millisUntilFinished,message);

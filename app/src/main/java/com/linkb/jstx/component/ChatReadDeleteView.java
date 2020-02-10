@@ -110,7 +110,7 @@ public class ChatReadDeleteView extends RelativeLayout implements OnClickListene
         long sysTime=time2<=0?0:time2;
         if(sysTime>3000){
             chatReadDeleteDig=new ChatReadDeleteDigOpt();
-            chatReadDeleteDig.setCountDown((int) (sysTime/1000));
+            chatReadDeleteDig.setCountDown((int) ((sysTime+300)/1000));
             chatReadDeleteDig.setMessage(message).build(getContext()).show();
             chatReadDeleteDig.setOnReadDelteCallback(this);
         }

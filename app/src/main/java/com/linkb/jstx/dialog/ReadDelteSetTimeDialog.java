@@ -61,6 +61,10 @@ public class ReadDelteSetTimeDialog extends BaseDialog implements View.OnClickLi
 
     public void setFriendAccount(String friendAccount) {
         this.friendAccount = friendAccount;
+        if(viewRadioGroup!=null){
+            curTime=Global.getUserToFriendMsgValidTime(friendAccount);
+            viewRadioGroup.check(Integer.valueOf(map.get(String.valueOf(curTime))));
+        }
     }
     @Override
     public void onClick(View view) {
