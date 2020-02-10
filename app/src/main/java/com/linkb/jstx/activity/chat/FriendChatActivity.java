@@ -133,9 +133,14 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     boolean isSendMsgInReadDelte=false;
     String frienAccount;
 
+    boolean curIsFriendAct=false;
+
     @Override
     public void initComponents() {
         frienAccount=getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
+        if(!TextUtils.isEmpty(frienAccount)){
+            curIsFriendAct=true;
+        }
         reMarikName = getIntent().getStringExtra(Constant.CHAT_OTHRES_NAME);
         if (!TextUtils.isEmpty(reMarikName)) setToolbarTitle(reMarikName);
 
@@ -145,6 +150,10 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
             postQueryFriend(mMessageSource);
         }
         httpCheckMessageDestroySwith();
+    }
+
+    public boolean isCurIsFriendAct() {
+        return curIsFriendAct;
     }
 
     @Override
@@ -531,14 +540,21 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
     public boolean onCreateOptionsMenu(Menu menu) {
         //single_icon
         this.menu=menu;
-        getMenuInflater().inflate(R.menu.chat_friend_icon, menu);
-        menu.findItem(R.id.menu_icon).setIcon(getMenuIcon());
-        menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
+        if(isCurIsFriendAct()){
+            getMenuInflater().inflate(R.menu.chat_friend_icon, menu);
+            menu.findItem(R.id.menu_icon).setIcon(getMenuIcon());
+            menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
+        }else {
+            getMenuInflater().inflate(R.menu.single_icon, menu);
+            menu.findItem(R.id.menu_icon).setIcon(getMenuIcon());
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
     public void updateMenuIc(){
-       if(menu!=null) menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
+       if(menu!=null && isCurIsFriendAct()) {
+           menu.findItem(R.id.menu_read_delete).setIcon(getMenuReadDeleteIcon());
+       }
     }
     protected int getMenuIcon() {
         return R.mipmap.more;

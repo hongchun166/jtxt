@@ -177,7 +177,8 @@ public class GroupChatActivity extends FriendChatActivity implements ViewTreeObs
         }
         return  count;
     }
-    public String getMessageAction() {
+    @Override
+    public String getMessageAction(String format,boolean checkReadDelete) {
         // TODO: 2019/3/20  
         return Constant.MessageAction.ACTION_3;
     }

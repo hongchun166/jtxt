@@ -76,6 +76,9 @@ public class ChatRecordListViewAdapter extends BaseChatListViewAdapter<ChatRecor
 
     public void setFriendAccount(String friendAccount) {
         this.friendAccount = friendAccount;
+        if(TextUtils.isEmpty(friendAccount)){
+            stopTime();
+        }
     }
 
     public int getCountDownTime(Message message){

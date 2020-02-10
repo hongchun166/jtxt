@@ -79,7 +79,7 @@ public class Friend extends MessageSource implements Serializable {
         HttpServiceManager.queryPersonInfo(account, new HttpRequestListener<BasePersonInfoResult>() {
             @Override
             public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-                if (result.isSuccess()){
+                if (result.isSuccess() && result.getData()!=null){
                     Friend friend = User.UserToFriend(result.getData());
                     FriendRepository.save(friend);
                     view.setText(friend.name);
