@@ -71,7 +71,7 @@ public class GroupDetailDescActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.back)
+    @OnClick(R.id.viewBack)
     public void back() {
         finish();
     }

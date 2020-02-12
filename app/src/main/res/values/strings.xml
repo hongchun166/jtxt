@@ -85,6 +85,7 @@
     <string name="search_user2">搜索用户</string>
     <string name="apply_join_group_tips">已经提交申请,等待群主审核通过</string>
     <string name="add_friend_success_tips">已经添加好友成功</string>
+    <string name="added">已添加</string>
     <string name="apply_join_group_error_tips">您已经在该群里</string>
     <string name="read_qr_code_error">无效的二维码,请确认二维码是否是有效的群二维码或者个人信息二维码</string>
     <string name="search_no_result">搜索无结果</string>

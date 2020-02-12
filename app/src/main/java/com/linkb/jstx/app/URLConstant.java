@@ -409,7 +409,8 @@ public class URLConstant {
     public static String updateUserInfo;//修改个人资料
     public static String findPersons;//找一找（人）
     public static String findGroups;//找一找（群）
-    public static String checkInGroup;//找一找（群）
+    public static String checkInGroup;//检查自己是否加入了该群
+    public static String checkFriend;//检查是否为好友
 
     public static String getMessageDestroySwith;// 获取阅读即焚开关状态
     public static String updateMessageDestroySwith;// 修改阅读即焚开关状态
@@ -441,6 +442,7 @@ public class URLConstant {
         findPersons=API_URL + "/public/findPersons";
         findGroups=API_URL + "/public/findGroups";
         checkInGroup=API_URL + "/group/checkInGroup";
+        checkFriend=API_URL + "/userFriend/checkFriend";
         getMessageDestroySwith=API_URL + "message/getMessageDestroySwith";
         updateMessageDestroySwith=API_URL + "message/updateMessageDestroySwith";
 

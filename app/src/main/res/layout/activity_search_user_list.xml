@@ -4,32 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <include layout="@layout/view_top"/>
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/viewTopTitle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        android:layout_marginTop="@dimen/wallet_appbar_title_margin_top"-->
-<!--        android:background="@color/background_blue_1068ed"-->
-<!--        >-->
-<!--        <ImageView-->
-<!--            android:id="@+id/viewBack"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginLeft="13dp"-->
-<!--            android:src="@mipmap/back"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:id="@+id/viewTitle"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:text="@string/search"-->
-<!--            android:textColor="@android:color/white"-->
-<!--            android:textSize="@dimen/text_navigation" />-->
-<!--    </RelativeLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:id="@+id/viewTopRoot"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/wallet_appbar_title_margin_top"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            >
+            <LinearLayout
+                android:id="@+id/viewSearchItem"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_white2_radius"
+                android:orientation="horizontal"
+                android:layout_toLeftOf="@+id/viewCancel"
+                >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13.3dp"
+                    android:layout_marginRight="13.3dp"
+                    android:src="@mipmap/sousuo2" />
+
+                <EditText
+                    android:id="@+id/viewSearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/find_find_groupHint"
+                    android:maxLength="20"
+                    android:lines="1"
+                    android:imeOptions="actionSearch"
+                    android:textColor="@color/tex_color_gray_333"
+                    android:textColorHint="@color/divider_color_gray_CCCCCC"
+                    android:textSize="@dimen/text_14sp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/viewCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_126aec"
+                android:textSize="@dimen/text_14sp"
+                android:text="@string/common_cancel"
+                android:layout_marginLeft="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

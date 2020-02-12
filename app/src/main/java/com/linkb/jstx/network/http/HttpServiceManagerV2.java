@@ -236,13 +236,23 @@ public class HttpServiceManagerV2 {
         HttpRequestLauncher.execute(requestBody, listener);
     }
     /**
-     * 找一找（群）
+     * 检查自己是否加入了该群
      * @param listener
      */
     public static void checkInGroup(String account,String groupId,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.checkInGroup, CheckInGroupResult.class);
         requestBody.addParameter("account", account);//
         requestBody.addParameter("groupId", groupId);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 检查是否为好友
+     * @param listener
+     */
+    public static void checkFriend(String account,String friendAccount,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.checkFriend, CheckInGroupResult.class);
+        requestBody.addParameter("account", account);//
+        requestBody.addParameter("friendAccount", friendAccount);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
     /**

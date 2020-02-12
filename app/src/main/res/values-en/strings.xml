@@ -69,6 +69,8 @@
     <string name="search_group2">search group</string>
     <string name="search_user2">search user</string>
     <string name="apply_join_group_tips">Waiting Group Creator Review</string>
+    <string name="add_friend_success_tips">added frined</string>
+    <string name="added">added</string>
     <string name="read_qr_code_error">invaild qrcode</string>
     <string name="apply_join_group_error_tips">You had joined this Group</string>
     <string name="search_no_result">search no result</string>

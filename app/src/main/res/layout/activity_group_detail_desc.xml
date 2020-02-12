@@ -5,48 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_blue_1068ed"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/appbar_padding_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="@dimen/wallet_appbar_title_margin_top">
-
-            <FrameLayout
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:paddingEnd="10dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@mipmap/back" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/viewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_navigation" />
-        </RelativeLayout>
-    </RelativeLayout>
-
+    <include layout="@layout/view_top"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -304,6 +304,11 @@ public class FindPersonsResult extends BaseResult {
              * lockBalanceFreed : 0.0
              * lot : 0.0
              * lat : 0.0
+             *             "position": "总经理",
+             *                 "marrriage": "单身",
+             *                 "industry": "金融/银行/投资/保险",
+             *                 "tag": "比特币",
+             *                 "area": "加拿大-伦敦",
              * disabled : false
              */
 
@@ -324,7 +329,14 @@ public class FindPersonsResult extends BaseResult {
             private double lockBalanceFreed;
             private double lot;
             private double lat;
+            private String position;//职务
+            private String marrriage;
+            private String industry;//行业
+            private String tag;
+            private String area;
             private boolean disabled;
+
+
 
             public String getAccount() {
                 return account;
@@ -460,6 +472,46 @@ public class FindPersonsResult extends BaseResult {
 
             public void setLat(double lat) {
                 this.lat = lat;
+            }
+
+            public String getPosition() {
+                return position;
+            }
+
+            public void setPosition(String position) {
+                this.position = position;
+            }
+
+            public String getMarrriage() {
+                return marrriage;
+            }
+
+            public void setMarrriage(String marrriage) {
+                this.marrriage = marrriage;
+            }
+
+            public String getIndustry() {
+                return industry;
+            }
+
+            public void setIndustry(String industry) {
+                this.industry = industry;
+            }
+
+            public String getTag() {
+                return tag;
+            }
+
+            public void setTag(String tag) {
+                this.tag = tag;
+            }
+
+            public String getArea() {
+                return area;
+            }
+
+            public void setArea(String area) {
+                this.area = area;
             }
 
             public boolean isDisabled() {

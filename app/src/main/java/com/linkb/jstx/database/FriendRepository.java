@@ -155,6 +155,10 @@ public class FriendRepository extends BaseRepository<Friend, String> {
 
         return queryFriend(account) != null;
     }
+    public static boolean isFriend2(String account) {
+        Friend friend = manager.innerQueryById(account);
+        return friend != null;
+    }
 
     public static boolean isNotExisted(String sender, String receiver) {
 

@@ -3,13 +3,16 @@ package com.linkb.jstx.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.component.WebImageView;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.network.result.FriendQueryResult;
 import com.linkb.jstx.network.result.v2.FindPersonsResult;
 import com.linkb.jstx.util.FileURLBuilder;
@@ -32,24 +35,25 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
     @NonNull
     @Override
     public SearchContactsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_contact_friend, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_find_person_layout, viewGroup, false);
         return new SearchContactsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SearchContactsViewHolder searchContactsViewHolder, int i) {
         final FindPersonsResult.DataBean.ContentBean dataBean = mList.get(i);
-        searchContactsViewHolder.name.setText(dataBean.getName());
-        searchContactsViewHolder.icon.load(FileURLBuilder.getUserIconUrl(dataBean.getAccount()), R.mipmap.lianxiren, 999);
-        searchContactsViewHolder.rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //用户一点击就自动添加好友
-                if (mListener != null){
-                    mListener.onAddFirend(dataBean);
-                }
-            }
-        });
+        searchContactsViewHolder.dataBean=dataBean;
+        searchContactsViewHolder.viewHead.load(FileURLBuilder.getUserIconUrl(dataBean.getAccount()), R.mipmap.lianxiren, 999);
+        searchContactsViewHolder.viewName.setText(dataBean.getName());
+        if(!TextUtils.isEmpty(dataBean.getTag()))searchContactsViewHolder.viewTagArr.setText(String.valueOf(dataBean.getTag()));
+        if(!TextUtils.isEmpty(dataBean.getTag()))searchContactsViewHolder.viewArea.setText(String.valueOf(dataBean.getArea()));
+        if(FriendRepository.isFriend2(dataBean.getAccount())){
+            searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.color.white);
+            searchContactsViewHolder.viewAddFriend.setText(R.string.added);
+        }else {
+            searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.mipmap.ic_bg_btn_add_friend);
+            searchContactsViewHolder.viewAddFriend.setText("");
+        }
     }
 
     @Override
@@ -62,18 +66,34 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
         notifyDataSetChanged();
     }
 
-    public class SearchContactsViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public WebImageView icon;
-        public View dividerView;
-        public View rootView;
+    public class SearchContactsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView viewName;
+        public WebImageView viewHead;
+        public TextView viewTagArr;
+        public TextView viewArea;
+        public TextView viewAddFriend;
+        View viewRootItem;
+        FindPersonsResult.DataBean.ContentBean dataBean;
 
         public SearchContactsViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            icon = itemView.findViewById(R.id.icon);
-            dividerView = itemView.findViewById(R.id.divider_view);
-            rootView = itemView.findViewById(R.id.root_view);
+            viewRootItem = itemView.findViewById(R.id.viewRootItem);
+            viewHead = itemView.findViewById(R.id.viewHead);
+            viewName = itemView.findViewById(R.id.viewName);
+            viewTagArr = itemView.findViewById(R.id.viewTagArr);
+            viewArea = itemView.findViewById(R.id.viewArea);
+            viewAddFriend = itemView.findViewById(R.id.viewAddFriend);
+            viewAddFriend.setOnClickListener(this);
+            viewRootItem.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(view.getId()==R.id.viewRootItem){
+                if (mListener != null) mListener.onAddFirend(dataBean);
+            }else if(view.getId()==R.id.viewAddFriend){
+                if (mListener != null) mListener.onAddFirend(dataBean);
+            }
         }
     }
 
