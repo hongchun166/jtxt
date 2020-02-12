@@ -372,6 +372,7 @@ public class FindGroupsResult extends BaseResult {
                 group.founder=founder;
                 group.banned=banned;
                 group.level=level;
+                group.memberSize=amount;
                 return group;
             }
         }

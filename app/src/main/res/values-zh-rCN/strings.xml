@@ -762,4 +762,7 @@
     <string name="msg_read_delete_settime_startw_hint">你已开启阅后即焚,</string>
     <string name="msg_read_delete_settime_hint">设置时间</string>
     <string name="msg_read_delete_settime_dig_title">选择阅后即焚时长</string>
+    <string name="group_synopsis">群简介</string>
+    <string name="create_time">创建时间</string>
+    <string name="group_code">群号</string>
 </resources>

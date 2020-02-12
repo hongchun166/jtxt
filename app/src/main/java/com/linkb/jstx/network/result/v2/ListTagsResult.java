@@ -28,6 +28,11 @@ public class ListTagsResult extends BaseResult {
             this.name = name;
         }
 
+        public DataBean(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
         public String getId() {
             return id;
         }

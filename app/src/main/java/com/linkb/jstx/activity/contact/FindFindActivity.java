@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -36,8 +37,14 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.contact.contracts.RegionDigOpt;
 import com.linkb.jstx.activity.setting.ModifyIndustryActivityV2;
 import com.linkb.jstx.activity.setting.ModifyLabelActivityV2;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.model.intent.SearchUserParam;
 import com.linkb.jstx.model.world_area.CountryBean;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
+import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.util.InputSoftUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -87,7 +94,8 @@ public class FindFindActivity extends BaseActivity {
     RelativeLayout viewSearchHotItemRoot;
     @BindView(R.id.vieLatelySearchRecyclerView)
     RecyclerView vieLatelySearchRecyclerView;
-
+    @BindView(R.id.nextButtonGroup)
+    Button nextButtonGroup;
 
 
     private int searchType = 0;  //0找人  1找群
@@ -96,9 +104,10 @@ public class FindFindActivity extends BaseActivity {
 
     RegionDigOpt regionDigOpt;
 
-    List<String> hotSearchList=new ArrayList<>();//热门搜索
+    List<ListTagsResult.DataBean> hotSearchList=new ArrayList<>();//热门搜索
     List<String> latelySearchByList=new ArrayList<>();//最近搜索
     LatelySearchAdapt latelySearchAdapt;//最近搜索适配器
+    TagAdapter tagAdapterHotSearchGroup;
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -126,11 +135,11 @@ public class FindFindActivity extends BaseActivity {
         regionDigOpt=new RegionDigOpt();
         regionDigOpt.loadData(this);
         httpHotSearchByGroup();
-        viewTagFlowLayout.setAdapter(new TagAdapter<String>(hotSearchList) {
+        viewTagFlowLayout.setAdapter(tagAdapterHotSearchGroup=new TagAdapter<ListTagsResult.DataBean>(hotSearchList) {
             @Override
-            public View getView(FlowLayout parent, int position, String str) {
+            public View getView(FlowLayout parent, int position, ListTagsResult.DataBean bean) {
                 TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_group_hot_search,parent, false);
-                tv.setText(str);
+                tv.setText(bean.getName());
                 return tv;
             }
         });
@@ -173,8 +182,8 @@ public class FindFindActivity extends BaseActivity {
         viewTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                String str=hotSearchList.get(position);
-                inputGroupStrToSearch(str);
+                ListTagsResult.DataBean str=hotSearchList.get(position);
+                inputGroupStrToSearch(str.getName());
                 return false;
             }
         });
@@ -230,6 +239,10 @@ public class FindFindActivity extends BaseActivity {
     @OnClick(R.id.next_button)
     public void search() {
         httpSearchFrient();
+    }
+    @OnClick(R.id.nextButtonGroup)
+    public void searchGroup() {
+        httpSearchGroup();
     }
 
     @OnClick(R.id.back_btn)
@@ -341,7 +354,11 @@ public class FindFindActivity extends BaseActivity {
         pvCustomOptions.setNPicker(otherConditionSex, null,null);
         pvCustomOptions.show();
     }
-
+    private void refreshDataHotSearchByGroup(List<ListTagsResult.DataBean> dataBeans){
+        hotSearchList.clear();
+        hotSearchList.addAll(dataBeans);
+        tagAdapterHotSearchGroup.notifyDataChanged();
+    }
     private void httpSearchFrient(){
         String friendName = viewSearchUserInput.getText().toString();
         SearchUserParam searchUserParam=new SearchUserParam();
@@ -365,12 +382,27 @@ public class FindFindActivity extends BaseActivity {
         SearchUserListActivity.navToSearchGroup(this,searchUserParam);
     }
     private void httpHotSearchByGroup(){
-        hotSearchList.add("金融");
-        hotSearchList.add("区块链");
-        hotSearchList.add("直销");
-        hotSearchList.add("PE");
-        hotSearchList.add("比特币");
-        hotSearchList.add("互联网");
+        String account=Global.getCurrentUser().account;
+        HttpServiceManagerV2.getLisTags(account,new HttpRequestListener<ListTagsResult>() {
+            @Override
+            public void onHttpRequestSucceed(ListTagsResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    refreshDataHotSearchByGroup(result.getData());
+                }else {
+                    List<ListTagsResult.DataBean> list=new ArrayList<>();
+                    list.add(new ListTagsResult.DataBean("1","金融"));
+                    list.add(new ListTagsResult.DataBean("2","区块链"));
+                    list.add(new ListTagsResult.DataBean("3","直销"));
+                    list.add(new ListTagsResult.DataBean("4","PE"));
+                    list.add(new ListTagsResult.DataBean("5","比特币"));
+                    list.add(new ListTagsResult.DataBean("5","互联网"));
+                    refreshDataHotSearchByGroup(list);
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+            }
+        });
     }
 
    public  class LatelySearchAdapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{

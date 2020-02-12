@@ -49,7 +49,7 @@ public class Group extends MessageSource implements Serializable {
     public int memberAble;
 
     public List<GroupMember> memberList;
-
+    public int memberSize;
     public Group() {
     }
 
@@ -136,6 +136,15 @@ public class Group extends MessageSource implements Serializable {
 
     public void setMemberAble(int memberAble) {
         this.memberAble = memberAble;
+    }
+
+
+    public int getMemberSize() {
+        return memberSize;
+    }
+
+    public void setMemberSize(int memberSize) {
+        this.memberSize = memberSize;
     }
 
     @Override

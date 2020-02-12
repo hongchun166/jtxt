@@ -170,6 +170,8 @@ public class SearchUserListActivity extends BaseActivity {
                     intent.putExtra(Constant.CHAT_OTHRES_NAME, dataBean.getName());
                     startActivity(intent);
                     finish();
+                }else {
+                    GroupDetailDescActivity.navToAct(getContext(),dataBean.toGroupB());
                 }
             }
         });

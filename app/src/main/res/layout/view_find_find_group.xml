@@ -71,5 +71,17 @@
             app:max_select="1">
         </com.zhy.view.flowlayout.TagFlowLayout>
     </RelativeLayout>
-
+    <Button
+        android:id="@+id/nextButtonGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/button_background_blue_to_white"
+        android:layout_below="@+id/viewSearchHotItemRoot"
+        android:enabled="true"
+        android:text="@string/find"
+        android:textColor="@drawable/text_color_white_to_blue"
+        android:textSize="@dimen/text_15sp" />
 </RelativeLayout>
