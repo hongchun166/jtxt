@@ -275,7 +275,8 @@
     <string name="mine_home_page">我的主页</string>
     <string name="goto_modify">去修改 >></string>
     <string name="un_verify">未认证</string>
-
+    <string name="join">加入</string>
+    <string name="joined">已加入</string>
 
     <string name="common_comment">回复</string>
     <string name="common_send">发送</string>

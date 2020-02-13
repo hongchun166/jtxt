@@ -1,6 +1,7 @@
 package com.linkb.jstx.network.result.v2;
 
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.util.TimeUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -92,7 +93,7 @@ public class ListMyBalanceFlowResult extends BaseResult {
             return addTime;
         }
         public String getAddTimeFinal(){
-            return timeToStr(addTime);
+            return TimeUtils.timeToStr(addTime);
         }
         public void setAddTime(String addTime) {
             this.addTime = addTime;
@@ -114,25 +115,6 @@ public class ListMyBalanceFlowResult extends BaseResult {
             this.currencyId = currencyId;
         }
 
-        /**
-         *
-         * @param time
-         * 2020-01-03T07:06:59.000+0000
-         * @return
-         */
-        public String timeToStr(String time){
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSZ");
-            DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            df2.setTimeZone(TimeZone.getTimeZone("GMT"));
-            Date date = null;
-            try {
-                date = df.parse(addTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            String value = df2.format(date);
-            return value;
-        }
     }
 
 }

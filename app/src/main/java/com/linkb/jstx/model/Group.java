@@ -50,6 +50,8 @@ public class Group extends MessageSource implements Serializable {
 
     public List<GroupMember> memberList;
     public int memberSize;
+    public String createTime;
+
     public Group() {
     }
 

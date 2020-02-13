@@ -29,35 +29,15 @@
     <com.linkb.jstx.component.ChatReadDeleteView
         android:id="@+id/container"
         android:layout_width="127dp"
-        android:layout_height="40dp"
+        android:layout_height="53dp"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="1dp"
         android:layout_marginRight="80dp"
         android:layout_marginBottom="2dp"
         android:foreground="?android:selectableItemBackground"
-        android:background="@drawable/blue_top_left_right_radiu"
+        android:background="@mipmap/ic_msg_read_delete_unread"
         android:layout_toRightOf="@id/logo"
         android:layout_below="@id/fromName"
         >
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:src="@mipmap/ic_msg_read_delete"
-            android:transitionName="imageSenseView"
-            android:layout_centerInParent="true"
-
-            />
     </com.linkb.jstx.component.ChatReadDeleteView>
-    <TextView
-        android:id="@+id/viewReadDeleteMsgBotmHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Will DISAPPEAR after redaing"
-        android:layout_below="@+id/container"
-        android:textColor="@color/tex_color_gray_999999"
-        android:textSize="@dimen/text_10sp"
-        android:layout_alignRight="@+id/container"
-        />
-
 </com.linkb.jstx.component.FromMessageReadDeleteView>

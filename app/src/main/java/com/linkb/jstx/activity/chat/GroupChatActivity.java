@@ -70,6 +70,17 @@ public class GroupChatActivity extends FriendChatActivity implements ViewTreeObs
     * */
     private String mGroupVideoAccount;
 
+    public static void navToAct(Context context,String gName,long gid){
+        Intent intent=new Intent(context,GroupChatActivity.class);
+        navToAct(context,intent,gName,gid);
+    }
+    public static void navToAct(Context context,Intent intent,String gName,long gid){
+        intent.setClass(context, GroupChatActivity.class);
+        intent.putExtra(Constant.CHAT_OTHRES_ID, gid);
+        intent.putExtra(Constant.CHAT_OTHRES_NAME, gName);
+        context.startActivity(intent);
+    }
+
     @Override
     public void initComponents() {
 

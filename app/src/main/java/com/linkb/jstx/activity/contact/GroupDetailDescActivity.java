@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.chat.GroupChatActivity;
+import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
@@ -44,6 +46,8 @@ public class GroupDetailDescActivity extends BaseActivity {
 
     Unbinder unbinder;
     Group group;
+
+    boolean isInGroup=false;
 
     public static void navToAct(Context context, Group group){
         Intent intent=new Intent(context,GroupDetailDescActivity.class);
@@ -82,16 +86,30 @@ public class GroupDetailDescActivity extends BaseActivity {
         viewGroupCode.setText(String.valueOf(group.id));
         viewGroupDesc.setText(String.valueOf(group.summary));
         viewGroupMemberNum.setText(String.format(getString(R.string.group_member_size),group.memberSize));
+        viewCreateTime.setText(String.valueOf(group.createTime));
 
         updateViewByInGroup(GroupRepository.queryById(group.getId())!=null);
     }
+
     public void updateViewByInGroup(boolean isInGroup){
+        this.isInGroup=isInGroup;
         if(isInGroup){
-            nextButton.setText("发消息");
+            nextButton.setText(R.string.send_msg);
         }else {
-            nextButton.setText("申请入群");
+            nextButton.setText(R.string.label_group_apply_join_group);
         }
     }
+
+    @OnClick(value = R.id.nextButton)
+    public void clickBtn(){
+        if(isInGroup){
+            GroupChatActivity.navToAct(this, group.getName(),Long.valueOf(group.getId()));
+            finish();
+        }else {
+            ApplyGroupActivityV2.navToAct(this,group);
+        }
+    }
+
     private void httpCheckInGroup(Group group) {
         showProgressDialog("");
         User user = Global.getCurrentUser();

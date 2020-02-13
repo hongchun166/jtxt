@@ -329,14 +329,12 @@ public class FindPersonsResult extends BaseResult {
             private double lockBalanceFreed;
             private double lot;
             private double lat;
+            private boolean disabled;
             private String position;//职务
             private String marrriage;
             private String industry;//行业
             private String tag;
             private String area;
-            private boolean disabled;
-
-
 
             public String getAccount() {
                 return account;

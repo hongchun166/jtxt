@@ -231,10 +231,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
     }
 
     private void gotoGroupChat(Intent intent, ChatItem chatItem){
-        intent.setClass(getContext(), GroupChatActivity.class);
-        intent.putExtra(Constant.CHAT_OTHRES_ID, ((Group) chatItem.source).id);
-        intent.putExtra(Constant.CHAT_OTHRES_NAME, ((Group) chatItem.source).name);
-        startActivity(intent);
+        GroupChatActivity.navToAct(getContext(),intent,((Group) chatItem.source).name,((Group) chatItem.source).id);
     }
 
     @Override

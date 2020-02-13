@@ -167,11 +167,8 @@ public class SearchGroupActivity extends BaseActivity implements HttpRequestList
 
     @Override
     public void onGroupChat(GroupQueryResult.DataListBean dataBean) {
-        Intent intent = new Intent();
-        intent.setClass(this, GroupChatActivity.class);
-        intent.putExtra(Constant.CHAT_OTHRES_ID, dataBean.getId());
-        intent.putExtra(Constant.CHAT_OTHRES_NAME, dataBean.getName());
-        startActivity(intent);
+
+        GroupChatActivity.navToAct(this,dataBean.getName(),dataBean.getId());
         finish();
     }
 

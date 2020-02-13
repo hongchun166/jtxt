@@ -23,8 +23,8 @@ import java.util.TimerTask;
 
 public class ChatReadDeleteView extends RelativeLayout implements OnClickListener,ChatReadDeleteDigOpt.OnReadDelteCallback {
 
-    private ImageView image;
-    TextView viewReadDeleteMsgBotmHint;
+
+
     private String key;
     private Message message;
     OnMessageDeleteListener onMessageDeleteListener;
@@ -41,8 +41,6 @@ public class ChatReadDeleteView extends RelativeLayout implements OnClickListene
     @Override
     public void onFinishInflate() {
         super.onFinishInflate();
-        image = this.findViewById(R.id.image);
-        viewReadDeleteMsgBotmHint=getRootView().findViewById(R.id.viewReadDeleteMsgBotmHint);
     }
     public void initViews(Message msg) {
         this.message=msg;
@@ -59,34 +57,18 @@ public class ChatReadDeleteView extends RelativeLayout implements OnClickListene
     }
     private void updateMsgStateByState(String getReadDeleteState){
 
-        if(viewReadDeleteMsgBotmHint==null){
-            viewReadDeleteMsgBotmHint=getRootView().findViewById(R.id.viewReadDeleteMsgBotmHint);
-        }
         if(getReadDeleteState.equals(Message.STATUS_READ_DELETE_UnRead) || getReadDeleteState.equals(Message.STATUS_READ_DELETE_Read)){
-            image.setVisibility(VISIBLE);
-            setBackgroundResource(R.drawable.blue_top_left_right_radiu);
-            if(viewReadDeleteMsgBotmHint!=null)viewReadDeleteMsgBotmHint.setVisibility(VISIBLE);
-
+            setBackgroundResource(R.mipmap.ic_msg_read_delete_unread);
         }else if(getReadDeleteState.equals(Message.STATUS_READ_DELETE_CountDown5)){
-            if(viewReadDeleteMsgBotmHint!=null)viewReadDeleteMsgBotmHint.setVisibility(VISIBLE);
-            setBackgroundResource(R.drawable.blue_9fc3f7_top_left_right_radiu);
-            image.setVisibility(VISIBLE);
+            setBackgroundResource(R.mipmap.ic_msg_read_delete_5);
 
         }else if(getReadDeleteState.equals(Message.STATUS_READ_DELETE_CountDown3)){
-            if(viewReadDeleteMsgBotmHint!=null)viewReadDeleteMsgBotmHint.setVisibility(VISIBLE);
-            setBackgroundResource(R.drawable.gray_e1e1e1_top_left_right_radiu);
-            image.setVisibility(VISIBLE);
-
+            setBackgroundResource(R.mipmap.ic_msg_read_delete_3);
         }else if(getReadDeleteState.equals(Message.STATUS_READ_DELETE_CountDown2)){
-            image.setVisibility(GONE);
-            if(viewReadDeleteMsgBotmHint!=null)viewReadDeleteMsgBotmHint.setVisibility(GONE);
-            setBackgroundResource(R.mipmap.ic_msg_read_delete_dotread);
+            setBackgroundResource(R.mipmap.ic_msg_read_delete_2);
 
         }else if(getReadDeleteState.equals(Message.STATUS_READ_DELETE_TimeOut)){
             setBackgroundResource(R.color.color_transparent);
-            image.setVisibility(GONE);
-            if(viewReadDeleteMsgBotmHint!=null)viewReadDeleteMsgBotmHint.setVisibility(GONE);
-
         }
         if(!message.getReadDeleteState().equals(Message.STATUS_READ_DELETE_TimeOut)
             && !message.getReadDeleteState().equals(Message.STATUS_READ_DELETE_UnRead) ){

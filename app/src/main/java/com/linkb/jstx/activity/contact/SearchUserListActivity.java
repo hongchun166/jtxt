@@ -9,19 +9,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
-import com.linkb.jstx.activity.chat.GroupChatActivity;
 import com.linkb.jstx.adapter.FindPersonsAdapter;
 import com.linkb.jstx.adapter.SearchGroupAdapterV2;
-import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
-import com.linkb.jstx.database.FriendRepository;
-import com.linkb.jstx.database.GroupRepository;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.model.intent.SearchUserParam;
@@ -53,6 +48,8 @@ public class SearchUserListActivity extends BaseActivity {
     TextView viewSearchInput;
     @BindView(R.id.viewCancel)
     TextView viewCancel;
+    @BindView(R.id.viewClear)
+    ImageView viewClear;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -131,6 +128,10 @@ public class SearchUserListActivity extends BaseActivity {
     public void onBackBtn() {
         finish();
     }
+    @OnClick(R.id.viewClear)
+    public void clearInput() {
+        viewSearchInput.setText("");
+    }
 
     public SearchUserParam getSearchUserParam() {
         return searchUserParam;
@@ -153,29 +154,11 @@ public class SearchUserListActivity extends BaseActivity {
         mAdapterGroup = new SearchGroupAdapterV2(this, mSearchGroupList, new SearchGroupAdapterV2.OnSearchGroupClickedListener() {
             @Override
             public void onClickJoinGroup(FindGroupsResult.DataBean.ContentBean dataBean) {
-                if (GroupRepository.queryById(dataBean.getId()) != null){
-                    Intent intent = new Intent();
-                    intent.setClass(getContext(), GroupChatActivity.class);
-                    intent.putExtra(Constant.CHAT_OTHRES_ID, dataBean.getId());
-                    intent.putExtra(Constant.CHAT_OTHRES_NAME, dataBean.getName());
-                    startActivity(intent);
-                    finish();
-                }else {
-                    httpCheckInGroup(dataBean);
-                }
+                httpCheckInGroup(dataBean);
             }
             @Override
             public void onClickItemGroup(FindGroupsResult.DataBean.ContentBean dataBean) {
-                if (GroupRepository.queryById(dataBean.getId()) != null){
-                    Intent intent = new Intent();
-                    intent.setClass(getContext(), GroupChatActivity.class);
-                    intent.putExtra(Constant.CHAT_OTHRES_ID, dataBean.getId());
-                    intent.putExtra(Constant.CHAT_OTHRES_NAME, dataBean.getName());
-                    startActivity(intent);
-                    finish();
-                }else {
-                    GroupDetailDescActivity.navToAct(getContext(),dataBean.toGroupB());
-                }
+                GroupDetailDescActivity.navToAct(getContext(),dataBean.toGroupB());
             }
         });
         recyclerView.setAdapter(mAdapterGroup);

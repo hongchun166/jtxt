@@ -3,6 +3,7 @@ package com.linkb.jstx.network.result.v2;
 import com.google.gson.annotations.SerializedName;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.util.TimeUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -288,6 +289,7 @@ public class FindGroupsResult extends BaseResult {
              * banned : 0
              * memberAble : 0
              * level : 0
+             * createTime  2020-02-12T13:01:03.000+0000
              */
 
             private String id;
@@ -298,6 +300,7 @@ public class FindGroupsResult extends BaseResult {
             private int banned;
             private int memberAble;
             private int level;
+            private String createTime;
 
             public String getId() {
                 return id;
@@ -363,16 +366,28 @@ public class FindGroupsResult extends BaseResult {
                 this.level = level;
             }
 
+            public String getCreateTime() {
+                return createTime;
+            }
+            public String getCreateTimeFinal() {
+                return TimeUtils.timeToStr(createTime);
+            }
+            public void setCreateTime(String createTime) {
+                this.createTime = createTime;
+            }
+
             public Group toGroupB(){
                 Group group=new Group();
                 group.id=Long.valueOf(id);
                 group.memberAble=memberAble;
                 group.name=name;
                 group.summary=summary;
+                group.category=summary;
                 group.founder=founder;
                 group.banned=banned;
                 group.level=level;
                 group.memberSize=amount;
+                group.createTime=getCreateTimeFinal();
                 return group;
             }
         }

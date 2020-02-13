@@ -35,6 +35,7 @@
             android:hint="@string/find_find_groupHint"
             android:maxLength="20"
             android:lines="1"
+            android:singleLine="true"
             android:imeOptions="actionSearch"
             android:textColor="@color/tex_color_gray_333"
             android:textColorHint="@color/divider_color_gray_CCCCCC"

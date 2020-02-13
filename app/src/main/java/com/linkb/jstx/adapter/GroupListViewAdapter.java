@@ -44,10 +44,7 @@ public class GroupListViewAdapter extends RecyclerView.Adapter<LogoNameViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), GroupChatActivity.class);
-                intent.putExtra(Constant.CHAT_OTHRES_ID, Long.valueOf(view.getTag().toString()));
-                intent.putExtra(Constant.CHAT_OTHRES_NAME, group.name);
-                view.getContext().startActivity(intent);
+                GroupChatActivity.navToAct(view.getContext(),group.name, Long.valueOf(view.getTag().toString()));
             }
         });
     }

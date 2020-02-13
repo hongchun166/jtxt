@@ -276,7 +276,8 @@
     <string name="mine_home_page">my home page</string>
     <string name="goto_modify">go to modify >></string>
     <string name="un_verify">unverified</string>
-
+    <string name="join">join</string>
+    <string name="joined">joined</string>
 
     <string name="common_comment">reply</string>
     <string name="common_send">send</string>

@@ -45,6 +45,14 @@ public class SearchGroupAdapterV2 extends RecyclerView.Adapter<SearchGroupAdapte
         hodler.viewGroupName.setText(dataBean.getName());
         hodler.viewGroupDesc.setText(dataBean.getSummary());
         hodler.viewHead.load(FileURLBuilder.getUserIconUrl(String.valueOf(dataBean.getId())), R.mipmap.lianxiren, 999);
+
+        if (GroupRepository.queryById(dataBean.getId()) != null){
+            hodler.viewApplyJoinGroup.setText(R.string.joined);
+            hodler.viewApplyJoinGroup.setEnabled(false);
+        }else {
+            hodler.viewApplyJoinGroup.setText(R.string.join);
+            hodler.viewApplyJoinGroup.setEnabled(true);
+        }
     }
 
     @Override

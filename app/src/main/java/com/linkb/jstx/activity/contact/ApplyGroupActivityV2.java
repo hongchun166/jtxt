@@ -2,8 +2,11 @@ package com.linkb.jstx.activity.contact;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkb.R;
@@ -31,13 +34,20 @@ import butterknife.OnClick;
 /** 提交群组申请页面
 * */
 public class ApplyGroupActivityV2 extends BaseActivity {
-    @BindView(R.id.title_tv)
-    TextView title_tv;
-    @BindView(R.id.editText5)
-    EditText leaveMessageEdt;
+    @BindView(R.id.back_btn)
+    ImageView back_btn;
+    @BindView(R.id.tv_title)
+    TextView tv_title;
+    @BindView(R.id.viewSend)
+    TextView viewSend;
 
-    @BindView(R.id.editText6)
-    EditText friendRemarkEdt;
+
+    @BindView(R.id.viewInput)
+    EditText viewInput;
+    @BindView(R.id.viewMaxInputHint)
+    TextView viewMaxInputHint;
+
+    final  int MAX_INPUT=50;
 
     Group group;
     private User mSelt;
@@ -54,26 +64,54 @@ public class ApplyGroupActivityV2 extends BaseActivity {
         mSelt = Global.getCurrentUser();
         group = (Group) getIntent().getSerializableExtra("groupB");
 
-        title_tv.setText(R.string.label_group_apply_join_group);
-        leaveMessageEdt.setText(getString(R.string.verify_apply_friend_leave_message_default, mSelt.name));
-        if (!TextUtils.isEmpty(leaveMessageEdt.getText())){
-            leaveMessageEdt.setSelection(leaveMessageEdt.getText().length());
+        tv_title.setText(R.string.label_group_apply_join_group);
+        viewInput.setText(getString(R.string.verify_apply_friend_leave_message_default, mSelt.name));
+        if (!TextUtils.isEmpty(viewInput.getText())){
+            viewInput.setSelection(viewInput.getText().length());
         }
+        updateLnegth();
+        viewInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateLnegth();
+            }
+        });
     }
+
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_apply_friend;
+        return R.layout.activity_apply_join_group;
+    }
+
+    private void updateLnegth(){
+        int inputLength=viewInput.getText().toString().length();
+        if(inputLength>MAX_INPUT){
+            StringBuffer stringBuffer=new StringBuffer();
+            stringBuffer.append(viewInput.getText().toString());
+            stringBuffer.delete(50,inputLength);
+            viewInput.setText(stringBuffer.toString());
+            inputLength=50;
+            viewInput.setSelection(inputLength);
+        }
+        viewMaxInputHint.setText(inputLength+"/"+MAX_INPUT);
+
     }
 
     @OnClick(R.id.back_btn)
     public void onBack(){finish();}
 
-    @OnClick(R.id.send_btn)
+    @OnClick(R.id.viewSend)
     public void onSend() {
         showProgressDialog("");
          Message message = new Message();
-        String token = ((EditText) findViewById(R.id.token)).getText().toString();
+        String token = viewInput.getText().toString();
         User source = Global.getCurrentUser();
         message.action = Constant.MessageAction.ACTION_102;
         //接收者为 群创建者account
@@ -112,10 +150,5 @@ public class ApplyGroupActivityV2 extends BaseActivity {
 //                hideProgressDialog();
 //            }
 //        });
-
-    }
-    @OnClick(R.id.delete_fly)
-    public void onDelectLeaveMessage(){
-        leaveMessageEdt.setText("");
     }
 }

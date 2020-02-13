@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * <pre>
@@ -31,7 +32,25 @@ public final class TimeUtils {
     public static final String ALL_FORMAT = "yyyy-MM-dd HH:mm";
 
     private static final ThreadLocal<SimpleDateFormat> SDF_THREAD_LOCAL = new ThreadLocal<>();
-
+    /**
+     *
+     * @param time
+     * 2020-01-03T07:06:59.000+0000
+     * @return
+     */
+    public static String timeToStr(String geLineTime){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSZ");
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        df2.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        try {
+            date = df.parse(geLineTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String value = df2.format(date);
+        return value;
+    }
     public static String getTimeAgo(long time, Context context) {
         if (time < 1000000000000L) {
             // if timestamp given in seconds, convert to millis
