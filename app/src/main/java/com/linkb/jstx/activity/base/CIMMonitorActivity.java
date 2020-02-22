@@ -45,24 +45,38 @@ public abstract class CIMMonitorActivity extends BaseActivity implements CIMEven
     }
 
     @Override
-    public void onSentSuccessed(SentBody body) {
-    }
-
-    @Override
-    public void onConnectionSuccessed(boolean hasAutoBind) {
-    }
-
-    @Override
     public void onConnectionClosed() {
-    }
-
-    @Override
-    public void onConnectionFailed() {
     }
 
     @Override
     public int getEventDispatchOrder() {
         return 0;
     }
+    //3.5
+//    @Override
+//    public void onSentSuccessed(SentBody body) {
+//    }
+//
+//    @Override
+//    public void onConnectionSuccessed(boolean hasAutoBind) {
+//    }
+//    @Override
+//    public void onConnectionFailed() {
+//    }
 
+    //3.8
+    @Override
+    public void onSendFinished(SentBody sentBody) {
+
+    }
+
+    @Override
+    public void onConnectFinished(boolean b) {
+
+    }
+
+    @Override
+    public void onConnectFailed() {
+
+    }
 }

@@ -555,10 +555,16 @@
             android:name="com.farsunset.cim.sdk.android.CIMPushService"
             android:process=":cimpush" />
 
+<!--  3.5      <provider-->
+<!--            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"-->
+<!--            android:authorities="com.farsunset.cim.provider"-->
+<!--            android:exported="true" />-->
+<!--        3.8-->
         <provider
             android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"
-            android:authorities="com.farsunset.cim.provider"
-            android:exported="true" />
+            android:authorities="${applicationId}.cim.provider"
+            android:process=":cimpush"
+            android:exported="false" />
         <!-- ****************************************CIM推送配置 end*************************************** -->
 
 
@@ -567,15 +573,35 @@
             android:name="com.linkb.jstx.receiver.CIMPushMessageReceiver"
             android:exported="true">
             <intent-filter android:priority="0x7fffffff">
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  <!-- 网络变化广播 -->
-                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" /><!-- 消息广播action -->
-                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> <!-- 发送sendbody失败广播-->
-                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> <!-- 发送sendbody成功广播 -->
-                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> <!--重新连接 -->
-                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> <!-- 链接意外关闭广播 -->
-                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> <!-- 链接失败广播 -->
-                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> <!-- 链接成功广播-->
-                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> <!-- 发送sendbody成功后获得replaybody回应广播 -->
+<!--                3.5 -->
+<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  &lt;!&ndash; 网络变化广播 &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" />&lt;!&ndash; 消息广播action &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> &lt;!&ndash; 发送sendbody失败广播&ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> &lt;!&ndash; 发送sendbody成功广播 &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> &lt;!&ndash;重新连接 &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> &lt;!&ndash; 链接意外关闭广播 &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> &lt;!&ndash; 链接失败广播 &ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> &lt;!&ndash; 链接成功广播&ndash;&gt;-->
+<!--                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> &lt;!&ndash; 发送sendbody成功后获得replaybody回应广播 &ndash;&gt;-->
+
+<!--                3.8  -->
+                <!-- 网络变事件action targetVersion 24之前 -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.farsunset.cim.NETWORK_CHANGED" />
+                <!-- 收到消息事件action -->
+                <action android:name="com.farsunset.cim.MESSAGE_RECEIVED" />
+                <!-- 发送sendBody完成事件action -->
+                <action android:name="com.farsunset.cim.SEND_FINISHED" />
+                <!--重新连接事件action -->
+                <action android:name="com.farsunset.cim.CONNECTION_RECOVERY" />
+                <!-- 连接关闭事件action -->
+                <action android:name="com.farsunset.cim.CONNECTION_CLOSED" />
+                <!-- 连接失败事件action -->
+                <action android:name="com.farsunset.cim.CONNECT_FAILED" />
+                <!-- 连接成功事件action-->
+                <action android:name="com.farsunset.cim.CONNECT_FINISHED" />
+                <!-- 收到replyBody事件action -->
+                <action android:name="com.farsunset.cim.REPLY_RECEIVED" />
 
                 <!-- 【可选】 一些常用的系统广播，增强pushservice的复活机会-->
                 <action android:name="android.intent.action.USER_PRESENT" />

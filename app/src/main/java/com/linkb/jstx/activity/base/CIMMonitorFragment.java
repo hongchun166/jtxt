@@ -65,28 +65,46 @@ public abstract class CIMMonitorFragment extends LazyLoadFragment implements CIM
     public void onMessageReceived(Message arg0) {
     }
 
-    @Override
-    public void onSentSuccessed(SentBody body) {
-    }
 
     @Override
     public void onNetworkChanged(NetworkInfo info) {
     }
 
-    @Override
-    public void onConnectionSuccessed(boolean hasAutoBind) {
-    }
 
     @Override
     public void onConnectionClosed() {
     }
 
-    @Override
-    public void onConnectionFailed() {
-    }
 
     @Override
     public int getEventDispatchOrder() {
         return 0;
+    }
+    //3.5
+//    @Override
+//    public void onSentSuccessed(SentBody body) {
+//    }
+//
+//    @Override
+//    public void onConnectionSuccessed(boolean hasAutoBind) {
+//    }
+//    @Override
+//    public void onConnectionFailed() {
+//    }
+
+    //3.8
+    @Override
+    public void onSendFinished(SentBody sentBody) {
+
+    }
+
+    @Override
+    public void onConnectFinished(boolean b) {
+
+    }
+
+    @Override
+    public void onConnectFailed() {
+
     }
 }

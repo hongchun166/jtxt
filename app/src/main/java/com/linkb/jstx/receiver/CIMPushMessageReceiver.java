@@ -1,7 +1,13 @@
 
 package com.linkb.jstx.receiver;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.content.res.ComplexColorCompat;
 
 import com.farsunset.cim.sdk.android.CIMEventBroadcastReceiver;
 import com.farsunset.cim.sdk.android.CIMListenerManager;
@@ -23,6 +29,9 @@ import com.linkb.jstx.util.MLog;
 import com.linkb.jstx.util.MessageUtil;
 import com.linkb.video.RoomActivity;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -34,6 +43,69 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
     private static final String TAG = CIMPushMessageReceiver.class.getSimpleName();
 
     private static final HashSet<String> INCLUDED_MESSAGE_TYPES = new HashSet<>();
+
+    /**
+     *
+     * action IntentFilter中的某一个action，因为获取到的是IntentFilter的所有action，所以只要匹配一个就可以
+     *
+     */
+    private static boolean isRegister(LocalBroadcastManager manager, String action) {
+        boolean isRegister = false;
+        try {
+            Field mReceiversField = manager.getClass().getDeclaredField("mReceivers");
+            mReceiversField.setAccessible(true);
+//            String name = mReceiversField.getName();
+            HashMap<BroadcastReceiver, ArrayList<IntentFilter>> mReceivers = (HashMap<BroadcastReceiver, ArrayList<IntentFilter>>) mReceiversField.get(manager);
+
+            for (BroadcastReceiver key : mReceivers.keySet()) {
+                ArrayList<IntentFilter> intentFilters = mReceivers.get(key);
+//                MyLogUtil.e("Key: " + key + " Value: " + intentFilters);
+                for (int i = 0; i < intentFilters.size(); i++) {
+                    IntentFilter intentFilter = intentFilters.get(i);
+                    Field mActionsField = intentFilter.getClass().getDeclaredField("mActions");
+                    mActionsField.setAccessible(true);
+                    ArrayList<String> mActions = (ArrayList<String>) mActionsField.get(intentFilter);
+                    for (int j = 0; j < mActions.size(); j++) {
+                        if (mActions.get(i).equals(action)) {
+                            isRegister = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return isRegister;
+    }
+    public static void regCimReceiverBySDk(Context context){
+        if(true){
+            return;
+        }
+        if(Build.VERSION.SDK_INT >= 26 && !isRegister(LocalBroadcastManager.getInstance(context),"com.farsunset.lvxin.MESSAGE_RECEIVED")){
+            CIMPushMessageReceiver receiver=new CIMPushMessageReceiver();
+            IntentFilter intentFilter=new IntentFilter();
+            intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");//网络变化广播
+            intentFilter.addAction("com.farsunset.lvxin.MESSAGE_RECEIVED");//消息广播action
+            intentFilter.addAction("com.farsunset.lvxin.SENT_FAILED");//发送sendbody失败广播
+            intentFilter.addAction("com.farsunset.lvxin.SENT_SUCCESSED");//发送sendbody成功广播
+            intentFilter.addAction("com.farsunset.lvxin.CONNECTION_RECOVERY");//重新连接
+            intentFilter.addAction("com.farsunset.lvxin.CONNECTION_CLOSED");//链接意外关闭广播
+            intentFilter.addAction("com.farsunset.lvxin.CONNECTION_FAILED");//链接失败广播
+            intentFilter.addAction("com.farsunset.lvxin.CONNECTION_SUCCESSED");//链接成功广播
+            intentFilter.addAction("com.farsunset.lvxin.REPLY_RECEIVED");//发送sendbody成功后获得replaybody回应广播
+
+            //【可选】 一些常用的系统广播，增强pushservice的复活机会
+            intentFilter.addAction("android.intent.action.USER_PRESENT");
+            intentFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED");
+            intentFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED");
+//            context.registerReceiver(receiver,intentFilter);
+            LocalBroadcastManager.getInstance(context).registerReceiver(receiver,intentFilter);
+        }
+    }
 
     static {
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_102);
@@ -49,6 +121,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
     private final static String[] MESSAGE_FLUTTER_ACTION = new String[]{Constant.MessageAction.ACTION_102, Constant.MessageAction.ACTION_103, Constant.MessageAction.ACTION_104, Constant.MessageAction.ACTION_105,
             Constant.MessageAction.ACTION_106, Constant.MessageAction.ACTION_107, Constant.MessageAction.ACTION_112, Constant.MessageAction.ACTION_113
     };
+
 
     /**
      * 当收到消息时调用此方法
@@ -185,14 +258,24 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
         LvxinApplication.sendLocalBroadcast(intent);
     }
 
+    //3.8
     @Override
-    public void onConnectionSuccessed(boolean hasAutoBind) {
-        super.onConnectionSuccessed(hasAutoBind);
+    public void onConnectFinished(boolean hasAutoBind) {
+        super.onConnectFinished(hasAutoBind);
         if (!hasAutoBind) {
             // 绑定账号到服务端
             CIMPushManager.bindAccount(LvxinApplication.getInstance(), Global.getCurrentAccount());
         }
     }
+//  3.5
+//    @Override
+//    public void onConnectionSuccessed(boolean hasAutoBind) {
+//        super.onConnectionSuccessed(hasAutoBind);
+//        if (!hasAutoBind) {
+//            // 绑定账号到服务端
+//            CIMPushManager.bindAccount(LvxinApplication.getInstance(), Global.getCurrentAccount());
+//        }
+//    }
 
     @Override
     public void onReplyReceived(ReplyBody reply) {

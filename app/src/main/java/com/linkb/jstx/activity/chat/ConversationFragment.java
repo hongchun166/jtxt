@@ -398,18 +398,18 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
     }
 
     @Override
-    public void onConnectionSuccessed(boolean hasAutoBind) {
+    public void onConnectFinished(boolean hasAutoBind) {
         connCounter = 0;
         disconnectView.setVisibility(View.GONE);
     }
-
     @Override
-    public void onConnectionFailed() {
+    public void onConnectFailed() {
         connCounter++;
         if (connCounter >= 3) {
             disconnectView.setVisibility(View.GONE);
         }
     }
+
 
     @Override
     public void onClick(View v) {

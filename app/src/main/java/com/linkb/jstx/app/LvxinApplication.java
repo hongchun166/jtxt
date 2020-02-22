@@ -34,6 +34,7 @@ import com.linkb.jstx.activity.util.PhotoVewActivity;
 import com.linkb.jstx.activity.util.VideoPlayerActivity;
 import com.linkb.jstx.network.model.SNSImage;
 import com.linkb.jstx.network.model.SNSVideo;
+import com.linkb.jstx.receiver.CIMPushMessageReceiver;
 import com.linkb.jstx.service.ApkDownloaderService;
 import com.linkb.jstx.service.UploadCrashLogService;
 import com.linkb.jstx.util.AppTools;
@@ -330,7 +331,10 @@ public class LvxinApplication extends Application {
     }
 
     public void connectPushServer() {
-        CIMPushManager.connect(this, ClientConfig.getServerHost(), ClientConfig.getServerCIMPort());
+        CIMPushMessageReceiver.regCimReceiverBySDk(this);
+        String getServerHost=ClientConfig.getServerHost();
+        int getServerCIMPort=ClientConfig.getServerCIMPort();
+        CIMPushManager.connect(this, getServerHost, getServerCIMPort);
     }
 
 }

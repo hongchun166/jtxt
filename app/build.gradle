@@ -9,9 +9,9 @@ android {
         applicationId "com.linkb"
         minSdkVersion 21
 //        targetSdkVersion 24
-        targetSdkVersion 26
-        versionCode 22
-        versionName "1.0.22"
+        targetSdkVersion 28
+        versionCode 23
+        versionName "1.0.23"
 
         ndk{abiFilters "armeabi", "armeabi-v7a", "x86", "mips", "arm-v8a"}
     }
@@ -147,7 +147,10 @@ android {
 //            universalApk true
 //        }
 //    }
-
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 
@@ -176,8 +179,13 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'commons-io:commons-io:2.6'
-    implementation 'com.google.protobuf:protobuf-java:3.6.1'
-    implementation 'org.apache.mina:mina-core:2.0.19'
+
+    // CIM 3.5 to 3.8- change
+//    implementation 'com.google.protobuf:protobuf-java:3.6.1'
+//    implementation 'org.apache.mina:mina-core:2.0.19'
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+
+
     implementation 'com.belerweb:pinyin4j:2.5.1'
     implementation 'pub.devrel:easypermissions:2.0.0'
     /** 沉浸式导航栏
