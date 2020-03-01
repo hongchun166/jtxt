@@ -33,7 +33,7 @@ public class ListMyBalanceFlowResult extends BaseResult {
 
         private int id;
         private String account;
-        private int amount;
+        private double amount;
         private  String remark;
         private  String currencyName;
         private String currencyIcon;
@@ -57,11 +57,11 @@ public class ListMyBalanceFlowResult extends BaseResult {
             this.account = account;
         }
 
-        public int getAmount() {
+        public double getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(double amount) {
             this.amount = amount;
         }
 

@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 
 import com.linkb.R;
 import com.linkb.jstx.adapter.trend.NewsAdapter;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.NewsDataResult;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -62,6 +65,7 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter( mAdapter = new NewsAdapter(mNewsList, getContext()));
+        mAdapter.setOnItemClickCallback((view, bean) -> httpGetRedBag(String.valueOf(bean.getId())));
     }
 
 
@@ -88,4 +92,20 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
     public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
     }
+
+    public void httpGetRedBag(String id){
+        String account= Global.getCurrentUser().account;
+        HttpServiceManagerV2.getRedBag(account, id, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+
+            }
+
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+
 }

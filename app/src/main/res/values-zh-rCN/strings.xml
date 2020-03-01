@@ -271,6 +271,7 @@
     <string name="voice_call">语音通话</string>
     <string name="blink_account">KiKi账户 :</string>
     <string name="signature">签名 :</string>
+    <string name="signatures">签名 :%1$s</string>
     <string name="apply_friend">申请好友</string>
     <string name="mine_home_page">我的主页</string>
     <string name="goto_modify">去修改 >></string>

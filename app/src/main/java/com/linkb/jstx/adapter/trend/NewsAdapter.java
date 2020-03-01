@@ -26,9 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
-
+    public static interface OnItemClickCallback{
+        void onItemClickCallback(View view,NewsDataResult.DataListBean bean);
+    }
     private List<NewsDataResult.DataListBean> mNewsList = new ArrayList<>();
     private Context mContext;
+    OnItemClickCallback onItemClickCallback;
 
     public NewsAdapter(List<NewsDataResult.DataListBean> newsList, Context context) {
         this.mNewsList = newsList;
@@ -43,8 +46,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder viewHolder, int i) {
-        final NewsDataResult.DataListBean dataListBean = mNewsList.get(i);
+    public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder viewHolder, int position) {
+        final NewsDataResult.DataListBean dataListBean = mNewsList.get(position);
         viewHolder.scaleWebImage.load(dataListBean.getLitimg(), R.mipmap.img_chart, 10);
         viewHolder.contentTv.setHtml(dataListBean.getTitle());
         viewHolder.sourceTv.setText(dataListBean.getAuthor());
@@ -53,22 +56,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClick(dataListBean);
+                onItemClick(view,dataListBean);
             }
         });
         viewHolder.contentTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClick(dataListBean);
+                onItemClick(view,dataListBean);
             }
         });
     }
 
-    private void onItemClick(NewsDataResult.DataListBean dataListBean) {
+    private void onItemClick(View view,NewsDataResult.DataListBean dataListBean) {
         if (!TextUtils.isEmpty(dataListBean.getUrl())) {
             Intent intent = new Intent(mContext, MMWebViewActivity.class);
             intent.setData(Uri.parse(dataListBean.getUrl()));
             mContext.startActivity(intent);
+        }else {
+            if(onItemClickCallback!=null){
+                onItemClickCallback.onItemClickCallback(view,dataListBean);
+            }
         }
     }
 
@@ -92,6 +99,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             this.mNewsList.remove(index);
             notifyItemRemoved(index);
         }
+    }
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @Override

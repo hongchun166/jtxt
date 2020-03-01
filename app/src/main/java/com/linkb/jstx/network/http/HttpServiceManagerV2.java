@@ -18,6 +18,7 @@ import com.linkb.jstx.network.result.v2.CheckInGroupResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
 import com.linkb.jstx.network.result.v2.FindGroupsResult;
 import com.linkb.jstx.network.result.v2.FindPersonsResult;
+import com.linkb.jstx.network.result.v2.GetActiveResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
@@ -323,4 +324,34 @@ public class HttpServiceManagerV2 {
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
+    /**
+     * H获取活跃度
+     * @param listener
+     */
+    public static void getActive(String account,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getActive, GetActiveResult.class);
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 邀请奖励明细
+     * @param listener
+     */
+    public static void listInvitePrizeDetail(String account,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.listInvitePrizeDetail, BaseResult.class);
+        requestBody.addParameter("account", account);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 抽红包(资讯)
+     * @param listener
+     * @param id 资讯或新闻ID
+     *
+     */
+    public static void getRedBag(String account,String id,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getRedBag, BaseResult.class);
+        requestBody.addParameter("account", account);//
+        requestBody.addParameter("id", id);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
 }

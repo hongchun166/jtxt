@@ -19,6 +19,7 @@ import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.component.ActiveStarsView;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.database.StarMarkRepository;
@@ -27,9 +28,11 @@ import com.linkb.jstx.listener.OnDialogButtonClickListener;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseDataResult;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.GetActiveResult;
 import com.linkb.jstx.util.FileURLBuilder;
 
 import butterknife.BindView;
@@ -47,9 +50,10 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
     private Friend friend;
     @BindView(R.id.imageView12) WebImageView avatarImageView;
     @BindView(R.id.textView51) TextView nameTv;
-    @BindView(R.id.textView55) TextView signatureTv;
+    @BindView(R.id.viewSignTx) TextView signatureTv;
     @BindView(R.id.textView53) TextView blinkAccounterName;
-
+    @BindView(R.id.viewActiveStarsView)
+    ActiveStarsView viewActiveStarsView;
 
     @BindView(R.id.add_friend_btn)
     Button addFriendBtn;
@@ -84,6 +88,8 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
         blinkAccounterName.setText(friend.code);
 
         HttpServiceManager.checkIsFriend(friend.account, checkFiendListener);
+        httpUpdateActive(friend.account);
+
     }
 
     /** 初始化删除好友确认弹框
@@ -276,5 +282,21 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
         customDialog.dismiss();
         showProgressDialog("");
         HttpServiceManager.deleteFriend(friend.account, deleteListener);
+    }
+
+
+    private void httpUpdateActive(String account){
+        HttpServiceManagerV2.getActive(account, new HttpRequestListener<GetActiveResult>() {
+            @Override
+            public void onHttpRequestSucceed(GetActiveResult result, OriginalCall call) {
+                if(result.isSuccess() && result.getData()!=null){
+                    int size=result.getData().getAvtive();
+                    viewActiveStarsView.setStartValue(size);
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+            }
+        });
     }
 }

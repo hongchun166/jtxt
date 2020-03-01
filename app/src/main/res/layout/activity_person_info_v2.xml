@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white"
+    android:background="@color/tex_color_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -120,39 +120,36 @@
         app:layout_constraintTop_toTopOf="@+id/textView52" />
 
     <TextView
-        android:id="@+id/textView54"
+        android:id="@+id/viewSignTx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/signature"
+        android:layout_marginTop="8dp"
+        android:text="@string/signatures"
         android:textSize="@dimen/text_content"
         android:textColor="@color/tex_color_gray_999999"
-        app:layout_constraintStart_toStartOf="@+id/guideline30"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-
-    <TextView
-        android:id="@+id/textView55"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text=""
-        app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintStart_toEndOf="@+id/textView54"
-        app:layout_constraintTop_toTopOf="@+id/textView54" />
+        app:layout_constraintStart_toStartOf="@+id/textView51"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"/>
+    <com.linkb.jstx.component.ActiveStarsView
+        android:id="@+id/viewActiveStarsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/textView51"
+        app:layout_constraintTop_toBottomOf="@+id/viewSignTx"
+        android:layout_marginTop="8dp"
+        />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/viewDetailedInfoItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView55">
+        app:layout_constraintTop_toBottomOf="@+id/viewActiveStarsView">
 
         <ImageView
             android:id="@+id/viewDetailedInfoImg"

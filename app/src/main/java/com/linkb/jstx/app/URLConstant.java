@@ -418,6 +418,9 @@ public class URLConstant {
     public static String updateMessageDestroyTime;// 设置阅读即焚时长
     public static String getMessageDestroyTime;// 获取阅读即焚时长
 
+    public static String getActive;// 查询账号活跃度查询
+    public static String listInvitePrizeDetail;//邀请奖励明细
+    public static String  getRedBag;//抽红包(资讯)
     static {
         initialize();
         initializeV2();
@@ -449,6 +452,9 @@ public class URLConstant {
         updateMessageDestroyTime=API_URL + "message/updateMessageDestroyTime";
         getMessageDestroyTime=API_URL + "message/getMessageDestroyTime";
 
+        getActive=API_URL + "user/getActive";
+        listInvitePrizeDetail=API_URL + "user/listInvitePrizeDetail";
+        getRedBag=API_URL + "editor/getRedBag";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

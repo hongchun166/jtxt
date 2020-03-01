@@ -31,6 +31,7 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.AppVersion;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.component.ActiveStarsView;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.dialog.QuitAppDialog;
 import com.linkb.jstx.event.UserInfoChangeEvent;
@@ -39,8 +40,11 @@ import com.linkb.jstx.listener.CloudImageLoadListener;
 import com.linkb.jstx.network.CloudImageLoaderFactory;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.AppVersionResult;
+import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.GetActiveResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.linkb.jstx.util.Util;
 import com.linkb.jstx.util.ZXingUtils;
@@ -71,6 +75,10 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     TextView viewUserName;
     @BindView(R.id.viewUserSing)
     TextView viewUserSing;
+
+    @BindView(R.id.viewActiveStarsView)
+    ActiveStarsView viewActiveStarsView;
+
     @BindView(R.id.viewIVEdit)
     ImageView viewIVEdit;
 
@@ -111,6 +119,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
         icon.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
 
         versionNumberTv.setText(BuildConfig.VERSION_NAME);
+        httpUpdateActive();
     }
 
     @Override
@@ -290,6 +299,21 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     @Override
     public void onImageLoadSucceed(Object key, Bitmap resource) {
 
+    }
+
+    private void httpUpdateActive(){
+        HttpServiceManagerV2.getActive(user.account, new HttpRequestListener<GetActiveResult>() {
+            @Override
+            public void onHttpRequestSucceed(GetActiveResult result, OriginalCall call) {
+                if(result.isSuccess() && result.getData()!=null){
+                    int size=result.getData().getAvtive();
+                    viewActiveStarsView.setStartValue(size);
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+            }
+        });
     }
 
     private HttpRequestListener<AppVersionResult> checkVersionListener = new HttpRequestListener<AppVersionResult>() {

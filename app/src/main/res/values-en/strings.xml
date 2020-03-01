@@ -272,6 +272,7 @@
     <string name="voice_call">voice call</string>
     <string name="blink_account">KiKi account :</string>
     <string name="signature">signature :</string>
+    <string name="signatures">signature :%1$s</string>
     <string name="apply_friend">apply friend</string>
     <string name="mine_home_page">my home page</string>
     <string name="goto_modify">go to modify >></string>
