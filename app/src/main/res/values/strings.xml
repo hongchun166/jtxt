@@ -263,6 +263,7 @@
     <string name="mine_received_red_packet">我收到的</string>
     <string name="mine_send_red_packet">我发出的</string>
     <string name="total">共</string>
+    <string name="hint_red_receive">领红包</string>
     <string name="received_red_packet_error">领取红包失败</string>
     <string name="red_packet_check_detail">查看领取详情</string>
     <string name="red_packet_empty">手慢了,红包已抢完了</string>

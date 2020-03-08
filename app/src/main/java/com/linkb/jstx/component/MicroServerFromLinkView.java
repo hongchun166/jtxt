@@ -82,9 +82,7 @@ public class MicroServerFromLinkView extends BaseMicroServerFromView implements 
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getContext(), MMWebViewActivity.class);
-        intent.setData(Uri.parse(linkMsg.link));
-        getContext().startActivity(intent);
+        MMWebViewActivity.createNavToParam(Uri.parse(linkMsg.link)).start(getContext());
     }
 
 }

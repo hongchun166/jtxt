@@ -44,9 +44,7 @@ public class TimelineMomentLinkView extends TimelineMomentView {
     public void onClick(View view) {
         super.onClick(view);
         if (view == linkTitle.getParent()) {
-            Intent intent = new Intent(getContext(), MMWebViewActivity.class);
-            intent.setData(Uri.parse(linkUrl));
-            getContext().startActivity(intent);
+            MMWebViewActivity.createNavToParam(Uri.parse(linkUrl)).start(getContext());
         }
     }
 

@@ -1,14 +1,20 @@
 
 package com.linkb.jstx.activity.chat;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,26 +27,46 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.chat.bean.WebViewNavToParam;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.activity.contact.MessageForwardActivity;
 import com.linkb.jstx.activity.trend.MomentPublishActivity;
 import com.linkb.jstx.app.Global;
+import com.linkb.jstx.dialog.EditorRedBagDig;
 import com.linkb.jstx.dialog.TextSizeSettingWindow;
 import com.linkb.jstx.dialog.TextSizeSettingWindow.OnSizeSelectedListener;
+import com.linkb.jstx.listener.AnimationListenerImpl;
+import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
+import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.model.MomentLink;
 import com.linkb.R;
+import com.linkb.jstx.network.result.BaseResult;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedListener {
     private WebView webview;
     private WebSettings settings;
-    private String mCurrentUrl;
+
+    private Button viewGetRedBag;
+
+
+    WebViewNavToParam navToParam;
+
+    public static WebViewNavToParam createNavToParam(Uri url){
+        WebViewNavToParam navToParam=new WebViewNavToParam(url,"");
+        return navToParam;
+    }
+
+
     private WebViewClient client = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -48,24 +74,17 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         }
         @Override
         public void onPageFinished(WebView view, String url) {
-            mCurrentUrl = url;
+            navToParam.urlStr=url;
         }
 
     };
     private ProgressBar loadingProgressBar;
+    @SuppressLint("HandlerLeak")
     private Handler progressHandler = new Handler() {
         @Override
         public void handleMessage(Message message) {
             Animation animation = AnimationUtils.loadAnimation(MMWebViewActivity.this, R.anim.disappear);
-            animation.setAnimationListener(new AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
+            animation.setAnimationListener(new AnimationListenerImpl() {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     loadingProgressBar.setVisibility(View.GONE);
@@ -105,7 +124,12 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     public void initComponents() {
 
         setBackIcon(R.drawable.abc_ic_clear_material);
-        mCurrentUrl = getIntent().getData().toString();
+
+        Bundle bundle=getIntent().getExtras();
+        navToParam=bundle.getParcelable("NavToParam");
+        navToParam.urlStr =navToParam.url.toString();
+
+        viewGetRedBag=findViewById(R.id.viewGetRedBag);
         webview = findViewById(R.id.webview);
         TextView provider = findViewById(R.id.provider);
         settings = webview.getSettings();
@@ -114,15 +138,18 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         settings.setJavaScriptEnabled(true);
         webview.setWebViewClient(client);
         webview.setWebChromeClient(chromeClient);
-        webview.loadUrl(mCurrentUrl);
+        webview.loadUrl(navToParam.urlStr);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         textSizeWindow = new TextSizeSettingWindow(this, this);
         backgroundView = findViewById(R.id.background);
         try {
-            provider.setText(getString(R.string.label_web_provider, new URL(mCurrentUrl).getHost()));
+            provider.setText(getString(R.string.label_web_provider, new URL(navToParam.urlStr).getHost()));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        viewGetRedBag.setOnClickListener(v -> getOrShowRed());
+        checkRedGetState();
     }
 
     @Override
@@ -153,12 +180,12 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
 
             case R.id.menu_copy_url:
                 ClipboardManager cmb = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                cmb.setPrimaryClip(ClipData.newPlainText(null, mCurrentUrl));
+                cmb.setPrimaryClip(ClipData.newPlainText(null, navToParam.urlStr));
                 Snackbar.make(webview, R.string.tip_copy_successed, Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.menu_open_browser:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(mCurrentUrl));
+                intent.setData(Uri.parse(navToParam.urlStr));
                 startActivity(intent);
                 break;
             case R.id.menu_share_moment:
@@ -200,6 +227,60 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         client = null;
         textSizeWindow = null;
         progressHandler.removeCallbacksAndMessages(null);
+    }
+
+
+    private void checkRedGetState(){
+        httpGetEditorList();
+        httpGetEditorInfo();
+    }
+    private void getOrShowRed(){
+        showProgressDialog("");
+        httpGetRedBag();
+        EditorRedBagDig.build().buildDialog(this).showDialog();
+    }
+    private void httpGetEditorList(){
+        String account=Global.getCurrentUser().getAccount();
+        HttpServiceManagerV2.getEditorList(account,String.valueOf(1),String.valueOf(1), new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+
+            }
+
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+    private void httpGetEditorInfo(){
+        String account=Global.getCurrentUser().getAccount();
+        HttpServiceManagerV2.getEditorInfo(account, navToParam.beanId, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+
+            }
+
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+    }
+
+    private void httpGetRedBag(){
+        String account=Global.getCurrentUser().getAccount();
+        HttpServiceManagerV2.getRedBag(account, navToParam.beanId, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                hideProgressDialog();
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                hideProgressDialog();
+
+            }
+        });
     }
 
 }

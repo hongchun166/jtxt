@@ -82,5 +82,6 @@
     <dimen name="text_45sp">45sp</dimen>
     <dimen name="text_49sp">49sp</dimen>
     <dimen name="text_51sp">51sp</dimen>
+    <dimen name="text_59sp">59sp</dimen>
     <dimen name="popup_window_icon_size">25dp</dimen>
 </resources>

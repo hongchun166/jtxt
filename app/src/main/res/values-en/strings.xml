@@ -241,6 +241,7 @@
     <string name="mine_received_red_packet">my received red packet</string>
     <string name="mine_send_red_packet">my send red packet</string>
     <string name="total">total</string>
+    <string name="hint_red_receive">Get Red Bag</string>
     <string name="received_red_packet_error">Failed to receive red packet</string>
     <string name="red_packet_check_detail">View picking details</string>
     <string name="red_packet_empty">too slow, red packet has been taken</string>

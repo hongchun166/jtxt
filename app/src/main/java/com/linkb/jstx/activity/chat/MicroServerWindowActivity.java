@@ -168,9 +168,7 @@ public class MicroServerWindowActivity extends CIMMonitorActivity implements OnI
     @Override
     public void onMenuClicked(MicroServerMenu menu) {
         if (menu.isWebMenu()) {
-            Intent intent = new Intent(this, MMWebViewActivity.class);
-            intent.setData(Uri.parse(menu.content));
-            startActivity(intent);
+            MMWebViewActivity.createNavToParam(Uri.parse(menu.content)).start(this);
         }
         if (menu.isApiMenu()) {
             progressView.setVisibility(View.VISIBLE);

@@ -421,6 +421,8 @@ public class URLConstant {
     public static String getActive;// 查询账号活跃度查询
     public static String listInvitePrizeDetail;//邀请奖励明细
     public static String  getRedBag;//抽红包(资讯)
+    public static String  editorList;;//资讯列表
+    public static String  editorInfo;//资讯详情
     static {
         initialize();
         initializeV2();
@@ -455,6 +457,8 @@ public class URLConstant {
         getActive=API_URL + "user/getActive";
         listInvitePrizeDetail=API_URL + "user/listInvitePrizeDetail";
         getRedBag=API_URL + "editor/getRedBag";
+        editorList=API_URL+"editor/list";
+        editorInfo=API_URL+"editor";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

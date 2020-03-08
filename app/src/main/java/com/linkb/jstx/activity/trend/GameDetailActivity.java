@@ -6,8 +6,6 @@ import android.net.Uri;
 import com.linkb.BuildConfig;
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
-import com.linkb.jstx.activity.chat.MMWebViewActivity;
-import com.linkb.jstx.app.LvxinApplication;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

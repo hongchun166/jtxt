@@ -69,9 +69,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     private void onItemClick(View view,NewsDataResult.DataListBean dataListBean) {
         if (!TextUtils.isEmpty(dataListBean.getUrl())) {
-            Intent intent = new Intent(mContext, MMWebViewActivity.class);
-            intent.setData(Uri.parse(dataListBean.getUrl()));
-            mContext.startActivity(intent);
+
+            MMWebViewActivity.createNavToParam(Uri.parse(dataListBean.getUrl()))
+                    .setBeanId(String.valueOf(dataListBean.getId()))
+                    .start(mContext);
         }else {
             if(onItemClickCallback!=null){
                 onItemClickCallback.onItemClickCallback(view,dataListBean);

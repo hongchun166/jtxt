@@ -29,12 +29,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <RelativeLayout
+        android:id="@+id/viewBottomGrp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        >
+
+        <Button
+            android:id="@+id/viewGetRedBag"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/btn_bg_yellow2_to_yellow2"
+            android:text="@string/hint_red_receive"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15sp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="10dp"
+            />
+    </RelativeLayout>
     <com.linkb.jstx.component.ScrollableWebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/toolbar_height"
+        android:layout_above="@+id/viewBottomGrp"
         android:scrollbars="none" />
+
 
 
     <LinearLayout

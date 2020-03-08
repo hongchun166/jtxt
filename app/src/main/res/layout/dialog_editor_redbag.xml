@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/color_transparent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/viewEditorRedGroup"
+        android:layout_width="280dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/ic_editor_redbag_bg"
+        >
+
+        <View
+            android:id="@+id/viewCenterHorizontal"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/viewRedState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_centerHorizontal="true"
+            android:text="恭喜获得"
+            android:textColor="@color/color_editorTx"
+            android:textSize="@dimen/text_23sp" />
+
+        <TextView
+            android:id="@+id/viewRedMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewRedState"
+            android:layout_marginTop="30dp"
+            android:text="2.5"
+            android:textColor="@color/color_editorTx"
+            android:textSize="@dimen/text_59sp"
+            android:layout_toLeftOf="@+id/viewCenterHorizontal"
+            />
+        <TextView
+            android:id="@+id/viewRedType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewRedState"
+            android:layout_alignBaseline="@+id/viewRedMoney"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/viewRedMoney"
+            android:text="KKC"
+            android:textColor="@color/color_editorTx"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/text_35sp" />
+
+        <Button
+            android:id="@+id/viewConfirm"
+            android:layout_width="140dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:text="@string/common_confirm"
+            android:textColor="@drawable/text_color_yellow_to_yellow"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen_30dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/selector_transparent_bg_yellow_border"
+            />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/viewCancel"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/viewEditorRedGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/circle_transparent_bg_white_border"
+        android:src="@mipmap/x_big"
+        />
+
+</RelativeLayout>

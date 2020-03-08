@@ -354,4 +354,30 @@ public class HttpServiceManagerV2 {
         requestBody.addParameter("id", id);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
+    /**
+     * 资讯列表
+     * @param account
+     * @param currentPage 当前页
+     * @param type       分类1 新闻 2 资讯
+     * @param listener
+     */
+    public static void getEditorList(String account,String currentPage,String type,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorList+"?currentPage="+currentPage+"&type="+type, BaseResult.class);
+//        requestBody.addPathVariable("account", account);//
+//        requestBody.addPathVariable("currentPage", currentPage);//
+//        requestBody.addPathVariable("type", type);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     *   资讯闲情
+     * @param account
+     * @param id 资讯或新闻ID
+     * @param listener
+     */
+    public static void getEditorInfo(String account,String id,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorInfo+"?id="+id, BaseResult.class);
+//        requestBody.addPathVariable("id", id);//
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
 }

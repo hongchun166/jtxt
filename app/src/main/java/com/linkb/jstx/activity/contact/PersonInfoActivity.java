@@ -50,7 +50,7 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
     private Friend friend;
     @BindView(R.id.imageView12) WebImageView avatarImageView;
     @BindView(R.id.textView51) TextView nameTv;
-    @BindView(R.id.viewSignTx) TextView signatureTv;
+    @BindView(R.id.viewSignTx) TextView viewSignTx;
     @BindView(R.id.textView53) TextView blinkAccounterName;
     @BindView(R.id.viewActiveStarsView)
     ActiveStarsView viewActiveStarsView;
@@ -81,6 +81,8 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
         mUser = Global.getCurrentUser();
         friend = (Friend) getIntent().getSerializableExtra(Friend.class.getName());
         reMarkName = getIntent().getStringExtra("reMarkName");
+
+        viewSignTx.setText(String.format(getString(R.string.signatures),TextUtils.isEmpty(friend.motto)?"":friend.motto));
 
         avatarImageView.load(FileURLBuilder.getUserIconUrl(friend.account), R.mipmap.lianxiren, 999);
         nameTv.setText(TextUtils.isEmpty(reMarkName) ? friend.name : reMarkName);

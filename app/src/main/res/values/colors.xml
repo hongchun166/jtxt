@@ -13,6 +13,7 @@
     <color name="background_yellow_FFBB29">#FFBB29</color>
     <color name="background_yellow_FCE1C4">#FCE1C4</color>
     <color name="background_yellow_FEA841">#FEA841</color>
+    <color name="background_yellow_FF8A3B">#FF8A3B</color>
     <color name="background_red_F25F4F">#F25F4F</color>
     <color name="background_red_F45440">#F45440</color>
     <color name="background_red_D63337">#D63337</color>
@@ -49,6 +50,9 @@
     <color name="color_D7DCE0">#D7DCE0</color>
     <color name="color_9FC3F7">#9FC3F7</color>
     <color name="color_E1E1E1">#E1E1E1</color>
+    <color name="color_FFE175">#FFE175</color>
+    <color name="color_editorTx">@color/color_FFE175</color>
+    <color name="color_editorTx2">@color/tex_color_gray_FFBB29</color>
     <!--字体-->
     <color name="tex_color_white">#FFFFFF</color>
     <color name="tex_color_gray_FFBB29">#FFBB29</color>

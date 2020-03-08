@@ -3,29 +3,21 @@ package com.linkb.jstx.activity.trend;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.linkb.jstx.activity.chat.MMWebViewActivity;
 import com.linkb.jstx.activity.contact.GroupListActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.component.GlideImageLoader;
-import com.linkb.jstx.component.WebImageView;
-import com.linkb.jstx.activity.HomeActivity;
 import com.linkb.jstx.activity.base.CIMMonitorFragment;
-import com.linkb.jstx.database.MessageRepository;
-import com.linkb.jstx.model.Message;
 import com.linkb.R;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.GetBannerResult;
-import com.linkb.jstx.util.FileURLBuilder;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;

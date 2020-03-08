@@ -83,9 +83,7 @@ public class MicroServerFromLinkPanelView extends BaseMicroServerFromView implem
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getContext(), MMWebViewActivity.class);
-        intent.setData(Uri.parse(v.getTag().toString()));
-        getContext().startActivity(intent);
+        MMWebViewActivity.createNavToParam(Uri.parse(v.getTag().toString())).start(getContext());
     }
 
 }

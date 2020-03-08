@@ -149,10 +149,10 @@ public class EmoticonTextView extends AppCompatTextView {
                 LvxinApplication.getInstance().startActivity(intent);
             }
             if (uri.toString().startsWith("https://") || uri.toString().startsWith("http://")) {
-                Intent intent = new Intent(LvxinApplication.getInstance(), MMWebViewActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setData(uri);
-                LvxinApplication.getInstance().startActivity(intent);
+
+                MMWebViewActivity.createNavToParam(uri)
+                        .setIntentFlag(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .start(LvxinApplication.getInstance());
             }
         }
 

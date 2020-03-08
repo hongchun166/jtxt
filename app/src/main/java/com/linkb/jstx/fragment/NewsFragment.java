@@ -65,7 +65,9 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter( mAdapter = new NewsAdapter(mNewsList, getContext()));
-        mAdapter.setOnItemClickCallback((view, bean) -> httpGetRedBag(String.valueOf(bean.getId())));
+        mAdapter.setOnItemClickCallback((view, bean) ->{
+
+        });
     }
 
 
@@ -93,19 +95,6 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
 
     }
 
-    public void httpGetRedBag(String id){
-        String account= Global.getCurrentUser().account;
-        HttpServiceManagerV2.getRedBag(account, id, new HttpRequestListener() {
-            @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
 
-            }
-
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-            }
-        });
-    }
 
 }

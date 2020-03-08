@@ -101,9 +101,7 @@ public class SelfMomentListViewAdapter extends MomentListViewAdapter {
             viewHolder.linkPanel.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), MMWebViewActivity.class);
-                    intent.setData(Uri.parse(link.link));
-                    view.getContext().startActivity(intent);
+                    MMWebViewActivity.createNavToParam(Uri.parse(link.link)).start(view.getContext());
                 }
             });
             viewHolder.linkTitle.setText(link.title);

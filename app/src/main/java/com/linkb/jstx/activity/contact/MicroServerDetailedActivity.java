@@ -67,9 +67,7 @@ public class MicroServerDetailedActivity extends BaseActivity implements HttpReq
                 break;
             case R.id.item_homepage:
                 if (!TextUtils.isEmpty(microServer.website)) {
-                    Intent intent = new Intent(this, MMWebViewActivity.class);
-                    intent.setData(Uri.parse(microServer.website));
-                    startActivity(intent);
+                    MMWebViewActivity.createNavToParam(Uri.parse(microServer.website)).start(this);
                 }
                 break;
         }
