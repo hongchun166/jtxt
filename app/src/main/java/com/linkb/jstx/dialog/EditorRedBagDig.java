@@ -12,6 +12,13 @@ import com.linkb.R;
 
 public class EditorRedBagDig  {
 
+    public static class RedBagBParam{
+        public static final int STATE_SUC=0;
+        public static final int STATE_FAIL=1;
+        public int state=STATE_SUC;  // get redbag suc or faill
+        public  double number=0D;// 2.5
+        public String type="KKC";// KKC
+    }
 
     TextView viewRedState;
     TextView viewRedMoney;
@@ -21,6 +28,7 @@ public class EditorRedBagDig  {
 
     Dialog dialog;
 
+    RedBagBParam redBagBParam;
 
     public static EditorRedBagDig build(){
         return  new EditorRedBagDig();
@@ -41,11 +49,23 @@ public class EditorRedBagDig  {
 
         viewConfirm.setOnClickListener(v -> hideDialog());
         viewCancel.setOnClickListener(v -> hideDialog());
-
+        updateView();
         return this;
     }
 
+    public EditorRedBagDig setRedBagBParam(RedBagBParam redBagBParam){
+            this.redBagBParam=redBagBParam;
+            updateView();
+            return this;
+    }
 
+    private void updateView(){
+        if(viewRedMoney==null || redBagBParam==null) return;
+        viewRedMoney.setText(String.valueOf(redBagBParam.number));
+        String hint=redBagBParam.state==RedBagBParam.STATE_SUC?"":"";
+        viewRedState.setText(hint);
+        viewRedType.setText(redBagBParam.type);
+    }
 
     public void showDialog(){
         if(dialog!=null && !dialog.isShowing()){

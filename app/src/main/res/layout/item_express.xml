@@ -167,7 +167,7 @@
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:paddingStart="15dp"
@@ -180,7 +180,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button11"
         app:layout_constraintTop_toBottomOf="@+id/content_collapse_textView" />
-
+    <TextView
+        android:id="@+id/viewGetRedBag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:clickable="true"
+        android:background="@drawable/btn_bg_stroke_red_to_gray"
+        android:text="红包"
+        android:textColor="@color/background_yellow_FF8A3B"
+        android:textSize="@dimen/text_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button12"
+        app:layout_constraintTop_toBottomOf="@+id/content_collapse_textView" />
     <ImageView
         android:id="@+id/imageView42"
         android:layout_width="15dp"

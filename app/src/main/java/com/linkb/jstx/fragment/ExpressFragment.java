@@ -13,10 +13,14 @@ import android.view.ViewGroup;
 import com.linkb.BuildConfig;
 import com.linkb.R;
 import com.linkb.jstx.adapter.trend.ExpressAdapter;
+import com.linkb.jstx.app.Global;
+import com.linkb.jstx.dialog.EditorRedBagDig;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseDataResult;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.NewsDataResult;
 import com.linkb.jstx.util.Util;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -144,6 +148,12 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
     }
 
     @Override
+    public void onGetRedBag(NewsDataResult.DataListBean dataListBean) {
+
+        httpGetEditorInfo(dataListBean);
+    }
+
+    @Override
     public void onShareNews(NewsDataResult.DataListBean dataListBean) {
         //分享消息链接
         if (!isWeiXinAppInstall()) return;
@@ -172,6 +182,44 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
 
     private String buildTransaction(final String type) {
         return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
+    }
+
+
+    private void getOrShowRed(NewsDataResult.DataListBean dataListBean){
+        httpGetRedBag(String.valueOf(dataListBean.getId()));
+        EditorRedBagDig.RedBagBParam param=new EditorRedBagDig.RedBagBParam();
+        param.number=2D;
+
+        EditorRedBagDig.build().buildDialog(getContext()).setRedBagBParam(param).showDialog();
+    }
+    private void httpGetEditorInfo(NewsDataResult.DataListBean dataListBean){
+        showProgressDialog("");
+        HttpServiceManagerV2.getEditorInfo(String.valueOf(dataListBean.getId()), new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                hideProgressDialog();
+                getOrShowRed(dataListBean);
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                hideProgressDialog();
+                getOrShowRed(dataListBean);
+            }
+        });
+    }
+    private void httpGetRedBag(String editorId){
+        String account= Global.getCurrentUser().getAccount();
+        HttpServiceManagerV2.getRedBag(account, editorId, new HttpRequestListener() {
+            @Override
+            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                hideProgressDialog();
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                hideProgressDialog();
+
+            }
+        });
     }
 
     private HttpRequestListener<BaseDataResult> onGoodNewsListener = new HttpRequestListener<BaseDataResult>() {

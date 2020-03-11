@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.chat.bean.WebViewNavToParam;
 import com.linkb.jstx.app.Constant;
@@ -47,6 +48,8 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.model.MomentLink;
 import com.linkb.R;
 import com.linkb.jstx.network.result.BaseResult;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -149,7 +152,7 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         }
 
         viewGetRedBag.setOnClickListener(v -> getOrShowRed());
-        checkRedGetState();
+        httpGetEditorInfo();
     }
 
     @Override
@@ -230,37 +233,17 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     }
 
 
-    private void checkRedGetState(){
-        httpGetEditorList();
-        httpGetEditorInfo();
-    }
     private void getOrShowRed(){
         showProgressDialog("");
         httpGetRedBag();
-        EditorRedBagDig.build().buildDialog(this).showDialog();
-    }
-    private void httpGetEditorList(){
-        String account=Global.getCurrentUser().getAccount();
-        HttpServiceManagerV2.getEditorList(account,String.valueOf(1),String.valueOf(1), new HttpRequestListener() {
-            @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-
-            }
-
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-            }
-        });
+        EditorRedBagDig.build().buildDialog(this)
+                .showDialog();
     }
     private void httpGetEditorInfo(){
-        String account=Global.getCurrentUser().getAccount();
-        HttpServiceManagerV2.getEditorInfo(account, navToParam.beanId, new HttpRequestListener() {
+        HttpServiceManagerV2.getEditorInfo( navToParam.beanId, new HttpRequestListener() {
             @Override
             public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-
             }
-
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
 
@@ -278,7 +261,6 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
                 hideProgressDialog();
-
             }
         });
     }

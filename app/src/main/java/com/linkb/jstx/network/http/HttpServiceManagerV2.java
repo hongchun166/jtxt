@@ -12,6 +12,7 @@ import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.FriendQueryResult;
 import com.linkb.jstx.network.result.GroupQueryResult;
+import com.linkb.jstx.network.result.NewsDataResult;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
 import com.linkb.jstx.network.result.v2.CheckInGroupResult;
@@ -357,27 +358,24 @@ public class HttpServiceManagerV2 {
 
     /**
      * 资讯列表
-     * @param account
      * @param currentPage 当前页
      * @param type       分类1 新闻 2 资讯
      * @param listener
      */
-    public static void getEditorList(String account,String currentPage,String type,HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorList+"?currentPage="+currentPage+"&type="+type, BaseResult.class);
-//        requestBody.addPathVariable("account", account);//
-//        requestBody.addPathVariable("currentPage", currentPage);//
-//        requestBody.addPathVariable("type", type);
+    public static void getEditorList(int currentPage,int type,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorList, NewsDataResult.class);
+        requestBody.addPathVariable("currentPage", currentPage);
+        requestBody.addPathVariable("type", type);
         HttpRequestLauncher.execute(requestBody, listener);
     }
     /**
      *   资讯闲情
-     * @param account
      * @param id 资讯或新闻ID
      * @param listener
      */
-    public static void getEditorInfo(String account,String id,HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorInfo+"?id="+id, BaseResult.class);
-//        requestBody.addPathVariable("id", id);//
+    public static void getEditorInfo(String id,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorInfo, BaseResult.class);
+        requestBody.addPathVariable("id", id);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +69,12 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
                     mExpressCommentListener.onShareNews(dataListBean);
                 }
             });
+            viewHolder.viewGetRedBag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mExpressCommentListener.onGetRedBag(dataListBean);
+                }
+            });
         }
     }
 
@@ -113,6 +120,8 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         TextView goodNewsNumber;
         @BindView(R.id.button12)
         TextView badNewsNumber;
+        @BindView(R.id.viewGetRedBag)
+        TextView viewGetRedBag;
 
         public ExpressViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,5 +133,6 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         void onGoodNews(NewsDataResult.DataListBean dataListBean);
         void onBadNews(NewsDataResult.DataListBean dataListBean);
         void onShareNews(NewsDataResult.DataListBean dataListBean);
+        void onGetRedBag(NewsDataResult.DataListBean dataListBean);
     }
 }

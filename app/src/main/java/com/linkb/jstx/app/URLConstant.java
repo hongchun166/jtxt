@@ -457,8 +457,8 @@ public class URLConstant {
         getActive=API_URL + "user/getActive";
         listInvitePrizeDetail=API_URL + "user/listInvitePrizeDetail";
         getRedBag=API_URL + "editor/getRedBag";
-        editorList=API_URL+"editor/list";
-        editorInfo=API_URL+"editor";
+        editorList=API_URL+"editor/list/{currentPage}/{type}";
+        editorInfo=API_URL+"editor/{id}";
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

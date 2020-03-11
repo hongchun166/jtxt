@@ -77,7 +77,8 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
     }
 
     private void loadNewsData(int page){
-        HttpServiceManager.getNewsOrExpressList(page, 1, this);
+//        HttpServiceManager.getNewsOrExpressList(page, 1, this);
+        HttpServiceManagerV2.getEditorList(page,1,this);
     }
 
     @Override
