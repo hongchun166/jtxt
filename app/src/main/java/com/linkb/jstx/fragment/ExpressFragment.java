@@ -197,6 +197,8 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
         HttpServiceManagerV2.getEditorInfo(String.valueOf(dataListBean.getId()), new HttpRequestListener() {
             @Override
             public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                // 返回实体与列表实体一样， 就多一个lottery_amount字段， 
+                //"lottery_amount":19.35,
                 hideProgressDialog();
                 getOrShowRed(dataListBean);
             }
@@ -212,6 +214,8 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
         HttpServiceManagerV2.getRedBag(account, editorId, new HttpRequestListener() {
             @Override
             public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+                //返回data就是double类型，data
+                // {"code":200,"message":"成功","data":19.35}
                 hideProgressDialog();
             }
             @Override
