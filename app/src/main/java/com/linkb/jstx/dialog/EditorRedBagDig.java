@@ -62,8 +62,7 @@ public class EditorRedBagDig  {
     private void updateView(){
         if(viewRedMoney==null || redBagBParam==null) return;
         viewRedMoney.setText(String.valueOf(redBagBParam.number));
-        String hint=redBagBParam.state==RedBagBParam.STATE_SUC?"":"";
-        viewRedState.setText(hint);
+        viewRedState.setText((redBagBParam.state==RedBagBParam.STATE_SUC?R.string.hint_get_suc:R.string.received_red_packet_error));
         viewRedType.setText(redBagBParam.type);
     }
 

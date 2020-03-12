@@ -20,7 +20,9 @@ import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
 import com.linkb.jstx.network.result.v2.FindGroupsResult;
 import com.linkb.jstx.network.result.v2.FindPersonsResult;
 import com.linkb.jstx.network.result.v2.GetActiveResult;
+import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
+import com.linkb.jstx.network.result.v2.GetRedBagResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
@@ -350,7 +352,7 @@ public class HttpServiceManagerV2 {
      *
      */
     public static void getRedBag(String account,String id,HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getRedBag, BaseResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.getRedBag, GetRedBagResult.class);
         requestBody.addParameter("account", account);//
         requestBody.addParameter("id", id);//
         HttpRequestLauncher.execute(requestBody, listener);
@@ -374,7 +376,7 @@ public class HttpServiceManagerV2 {
      * @param listener
      */
     public static void getEditorInfo(String id,HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorInfo, BaseResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.editorInfo, GetEditorInfoResult.class);
         requestBody.addPathVariable("id", id);//
         HttpRequestLauncher.execute(requestBody, listener);
     }

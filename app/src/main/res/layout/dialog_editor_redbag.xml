@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:id="@+id/viewEditorRedGroup"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:background="@mipmap/ic_editor_redbag_bg"
@@ -26,34 +26,38 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="130dp"
             android:layout_centerHorizontal="true"
-            android:text="恭喜获得"
+            android:text=""
             android:textColor="@color/color_editorTx"
             android:textSize="@dimen/text_23sp" />
 
-        <TextView
-            android:id="@+id/viewRedMoney"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_below="@+id/viewRedState"
             android:layout_marginTop="30dp"
-            android:text="2.5"
-            android:textColor="@color/color_editorTx"
-            android:textSize="@dimen/text_59sp"
-            android:layout_toLeftOf="@+id/viewCenterHorizontal"
-            />
-        <TextView
-            android:id="@+id/viewRedType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/viewRedState"
-            android:layout_alignBaseline="@+id/viewRedMoney"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/viewRedMoney"
-            android:text="KKC"
-            android:textColor="@color/color_editorTx"
-            android:layout_marginLeft="5dp"
-            android:textSize="@dimen/text_35sp" />
+            android:layout_centerHorizontal="true"
+            >
+            <TextView
+                android:id="@+id/viewRedMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.5"
+                android:textColor="@color/color_editorTx"
+                android:textSize="@dimen/text_51sp"
+                android:layout_toLeftOf="@+id/viewCenterHorizontal"
+                />
+            <TextView
+                android:id="@+id/viewRedType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/viewRedMoney"
+                android:text="KKC"
+                android:textColor="@color/color_editorTx"
+                android:layout_marginLeft="5dp"
+                android:textSize="@dimen/text_30sp" />
 
+        </LinearLayout>
         <Button
             android:id="@+id/viewConfirm"
             android:layout_width="140dp"

@@ -49,6 +49,13 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         viewHolder.sourceTv.setText(mContext.getResources().getString(R.string.express_source, dataListBean.getAuthor()));
         viewHolder.goodNewsNumber.setText(mContext.getResources().getString(R.string.good_news_number, dataListBean.getReplyCount3()));
         viewHolder.badNewsNumber.setText(mContext.getResources().getString(R.string.bad_news_number, dataListBean.getReplyCount4()));
+
+        if(dataListBean.getLottery_amount()!=null){
+            viewHolder.viewGetRedBag.setText(R.string.hint_red_receive_ed);
+        }else {
+            viewHolder.viewGetRedBag.setText(R.string.hint_red_receive);
+        }
+
         if (mExpressCommentListener != null){
             viewHolder.goodNewsNumber.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,6 +85,15 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         }
     }
 
+    public void updateRedStateSuc(long itemId,double amount ){
+        for (NewsDataResult.DataListBean dataListBean : mNewsList) {
+            if(dataListBean.getId()==itemId){
+                dataListBean.setLottery_amount(amount);
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
     public void addAll(List<NewsDataResult.DataListBean> list) {
         if (mNewsList.equals(list)) {
             return;

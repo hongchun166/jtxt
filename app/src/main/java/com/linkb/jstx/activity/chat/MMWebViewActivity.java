@@ -48,6 +48,8 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.model.MomentLink;
 import com.linkb.R;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
+import com.linkb.jstx.network.result.v2.GetRedBagResult;
 
 import org.json.JSONObject;
 
@@ -69,6 +71,12 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         return navToParam;
     }
 
+    public static class RedBagGetBean{
+
+       public boolean hasSuc=false;
+        public  double number;
+
+    }
 
     private WebViewClient client = new WebViewClient() {
         @Override
@@ -233,30 +241,63 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     }
 
 
+
+    RedBagGetBean redBagGetBean=new RedBagGetBean();
     private void getOrShowRed(){
-        showProgressDialog("");
-        httpGetRedBag();
-        EditorRedBagDig.build().buildDialog(this)
-                .showDialog();
+        if(redBagGetBean.hasSuc){
+            getOrShowRed(true,redBagGetBean.number);
+        }else {
+            httpGetRedBag();
+        }
+    }
+    private void getOrShowRed(boolean hasSuc,double moneyNum){
+        EditorRedBagDig.RedBagBParam param=new EditorRedBagDig.RedBagBParam();
+        param.number=moneyNum;
+        param.state=hasSuc?EditorRedBagDig.RedBagBParam.STATE_SUC:EditorRedBagDig.RedBagBParam.STATE_FAIL;
+        EditorRedBagDig.build().buildDialog(this).setRedBagBParam(param).showDialog();
+    }
+    private void updateGetRedBagState(){
+        if(redBagGetBean.hasSuc){
+            viewGetRedBag.setText(R.string.hint_red_receive_ed);
+        }else {
+            viewGetRedBag.setText(R.string.hint_red_receive);
+        }
     }
     private void httpGetEditorInfo(){
-        HttpServiceManagerV2.getEditorInfo( navToParam.beanId, new HttpRequestListener() {
+        HttpServiceManagerV2.getEditorInfo(String.valueOf(navToParam.beanId), new HttpRequestListener<GetEditorInfoResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(GetEditorInfoResult result, OriginalCall call) {
+                if(result.isSuccess() ){
+                    if(result.getData().getLottery_amount()!=null){
+                        redBagGetBean.hasSuc=true;
+                        redBagGetBean.number=result.getData().getLottery_amount().doubleValue();
+                        updateGetRedBagState();
+                    }
+                }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
             }
         });
     }
 
     private void httpGetRedBag(){
         String account=Global.getCurrentUser().getAccount();
-        HttpServiceManagerV2.getRedBag(account, navToParam.beanId, new HttpRequestListener() {
+        HttpServiceManagerV2.getRedBag(account, navToParam.beanId, new HttpRequestListener<GetRedBagResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(GetRedBagResult result, OriginalCall call) {
                 hideProgressDialog();
+                if(result.isSuccess()){
+                    if(result.getData()!=null){
+                        redBagGetBean.hasSuc=true;
+                        getOrShowRed(true,result.getData().doubleValue());
+                        updateGetRedBagState();
+                    }else {
+                        getOrShowRed(false,result.getData().doubleValue());
+                    }
+                }else {
+                    showToastView(String.valueOf(result.message));
+                }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {

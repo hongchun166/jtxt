@@ -22,6 +22,8 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseDataResult;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.NewsDataResult;
+import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
+import com.linkb.jstx.network.result.v2.GetRedBagResult;
 import com.linkb.jstx.util.Util;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -149,8 +151,11 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
 
     @Override
     public void onGetRedBag(NewsDataResult.DataListBean dataListBean) {
-
-        httpGetEditorInfo(dataListBean);
+        if(dataListBean.getLottery_amount()!=null){
+            getOrShowRed(true,dataListBean.getLottery_amount().doubleValue());
+        }else {
+            httpGetEditorInfo(dataListBean);
+        }
     }
 
     @Override
@@ -185,43 +190,58 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
     }
 
 
-    private void getOrShowRed(NewsDataResult.DataListBean dataListBean){
-        httpGetRedBag(String.valueOf(dataListBean.getId()));
+    private void getOrShowRed(boolean hasSuc,double moneyNum){
         EditorRedBagDig.RedBagBParam param=new EditorRedBagDig.RedBagBParam();
-        param.number=2D;
-
+        param.number=moneyNum;
+        param.state=hasSuc?EditorRedBagDig.RedBagBParam.STATE_SUC:EditorRedBagDig.RedBagBParam.STATE_FAIL;
         EditorRedBagDig.build().buildDialog(getContext()).setRedBagBParam(param).showDialog();
     }
     private void httpGetEditorInfo(NewsDataResult.DataListBean dataListBean){
         showProgressDialog("");
-        HttpServiceManagerV2.getEditorInfo(String.valueOf(dataListBean.getId()), new HttpRequestListener() {
+        HttpServiceManagerV2.getEditorInfo(String.valueOf(dataListBean.getId()), new HttpRequestListener<GetEditorInfoResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-                // 返回实体与列表实体一样， 就多一个lottery_amount字段， 
-                //"lottery_amount":19.35,
+            public void onHttpRequestSucceed(GetEditorInfoResult result, OriginalCall call) {
                 hideProgressDialog();
-                getOrShowRed(dataListBean);
+                if(result.isSuccess() ){
+                    if(result.getData().getLottery_amount()!=null){
+                        double amount=result.getData().getLottery_amount().doubleValue();
+                        getOrShowRed(true,amount);
+                        mAdapter.updateRedStateSuc(dataListBean.getId(),amount);
+                    }else {
+                        httpGetRedBag(dataListBean);
+                    }
+                }else {
+                    showToastView(String.valueOf(result.message));
+                }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
                 hideProgressDialog();
-                getOrShowRed(dataListBean);
+                showToastView(R.string.commit_apply_friend_failure);
             }
         });
     }
-    private void httpGetRedBag(String editorId){
+    private void httpGetRedBag(NewsDataResult.DataListBean dataListBean){
         String account= Global.getCurrentUser().getAccount();
-        HttpServiceManagerV2.getRedBag(account, editorId, new HttpRequestListener() {
+        HttpServiceManagerV2.getRedBag(account, String.valueOf(dataListBean.getId()), new HttpRequestListener<GetRedBagResult>() {
             @Override
-            public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-                //返回data就是double类型，data
-                // {"code":200,"message":"成功","data":19.35}
+            public void onHttpRequestSucceed(GetRedBagResult result, OriginalCall call) {
                 hideProgressDialog();
+                if(result.isSuccess()){
+                    if(result.getData()!=null){
+                        getOrShowRed(true,result.getData().doubleValue());
+                        mAdapter.updateRedStateSuc(dataListBean.getId(),result.getData().doubleValue());
+                    }else {
+                        getOrShowRed(false,result.getData().doubleValue());
+                    }
+                }else {
+                    showToastView(String.valueOf(result.message));
+                }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
                 hideProgressDialog();
-
+                showToastView(R.string.commit_apply_friend_failure);
             }
         });
     }
