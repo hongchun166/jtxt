@@ -51,7 +51,7 @@ public class TrendCenterFragmentV2 extends CIMMonitorFragment implements OnClick
         gameRly.setOnClickListener(this);
         mBanner = view.findViewById(R.id.banner);
         nearlyPeopleRly.setVisibility(View.GONE);
-
+        gameRly.setVisibility(View.GONE);
     }
 
 

@@ -52,16 +52,83 @@ public class ActiveStarsView extends RelativeLayout {
     public void setStartShowNumber(int value){
         myAdapter.setNumberStars(value);
     }
-    public void setStartValue(float value){
-        value=value/2;
-        myAdapter.setRating(value);
-        if(value<=5){
-            myAdapter.setNumberStars(5);
-        }else if(value<=10){
-            myAdapter.setNumberStars(10);
-        }else {
-            myAdapter.setNumberStars((int) (value+1));
+
+    public static void main(String[] args) {
+        test(0);
+        test(1);
+        test(2);
+        test(3);
+        test(4);
+        test(5);
+        test(6);
+        test(7);
+        test(8);
+        test(9);
+        test(10);
+        test(11);
+        test(12);
+        test(13);
+        test(14);
+    }
+
+    private static void test(double active){
+        int startNum=5;
+
+        double startsV=active/2D;
+
+        StringBuffer stringBuffer=new StringBuffer();
+
+        {
+            double fullLen=Math.floor(startsV);
+            if(active>10){
+                startNum= (int) (fullLen+1);
+            }
+            double hasHalf=startsV-fullLen;
+            stringBuffer.append("startsV:").append(startsV).append(",fullLen:").append(fullLen)
+                    .append(",hasHalf:").append(hasHalf).append("startNum:").append(startNum);
         }
+
+        double rating=startsV;
+
+        String starts="";
+        for (int position=0;position<startNum;position++){
+            int index=position+1;
+            double halfT=index-rating;
+            boolean hasHalf=Math.abs(halfT)>0 && Math.abs(halfT)<1;
+            if(index<=rating){
+                starts+="晶";
+            }else if(hasHalf){
+                starts+="日";
+            }else {
+                starts+="口";
+            }
+        }
+        stringBuffer.append(",starts:").append(starts);
+        System.out.println(stringBuffer.toString());
+    }
+
+    /**
+     * 一点活跃度半颗星，所以值需要除以2
+     * @param active
+     */
+    public void setStartValue(Double active){
+        setStartValue(active==null?0.0D:active.doubleValue());
+    }
+    public void setStartValue(double active){
+
+        int startNum=5;
+        double startsV=active/2D;
+        {
+            double fullLen=Math.floor(startsV);
+            if(active>10){
+                startNum= (int) (fullLen+1);
+            }
+            double hasHalf=startsV-fullLen;
+        }
+        double rating=startsV;
+        myAdapter.setNumberStars(startNum);
+        myAdapter.setRating(rating);
+
         myAdapter.notifyDataSetChanged();
     }
 
@@ -69,8 +136,8 @@ public class ActiveStarsView extends RelativeLayout {
     public static class MyAdapter extends RecyclerView.Adapter<MyHodler>{
 
         int numberStars;
-        float rating;
-        public void setRating(float  rating){//评级0-100
+        double rating;
+        public void setRating(double  rating){//评级0-100
             this.rating=rating;
         }
         public void setNumberStars(int numberStars){//0-100
@@ -90,13 +157,13 @@ public class ActiveStarsView extends RelativeLayout {
 
         @Override
         public void onBindViewHolder(@NonNull MyHodler myHodler, int position) {
-            float half=position-rating;
-            boolean hasHalf=Math.abs(half)>0 && Math.abs(half)<1;
-            if(position<rating){
+            int index=position+1;
+            double halfT=index-rating;
+            boolean hasHalf=Math.abs(halfT)>0 && Math.abs(halfT)<1;
+            if(index<=rating){
                 myHodler.viewStarsImg.setImageResource(R.mipmap.ic_stars_p);
             }else if(hasHalf){
-                //half stars
-                myHodler.viewStarsImg.setImageResource(R.mipmap.ic_stars_p);
+                myHodler.viewStarsImg.setImageResource(R.mipmap.ic_stars_half);
             }else {
                 myHodler.viewStarsImg.setImageResource(R.mipmap.ic_stars);
             }

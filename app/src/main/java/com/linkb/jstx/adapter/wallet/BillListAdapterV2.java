@@ -64,10 +64,17 @@ public class BillListAdapterV2 extends BaseAdapter {
         setTypeView(holder.imgType, holder.tvType, dataBean);
         holder.tvTime.setText(dataBean.getAddTimeFinal());
 
-        int amountColor = dataBean.getType() == 0 ? ContextCompat.getColor(mContext, R.color.color_E75B28) :
-                ContextCompat.getColor(mContext, R.color.tex_color_gray_333);
-        holder.tvAmount.setTextColor(amountColor);
-        String amountStr = dataBean.getType() == 0 ? "+" + dataBean.getAmount() + "KKC" : "-" + dataBean.getAmount() + "KKC";
+        // 1: 奖励锁定币, 2: 释放币-收入,3: 提现-支出 , 4: 充值-收入 ,5: 转入-收入 6: 转出-支出
+
+        boolean hasShouRu=dataBean.getSourceType()==2||dataBean.getSourceType()==4||dataBean.getSourceType()==5;
+
+        boolean hasZhiChu=dataBean.getSourceType()==3||dataBean.getSourceType()==6;
+        int colorResId=hasShouRu ? R.color.color_E75B28 : R.color.tex_color_gray_333;
+        holder.tvAmount.setTextColor(ContextCompat.getColor(mContext, colorResId));
+
+        String amountStr =hasShouRu ? ("+" + dataBean.getAmount() + dataBean.getCurrencyName()) :
+                          hasZhiChu?("-" + dataBean.getAmount() + dataBean.getCurrencyName()):
+                                dataBean.getAmount() + dataBean.getCurrencyName();
         holder.tvAmount.setText(amountStr);
 
 //        holder.tvTime.setText(TimeUtils.formatTime(dataBean.getAdd_date(), TimeUtils.ALL_FORMAT));
@@ -85,27 +92,48 @@ public class BillListAdapterV2 extends BaseAdapter {
      * 设置类型
      */
     private void setTypeView(ImageView imageView, TextView textView, ListMyBalanceFlowResult.DataBean bean) {
-        switch (bean.getType()) {
-            case 0:
-                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill1));
-                textView.setText(bean.getRemark());
-                break;
-            case 1:
-                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill2));
-                textView.setText(bean.getRemark());
-                break;
-            case 2:
+
+        switch (bean.getSourceType()){
+            case 3: //提现
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill3));
                 textView.setText(bean.getRemark());
                 break;
-//            case 3:
-//                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
-//                break;
-            default:
+            case 4: //充值
+                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill1));
+                textView.setText(bean.getRemark());
+                break;
+            case 5: //转入
+            case 6: //转出
+                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill2));
+                textView.setText(bean.getRemark());
+                break;
+            default://// 1、奖励锁定币，2、释放币，
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
                 textView.setText(bean.getRemark());
                 break;
         }
+
+//        switch (bean.getType()) {
+//            case 0:
+//                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill1));
+//                textView.setText(bean.getRemark());
+//                break;
+//            case 1:
+//                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill2));
+//                textView.setText(bean.getRemark());
+//                break;
+//            case 2:
+//                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill3));
+//                textView.setText(bean.getRemark());
+//                break;
+////            case 3:
+////                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
+////                break;
+//            default:
+//                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.mipmap.icon_bill4));
+//                textView.setText(bean.getRemark());
+//                break;
+//        }
 
     }
 

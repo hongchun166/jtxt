@@ -15,13 +15,13 @@ public class GetActiveResult extends BaseResult {
     }
 
     public static class DataBean{
-        private int avtive;
+        private Double avtive;
 
-        public int getAvtive() {
+        public Double getAvtive() {
             return avtive;
         }
 
-        public void setAvtive(int avtive) {
+        public void setAvtive(Double avtive) {
             this.avtive = avtive;
         }
     }

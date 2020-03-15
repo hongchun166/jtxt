@@ -151,8 +151,8 @@ public class ExpressFragment extends LazyLoadFragment implements HttpRequestList
 
     @Override
     public void onGetRedBag(NewsDataResult.DataListBean dataListBean) {
-        if(dataListBean.getLottery_amount()!=null){
-            getOrShowRed(true,dataListBean.getLottery_amount().doubleValue());
+        if(dataListBean.getLotteryAmount()!=null){
+            getOrShowRed(true,dataListBean.getLotteryAmount().doubleValue());
         }else {
             httpGetEditorInfo(dataListBean);
         }

@@ -10,8 +10,8 @@ android {
         minSdkVersion 21
 //        targetSdkVersion 24
         targetSdkVersion 28
-        versionCode 25
-        versionName "1.0.25"
+        versionCode 27
+        versionName "1.0.27"
 
         ndk{abiFilters "armeabi", "armeabi-v7a", "x86", "mips", "arm-v8a"}
     }
@@ -95,7 +95,7 @@ android {
         ]
 
         sevenzip {
-            artifact = 'com.tencent.mm:SevenZip:1.2.15'
+            artifact = 'com.tencent.mm:SevenZip:1.2.17'
         }
     }
 

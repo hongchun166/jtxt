@@ -36,7 +36,7 @@ public class GetEditorInfoResult extends BaseResult {
          * id : 1561684038288
          * title : 中国区块链测评联盟：《政务区块链行业应用标准》标准工作组第二次会
          * timestamp : 1561684038288
-         * author : 转载
+         * author : 转载          (作者)
          * textContent :
          * type : 1    （类型 1新闻，2资讯）
          * min : 1      （红包最小金额）

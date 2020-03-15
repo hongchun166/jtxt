@@ -3,6 +3,7 @@ package com.linkb.jstx.adapter.wallet;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,9 @@ public class MyCurrencyListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ListMyCurrencyResult.DataBean dataBean = mDate.get(position);
         holder.viewCurrencyName.setText(dataBean.getCurrencyName());
         holder.viewCurrencyQuota.setText(String.valueOf(dataBean.getLockBalance()));
-        holder.viewCurrencyEffective.setText(String.valueOf(dataBean.getBalance()));
+
+        String startWHint=context.getResources().getString(R.string.balance_available);
+        holder.viewCurrencyEffective.setText(  startWHint+" "+String.valueOf(dataBean.getBalance()));
         holder.viewCurrencyImg.load(BuildConfig.API_HOST + dataBean.getCurrencyIcon(), R.mipmap.btc);
     }
 

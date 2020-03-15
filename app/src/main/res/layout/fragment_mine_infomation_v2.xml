@@ -241,7 +241,7 @@
                     android:layout_width="@dimen/user_center_item_img_size"
                     android:layout_height="@dimen/user_center_item_img_size"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/ic_user_center_photo_v2"
+                    android:src="@mipmap/ic_user_center_wallet"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

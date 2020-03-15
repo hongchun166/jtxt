@@ -48,6 +48,9 @@ public final class TimeUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        if(date==null){
+            return geLineTime;
+        }
         String value = df2.format(date);
         return value;
     }

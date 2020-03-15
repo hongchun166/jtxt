@@ -50,10 +50,13 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         viewHolder.goodNewsNumber.setText(mContext.getResources().getString(R.string.good_news_number, dataListBean.getReplyCount3()));
         viewHolder.badNewsNumber.setText(mContext.getResources().getString(R.string.bad_news_number, dataListBean.getReplyCount4()));
 
-        if(dataListBean.getLottery_amount()!=null){
-            viewHolder.viewGetRedBag.setText(R.string.hint_red_receive_ed);
+        if(dataListBean.getLotteryAmount()!=null){
+            viewHolder.viewGetRedBag.setEnabled(false);
+            String getRedBagHint=mContext.getResources().getString(R.string.hint_red_receive_ed)+dataListBean.getLotteryAmount().doubleValue()+"KKC";
+            viewHolder.viewGetRedBag.setText(getRedBagHint);
         }else {
             viewHolder.viewGetRedBag.setText(R.string.hint_red_receive);
+            viewHolder.viewGetRedBag.setEnabled(true);
         }
 
         if (mExpressCommentListener != null){
@@ -88,7 +91,7 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
     public void updateRedStateSuc(long itemId,double amount ){
         for (NewsDataResult.DataListBean dataListBean : mNewsList) {
             if(dataListBean.getId()==itemId){
-                dataListBean.setLottery_amount(amount);
+                dataListBean.setLotteryAmount(amount);
                 break;
             }
         }

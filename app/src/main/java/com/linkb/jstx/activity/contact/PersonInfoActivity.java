@@ -292,8 +292,7 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
             @Override
             public void onHttpRequestSucceed(GetActiveResult result, OriginalCall call) {
                 if(result.isSuccess() && result.getData()!=null){
-                    int size=result.getData().getAvtive();
-                    viewActiveStarsView.setStartValue(size);
+                    viewActiveStarsView.setStartValue(result.getData().getAvtive());
                 }
             }
             @Override

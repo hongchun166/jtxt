@@ -46,7 +46,7 @@ public class NewsDataResult extends BaseResult {
         private String status;
         private String url;
         private long timestamp;
-        private Double lottery_amount;
+        private Double lotteryAmount;
 
 
         private int replyCount0;     //回复数量
@@ -182,12 +182,12 @@ public class NewsDataResult extends BaseResult {
             this.replyCount4 = replyCount4;
         }
 
-        public Double getLottery_amount() {
-            return lottery_amount;
+        public Double getLotteryAmount() {
+            return lotteryAmount;
         }
 
-        public void setLottery_amount(Double lottery_amount) {
-            this.lottery_amount = lottery_amount;
+        public void setLotteryAmount(Double lotteryAmount) {
+            this.lotteryAmount = lotteryAmount;
         }
     }
 }

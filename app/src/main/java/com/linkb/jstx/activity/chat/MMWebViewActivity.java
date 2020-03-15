@@ -258,9 +258,12 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     }
     private void updateGetRedBagState(){
         if(redBagGetBean.hasSuc){
-            viewGetRedBag.setText(R.string.hint_red_receive_ed);
+            String getRedBagHint=getString(R.string.hint_red_receive_ed)+redBagGetBean.number+"KKC";
+            viewGetRedBag.setText(getRedBagHint);
+            viewGetRedBag.setEnabled(false);
         }else {
             viewGetRedBag.setText(R.string.hint_red_receive);
+            viewGetRedBag.setEnabled(true);
         }
     }
     private void httpGetEditorInfo(){
