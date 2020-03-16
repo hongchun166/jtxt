@@ -57,6 +57,9 @@ public class HttpRequestBody {
     }
     public void addParameter(String key, String value) {
         if (key == null || value == null) {
+           if(key!=null){
+               requestParamMap.put(key, "valueNull");
+           }
             return;
         }
         requestParamMap.put(key, value);

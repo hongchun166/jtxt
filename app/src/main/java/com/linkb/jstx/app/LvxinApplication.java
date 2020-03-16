@@ -79,6 +79,9 @@ public class LvxinApplication extends Application {
         LocalManageUtil.saveSystemCurrentLanguage(base);
         super.attachBaseContext(LocalManageUtil.setLocal(base));
 
+//       File sdDir = Environment.getExternalStorageDirectory();//获取跟目录
+//        XCrash.InitParameters parameters=new XCrash.InitParameters();
+//        parameters.setLogDir(sdDir.getAbsolutePath()+"/Android/data/com.linkb/errLog");
         XCrash.init(this);
     }
 
