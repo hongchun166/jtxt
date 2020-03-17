@@ -42,6 +42,7 @@
     <!--沉浸式主题-->
     <style name="AppTheme.StatusTranslate" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowIsTranslucent">true</item>
         <!--<item name="android:windowTranslucentNavigation">false</item>-->
     </style>
 

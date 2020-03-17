@@ -30,6 +30,7 @@ import com.linkb.jstx.network.result.QueryMineGroupResult;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -76,8 +77,10 @@ public class GroupListFragment extends LazyLoadFragment {
 
 
         adapter.clearAll();
-        adapter.addAll(GroupRepository.queryCreatedList(account));
-        adapter.addAll(GroupRepository.queryJoinList(account));
+        List<Group> queryCreatedList= GroupRepository.queryCreatedList(account);
+        List<Group> queryJoinList=  GroupRepository.queryJoinList(account);
+        adapter.addAll(queryCreatedList);
+        adapter.addAll(queryJoinList);
         emptyView.toggle(adapter);
 
         groupChangeReceiver = new GroupChangeReceiver();

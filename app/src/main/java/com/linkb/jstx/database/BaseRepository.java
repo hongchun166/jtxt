@@ -65,7 +65,10 @@ public abstract class BaseRepository<T, ID> implements DatabaseChangedListener {
         try {
             databaseDao.create(list);
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace();//
+            for (T t : list) {
+                innerSave(t);
+            }
         }
     }
 

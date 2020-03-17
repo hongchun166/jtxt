@@ -16,10 +16,12 @@ import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.model.MessageSource;
 import com.linkb.jstx.network.http.HttpRequestListener;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.R;
 import com.linkb.jstx.network.result.FriendListResult;
+import com.linkb.jstx.network.result.FriendListResultV2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,9 @@ public class InviteGroupMemberActivity extends ContactSelectorActivity implement
         memberList = GroupMemberRepository.queryMemberAccountList(group.id);
         super.initComponents();
 
-        HttpServiceManager.getFriendsList(mListener);
+//        HttpServiceManager.getFriendsList(mListener);// old  404
+        String account=Global.getCurrentUser().account;
+        HttpServiceManagerV2.listMyFriendV2(account,mListener);
     }
 //
 //    @Override
@@ -123,9 +127,9 @@ public class InviteGroupMemberActivity extends ContactSelectorActivity implement
         return flag;
     }
 
-    private HttpRequestListener<FriendListResult> mListener = new HttpRequestListener<FriendListResult>() {
+    private HttpRequestListener<FriendListResultV2> mListener = new HttpRequestListener<FriendListResultV2>() {
         @Override
-        public void onHttpRequestSucceed(FriendListResult result, OriginalCall call) {
+        public void onHttpRequestSucceed(FriendListResultV2 result, OriginalCall call) {
             if (result.isSuccess() && result.isNotEmpty()){
                 if (result.getDataList().isEmpty()) {
                 emptyView.setVisibility(View.VISIBLE);

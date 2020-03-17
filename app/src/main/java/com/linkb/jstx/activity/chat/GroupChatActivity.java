@@ -15,16 +15,12 @@ import android.widget.TextView;
 
 import com.androidadvance.topsnackbar.TSnackbar;
 import com.linkb.jstx.activity.contact.GroupDetailActivity;
-import com.linkb.jstx.activity.contact.GroupManagerSelectActivity;
 import com.linkb.jstx.activity.contact.GroupMemberAtSelectActivity;
-import com.linkb.jstx.activity.contact.GroupMemberSelectorActivity;
 import com.linkb.jstx.activity.wallet.RedPacketActivity;
 import com.linkb.jstx.app.ClientConfig;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.ChatItem;
-import com.linkb.jstx.bean.User;
-import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.model.GroupMember;
