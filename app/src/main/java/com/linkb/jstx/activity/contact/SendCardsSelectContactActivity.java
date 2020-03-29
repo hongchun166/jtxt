@@ -12,6 +12,7 @@ import com.linkb.R;
 import com.linkb.jstx.activity.base.CIMMonitorActivity;
 import com.linkb.jstx.activity.base.CIMMonitorActivityWithoutImmersion;
 import com.linkb.jstx.adapter.ContactsSendCardsAdapter;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.comparator.FriendShipNameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
 import com.linkb.jstx.database.StarMarkRepository;
@@ -20,8 +21,9 @@ import com.linkb.jstx.listener.OnTouchMoveCharListener;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
-import com.linkb.jstx.network.result.FriendListResult;
+import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.util.CharacterParser;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -36,7 +38,7 @@ import butterknife.OnClick;
 
 /** 发送名片选择联系人
 * */
-public class SendCardsSelectContactActivity extends CIMMonitorActivity implements OnTouchMoveCharListener, View.OnClickListener, HttpRequestListener<FriendListResult>, OnItemClickedListener<Object> {
+public class SendCardsSelectContactActivity extends CIMMonitorActivity implements OnTouchMoveCharListener, View.OnClickListener, HttpRequestListener<FriendListResultV2>, OnItemClickedListener<Object> {
 
     public static final int SELECT_CONTACTS_CARDS_REQUEST = 0x1111;
     public static final String SELECT_CONTACTS_CARDS_REQUEST_KEY_ACCOUNT = "SELECT_CONTACTS_CARDS_REQUEST_KEY_ACCOUNT";
@@ -56,7 +58,7 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
     /** 如果是从好友对话框过来，需要选择的时候过滤掉好友
     * */
     private Friend mFriend;
-    private List<FriendListResult.FriendShip> mFilterList = new ArrayList<>();
+    private List<FriendListResultV2.FriendShip> mFilterList = new ArrayList<>();
 
     @Override
     protected void initComponents() {
@@ -87,7 +89,7 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
      * */
     private void loadFriendDate(boolean showLoading) {
         if (showLoading ) showProgressDialog("");
-        HttpServiceManager.getFriendsList(this);
+        HttpServiceManagerV2.listMyFriendV2(Global.getCurrentUser().account,this);
         mStarMarkList.clear();
         mStarMarkList.addAll(StarMarkRepository.queryAccountList());
     }
@@ -114,7 +116,7 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
     }
 
     @Override
-    public void onHttpRequestSucceed(FriendListResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(FriendListResultV2 result, OriginalCall call) {
         refreshLayout.finishRefresh();
         if (result.isSuccess() && result.isNotEmpty()){
             onFilterFriend(result.getDataList());
@@ -125,8 +127,8 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
         }
     }
 
-    private void onFilterFriend(List<FriendListResult.FriendShip> filterList) {
-        for (FriendListResult.FriendShip friend : filterList) {
+    private void onFilterFriend(List<FriendListResultV2.FriendShip> filterList) {
+        for (FriendListResultV2.FriendShip friend : filterList) {
             if (mFriend != null && mFriend.account.equals(friend.getFriendAccount())) {
                 continue;
             }
@@ -146,8 +148,8 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
 
     @Override
     public void onItemClicked(Object obj, View view) {
-        if (obj instanceof FriendListResult.FriendShip){
-            FriendListResult.FriendShip friendShip = (FriendListResult.FriendShip) obj;
+        if (obj instanceof FriendListResultV2.FriendShip){
+            FriendListResultV2.FriendShip friendShip = (FriendListResultV2.FriendShip) obj;
             Intent intent = getIntent();
             intent.putExtra(SELECT_CONTACTS_CARDS_REQUEST_KEY_ACCOUNT, friendShip.getFriendAccount());
             intent.putExtra(SELECT_CONTACTS_CARDS_REQUEST_KEY_NAME, friendShip.getName());
@@ -156,13 +158,13 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
         }
     }
 
-    private class GetPingYinTask extends AsyncTask<List<FriendListResult.FriendShip>, Void, List<Object>> {
+    private class GetPingYinTask extends AsyncTask<List<FriendListResultV2.FriendShip>, Void, List<Object>> {
 
         @Override
-        protected List<Object> doInBackground(List<FriendListResult.FriendShip>... lists) {
-            List<FriendListResult.FriendShip> topList = new ArrayList<>();
+        protected List<Object> doInBackground(List<FriendListResultV2.FriendShip>... lists) {
+            List<FriendListResultV2.FriendShip> topList = new ArrayList<>();
             List<Object> contentList = new ArrayList<>();
-            for (FriendListResult.FriendShip friend : lists[0]) {
+            for (FriendListResultV2.FriendShip friend : lists[0]) {
                 // 汉字转换成拼音
                 if (friend.getName() != null){
                     friend.setFristPinyin(CharacterParser.getFirstPinYinChar(friend.getName()));
@@ -178,7 +180,7 @@ public class SendCardsSelectContactActivity extends CIMMonitorActivity implement
             lists[0].addAll(topList);
             Collections.sort(lists[0], new FriendShipNameAscComparator());
 
-            for (FriendListResult.FriendShip friend : lists[0]) {
+            for (FriendListResultV2.FriendShip friend : lists[0]) {
                 Character name = friend.getFristPinyin().charAt(0);
                 if (!contentList.contains(name))
                 {

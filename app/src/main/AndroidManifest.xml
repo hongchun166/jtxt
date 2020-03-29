@@ -68,424 +68,222 @@
 
         <activity
             android:name="com.linkb.jstx.activity.HomeActivity"
-            android:launchMode="singleTask"
-             />
+            android:launchMode="singleTask" />
 
         <activity
             android:name="com.linkb.jstx.activity.LoginAndRegisterActivity"
-            android:launchMode="singleTask"
-             />
+            android:launchMode="singleTask" />
 
         <activity
             android:name="com.linkb.jstx.activity.LoginActivityV2"
-            android:launchMode="singleTask"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.SelectCountryCodeActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.SelectCountryActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.RegisterActivityV2"
-             />
+            android:launchMode="singleTask" />
+        <activity android:name="com.linkb.jstx.activity.SelectCountryCodeActivity" />
+        <activity android:name="com.linkb.jstx.activity.SelectCountryActivity" />
+        <activity android:name="com.linkb.jstx.activity.RegisterActivityV2" />
         <activity
             android:name="com.linkb.jstx.activity.ForceOfflineAlertActivity"
             android:launchMode="singleInstance"
-            
+
             android:theme="@style/CommonDialogStyle" />
 
         <activity
             android:name="com.linkb.jstx.activity.AppNewVersionActivity"
             android:launchMode="singleInstance"
-            
+
             android:theme="@style/CommonDialogStyle" />
 
-        <activity
-            android:name="com.linkb.jstx.activity.setting.AboutActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ProfileEditActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ProfileEditActivityV2"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyPasswordActivity"
-             />
-        <activity
-            android:name=".jstx.activity.setting.ModifyApplyPasswordActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.MessageSettingActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyMottoActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyMottoActivityV2"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyNameActivity"
-             />
-        <activity
-        android:name="com.linkb.jstx.activity.setting.ModifyNameActivityV2"
-         />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyPositionActivityV2"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivityV2"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyIndustryActivityV2"
-             />
+        <activity android:name="com.linkb.jstx.activity.setting.AboutActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ProfileEditActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ProfileEditActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyPasswordActivity" />
+        <activity android:name=".jstx.activity.setting.ModifyApplyPasswordActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.MessageSettingActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyMottoActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyMottoActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyNameActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyNameActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyPositionActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyPhoneActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyIndustryActivityV2" />
         <activity
             android:name="com.linkb.jstx.activity.setting.ModifyLabelActivityV2"
-            android:launchMode="singleTop"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyEmailActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyEmailActivityV2"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ModifyRemarkActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.FeedbackActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ServerSettingActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.setting.ThemeSettingActivity"
-             />
+            android:launchMode="singleTop" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyEmailActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyEmailActivityV2" />
+        <activity android:name="com.linkb.jstx.activity.setting.ModifyRemarkActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.FeedbackActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ServerSettingActivity" />
+        <activity android:name="com.linkb.jstx.activity.setting.ThemeSettingActivity" />
 
         <activity
             android:name="com.linkb.jstx.activity.trend.TimelineMomentActivity"
-            
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.linkb.jstx.activity.trend.MomentPublishActivity"
-            
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.linkb.jstx.activity.trend.MomentMessageActivity"
-             />
+            android:name="com.linkb.jstx.activity.trend.MomentPublishActivity"
+
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.linkb.jstx.activity.trend.MomentMessageActivity" />
         <activity
             android:name="com.linkb.jstx.activity.trend.MomentDetailedActivity"
-            
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.linkb.jstx.activity.trend.MineMomentActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.trend.FriendMomentActivity"
-             />
 
-        <activity
-            android:name="com.linkb.jstx.activity.trend.MapAddressActivity"
-             />
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.linkb.jstx.activity.trend.MineMomentActivity" />
+        <activity android:name="com.linkb.jstx.activity.trend.FriendMomentActivity" />
+
+        <activity android:name="com.linkb.jstx.activity.trend.MapAddressActivity" />
 
         <activity
             android:name="com.linkb.jstx.activity.trend.MicroAppActivity"
             android:launchMode="singleTask"
-            
+
             android:taskAffinity="com.farsunset.lvxin.microapp" />
 
-        <activity
-            android:name="com.linkb.jstx.activity.trend.MicroAppListActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.trend.MicroAppListActivity" />
 
-        <activity
-            android:name="com.linkb.jstx.activity.trend.HotGroupListActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.trend.HotGroupListActivity" />
 
-        <activity
-            android:name="com.linkb.jstx.activity.trend.InformationListActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.trend.InformationListActivity" />
 
         <activity
             android:name="com.linkb.jstx.activity.chat.MicroServerWindowActivity"
             android:launchMode="singleTask"
-            
+
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.linkb.jstx.activity.chat.FriendChatActivity"
-            android:launchMode="singleTask"
-             />
+            android:launchMode="singleTask" />
         <activity
             android:name="com.linkb.jstx.activity.chat.GroupChatActivity"
             android:launchMode="singleTask"
-            
+
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.SystemMessageActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.FileChoiceActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.FileViewerActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.MapLocationActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.MapViewActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.chat.MMWebViewActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.chat.SystemMessageActivity" />
+        <activity android:name="com.linkb.jstx.activity.chat.FileChoiceActivity" />
+        <activity android:name="com.linkb.jstx.activity.chat.FileViewerActivity" />
+        <activity android:name="com.linkb.jstx.activity.chat.MapLocationActivity" />
+        <activity android:name="com.linkb.jstx.activity.chat.MapViewActivity" />
+        <activity android:name="com.linkb.jstx.activity.chat.MMWebViewActivity" />
 
 
         <activity
             android:name="com.linkb.jstx.activity.contact.ContactSelectorActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustNothing" />
 
         <activity
             android:name="com.linkb.jstx.activity.contact.GroupMemberSelectorActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustNothing" />
 
         <activity
             android:name="com.linkb.jstx.activity.contact.MessageForwardActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustNothing" />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.OrganizationActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.SearchActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.JoinGroupRequestActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.RequestHandleActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.contact.OrganizationActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.SearchActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.JoinGroupRequestActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.RequestHandleActivity" />
         <activity
             android:name="com.linkb.jstx.activity.contact.CreateGroupActivity"
-            
+
             android:theme="@style/CommonDialogStyle" />
         <activity
             android:name="com.linkb.jstx.activity.contact.ModifyGroupActivity"
-            
+
             android:theme="@style/CommonDialogStyle" />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.GroupDetailActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.GroupDetailDescActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.contact.GroupDetailActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.GroupDetailDescActivity" />
         <activity
             android:name="com.linkb.jstx.activity.contact.UserDetailActivity"
-            
+
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.linkb.jstx.activity.contact.UserDetailActivityV2"
-            
+
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".jstx.activity.contact.PersonInfoActivity"
-            
+
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.GroupMemberListActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.contact.GroupMemberListActivity" />
         <activity
             android:name="com.linkb.jstx.activity.contact.InviteGroupMemberActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustNothing" />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.GroupListActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.MicroServerDetailedActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.MicroServerListActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.MomentRuleActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.LookMicroServerActivity"
-             />
-        <activity
-            android:name="com.linkb.jstx.activity.contact.TagListActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.contact.GroupListActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.MicroServerDetailedActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.MicroServerListActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.MomentRuleActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.LookMicroServerActivity" />
+        <activity android:name="com.linkb.jstx.activity.contact.TagListActivity" />
 
-        <activity
-            android:name="com.linkb.jstx.activity.contact.TagDetailActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.contact.TagDetailActivity" />
 
-        <activity
-            android:name=".jstx.activity.wallet.WalletActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.WalletActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.ExChangeActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.BillActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.BillActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.contact.SearchFriendActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.SearchFriendActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.contact.FindFindActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.SearchUserListActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.SearchFriendActivityV3"
-             />
-        <activity
-            android:name=".jstx.activity.contact.SearchGroupActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.ChargeCoinActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.WithdrawCoinActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.WithdrawCoinConfirmActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.BillDetailActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.SelectBillTimeActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.RedPacketActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.TimeSelectActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.RedPacketReceivedActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.MoreCurrencyActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.RedPacketRecordActivity"
-             />
+        <activity android:name=".jstx.activity.wallet.WalletActivity" />
+        <activity android:name=".jstx.activity.wallet.WalletActivityV2" />
+        <activity android:name=".jstx.activity.wallet.ExChangeActivity" />
+        <activity android:name=".jstx.activity.wallet.BillActivity" />
+        <activity android:name=".jstx.activity.wallet.BillActivityV2" />
+        <activity android:name=".jstx.activity.contact.SearchFriendActivity" />
+        <activity android:name=".jstx.activity.contact.SearchFriendActivityV2" />
+        <activity android:name=".jstx.activity.contact.FindFindActivity" />
+        <activity android:name=".jstx.activity.contact.SearchUserListActivity" />
+        <activity android:name=".jstx.activity.contact.SearchFriendActivityV3" />
+        <activity android:name=".jstx.activity.contact.SearchGroupActivity" />
+        <activity android:name=".jstx.activity.wallet.ChargeCoinActivity" />
+        <activity android:name=".jstx.activity.wallet.WithdrawCoinActivity" />
+        <activity android:name=".jstx.activity.wallet.WithdrawCoinConfirmActivity" />
+        <activity android:name=".jstx.activity.wallet.BillDetailActivity" />
+        <activity android:name=".jstx.activity.wallet.SelectBillTimeActivity" />
+        <activity android:name=".jstx.activity.wallet.RedPacketActivity" />
+        <activity android:name=".jstx.activity.wallet.TimeSelectActivity" />
+        <activity android:name=".jstx.activity.wallet.RedPacketReceivedActivity" />
+        <activity android:name=".jstx.activity.wallet.MoreCurrencyActivity" />
+        <activity android:name=".jstx.activity.wallet.RedPacketRecordActivity" />
         <activity
             android:name=".jstx.activity.wallet.CurrencyDetailsActivityV2"
-            android:launchMode="singleTop"
-             />
+            android:launchMode="singleTop" />
 
-        <activity
-            android:name=".jstx.activity.wallet.WithDrawFinishActivity"
-             />
+        <activity android:name=".jstx.activity.wallet.WithDrawFinishActivity" />
 
-        <activity
-            android:name=".jstx.activity.wallet.FinancialActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.PhoneContactsActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupQrCodeActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupQrCodeActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.contact.MineInvitationActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.QrcodeScanActivity"
-             />
-        <activity
-            android:name=".jstx.activity.FindPasswordActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupManagerSelectActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.DeleteGroupManagerActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupSummaryEditActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupInfoEditActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.GroupMemberAtSelectActivity"
-             />
-        <activity
-            android:name=".jstx.activity.trend.InformationActivity"
-             />
+        <activity android:name=".jstx.activity.wallet.FinancialActivity" />
+        <activity android:name=".jstx.activity.contact.PhoneContactsActivity" />
+        <activity android:name=".jstx.activity.contact.GroupQrCodeActivity" />
+        <activity android:name=".jstx.activity.contact.GroupQrCodeActivityV2" />
+        <activity android:name=".jstx.activity.contact.MineInvitationActivityV2" />
+        <activity android:name=".jstx.activity.QrcodeScanActivity" />
+        <activity android:name=".jstx.activity.FindPasswordActivity" />
+        <activity android:name=".jstx.activity.contact.GroupManagerSelectActivity" />
+        <activity android:name=".jstx.activity.contact.DeleteGroupManagerActivity" />
+        <activity android:name=".jstx.activity.contact.GroupSummaryEditActivity" />
+        <activity android:name=".jstx.activity.contact.GroupInfoEditActivity" />
+        <activity android:name=".jstx.activity.contact.GroupMemberAtSelectActivity" />
+        <activity android:name=".jstx.activity.trend.InformationActivity" />
         <activity
             android:name=".video.RoomActivity"
             android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
-            android:launchMode="singleTop"
-             />
-        <activity
-            android:name=".video.GroupVideoMemberSelectActivity"
-             />
-        <activity
-            android:name=".jstx.activity.trend.NearlyPeopleActivity"
-             />
-        <activity
-            android:name=".jstx.activity.trend.GameListActivity"
-             />
-        <activity
-            android:name=".jstx.activity.trend.GameDetailActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.CoinSearchActivity"
-             />
+            android:launchMode="singleTop" />
+        <activity android:name=".video.GroupVideoMemberSelectActivity" />
+        <activity android:name=".jstx.activity.trend.NearlyPeopleActivity" />
+        <activity android:name=".jstx.activity.trend.GameListActivity" />
+        <activity android:name=".jstx.activity.trend.GameDetailActivity" />
+        <activity android:name=".jstx.activity.wallet.CoinSearchActivity" />
 
-        <activity
-            android:name=".jstx.activity.contact.SendCardsSelectContactActivity"
-             />
+        <activity android:name=".jstx.activity.contact.SendCardsSelectContactActivity" />
 
-        <activity
-            android:name=".jstx.activity.contact.ApplyFriendActivity"
-             />
-        <activity
-            android:name=".jstx.activity.contact.ApplyFriendActivityV2"
-             />
+        <activity android:name=".jstx.activity.contact.ApplyFriendActivity" />
+        <activity android:name=".jstx.activity.contact.ApplyFriendActivityV2" />
 
-        <activity
-            android:name=".jstx.activity.contact.ApplyFriendBeActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.contact.ApplyGroupActivityV2"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.CoinTransferActivity"
-             />
-        <activity
-            android:name=".jstx.activity.wallet.CoinTransferReceivedDetailActivity"
-             />
+        <activity android:name=".jstx.activity.contact.ApplyFriendBeActivityV2" />
+        <activity android:name=".jstx.activity.contact.ApplyGroupActivityV2" />
+        <activity android:name=".jstx.activity.wallet.CoinTransferActivity" />
+        <activity android:name=".jstx.activity.wallet.CoinTransferReceivedDetailActivity" />
 
         <activity
             android:name="com.linkb.jstx.activity.contact.MessageSharedActivity"
             android:label="@string/label_share_to_contact"
-            
+
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -493,18 +291,14 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.linkb.jstx.activity.util.PhotoAlbumActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.util.PhotoAlbumActivity" />
         <activity
             android:name="com.linkb.jstx.activity.util.PhotoVewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name="com.linkb.jstx.activity.util.PhotoGalleryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name="com.linkb.jstx.activity.util.VideoRecorderActivity"
-             />
+        <activity android:name="com.linkb.jstx.activity.util.VideoRecorderActivity" />
         <activity
             android:name="com.linkb.jstx.activity.util.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
@@ -555,16 +349,16 @@
             android:name="com.farsunset.cim.sdk.android.CIMPushService"
             android:process=":cimpush" />
 
-<!--  3.5      <provider-->
-<!--            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"-->
-<!--            android:authorities="com.farsunset.cim.provider"-->
-<!--            android:exported="true" />-->
-<!--        3.8-->
+        <!--  3.5      <provider-->
+        <!--            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"-->
+        <!--            android:authorities="com.farsunset.cim.provider"-->
+        <!--            android:exported="true" />-->
+        <!--        3.8-->
         <provider
             android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"
             android:authorities="${applicationId}.cim.provider"
-            android:process=":cimpush"
-            android:exported="false" />
+            android:exported="false"
+            android:process=":cimpush" />
         <!-- ****************************************CIM推送配置 end*************************************** -->
 
 
@@ -573,18 +367,18 @@
             android:name="com.linkb.jstx.receiver.CIMPushMessageReceiver"
             android:exported="true">
             <intent-filter android:priority="0x7fffffff">
-<!--                3.5 -->
-<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  &lt;!&ndash; 网络变化广播 &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" />&lt;!&ndash; 消息广播action &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> &lt;!&ndash; 发送sendbody失败广播&ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> &lt;!&ndash; 发送sendbody成功广播 &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> &lt;!&ndash;重新连接 &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> &lt;!&ndash; 链接意外关闭广播 &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> &lt;!&ndash; 链接失败广播 &ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> &lt;!&ndash; 链接成功广播&ndash;&gt;-->
-<!--                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> &lt;!&ndash; 发送sendbody成功后获得replaybody回应广播 &ndash;&gt;-->
+                <!--                3.5 -->
+                <!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  &lt;!&ndash; 网络变化广播 &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" />&lt;!&ndash; 消息广播action &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> &lt;!&ndash; 发送sendbody失败广播&ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> &lt;!&ndash; 发送sendbody成功广播 &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> &lt;!&ndash;重新连接 &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> &lt;!&ndash; 链接意外关闭广播 &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> &lt;!&ndash; 链接失败广播 &ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> &lt;!&ndash; 链接成功广播&ndash;&gt;-->
+                <!--                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> &lt;!&ndash; 发送sendbody成功后获得replaybody回应广播 &ndash;&gt;-->
 
-<!--                3.8  -->
+                <!--                3.8  -->
                 <!-- 网络变事件action targetVersion 24之前 -->
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="com.farsunset.cim.NETWORK_CHANGED" />

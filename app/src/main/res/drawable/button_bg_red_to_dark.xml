@@ -5,8 +5,8 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <stroke android:width="1dp" android:color="@color/background_red_D63337" />
             <solid android:color="@color/background_red_D63337"/>
-            <padding android:left="8dp" android:top="8dp"
-                android:right="8dp" android:bottom="8dp" />
+            <padding android:left="4dp" android:top="4dp"
+                android:right="4dp" android:bottom="4dp" />
             <corners android:radius="8dp" />
         </shape>
     </item>
@@ -15,8 +15,8 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <stroke android:width="1dp" android:color="@color/background_red_D63337" />
             <solid android:color="@color/background_red_D63337"/>
-            <padding android:left="8dp" android:top="8dp"
-                android:right="8dp" android:bottom="8dp" />
+            <padding android:left="4dp" android:top="4dp"
+                android:right="4dp" android:bottom="4dp" />
             <corners android:radius="8dp" />
         </shape>
     </item>
@@ -25,8 +25,8 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <stroke android:width="1dp" android:color="@color/background_red_F45440" />
             <solid android:color="@color/background_red_F45440"/>
-            <padding android:left="8dp" android:top="8dp"
-                android:right="8dp" android:bottom="8dp" />
+            <padding android:left="4dp" android:top="4dp"
+                android:right="4dp" android:bottom="4dp" />
             <corners android:radius="8dp" />
         </shape>
     </item>

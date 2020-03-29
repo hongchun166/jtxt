@@ -102,22 +102,20 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
 
         toolbar.setOnClickListener(this);
 
-        setExitSharedElementCallback( sharedElementCallback);
+        setExitSharedElementCallback(sharedElementCallback);
     }
-
-
 
 
     @Override
     public void onGetNextPage() {
         currentPage++;
-        HttpServiceManager.queryMomentTimeline(currentPage,this);
+        HttpServiceManager.queryMomentTimeline(currentPage, this);
     }
 
     @Override
     public void onGetFirstPage() {
         currentPage = Constant.DEF_PAGE_INDEX;
-        HttpServiceManager.queryMomentTimeline(currentPage,this);
+        HttpServiceManager.queryMomentTimeline(currentPage, this);
     }
 
     @Override
@@ -127,9 +125,6 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
             cleanCommentInfo();
         }
     }
-
-
-
 
 
     private void onHttpRequestSucceed(MomentListResult result) {
@@ -156,10 +151,10 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
 
     @Override
     public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-        if (result instanceof CommentResult){
+        if (result instanceof CommentResult) {
             onHttpRequestSucceed((CommentResult) result);
         }
-        if (result instanceof MomentListResult){
+        if (result instanceof MomentListResult) {
             onHttpRequestSucceed((MomentListResult) result);
         }
     }
@@ -184,36 +179,42 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     }
 
     @Override
-    public void onCommentSelected(CommentListView currentView,Moment moment,Comment comment) {
+    public void onCommentSelected(CommentListView currentView, Moment moment, Comment comment) {
 
         this.comment = comment;
         this.moment = moment;
 
-        if (!Objects.equals(moment.account,self.account)) {
-            String  account =comment.account == null ? moment.account : comment.account;
-            asynViewName(inputPanelView, account );
+        if (!Objects.equals(moment.account, self.account)) {
+            String account = comment.account == null ? moment.account : comment.account;
+            asynViewName(inputPanelView, account);
 
 //            String name = FriendRepository.queryFriendName(comment.account == null ? moment.account : comment.account);
 //            inputPanelView.setHint(getString(R.string.hint_comment, name));
         }
         mCommentListView = currentView;
-
         int inputPanelHeight = inputPanelView.getPanelHeight();
-        if (comment.sourceId == 0) {
-            momentListView.smoothScrollBy(0, mCommentListView.getEndYOnScrenn() - (mFullHeight - inputPanelHeight));
-        } else {
-            momentListView.smoothScrollBy(0, inputPanelHeight - (mFullHeight - mCommentListView.getLastTouchY()));
-        }
-
         inputPanelView.show();
+//        if (comment.sourceId == 0) {
+//            new Thread(() -> {
+//                try {
+//                    Thread.sleep(250);
+//                    runOnUiThread(() -> momentListView.smoothScrollBy(0, mCommentListView.getEndYOnScrenn() - (mFullHeight - inputPanelHeight)));
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }).start();
+//        } else {
+//            momentListView.smoothScrollBy(0, inputPanelHeight - (mFullHeight - mCommentListView.getLastTouchY()));
+//        }
 
     }
 
-    private void asynViewName(final SimpleInputPanelView simpleInputPanelView, String account){
+    private void asynViewName(final SimpleInputPanelView simpleInputPanelView, String account) {
         HttpServiceManager.queryPersonInfo(account, new HttpRequestListener<BasePersonInfoResult>() {
             @Override
             public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-                if (result.isSuccess()){
+                if (result.isSuccess()) {
                     Friend friend = User.UserToFriend(result.getData());
                     FriendRepository.save(friend);
                     simpleInputPanelView.setHint(getString(R.string.hint_comment, friend.name));
@@ -229,7 +230,7 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
 
     private void performAddCommentRequest(String content) {
         comment.content = content;
-        HttpServiceManager.publish(comment,moment.account,this);
+        HttpServiceManager.publish(comment, moment.account, this);
     }
 
 
@@ -305,7 +306,7 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
 
     @Override
     public void onClick(View view) {
-        if (view == toolbar){
+        if (view == toolbar) {
             momentListView.scrollToPosition(0);
         }
 
@@ -354,7 +355,6 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
             return filter;
         }
     }
-
 
 
     SharedElementCallback sharedElementCallback = new SharedElementCallback() {

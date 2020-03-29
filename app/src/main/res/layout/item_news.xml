@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="12dp"
-    android:background="@android:color/white"
-    >
+    android:background="@android:color/white">
 
 
     <android.support.constraint.Guideline
@@ -80,6 +79,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView147" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/textView149"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

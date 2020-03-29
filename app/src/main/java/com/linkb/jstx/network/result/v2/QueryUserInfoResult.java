@@ -21,7 +21,7 @@ public class QueryUserInfoResult extends BaseResult {
         this.data = data;
     }
 
-    public static class DataBean{
+    public static class DataBean {
         private String account;
         private String name;
         private String telephone;
@@ -36,10 +36,17 @@ public class QueryUserInfoResult extends BaseResult {
         private String inviteCode;
         private int referrerNumber;
         private int jianjieReferrerNumber;
-        private int lockBalanceFreed;
+        private float lockBalanceFreed;
         private double lot;
         private double lat;
         private boolean disabled;
+        public String area;
+        public String tag;
+        public String industry;
+        public String marrriage;
+        public String position;
+
+
 
         public String getAccount() {
             return account;
@@ -153,11 +160,11 @@ public class QueryUserInfoResult extends BaseResult {
             this.jianjieReferrerNumber = jianjieReferrerNumber;
         }
 
-        public int getLockBalanceFreed() {
+        public float getLockBalanceFreed() {
             return lockBalanceFreed;
         }
 
-        public void setLockBalanceFreed(int lockBalanceFreed) {
+        public void setLockBalanceFreed(float lockBalanceFreed) {
             this.lockBalanceFreed = lockBalanceFreed;
         }
 
