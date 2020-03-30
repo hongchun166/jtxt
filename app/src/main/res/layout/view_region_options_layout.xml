@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="@string/is_no_limit"
-        android:textColor="#EEEEEE"
+        android:textColor="@color/tex_color_gray_333"
         android:textSize="@dimen/text_13sp"
         android:gravity="center"
         />
