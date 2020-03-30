@@ -23,15 +23,17 @@ public class FindPersonsResult extends BaseResult {
     public void setData(DataBean data) {
         this.data = data;
     }
-    public boolean isDataListEmpty(){
-        if(data==null){
+
+    public boolean isDataListEmpty() {
+        if (data == null) {
             return true;
-        }else if(data.getContent()==null || data.getContent().isEmpty()){
+        } else if (data.getContent() == null || data.getContent().isEmpty()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
+
     public static class DataBean {
         /**
          * content : [{"account":"18274839631","name":"黑狐","telephone":"18274839631","email":"ghjjwdv","code":"Kov10021","gender":"1","motto":"好哦了喔，哦哦","isLoginFlag":"0","state":"0","regTime":1577855996,"tradePassword":"4579a0a67759cd28a5a8176691604757","inviteCode":"MHFZNEK","referrerNumber":0,"jianjieReferrerNumber":0,"lockBalanceFreed":0,"lot":0,"lat":0,"disabled":false}]
@@ -304,11 +306,11 @@ public class FindPersonsResult extends BaseResult {
              * lockBalanceFreed : 0.0
              * lot : 0.0
              * lat : 0.0
-             *             "position": "总经理",
-             *                 "marrriage": "单身",
-             *                 "industry": "金融/银行/投资/保险",
-             *                 "tag": "比特币",
-             *                 "area": "加拿大-伦敦",
+             * "position": "总经理",
+             * "marrriage": "单身",
+             * "industry": "金融/银行/投资/保险",
+             * "tag": "比特币",
+             * "area": "加拿大-伦敦",
              * disabled : false
              */
 
@@ -335,6 +337,16 @@ public class FindPersonsResult extends BaseResult {
             private String industry;//行业
             private String tag;
             private String area;
+
+            public String getIsFriends() {
+                return isFriends;
+            }
+
+            public void setIsFriends(String isFriends) {
+                this.isFriends = isFriends;
+            }
+
+            private String isFriends;
 
             public String getAccount() {
                 return account;

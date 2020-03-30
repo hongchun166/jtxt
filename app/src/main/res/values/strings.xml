@@ -252,6 +252,7 @@
     <string name="red_packet_receive_money">%1$s%2$s</string>
     <string name="deal_password_input">请输入支付密码</string>
     <string name="BLink_red_packet">KiKi红包</string>
+    <string name="is_no_limit">不限</string>
     <string name="red_packet_received_tips">红包等待对方领取</string>
     <string name="red_packet_received_tips_default">红包等待对方领取</string>
     <string name="BLink_Pay">KiKi Pay</string>

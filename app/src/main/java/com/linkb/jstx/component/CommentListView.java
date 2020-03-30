@@ -140,7 +140,7 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
         HttpServiceManager.queryPersonInfo(comment.account, new HttpRequestListener<BasePersonInfoResult>() {
             @Override
             public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-                if (result.isSuccess()){
+                if (result.isSuccess()) {
                     Friend friend = User.UserToFriend(result.getData());
                     FriendRepository.save(friend);
 
@@ -180,11 +180,11 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
 //        itemView.setOnLongClickListener(this);
     }
 
-    private void asynTextViewName(final TextView textView, String account, final  String name , final  Comment comment){
+    private void asynTextViewName(final TextView textView, String account, final String name, final Comment comment) {
         HttpServiceManager.queryPersonInfo(account, new HttpRequestListener<BasePersonInfoResult>() {
             @Override
             public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-                if (result.isSuccess()){
+                if (result.isSuccess()) {
                     Friend friend = User.UserToFriend(result.getData());
                     FriendRepository.save(friend);
                     String string = getResources().getString(R.string.label_moment_replay_user, name, friend.name, TextUtils.htmlEncode(comment.content));
@@ -219,12 +219,10 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
 
         customDialog.dismiss();
 
-        HttpServiceManager.deleteComment(removeComment.id,moment.account,null);
+        HttpServiceManager.deleteComment(removeComment.id, moment.account, null);
 
         removeComment(removeComment);
     }
-
-
 
 
     @Override
@@ -244,7 +242,7 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
         Comment comment = (Comment) view.getTag();
         if (view.getId() == R.id.icon) {
             Friend friend = FriendRepository.queryFriend(comment.account, mListener);
-            if (friend != null){
+            if (friend != null) {
                 postQueryFriend(friend);
             }
             return;
@@ -253,7 +251,7 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
         int[] loc = new int[2];
         view.getLocationOnScreen(loc);
         mLastTouchY = loc[1] + view.getMeasuredHeight();
-        if (!self.account.equals(comment.account)) {
+        if (!TextUtils.equals(self.account, comment.account)) {
             onCommentClickListener.onItemClicked(comment, this);
         }
 
@@ -262,7 +260,7 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
     private HttpRequestListener<BasePersonInfoResult> mListener = new HttpRequestListener<BasePersonInfoResult>() {
         @Override
         public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 Friend friend = User.UserToFriend(result.getData());
                 FriendRepository.save(friend);
                 postQueryFriend(friend);
@@ -275,7 +273,7 @@ public class CommentListView extends LinearLayout implements OnDialogButtonClick
         }
     };
 
-    private void postQueryFriend(Friend friend){
+    private void postQueryFriend(Friend friend) {
         Intent intent = new Intent(getContext(), PersonInfoActivity.class);
         intent.putExtra(Friend.class.getName(), friend);
         getContext().startActivity(intent);

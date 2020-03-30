@@ -66,15 +66,15 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
 
     WebViewNavToParam navToParam;
 
-    public static WebViewNavToParam createNavToParam(Uri url){
-        WebViewNavToParam navToParam=new WebViewNavToParam(url,"");
+    public static WebViewNavToParam createNavToParam(Uri url) {
+        WebViewNavToParam navToParam = new WebViewNavToParam(url, "");
         return navToParam;
     }
 
-    public static class RedBagGetBean{
+    public static class RedBagGetBean {
 
-       public boolean hasSuc=false;
-        public  double number;
+        public boolean hasSuc = false;
+        public double number;
 
     }
 
@@ -83,9 +83,10 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             return false;
         }
+
         @Override
         public void onPageFinished(WebView view, String url) {
-            navToParam.urlStr=url;
+            navToParam.urlStr = url;
         }
 
     };
@@ -127,7 +128,7 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     };
 
     @Override
-    public boolean getSwipeBackEnable(){
+    public boolean getSwipeBackEnable() {
         return false;
     }
 
@@ -136,11 +137,11 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
 
         setBackIcon(R.drawable.abc_ic_clear_material);
 
-        Bundle bundle=getIntent().getExtras();
-        navToParam=bundle.getParcelable("NavToParam");
-        navToParam.urlStr =navToParam.url.toString();
+        Bundle bundle = getIntent().getExtras();
+        navToParam = bundle.getParcelable("NavToParam");
+        navToParam.urlStr = navToParam.url.toString();
 
-        viewGetRedBag=findViewById(R.id.viewGetRedBag);
+        viewGetRedBag = findViewById(R.id.viewGetRedBag);
         webview = findViewById(R.id.webview);
         TextView provider = findViewById(R.id.provider);
         settings = webview.getSettings();
@@ -241,67 +242,73 @@ public class MMWebViewActivity extends BaseActivity implements OnSizeSelectedLis
     }
 
 
+    RedBagGetBean redBagGetBean = new RedBagGetBean();
 
-    RedBagGetBean redBagGetBean=new RedBagGetBean();
-    private void getOrShowRed(){
-        if(redBagGetBean.hasSuc){
-            getOrShowRed(true,redBagGetBean.number);
-        }else {
+    private void getOrShowRed() {
+        if (redBagGetBean.hasSuc) {
+            getOrShowRed(true, redBagGetBean.number);
+        } else {
             httpGetRedBag();
         }
     }
-    private void getOrShowRed(boolean hasSuc,double moneyNum){
-        EditorRedBagDig.RedBagBParam param=new EditorRedBagDig.RedBagBParam();
-        param.number=moneyNum;
-        param.state=hasSuc?EditorRedBagDig.RedBagBParam.STATE_SUC:EditorRedBagDig.RedBagBParam.STATE_FAIL;
+
+    private void getOrShowRed(boolean hasSuc, double moneyNum) {
+        EditorRedBagDig.RedBagBParam param = new EditorRedBagDig.RedBagBParam();
+        param.number = moneyNum;
+        param.state = hasSuc ? EditorRedBagDig.RedBagBParam.STATE_SUC : EditorRedBagDig.RedBagBParam.STATE_FAIL;
         EditorRedBagDig.build().buildDialog(this).setRedBagBParam(param).showDialog();
     }
-    private void updateGetRedBagState(){
-        if(redBagGetBean.hasSuc){
-            String getRedBagHint=getString(R.string.hint_red_receive_ed)+redBagGetBean.number+"KKC";
+
+    private void updateGetRedBagState() {
+        if (redBagGetBean.hasSuc) {
+            String getRedBagHint = getString(R.string.hint_red_receive_ed) + redBagGetBean.number + "KKC";
             viewGetRedBag.setText(getRedBagHint);
             viewGetRedBag.setEnabled(false);
-        }else {
+        } else {
             viewGetRedBag.setText(R.string.hint_red_receive);
             viewGetRedBag.setEnabled(true);
         }
     }
-    private void httpGetEditorInfo(){
+
+    private void httpGetEditorInfo() {
         HttpServiceManagerV2.getEditorInfo(String.valueOf(navToParam.beanId), new HttpRequestListener<GetEditorInfoResult>() {
             @Override
             public void onHttpRequestSucceed(GetEditorInfoResult result, OriginalCall call) {
-                if(result.isSuccess() ){
-                    if(result.getData().getLottery_amount()!=null){
-                        redBagGetBean.hasSuc=true;
-                        redBagGetBean.number=result.getData().getLottery_amount().doubleValue();
+                if (result.isSuccess()) {
+                    if (result.getData().getLottery_amount() != null) {
+                        redBagGetBean.hasSuc = true;
+                        redBagGetBean.number = result.getData().getLottery_amount().doubleValue();
                         updateGetRedBagState();
                     }
                 }
             }
+
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
             }
         });
     }
 
-    private void httpGetRedBag(){
-        String account=Global.getCurrentUser().getAccount();
+    private void httpGetRedBag() {
+        String account = Global.getCurrentUser().getAccount();
         HttpServiceManagerV2.getRedBag(account, navToParam.beanId, new HttpRequestListener<GetRedBagResult>() {
             @Override
             public void onHttpRequestSucceed(GetRedBagResult result, OriginalCall call) {
                 hideProgressDialog();
-                if(result.isSuccess()){
-                    if(result.getData()!=null){
-                        redBagGetBean.hasSuc=true;
-                        getOrShowRed(true,result.getData().doubleValue());
+                if (result.isSuccess()) {
+                    if (result.getData() != null) {
+                        redBagGetBean.hasSuc = true;
+                        redBagGetBean.number = result.getData();
+                        getOrShowRed(true, result.getData());
                         updateGetRedBagState();
-                    }else {
-                        getOrShowRed(false,result.getData().doubleValue());
+                    } else {
+                        getOrShowRed(false, result.getData().doubleValue());
                     }
-                }else {
+                } else {
                     showToastView(String.valueOf(result.message));
                 }
             }
+
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
                 hideProgressDialog();

@@ -51,6 +51,20 @@
         android:background="@color/tex_color_gray_D2D2D2"
         />
     <TextView
+        android:id="@+id/viewNo"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/is_no_limit"
+        android:textColor="#EEEEEE"
+        android:textSize="@dimen/text_13sp"
+        android:gravity="center"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/tex_color_gray_D2D2D2"
+        />
+    <TextView
         android:id="@+id/viewCountry"
         android:layout_width="match_parent"
         android:layout_height="45dp"

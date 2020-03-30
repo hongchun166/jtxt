@@ -194,20 +194,19 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         mCommentListView = currentView;
         int inputPanelHeight = inputPanelView.getPanelHeight();
         inputPanelView.show();
-//        if (comment.sourceId == 0) {
-//            new Thread(() -> {
-//                try {
-//                    Thread.sleep(250);
-//                    runOnUiThread(() -> momentListView.smoothScrollBy(0, mCommentListView.getEndYOnScrenn() - (mFullHeight - inputPanelHeight)));
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }).start();
-//        } else {
-//            momentListView.smoothScrollBy(0, inputPanelHeight - (mFullHeight - mCommentListView.getLastTouchY()));
-//        }
-
+        new Thread(() -> {
+            try {
+                Thread.sleep(250);
+                if (comment.sourceId == 0) {
+                    //20为误差
+                    runOnUiThread(() -> momentListView.smoothScrollBy(0, mCommentListView.getEndYOnScrenn() - (mFullHeight - inputPanelHeight)));
+                } else {
+                    runOnUiThread(() -> momentListView.smoothScrollBy(0, inputPanelHeight - (-mFullHeight - mCommentListView.getLastTouchY())));
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     private void asynViewName(final SimpleInputPanelView simpleInputPanelView, String account) {
@@ -371,5 +370,13 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     public void onActivityReenter(int resultCode, Intent data) {
         super.onActivityReenter(resultCode, data);
         transitionName = data.getStringExtra("url");
+    }
+
+    /**
+     * 重写不做沉浸式处理，交由自己处理
+     */
+    @Override
+    public void setImmersionBar() {
+
     }
 }

@@ -30,8 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegionDigOpt implements View.OnClickListener {
-    public interface OnRegionDigOptCallback{
+    public interface OnRegionDigOptCallback {
         void onRegionDigCountryClick();
+
         void onRegionSelectSuc(String region);
     }
 
@@ -47,40 +48,50 @@ public class RegionDigOpt implements View.OnClickListener {
     public RegionDigOpt() {
 
     }
-    public void loadData(Context context){
-        this.context=context;
-        worlAreaOpt=new WorlAreaOpt();
+
+    public void loadData(Context context) {
+        this.context = context;
+        worlAreaOpt = new WorlAreaOpt();
         worlAreaOpt.loadWorldAreaData(context);
     }
-    public void release(){
-        this.onRegionDigOptCallback=null;
-        this.context=null;
-        worlAreaOpt=null;
-        if(pvCustomOptions!=null){
+
+    public void release() {
+        this.onRegionDigOptCallback = null;
+        this.context = null;
+        worlAreaOpt = null;
+        if (pvCustomOptions != null) {
             pvCustomOptions.dismiss();
-            pvCustomOptions=null;
+            pvCustomOptions = null;
         }
         this.provinces.clear();
         this.citys.clear();
     }
-    private String getString(int resid){
+
+    private String getString(int resid) {
         return context.getResources().getString(resid);
     }
-    private void sendEvenSelectSuc(String region){
-        if(onRegionDigOptCallback!=null){
+
+    private void sendEvenSelectSuc(String region) {
+        if (onRegionDigOptCallback != null) {
             onRegionDigOptCallback.onRegionSelectSuc(region);
         }
     }
-    private void sendEvenOnClick(View view){
-        if(view.getId()==R.id.viewFinish){
+
+    private void sendEvenOnClick(View view) {
+        if (view.getId() == R.id.viewFinish) {
             pvCustomOptions.returnData();
             pvCustomOptions.dismiss();
-        }else if(view.getId()==R.id.viewCancel){
+        } else if (view.getId() == R.id.viewCancel) {
             pvCustomOptions.dismiss();
-        }else if(view.getId()==R.id.viewCountry){
-            if(onRegionDigOptCallback!=null){
+        } else if (view.getId() == R.id.viewCountry) {
+            if (onRegionDigOptCallback != null) {
                 onRegionDigOptCallback.onRegionDigCountryClick();
             }
+        } else if (view.getId() == R.id.viewNo) {
+            if (onRegionDigOptCallback != null) {
+                onRegionDigOptCallback.onRegionSelectSuc("");
+            }
+            pvCustomOptions.dismiss();
         }
     }
 
@@ -88,7 +99,8 @@ public class RegionDigOpt implements View.OnClickListener {
     public void onClick(View v) {
         sendEvenOnClick(v);
     }
-    private Context getContext(){
+
+    private Context getContext() {
         return context;
     }
 
@@ -96,11 +108,12 @@ public class RegionDigOpt implements View.OnClickListener {
         this.onRegionDigOptCallback = onRegionDigOptCallback;
     }
 
-    private void showRegionDialog(){
+    private void showRegionDialog() {
         showRegionDialog(context);
     }
-    public void showRegionDialog(Context context){
-        this.context=context;
+
+    public void showRegionDialog(Context context) {
+        this.context = context;
         if (pvCustomOptions == null) {
             pvCustomOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
                 @Override
@@ -114,10 +127,12 @@ public class RegionDigOpt implements View.OnClickListener {
                     final TextView viewCancel = (TextView) v.findViewById(R.id.viewCancel);
                     final TextView viewFinish = (TextView) v.findViewById(R.id.viewFinish);
                     TextView viewCountry = (TextView) v.findViewById(R.id.viewCountry);
+                    TextView viewNo = v.findViewById(R.id.viewNo);
                     viewCountry.setText(countryBean.getCname());
                     viewFinish.setOnClickListener(RegionDigOpt.this);
                     viewCancel.setOnClickListener(RegionDigOpt.this);
                     viewCountry.setOnClickListener(RegionDigOpt.this);
+                    viewNo.setOnClickListener(RegionDigOpt.this);
                 }
             })
                     .isDialog(false)
@@ -149,54 +164,56 @@ public class RegionDigOpt implements View.OnClickListener {
         pvCustomOptions.show();
     }
 
-    public void changeRegion(CountryBean countryBean){
-        this.countryBean=countryBean;
-        if(pvCustomOptions!=null){
+    public void changeRegion(CountryBean countryBean) {
+        this.countryBean = countryBean;
+        if (pvCustomOptions != null) {
             pvCustomOptions.dismiss();
-            pvCustomOptions=null;
+            pvCustomOptions = null;
         }
-        if(provinces!=null)provinces.clear();
-        if(citys!=null)citys.clear();
+        if (provinces != null) provinces.clear();
+        if (citys != null) citys.clear();
         loadRegionData();
-        if(provinces.size()==0 ){
+        if (provinces.size() == 0) {
             sendEvenSelectSuc(countryBean.getCname());
 //            tv_region.setText(countryBean.getCname());
-            if(pvCustomOptions!=null){
+            if (pvCustomOptions != null) {
                 pvCustomOptions.dismiss();
-                pvCustomOptions=null;
+                pvCustomOptions = null;
             }
-        }else if(citys.size()==0){
+        } else if (citys.size() == 0) {
             sendEvenSelectSuc(countryBean.getCname());
 //            tv_region.setText(countryBean.getCname());
-            if(pvCustomOptions!=null){
+            if (pvCustomOptions != null) {
                 pvCustomOptions.dismiss();
-                pvCustomOptions=null;
+                pvCustomOptions = null;
             }
-        }else {
+        } else {
             showRegionDialog();
         }
     }
-    private void loadRegionData(){
-        if(countryBean==null){
-            countryBean=new CountryBean();
+
+    private void loadRegionData() {
+        if (countryBean == null) {
+            countryBean = new CountryBean();
             countryBean.setId("44");//中国
             countryBean.setCname("中国");
             countryBean.setName("China");
         }
-        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
-            if(countryBean.getId().equals("44")){
+        if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
+            if (countryBean.getId().equals("44")) {
                 getJson("citycode.json");
-            }else {
+            } else {
                 List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
                 provinces = provincesDouList.get(1);
                 citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
-                if(provinces.size()==1 && provinces.get(0).equals("")){
+                if (provinces.size() == 1 && provinces.get(0).equals("")) {
                     provinces.clear();
                     provinces.add(countryBean.getCname());
                 }
             }
         }
     }
+
     /**
      * 读取assets本地json
      *

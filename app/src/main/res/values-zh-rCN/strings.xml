@@ -98,7 +98,7 @@
     <string name="go_to_register">还没有账号？去注册吧</string>
     <string name="go_to_register2">账号注册</string>
     <string name="service_rule_tips_login">登录即代表阅读并同意</string>
-
+    <string name="is_no_limit">不限</string>
     <string name="account_tips">手机号</string>
     <string name="email_account_tips">邮箱账号</string>
     <string name="nick_name">昵称</string>

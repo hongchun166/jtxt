@@ -42,15 +42,17 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
     @Override
     public void onBindViewHolder(@NonNull SearchContactsViewHolder searchContactsViewHolder, int i) {
         final FindPersonsResult.DataBean.ContentBean dataBean = mList.get(i);
-        searchContactsViewHolder.dataBean=dataBean;
+        searchContactsViewHolder.dataBean = dataBean;
         searchContactsViewHolder.viewHead.load(FileURLBuilder.getUserIconUrl(dataBean.getAccount()), R.mipmap.lianxiren, 999);
         searchContactsViewHolder.viewName.setText(dataBean.getName());
-        if(!TextUtils.isEmpty(dataBean.getTag()))searchContactsViewHolder.viewTagArr.setText(String.valueOf(dataBean.getTag()));
-        if(!TextUtils.isEmpty(dataBean.getTag()))searchContactsViewHolder.viewArea.setText(String.valueOf(dataBean.getArea()));
-        if(FriendRepository.isFriend2(dataBean.getAccount())){
+        if (!TextUtils.isEmpty(dataBean.getTag()))
+            searchContactsViewHolder.viewTagArr.setText(String.valueOf(dataBean.getTag()));
+        if (!TextUtils.isEmpty(dataBean.getTag()))
+            searchContactsViewHolder.viewArea.setText(String.valueOf(dataBean.getArea()));
+        if (!"0".equals(dataBean.getIsFriends())) {
             searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.color.white);
             searchContactsViewHolder.viewAddFriend.setText(R.string.added);
-        }else {
+        } else {
             searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.mipmap.ic_bg_btn_add_friend);
             searchContactsViewHolder.viewAddFriend.setText("");
         }
@@ -61,7 +63,7 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
         return mList.size();
     }
 
-    public void replaceAll(List<FindPersonsResult.DataBean.ContentBean> list){
+    public void replaceAll(List<FindPersonsResult.DataBean.ContentBean> list) {
         mList.addAll(list);
         notifyDataSetChanged();
     }
@@ -89,15 +91,15 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
 
         @Override
         public void onClick(View view) {
-            if(view.getId()==R.id.viewRootItem){
+            if (view.getId() == R.id.viewRootItem) {
                 if (mListener != null) mListener.onAddFirend(dataBean);
-            }else if(view.getId()==R.id.viewAddFriend){
+            } else if (view.getId() == R.id.viewAddFriend) {
                 if (mListener != null) mListener.onAddFirend(dataBean);
             }
         }
     }
 
-    public interface OnSearchFriendClickedListener{
+    public interface OnSearchFriendClickedListener {
         void onAddFirend(FindPersonsResult.DataBean.ContentBean dataBean);
     }
 }

@@ -45,11 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
     public void onCreate(Bundle savedInstanceState) {
         setTheme(SkinManager.getSkinTheme());
         super.onCreate(savedInstanceState);
-        // 所有子类都将继承这些相同的属性,请在设置界面之后设置
-        ImmersionBar.with(this)
-                .keyboardEnable(true)
-                .init();
-
+        setImmersionBar();
         setContentView(getContentLayout());
         toolbar = findViewById(R.id.TOOLBAR);
         if (toolbar != null) {
@@ -71,12 +67,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
         initComponents();
     }
 
+    public void setImmersionBar() {
+        // 所有子类都将继承这些相同的属性,请在设置界面之后设置
+        ImmersionBar.with(this)
+                .keyboardEnable(true)
+                .init();
+    }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocalManageUtil.setLocal(newBase));
     }
 
-    protected boolean getSwipeBackEnable(){
+    protected boolean getSwipeBackEnable() {
         return true;
     }
 
@@ -130,7 +133,9 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
 
     protected abstract int getContentLayout();
 
-    protected  int getToolbarTitle(){return 0;}
+    protected int getToolbarTitle() {
+        return 0;
+    }
 
     private void showProgressDialog(String content, boolean cancancelable) {
         if (progressDialog != null && progressDialog.isShowing()) {
@@ -154,7 +159,7 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
     }
 
     public void showToastView(String text) {
-        AppTools.showToastView(this,text);
+        AppTools.showToastView(this, text);
     }
 
     public void showToastView(@StringRes int id) {
@@ -207,7 +212,8 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
             window.setStatusBarColor(color);
         }
     }
-    public void setWindowFullscreen(){
+
+    public void setWindowFullscreen() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -215,9 +221,10 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
         getWindow().setAttributes(params);
     }
 
-    protected void hideNavicationBar(){
+    protected void hideNavicationBar() {
 
     }
+
     @Override
     public void onClick(View view) {
 
@@ -225,8 +232,8 @@ public abstract class BaseActivity extends AppCompatActivity implements OnClickL
 
     @Override
     public void setTheme(int resid) {
-       super.setTheme(resid);
-       onThemeChanged();
+        super.setTheme(resid);
+        onThemeChanged();
     }
 
     protected void onThemeChanged() {
