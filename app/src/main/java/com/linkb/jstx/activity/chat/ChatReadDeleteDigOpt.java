@@ -146,7 +146,7 @@ public class ChatReadDeleteDigOpt implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.viewTVClose){
-            hide(false);
+            hide(true);
         }
     }
 
