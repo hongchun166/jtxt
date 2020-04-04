@@ -21,6 +21,7 @@ import com.linkb.jstx.listener.OnListViewRefreshListener;
 import com.linkb.jstx.model.Comment;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
 import com.linkb.jstx.network.result.CommentResult;
 import com.linkb.jstx.network.result.MomentListResult;
@@ -109,13 +110,14 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     @Override
     public void onGetNextPage() {
         currentPage++;
-        HttpServiceManager.queryMomentTimeline(currentPage, this);
+
+        HttpServiceManagerV2.queryMomentTimeline(self.getAccount(),currentPage, this);
     }
 
     @Override
     public void onGetFirstPage() {
         currentPage = Constant.DEF_PAGE_INDEX;
-        HttpServiceManager.queryMomentTimeline(currentPage, this);
+        HttpServiceManagerV2.queryMomentTimeline(self.getAccount(),currentPage, this);
     }
 
     @Override

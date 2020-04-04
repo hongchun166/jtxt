@@ -24,7 +24,7 @@ import com.linkb.jstx.activity.contact.SendCardsSelectContactActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.activity.util.VideoRecorderActivity;
 import com.linkb.jstx.activity.wallet.CoinTransferActivity;
-import com.linkb.jstx.activity.wallet.RedPacketActivity;
+import com.linkb.jstx.activity.wallet.RedPacketActivityV2;
 import com.linkb.jstx.adapter.ChatRecordListViewAdapter;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
@@ -65,8 +65,8 @@ import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.CoinTransferResult;
 import com.linkb.jstx.network.result.SendCardsResult;
 import com.linkb.jstx.network.result.SendMessageResult;
-import com.linkb.jstx.network.result.SendRedPacketResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
 import com.linkb.jstx.util.AppTools;
 import com.linkb.jstx.util.ClipboardUtils;
@@ -343,7 +343,7 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
         //红包
         if (resultCode == RESULT_OK && requestCode == SEND_RED_PACKET_REQUEST_CODE){
-            SendRedPacketResult.DataBean dataBean = (SendRedPacketResult.DataBean) data.getSerializableExtra(SendRedPacketResult.DataBean.class.getName());
+            SendRedPacketResultV2.DataBean dataBean = (SendRedPacketResultV2.DataBean) data.getSerializableExtra(SendRedPacketResultV2.DataBean.class.getName());
             String messageExtra =  new Gson().toJson(dataBean);
 
             saveAndDisplayMessage(getResources().getString(R.string.label_message_from_red_packet, dataBean.getRemark()),
@@ -704,8 +704,9 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     @Override
     public void onChatInputRedPacket() {
-        Intent intentRedPacket = new Intent(FriendChatActivity.this, RedPacketActivity.class);
+        Intent intentRedPacket = new Intent(FriendChatActivity.this, RedPacketActivityV2.class);
         intentRedPacket.putExtra(Constant.RedPacketType.RED_PACKET_TYPE, Constant.RedPacketType.COMMON_RED_PACKET);
+        intentRedPacket.putExtra(Constant.CHAT_OTHRES_ID,frienAccount);
         startActivityForResult(intentRedPacket, SEND_RED_PACKET_REQUEST_CODE);
     }
 

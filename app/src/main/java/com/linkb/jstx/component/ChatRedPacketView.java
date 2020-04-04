@@ -14,36 +14,36 @@ import android.widget.Toast;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.wallet.RedPacketReceivedActivity;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.fragment.RedPacketFragment;
 import com.linkb.jstx.model.Message;
 import com.linkb.jstx.network.http.HttpRequestListener;
-import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.QueryRedPacketStatusResult;
-import com.linkb.jstx.network.result.SendRedPacketResult;
+import com.linkb.jstx.network.result.v2.RedpackgeGetInfoResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.REDPACKET_STATUS;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_MIME;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_NO_EXITED;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_RECEIVEDED;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_RECEIVEDED_BY;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_RECEIVEDED_EMPTY;
+import java.util.Objects;
+
 
 public class ChatRedPacketView extends CardView implements View.OnClickListener {
 
     private View backGroundView;
     private TextView remarkTv;
 
-    /** 是否已经领取过红包，false表示未领取
-    * */
+    /**
+     * 是否已经领取过红包，false表示未领取
+     */
     private Boolean enableOpenStatus = false;
 
     private Message message;
 
-    private SendRedPacketResult.DataBean mDataBean;
+    private SendRedPacketResultV2.DataBean mDataBean;
 
-    /** 红包状态， 0 ： 可领取， 1： 不存在， 2：已过期， 3： 已领完 ， 4：已领取
-     * */
+    /**
+     * 红包状态， 0 ： 可领取， 1： 不存在， 2：已过期， 3： 已领完 ， 4：已领取
+     */
     private int mRedPacketStatus;
 
     private RedPacketFragment mRedPacketFragment;
@@ -62,8 +62,7 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
     }
 
 
-
-    public void initRedPacket(SendRedPacketResult.DataBean dataBean, Message msg){
+    public void initRedPacket(SendRedPacketResultV2.DataBean dataBean, Message msg) {
         this.message = msg;
         this.mDataBean = dataBean;
         if (dataBean != null && !TextUtils.isEmpty(dataBean.getRemark())) {
@@ -71,57 +70,52 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
         }
 
         //查询红包是否已经被领取成功
-        HttpServiceManager.queryRedPacketEnabled(mDataBean.getUserAccount(), mDataBean.getRedFlag(), mQueryRedPacketEnabledListener);
+        HttpServiceManagerV2.redpackgeGetInfo(String.valueOf(mDataBean.getId()), mQueryRedPacketEnabledListener);
     }
 
     @Override
     public void onClick(View view) {
         //查询红包是否已经被领取成功
         clickRedPacket = true;
-        HttpServiceManager.queryRedPacketEnabled(mDataBean.getUserAccount(), mDataBean.getRedFlag(), mQueryRedPacketEnabledListener);
+        HttpServiceManagerV2.redpackgeGetInfo(String.valueOf(mDataBean.getId()), mQueryRedPacketEnabledListener);
     }
 
-    private void receiveRedPacket(){
-        if (enableOpenStatus || mRedPacketStatus == RED_PACKET_MIME){
+    private void receiveRedPacket(RedpackgeGetInfoResult result) {
+        if (Objects.requireNonNull(Global.getCurrentUser()).account.equals(mDataBean.getSendAccount()) ||enableOpenStatus) {
             //红包已经领取过, 直接进入领取详情页面
             Intent intent = new Intent(getContext(), RedPacketReceivedActivity.class);
-            intent.putExtra(SendRedPacketResult.DataBean.class.getName(), mDataBean);
-            intent.putExtra(REDPACKET_STATUS, mRedPacketStatus);
+            intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), result.getData());
+            intent.putExtra(QueryRedPacketStatusResult.REDPACKET_STATUS, mRedPacketStatus);
             getContext().startActivity(intent);
-        }else {
+        } else {
             //红包有效，可以领取
-            if (mRedPacketStatus != RED_PACKET_NO_EXITED){
-                if (mRedPacketFragment == null){
-                    mRedPacketFragment = RedPacketFragment.getInstance(mDataBean, mRedPacketStatus);
-                }
-                mRedPacketFragment.show(((FragmentActivity)getContext()).getSupportFragmentManager(), "RedPacketFragment");
-
-                updateRedPackedStatus(true);
-            }else {
-                Toast.makeText(getContext(), getResources().getString(R.string.red_packet_un_invailable), Toast.LENGTH_SHORT).show();
+            if (mRedPacketFragment == null) {
+                mRedPacketFragment = RedPacketFragment.getInstance(result.getData(), mRedPacketStatus);
             }
+            mRedPacketFragment.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "RedPacketFragment");
+            updateRedPackedStatus(true);
         }
     }
 
-    private void updateRedPackedStatus(boolean enableOpen){
-        if (enableOpen){
+    private void updateRedPackedStatus(boolean enableOpen) {
+        if (enableOpen) {
             backGroundView.setBackgroundColor(getResources().getColor(R.color.background_yellow_FCE1C4));
-        }else {
+        } else {
             backGroundView.setBackgroundColor(getResources().getColor(R.color.background_yellow_FEA841));
         }
     }
 
-    private HttpRequestListener<QueryRedPacketStatusResult> mQueryRedPacketEnabledListener = new HttpRequestListener<QueryRedPacketStatusResult>() {
+    private HttpRequestListener<RedpackgeGetInfoResult> mQueryRedPacketEnabledListener = new HttpRequestListener<RedpackgeGetInfoResult>() {
         @Override
-        public void onHttpRequestSucceed(QueryRedPacketStatusResult result, OriginalCall call) {
-            if (result.isSuccess()){
-                mRedPacketStatus = result.getData();
+        public void onHttpRequestSucceed(RedpackgeGetInfoResult result, OriginalCall call) {
+            if (result.isSuccess()) {
+                mRedPacketStatus = result.getData().getState();
                 //红包没有被用户领取状态
-                enableOpenStatus = (result.getData() == RED_PACKET_RECEIVEDED || result.getData() == RED_PACKET_RECEIVEDED_EMPTY || result.getData() == RED_PACKET_RECEIVEDED_BY);
+                enableOpenStatus = (mRedPacketStatus ==QueryRedPacketStatusResult.RED_PACKET_Receiveed);
                 updateRedPackedStatus(enableOpenStatus);
-                if (clickRedPacket){
+                if (clickRedPacket) {
                     clickRedPacket = false;
-                    receiveRedPacket();
+                    receiveRedPacket(result);
                 }
             }
         }

@@ -10,6 +10,7 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.component.BaseToMessageView;
 import com.linkb.jstx.network.model.SNSChatImage;
 import com.linkb.jstx.network.result.SendRedPacketResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 
 public class ToMessageRedPacketView extends BaseToMessageView {
 
@@ -32,7 +33,7 @@ public class ToMessageRedPacketView extends BaseToMessageView {
 
     @Override
     protected void displayMessage() {
-        SendRedPacketResult.DataBean dataBean = new Gson().fromJson(message.extra, SendRedPacketResult.DataBean.class);
+        SendRedPacketResultV2.DataBean dataBean = new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
         initRedPacket(dataBean);
 
 //        if (Constant.MessageStatus.STATUS_NO_SEND.equals(message.state)) {
@@ -43,7 +44,7 @@ public class ToMessageRedPacketView extends BaseToMessageView {
 //        }
     }
 
-    private void initRedPacket(SendRedPacketResult.DataBean dataBean) {
+    private void initRedPacket(SendRedPacketResultV2.DataBean dataBean) {
         redPacketView.setOnClickListener(redPacketView);
         redPacketView.initRedPacket(dataBean, message);
     }

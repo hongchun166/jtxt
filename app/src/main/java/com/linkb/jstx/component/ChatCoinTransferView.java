@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.wallet.CoinTransferReceivedDetailActivity;
-import com.linkb.jstx.activity.wallet.RedPacketReceivedActivity;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.model.Message;
@@ -23,7 +22,6 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.CoinReceiveResult;
 import com.linkb.jstx.network.result.CoinTransferResult;
 import com.linkb.jstx.network.result.QueryCoinTransferStatusResult;
-import com.linkb.jstx.network.result.QueryRedPacketStatusResult;
 import com.linkb.jstx.util.ConvertUtils;
 
 import static com.linkb.jstx.network.result.QueryCoinTransferStatusResult.COIN_TRANSFER_AVAILABLE;

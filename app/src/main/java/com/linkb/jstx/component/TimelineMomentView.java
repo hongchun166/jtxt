@@ -23,6 +23,7 @@ import com.linkb.jstx.listener.OnDialogButtonClickListener;
 import com.linkb.jstx.listener.OnItemClickedListener;
 import com.linkb.jstx.model.Comment;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.model.MomentExtra;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
 import com.linkb.jstx.network.result.BaseResult;
@@ -268,7 +269,7 @@ public class TimelineMomentView extends RelativeLayout implements OnClickListene
             CommentRepository.add(data.data);
         }
 
-        if (call.equalsDelete(URLConstant.COMMENT_DELETE_URL) && result.isSuccess()) {
+        if (call.equalsDelete(URLConstant.COMMENT_DELETE_URL) && result.isSuccess() ) {
 
             respondWindow.enablePariseMenu();
             Comment praise = getHasPraise();
@@ -300,7 +301,6 @@ public class TimelineMomentView extends RelativeLayout implements OnClickListene
     public void onRightButtonClicked() {
         customDialog.dismiss();
         HttpServiceManager.deleteMoment(moment.id,this);
-
     }
 
 

@@ -1,5 +1,7 @@
 package com.linkb.jstx.network.result;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class ReceivedRedPacketResult extends BaseResult implements Serializable {
@@ -32,6 +34,15 @@ public class ReceivedRedPacketResult extends BaseResult implements Serializable 
         private int type;
         private double endMoney;
         private double receiveMoney;
+        private double value;
+
+        public double getValue() {
+            return value;
+        }
+
+        public void setValue(double value) {
+            this.value = value;
+        }
 
         public int getType() {
             return type;

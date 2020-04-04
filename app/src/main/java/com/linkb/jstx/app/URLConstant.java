@@ -423,6 +423,11 @@ public class URLConstant {
     public static String  getRedBag;//抽红包(资讯)
     public static String  editorList;;//资讯列表
     public static String  editorInfo;//资讯详情
+
+    public static String  momentTimeline;//获取朋友圈内容列表
+    public static String  momentDelete;//删除朋友圈
+    public static String  momentSave;//发布帖子
+
     static {
         initialize();
         initializeV2();
@@ -459,6 +464,11 @@ public class URLConstant {
         getRedBag=API_URL + "editor/getRedBag";
         editorList=API_URL+"editor/list/{currentPage}/{type}";
         editorInfo=API_URL+"editor/{id}";
+
+        momentTimeline=API_URL+"moment/timeline?currentPage={currentPage}";
+        momentDelete=API_URL+"moment/delete";
+        momentSave=API_URL+"moment/save";
+
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";

@@ -237,9 +237,11 @@
         <activity android:name=".jstx.activity.wallet.BillDetailActivity" />
         <activity android:name=".jstx.activity.wallet.SelectBillTimeActivity" />
         <activity android:name=".jstx.activity.wallet.RedPacketActivity" />
+        <activity android:name=".jstx.activity.wallet.RedPacketActivityV2" />
         <activity android:name=".jstx.activity.wallet.TimeSelectActivity" />
         <activity android:name=".jstx.activity.wallet.RedPacketReceivedActivity" />
         <activity android:name=".jstx.activity.wallet.MoreCurrencyActivity" />
+        <activity android:name=".jstx.activity.wallet.MoreCurrencyActivityV2" />
         <activity android:name=".jstx.activity.wallet.RedPacketRecordActivity" />
         <activity
             android:name=".jstx.activity.wallet.CurrencyDetailsActivityV2"

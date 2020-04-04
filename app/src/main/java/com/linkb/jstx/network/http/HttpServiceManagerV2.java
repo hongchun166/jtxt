@@ -3,16 +3,23 @@ package com.linkb.jstx.network.http;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.URLConstant;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.model.Moment;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.network.result.CommonResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
 import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.network.result.FriendQueryResult;
 import com.linkb.jstx.network.result.GroupQueryResult;
+import com.linkb.jstx.network.result.MomentListResult;
 import com.linkb.jstx.network.result.NewsDataResult;
+import com.linkb.jstx.network.result.ReceivedRedPacketResult;
+import com.linkb.jstx.network.result.RedPacketReceivedMemberResult;
+import com.linkb.jstx.network.result.SendRedPacketResult;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
 import com.linkb.jstx.network.result.v2.CheckInGroupResult;
@@ -22,13 +29,17 @@ import com.linkb.jstx.network.result.v2.FindPersonsResult;
 import com.linkb.jstx.network.result.v2.GetActiveResult;
 import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
+import com.linkb.jstx.network.result.v2.GetReceiverDetailResultV2;
 import com.linkb.jstx.network.result.v2.GetRedBagResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
+import com.linkb.jstx.network.result.v2.RedpackgeGetInfoResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
+import com.linkb.jstx.util.MD5;
 
 public class HttpServiceManagerV2 {
     /**
@@ -380,4 +391,96 @@ public class HttpServiceManagerV2 {
         requestBody.addPathVariable("id", id);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
+
+    /**
+     * 获取朋友圈内容列表
+     * @param page
+     * @param listener
+     */
+    public static void queryMomentTimeline(String account,int page, HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.momentTimeline, MomentListResult.class);
+        requestBody.addPathVariable("account", account);
+        requestBody.addPathVariable("currentPage", page);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取朋友圈内容列表
+     * @param id
+     * @param listener
+     */
+    public static void deleteMomentById(long id,HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.momentDelete, MomentListResult.class);
+        requestBody.addParameter("id", id);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取朋友圈内容列表
+     * @param account
+     * @param listener
+     */
+    public static void momentSave(String account, Moment moment, HttpRequestListener listener) {
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.momentSave, CommonResult.class);
+        requestBody.addParameter("article",new Gson().toJson(moment));
+//        requestBody.addParameter("type", moment.type);
+//        requestBody.addParameter("content", moment.content);
+//        requestBody.addParameter("extra", moment.extra);
+//        requestBody.addParameter("text", moment.text);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 查看红包基本信息
+     * @param redPackgeId 红包ID
+     */
+    public static void redpackgeGetInfo(String redPackgeId,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/getInfo", RedpackgeGetInfoResult.class);
+        requestBody.addParameter("redPackgeId", redPackgeId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取红包领取详情(包括红包信息，和已领取的记录信息
+     * @param redPackgeId 红包ID
+     */
+    public static void redpackgeGetReceiverDetail(String redPackgeId,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/getReceiverDetail", GetReceiverDetailResultV2.class);
+//        requestBody.addParameter("userAccount", userAccount);
+        requestBody.addParameter("redPackgeId", redPackgeId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 领红包
+     * @param redPackgeId 红包ID
+     */
+    public static void redpackgeReceiver(String redPackgeId,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/receiverPackge", ReceivedRedPacketResult.class);
+//        requestBody.addParameter("userAccount", userAccount);
+        requestBody.addParameter("redPackgeId", redPackgeId);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 发送红包
+     * @param currencyId   币钟ID
+     * @param sendMoney     当redPacketType == 1 和 3时，为红包总额; 当当redPacketType == 2时，为单个红包金额
+     * @param remark  备足备注
+     * @param redCount  红包数量
+     * @param redType  红包类型   1 普通私人红包   2 群发红包（普通红包） 3 群发红包（拼手气红包）
+     *                 红包类型    1 表示普通红包, 2表示普通群发红包     3表示拼手气群发红包
+     * @param  receiver  红包接收人|接收群
+     * @param  tradePassword 支付密码
+     */
+    public static void redpackgeSend(int currencyId, String sendMoney, String remark, int redCount, int redType, String tradePassword,String receiver, HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/send", SendRedPacketResultV2.class);
+//        requestBody.addParameter("userAccount", userAccount);
+        requestBody.addParameter("currencyId", currencyId);
+        requestBody.addParameter("sendMoney", sendMoney);
+        requestBody.addParameter("redCount", redCount);
+        requestBody.addParameter("remark", remark);
+        requestBody.addParameter("redType", redType);
+        requestBody.addParameter("tradePassword", MD5.digest(tradePassword + "blink"));
+        requestBody.addParameter("receiver", receiver);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+
+
 }

@@ -18,23 +18,18 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.wallet.RedPacketReceivedActivity;
-import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.network.http.HttpRequestListener;
-import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.QueryRedPacketStatusResult;
 import com.linkb.jstx.network.result.ReceivedRedPacketResult;
-import com.linkb.jstx.network.result.SendRedPacketResult;
+import com.linkb.jstx.network.result.v2.RedpackgeGetInfoResult;
 import com.linkb.jstx.util.ConvertUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.REDPACKET_STATUS;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_AVAILABLE;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_RECEIVEDED;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_RECEIVEDED_EMPTY;
-import static com.linkb.jstx.network.result.QueryRedPacketStatusResult.RED_PACKET_TIME_OUT;
 
 public class RedPacketFragment extends BaseDialogFragment implements HttpRequestListener<ReceivedRedPacketResult> {
 
@@ -48,16 +43,17 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
     TextView checkDetailBtn;
 
 
-    private SendRedPacketResult.DataBean mDataBean;
-    /** 红包状态， 0 ： 可领取， 1： 不存在， 2：已过期， 3： 已领完 ， 4：已领取, 5:自己发的红包
-    * */
+    private RedpackgeGetInfoResult.DataBean mDataBean;
+    /**
+     * 红包状态， 0 ： 可领取， 1： 不存在， 2：已过期， 3： 已领完 ， 4：已领取, 5:自己发的红包
+     */
     private int mRedPacketStatus;
 
-    public static RedPacketFragment getInstance(SendRedPacketResult.DataBean mDataBean, int redPacketStatus) {
+    public static RedPacketFragment getInstance(RedpackgeGetInfoResult.DataBean mDataBean, int redPacketStatus) {
         RedPacketFragment fragment = new RedPacketFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(SendRedPacketResult.DataBean.class.getName(), mDataBean);
-        bundle.putInt(REDPACKET_STATUS, redPacketStatus);
+        bundle.putSerializable(RedpackgeGetInfoResult.DataBean.class.getName(), mDataBean);
+        bundle.putInt(QueryRedPacketStatusResult.REDPACKET_STATUS, redPacketStatus);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -68,7 +64,7 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
         WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
         params.width = ConvertUtils.dp2px(240);
         params.height = ConvertUtils.dp2px(360);
-        getDialog().getWindow().setAttributes( params);
+        getDialog().getWindow().setAttributes(params);
     }
 
     @Nullable
@@ -81,7 +77,7 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
     }
 
     @OnClick(R.id.open_btn_frameLayout)
-    public void onOpenRedPaclet(){
+    public void onOpenRedPaclet() {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(openBtnView, "rotationY", 0f, 720f);
         objectAnimator.setDuration(2000);
         objectAnimator.start();
@@ -89,23 +85,22 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                HttpServiceManager.receiveRedPacket(mDataBean.getCurrencyId(), mDataBean.getUserAccount(), mDataBean.getRedFlag(), RedPacketFragment.this);
+                HttpServiceManagerV2.redpackgeReceiver(String.valueOf(mDataBean.getId()), RedPacketFragment.this);
             }
         });
     }
 
     @OnClick(R.id.textView85)
-    public void checkRedPacketDetail(){
+    public void checkRedPacketDetail() {
         //红包领取成功
         Intent intent = new Intent(getActivity(), RedPacketReceivedActivity.class);
-        intent.putExtra(SendRedPacketResult.DataBean.class.getName(), mDataBean);
-        intent.putExtra(SendRedPacketResult.DataBean.class.getName(), mDataBean);
+        intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), mDataBean);
         startActivity(intent);
         RedPacketFragment.this.dismiss();
     }
 
     @OnClick(R.id.imageView28)
-    public void fragmentDismiss(){
+    public void fragmentDismiss() {
         this.dismiss();
     }
 
@@ -113,28 +108,28 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
-        if (bundle != null){
-            mDataBean = (SendRedPacketResult.DataBean) bundle.getSerializable(SendRedPacketResult.DataBean.class.getName());
-            mRedPacketStatus = bundle.getInt(REDPACKET_STATUS);
-            redPacketSender.setText(getResources().getString(R.string.red_packet_sender, mDataBean.getName()));
+        if (bundle != null) {
+            mDataBean = (RedpackgeGetInfoResult.DataBean) bundle.getSerializable(RedpackgeGetInfoResult.DataBean.class.getName());
+            mRedPacketStatus = bundle.getInt(QueryRedPacketStatusResult.REDPACKET_STATUS);
+            redPacketSender.setText(getResources().getString(R.string.red_packet_sender, mDataBean.getUserName()));
             updateRedPacketStatus(mRedPacketStatus);
         }
 
     }
 
-    private void updateRedPacketStatus(int redPacketStatus){
-        switch (redPacketStatus){
-            case RED_PACKET_AVAILABLE:
+    private void updateRedPacketStatus(int redPacketStatus) {
+        switch (redPacketStatus) {
+            case QueryRedPacketStatusResult.RED_PACKET_AVAILABLE:
                 redPacketRemark.setText(mDataBean.getRemark());
                 openBtnView.setVisibility(View.VISIBLE);
                 checkDetailBtn.setVisibility(View.GONE);
                 break;
-            case RED_PACKET_TIME_OUT:
+            case QueryRedPacketStatusResult.RED_PACKET_TimeOut:
                 redPacketRemark.setText(getResources().getString(R.string.red_packet_time_out));
                 openBtnView.setVisibility(View.GONE);
                 checkDetailBtn.setVisibility(View.GONE);
                 break;
-            case RED_PACKET_RECEIVEDED_EMPTY:
+            case QueryRedPacketStatusResult.RED_PACKET_Receiveed:
                 redPacketRemark.setText(getResources().getString(R.string.red_packet_empty));
                 openBtnView.setVisibility(View.GONE);
                 checkDetailBtn.setVisibility(View.VISIBLE);
@@ -153,14 +148,15 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
 
     @Override
     public void onHttpRequestSucceed(ReceivedRedPacketResult result, OriginalCall call) {
-        if (result.isSuccess()){
+        if (result.isSuccess()) {
             //红包领取成功
             Intent intent = new Intent(getActivity(), RedPacketReceivedActivity.class);
-            intent.putExtra(SendRedPacketResult.DataBean.class.getName(), mDataBean);
+            intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), mDataBean);
             startActivity(intent);
             RedPacketFragment.this.dismiss();
-        }else {
-            showToastView(getResources().getString(R.string.received_red_packet_error));
+        } else {
+            showToastView(result.message + "");
+//            showToastView(getResources().getString(R.string.received_red_packet_error));
         }
     }
 

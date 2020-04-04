@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.network.model.SNSChatImage;
 import com.linkb.jstx.network.result.SendRedPacketResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 
 public class FromMessageRedPacketView extends BaseToMessageView {
 
@@ -33,12 +34,12 @@ public class FromMessageRedPacketView extends BaseToMessageView {
             setVisibility(GONE);
 
         }else {
-            SendRedPacketResult.DataBean dataBean = new Gson().fromJson(message.extra, SendRedPacketResult.DataBean.class);
+            SendRedPacketResultV2.DataBean dataBean = new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
             initRedPacket(dataBean);
         }
     }
 
-    private void initRedPacket(SendRedPacketResult.DataBean dataBean) {
+    private void initRedPacket(SendRedPacketResultV2.DataBean dataBean) {
         redPacketView.setOnClickListener(redPacketView);
         redPacketView.initRedPacket(dataBean, message);
     }

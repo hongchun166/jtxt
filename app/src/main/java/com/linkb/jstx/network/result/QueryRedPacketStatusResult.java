@@ -2,6 +2,9 @@ package com.linkb.jstx.network.result;
 
 public class QueryRedPacketStatusResult extends BaseResult {
 
+    public static final int RED_PACKET_TimeOut = 1;// 1 已经过期
+    public static final int RED_PACKET_Receiveed = 2;// 2 已经领完
+
     public static final int RED_PACKET_AVAILABLE = 0;
     public static final int RED_PACKET_NO_EXITED = 1;
     public static final int RED_PACKET_TIME_OUT = 2;

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.androidadvance.topsnackbar.TSnackbar;
 import com.linkb.jstx.activity.contact.GroupDetailActivity;
 import com.linkb.jstx.activity.contact.GroupMemberAtSelectActivity;
-import com.linkb.jstx.activity.wallet.RedPacketActivity;
+import com.linkb.jstx.activity.wallet.RedPacketActivityV2;
 import com.linkb.jstx.app.ClientConfig;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.LvxinApplication;
@@ -396,9 +396,9 @@ public class GroupChatActivity extends FriendChatActivity implements ViewTreeObs
 
     @Override
     public void onChatInputRedPacket() {
-        Intent intentRedPacket = new Intent(GroupChatActivity.this, RedPacketActivity.class);
+        Intent intentRedPacket = new Intent(GroupChatActivity.this, RedPacketActivityV2.class);
         intentRedPacket.putExtra(Constant.RedPacketType.RED_PACKET_TYPE, Constant.RedPacketType.COMMON_GROUP_LURKEY_RED_PACKET);
-        intentRedPacket.putExtra(Constant.GROUP_ID, groupId);
+        intentRedPacket.putExtra(Constant.CHAT_OTHRES_ID, groupId);
         startActivityForResult(intentRedPacket, SEND_RED_PACKET_REQUEST_CODE);
     }
 
