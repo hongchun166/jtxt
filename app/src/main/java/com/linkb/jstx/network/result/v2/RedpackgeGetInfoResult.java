@@ -50,12 +50,21 @@ public class RedpackgeGetInfoResult extends BaseResult {
         private String sendTime;
         private String endTime;
         private int currencyId;
+        private String currencyName;
         private int state;
         private String remark;
         private String userName;
 
         public String getUserName() {
             return userName;
+        }
+
+        public String getCurrencyName() {
+            return currencyName;
+        }
+
+        public void setCurrencyName(String currencyName) {
+            this.currencyName = currencyName;
         }
 
         public void setUserName(String userName) {

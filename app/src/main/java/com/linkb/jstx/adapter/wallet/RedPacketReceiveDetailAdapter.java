@@ -1,5 +1,6 @@
 package com.linkb.jstx.adapter.wallet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,8 @@ import android.widget.TextView;
 import com.linkb.R;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.network.result.QueryAssetsResult;
-import com.linkb.jstx.network.result.RedPacketReceivedMemberResult;
+
+import com.linkb.jstx.network.result.v2.GetReceiverDetailResultV2;
 import com.linkb.jstx.util.ConvertUtils;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.linkb.jstx.util.TimeUtils;
@@ -28,16 +30,20 @@ public class RedPacketReceiveDetailAdapter extends RecyclerView.Adapter {
     private static final int HEADER = 0;
     private static final int CONTENT = 1;
 
-    private List<RedPacketReceivedMemberResult.DataBean> mList = new ArrayList<>();
+    private List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> mList = new ArrayList<>();
     private Context mContext;
     /**红包总数
      * */
     private int mRedPacketTotalCount;
-
-    public RedPacketReceiveDetailAdapter( Context mContext, List<RedPacketReceivedMemberResult.DataBean> mList, int totalCount) {
+    String dangWei="元";
+    public RedPacketReceiveDetailAdapter( Context mContext, List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> mList, int totalCount) {
         this.mList = mList;
         this.mContext = mContext;
         this.mRedPacketTotalCount = totalCount;
+    }
+
+    public void setDangWei(String dangWei) {
+        this.dangWei = dangWei;
     }
 
     @NonNull
@@ -52,20 +58,25 @@ public class RedPacketReceiveDetailAdapter extends RecyclerView.Adapter {
         }
     }
 
+    @SuppressLint("StringFormatMatches")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         if (viewHolder instanceof  RedPacketReceiveDetailViewHeaderHolder){
             RedPacketReceiveDetailViewHeaderHolder headerHolder = (RedPacketReceiveDetailViewHeaderHolder) viewHolder;
-            headerHolder.headerTv.setText(mContext.getResources().getString(R.string.red_packet_open_detail, mList.size(), mRedPacketTotalCount));
+            headerHolder.headerTv.setText(String.format(mContext.getResources().getString(R.string.red_packet_open_detail),mList.size(),mRedPacketTotalCount));
         }else if (viewHolder instanceof  RedPacketReceiveDetailViewHolder){
             RedPacketReceiveDetailViewHolder holder = (RedPacketReceiveDetailViewHolder) viewHolder;
-            RedPacketReceivedMemberResult.DataBean dataBean = mList.get(i - 1);
+            GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean dataBean = mList.get(i - 1);
 
-            holder.avatarImg.load(FileURLBuilder.getUserIconUrl(dataBean.getAccount()), R.mipmap.lianxiren);
-            holder.nameTv.setText(dataBean.getUsername());
-            holder.timeTv.setText(TimeUtils.millis2String(dataBean.getCreateTime(), TimeUtils.getDefaultFormat()));
-            holder.receivedRedPacketTv.setText(mContext.getResources().getString(R.string.red_packet_receive_money,
-                    ConvertUtils.doubleToString(dataBean.getMoney()), dataBean.getCurrencyName()));
+            holder.avatarImg.load(FileURLBuilder.getUserIconUrl(dataBean.getReceiverAccount()), R.mipmap.lianxiren);
+            holder.nameTv.setText(dataBean.getReceiverAccount());
+            holder.timeTv.setText(dataBean.getTimeFinalStr());
+
+            holder.receivedRedPacketTv.setText(mContext.getResources().getString(R.string.red_packet_receive_money,dataBean.getReceiverMoney(),dangWei));
+
+//            holder.timeTv.setText(TimeUtils.millis2String(dataBean.getReceiverTime(), TimeUtils.getDefaultFormat()));
+//            holder.receivedRedPacketTv.setText(mContext.getResources().getString(R.string.red_packet_receive_money,
+//                    ConvertUtils.doubleToString(dataBean.getMoney()), dataBean.getCurrencyName()));
         }
     }
 
@@ -83,13 +94,13 @@ public class RedPacketReceiveDetailAdapter extends RecyclerView.Adapter {
         return mList.size() + 1;
     }
 
-    public void addAll(List<RedPacketReceivedMemberResult.DataBean> list) {
+    public void addAll(List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> list) {
         int index = mList.size();
         mList.addAll(list);
         notifyItemRangeInserted(index, list.size());
     }
 
-    public void replaceAll(List<RedPacketReceivedMemberResult.DataBean> list){
+    public void replaceAll(List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> list){
         mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();

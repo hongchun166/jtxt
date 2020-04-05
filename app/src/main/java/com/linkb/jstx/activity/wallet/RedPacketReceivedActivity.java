@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.QueryRedPacketStatusResult;
-import com.linkb.jstx.network.result.RedPacketReceivedMemberResult;
+import com.linkb.jstx.network.result.v2.GetReceiverDetailResultV2;
 import com.linkb.jstx.network.result.v2.RedpackgeGetInfoResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -34,7 +35,7 @@ import butterknife.OnClick;
 
 /**  红包领取详情页面
 * */
-public class RedPacketReceivedActivity extends BaseActivity implements HttpRequestListener<RedPacketReceivedMemberResult> {
+public class RedPacketReceivedActivity extends BaseActivity implements HttpRequestListener<GetReceiverDetailResultV2> {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -58,7 +59,7 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
     private int mRedPacketStatus;
 
     private RedPacketReceiveDetailAdapter mAdapter;
-    private List<RedPacketReceivedMemberResult.DataBean> mList = new ArrayList<>();
+    private List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> mList = new ArrayList<>();
 
 
     /**    收到的红包实体
@@ -89,36 +90,40 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
 
         mDataBean = (RedpackgeGetInfoResult.DataBean) getIntent().getSerializableExtra(RedpackgeGetInfoResult.DataBean.class.getName());
         mRedPacketStatus = getIntent().getIntExtra(QueryRedPacketStatusResult.REDPACKET_STATUS, 0);
-        recyclerView.setAdapter(mAdapter = new RedPacketReceiveDetailAdapter(this, mList, mDataBean.getSendNumber()));
+        recyclerView.setAdapter(mAdapter = new RedPacketReceiveDetailAdapter(this, mList, getRedPackgeBeanInfo().getSendNumber()));
 
         initDate();
     }
-
+    private RedpackgeGetInfoResult.DataBean getRedPackgeBeanInfo(){
+        return mDataBean;
+    }
     private void initDate(){
-        avatar.load(FileURLBuilder.getUserIconUrl(mDataBean.getSendAccount()), R.mipmap.lianxiren, 999);
-        title.setText(getResources().getString(R.string.red_packet_sender, mDataBean.getSendAccount()));
-        remarkTv.setText(mDataBean.getRemark());
-        totalRedPacketTv.setText(String.valueOf(mDataBean.getMoney()));
-        redPacketCurrencyTv.setText(mDataBean.getRemark());
+        avatar.load(FileURLBuilder.getUserIconUrl(getRedPackgeBeanInfo().getSendAccount()), R.mipmap.lianxiren, 999);
+        title.setText(getResources().getString(R.string.red_packet_sender, getRedPackgeBeanInfo().getUserName()));
+        remarkTv.setText(getRedPackgeBeanInfo().getRemark());
+        totalRedPacketTv.setText(String.valueOf(getRedPackgeBeanInfo().getMoney()));
+        String cName= TextUtils.isEmpty(getRedPackgeBeanInfo().getCurrencyName())?"元":getRedPackgeBeanInfo().getCurrencyName();
+        redPacketCurrencyTv.setText(cName);
+        mAdapter.setDangWei(cName);
 
-        if (mDataBean.getSendAccount().equals(Global.getCurrentUser().getAccount())){
+//        if (getRedPackgeBeanInfo().getSendAccount().equals(Global.getCurrentUser().getAccount())
+        if( getRedPackgeBeanInfo().getType()==Constant.RedPacketType.COMMON_RED_PACKET){
             //自己发的红包，等待对方领取
             refreshLayout.setVisibility(View.GONE);
             checkBalanceView.setVisibility(View.GONE);
             redPacketsTipsLly.setVisibility(View.VISIBLE);
         }else {
-            redPacketsTipsLly.setVisibility(View.GONE);
-            if (mDataBean.getType() == Constant.RedPacketType.COMMON_RED_PACKET){
-                refreshLayout.setVisibility(View.GONE);
-                checkBalanceView.setVisibility(View.VISIBLE);
-            }else {
+//            redPacketsTipsLly.setVisibility(View.GONE);
+//            if (getRedPackgeBeanInfo().getType() == Constant.RedPacketType.COMMON_RED_PACKET){
+//                refreshLayout.setVisibility(View.GONE);
+//                checkBalanceView.setVisibility(View.VISIBLE);
+//            }else {
                 refreshLayout.setVisibility(View.VISIBLE);
                 checkBalanceView.setVisibility(View.GONE);
-                HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(mDataBean.getId()),  this);
-            }
+//            }
         }
 
-
+        HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(getRedPackgeBeanInfo().getId()),  this);
     }
 
     @Override
@@ -143,9 +148,9 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
     }
 
     @Override
-    public void onHttpRequestSucceed(RedPacketReceivedMemberResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(GetReceiverDetailResultV2 result, OriginalCall call) {
         if (result.isSuccess()){
-            mAdapter.replaceAll(result.getData());
+            mAdapter.replaceAll(result.getData().getRedpackgeReceivers());
         }
     }
 

@@ -81,7 +81,7 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
     }
 
     private void receiveRedPacket(RedpackgeGetInfoResult result) {
-        if (Objects.requireNonNull(Global.getCurrentUser()).account.equals(mDataBean.getSendAccount()) ||enableOpenStatus) {
+        if ((Objects.requireNonNull(Global.getCurrentUser()).account.equals(mDataBean.getSendAccount())&&mDataBean.getType()==1) ||enableOpenStatus) {
             //红包已经领取过, 直接进入领取详情页面
             Intent intent = new Intent(getContext(), RedPacketReceivedActivity.class);
             intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), result.getData());

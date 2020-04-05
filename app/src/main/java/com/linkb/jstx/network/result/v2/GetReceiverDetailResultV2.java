@@ -4,9 +4,11 @@ import android.support.annotation.Keep;
 
 import com.google.gson.annotations.SerializedName;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.util.TimeUtils;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Keep
 public class GetReceiverDetailResultV2 extends BaseResult {
@@ -96,6 +98,9 @@ public class GetReceiverDetailResultV2 extends BaseResult {
             public void setReceiverTime(String receiverTime) {
                 this.receiverTime = receiverTime;
             }
+            public String getTimeFinalStr(){
+                return TimeUtils.timeToStr(receiverTime);
+            }
         }
 
         public static class RedpackgeBean {
@@ -126,9 +131,10 @@ public class GetReceiverDetailResultV2 extends BaseResult {
             private String sendTime;
             private String endTime;
             private int currencyId;
+            private String currencyName;
             private int state;
             private String remark;
-            String userName;
+            private String userName;
 
             public int getId() {
                 return id;
@@ -142,12 +148,20 @@ public class GetReceiverDetailResultV2 extends BaseResult {
                 return sendAccount;
             }
 
+            public String getCurrencyName() {
+                return currencyName;
+            }
+
+            public void setCurrencyName(String currencyName) {
+                this.currencyName = currencyName;
+            }
+
             public void setSendAccount(String sendAccount) {
                 this.sendAccount = sendAccount;
             }
 
             public String getUserName() {
-                return userName;
+               return userName;
             }
 
             public void setUserName(String userName) {
