@@ -45,13 +45,15 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
         searchContactsViewHolder.dataBean = dataBean;
         searchContactsViewHolder.viewHead.load(FileURLBuilder.getUserIconUrl(dataBean.getAccount()), R.mipmap.lianxiren, 999);
         searchContactsViewHolder.viewName.setText(dataBean.getName());
-        if (!TextUtils.isEmpty(dataBean.getTag()))
-            searchContactsViewHolder.viewTagArr.setText(String.valueOf(dataBean.getTag()));
-        if (!TextUtils.isEmpty(dataBean.getTag()))
+
+        if (!TextUtils.isEmpty(dataBean.getArea()))
             searchContactsViewHolder.viewArea.setText(String.valueOf(dataBean.getArea()));
         if (!"0".equals(dataBean.getIsFriends())) {
             searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.color.white);
             searchContactsViewHolder.viewAddFriend.setText(R.string.added);
+        }else if(FriendRepository.hasFriendRelationSndApply(dataBean.getAccount())){
+            searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.color.white);
+            searchContactsViewHolder.viewAddFriend.setText(R.string.applyed);
         } else {
             searchContactsViewHolder.viewAddFriend.setBackgroundResource(R.mipmap.ic_bg_btn_add_friend);
             searchContactsViewHolder.viewAddFriend.setText("");

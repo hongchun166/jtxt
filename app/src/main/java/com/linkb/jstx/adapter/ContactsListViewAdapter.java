@@ -19,6 +19,7 @@ import com.linkb.jstx.adapter.viewholder.ContactsViewHolder;
 import com.linkb.jstx.adapter.viewholder.TextViewHolder;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.comparator.NameAscComparator;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.StarMarkRepository;
 import com.linkb.jstx.fragment.FriendListFragmentV2;
 import com.linkb.jstx.network.result.FriendListResult;
@@ -46,12 +47,23 @@ public class ContactsListViewAdapter extends RecyclerView.Adapter implements Vie
     private Context mContext;
 
 
+
     public ContactsListViewAdapter(Context mContext, List<String> starMarkList) {
         this.mContext = mContext;
         this.mStarMarkList = starMarkList;
     }
 
-
+    public void notifyDataSetChangedNewFrienApplyChange(){
+        if(mContentList.size()>0){
+            if(mContentList.get(0) instanceof FriendListResult.FriendShip){
+                FriendListResult.FriendShip friendShip= (FriendListResult.FriendShip) mContentList.get(0);
+                if(FriendListFragmentV2.LOCAL_NEW_FRIEND_ID.equals(friendShip.getId())){
+                    friendShip.setState(FriendRepository.getFriendRelationNewApply()?"1":"0");
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
     public void notifyDataSetChanged(int contactsSize, List<Object> contentList) {
         mContactsSize = contactsSize;
         this.mContentList.clear();
@@ -104,13 +116,18 @@ public class ContactsListViewAdapter extends RecyclerView.Adapter implements Vie
             return;
         }
 
-        if (holder instanceof ContactsViewHolder)
-        {
+        if (holder instanceof ContactsViewHolder){
             FriendListResult.FriendShip friend = (FriendListResult.FriendShip) mContentList.get(position);
             ContactsViewHolder contactsHolder = (ContactsViewHolder) holder;
             if(friend.getId().equals(FriendListFragmentV2.LOCAL_NEW_FRIEND_ID)){
+               if(FriendRepository.getFriendRelationNewApply()){
+                   contactsHolder.viewRedMsg.setVisibility(View.VISIBLE);
+               }else {
+                   contactsHolder.viewRedMsg.setVisibility(View.GONE);
+               }
                 contactsHolder.icon.load(FileURLBuilder.getUserIconUrl(friend.getFriendAccount()), R.mipmap.newfriend, 999);
             }else {
+                contactsHolder.viewRedMsg.setVisibility(View.GONE);
                 contactsHolder.icon.load(FileURLBuilder.getUserIconUrl(friend.getFriendAccount()), R.mipmap.lianxiren, 999);
             }
             contactsHolder.name.setText(friend.getName());
@@ -214,7 +231,10 @@ public class ContactsListViewAdapter extends RecyclerView.Adapter implements Vie
         {
             FriendListResult.FriendShip friend = (FriendListResult.FriendShip) v.getTag();
             if(FriendListFragmentV2.LOCAL_NEW_FRIEND_ID.equals(friend.getId())){
+
+                FriendRepository.updateFriendRelationNewApply(false);
                 ApplyFriendBeActivityV2.navToActApplyFriendBe(mContext);
+                notifyDataSetChangedNewFrienApplyChange();
             }else {
                 Intent intent = new Intent(v.getContext(), FriendChatActivity.class);
                 intent.putExtra(Constant.CHAT_OTHRES_ID, friend.getFriendAccount());

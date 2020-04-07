@@ -15,6 +15,7 @@ import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.CurrencyListResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListCurrenCyResult;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MoreCurrencyActivityV2 extends BaseActivity implements HttpRequestListener<ListMyCurrencyResult>, MoreCurrencyAdapter.CurrencySelectListener {
+public class MoreCurrencyActivityV2 extends BaseActivity implements HttpRequestListener<RedpackgeListCurrenCyResult>, MoreCurrencyAdapter.CurrencySelectListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -65,22 +66,22 @@ public class MoreCurrencyActivityV2 extends BaseActivity implements HttpRequestL
 
     private void initDate() {
         User seld=Global.getCurrentUser();
-        HttpServiceManagerV2.listMyCurrency(seld.getAccount(),"",this);
+        HttpServiceManagerV2.redpackgeListCurrenCy(seld.getAccount(),this);
     }
 
     @Override
-    public void onHttpRequestSucceed(ListMyCurrencyResult result, OriginalCall call) {
+    public void onHttpRequestSucceed(RedpackgeListCurrenCyResult result, OriginalCall call) {
         refreshLayout.finishRefresh();
         if (result.isSuccess()){
             List<CurrencyListResult.DataListBean> beanList=new ArrayList<>();
             if(result.getData()!=null){
-                for (ListMyCurrencyResult.DataBean datum : result.getData()) {
+                for (RedpackgeListCurrenCyResult.DataBean datum : result.getData()) {
                     CurrencyListResult.DataListBean dataListBean=new CurrencyListResult.DataListBean();
                     dataListBean.setCurrencyIcon(datum.getCurrencyIcon());
                     dataListBean.setCurrencyName(datum.getCurrencyName());
-                    dataListBean.setAmount(datum.getBalance());
+                    dataListBean.setAmount(0);
                     dataListBean.setCurrencyMark(datum.getCurrencyName());
-                    dataListBean.setId(datum.getCurrencyId());
+                    dataListBean.setId(datum.getId());
                     beanList.add(dataListBean);
                 }
             }

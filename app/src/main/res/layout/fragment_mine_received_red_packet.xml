@@ -125,6 +125,18 @@
         app:layout_constraintStart_toEndOf="@+id/textView94"
         app:layout_constraintTop_toBottomOf="@+id/textView99" />
 
+    <TextView
+        android:id="@+id/viewReceiveRedCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/receive_red_packer_count"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/tex_color_gray_999999"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -134,7 +146,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView98" />
+        app:layout_constraintTop_toBottomOf="@+id/viewReceiveRedCount" />
 
     <TextView
         android:id="@+id/textView104"

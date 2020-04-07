@@ -11,6 +11,7 @@ import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
@@ -73,6 +74,7 @@ public class ApplyFriendActivityV2 extends BaseActivity  {
                 if(TextUtils.isEmpty(result.message)){
                     result.message=getString(R.string.already_commit_apply_friend);
                 }
+                FriendRepository.updateFriendRelationSndApply(mFriend.account);
                 showToastView(result.message);
                 LvxinApplication.sendLocalBroadcast(new Intent(Constant.Action.ACTION_RELOAD_CONTACTS));
                 finish();

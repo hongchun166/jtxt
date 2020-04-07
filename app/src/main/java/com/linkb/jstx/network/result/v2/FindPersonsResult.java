@@ -312,31 +312,24 @@ public class FindPersonsResult extends BaseResult {
              * "tag": "比特币",
              * "area": "加拿大-伦敦",
              * disabled : false
+             *
+             *
+             * {"area":"湖北-武汉","isFriends":"0","account":"13823526884","name":"冰室123"}
              */
 
+
+            private String area;
+            private String isFriends;
             private String account;
             private String name;
-            private String telephone;
-            private String email;
-            private String code;
-            private String gender;
-            private String motto;
-            private String isLoginFlag;
-            private String state;
-            private int regTime;
-            private String tradePassword;
-            private String inviteCode;
-            private int referrerNumber;
-            private int jianjieReferrerNumber;
-            private double lockBalanceFreed;
-            private double lot;
-            private double lat;
-            private boolean disabled;
-            private String position;//职务
-            private String marrriage;
-            private String industry;//行业
-            private String tag;
-            private String area;
+
+            public String getArea() {
+                return area;
+            }
+
+            public void setArea(String area) {
+                this.area = area;
+            }
 
             public String getIsFriends() {
                 return isFriends;
@@ -345,8 +338,6 @@ public class FindPersonsResult extends BaseResult {
             public void setIsFriends(String isFriends) {
                 this.isFriends = isFriends;
             }
-
-            private String isFriends;
 
             public String getAccount() {
                 return account;
@@ -362,174 +353,6 @@ public class FindPersonsResult extends BaseResult {
 
             public void setName(String name) {
                 this.name = name;
-            }
-
-            public String getTelephone() {
-                return telephone;
-            }
-
-            public void setTelephone(String telephone) {
-                this.telephone = telephone;
-            }
-
-            public String getEmail() {
-                return email;
-            }
-
-            public void setEmail(String email) {
-                this.email = email;
-            }
-
-            public String getCode() {
-                return code;
-            }
-
-            public void setCode(String code) {
-                this.code = code;
-            }
-
-            public String getGender() {
-                return gender;
-            }
-
-            public void setGender(String gender) {
-                this.gender = gender;
-            }
-
-            public String getMotto() {
-                return motto;
-            }
-
-            public void setMotto(String motto) {
-                this.motto = motto;
-            }
-
-            public String getIsLoginFlag() {
-                return isLoginFlag;
-            }
-
-            public void setIsLoginFlag(String isLoginFlag) {
-                this.isLoginFlag = isLoginFlag;
-            }
-
-            public String getState() {
-                return state;
-            }
-
-            public void setState(String state) {
-                this.state = state;
-            }
-
-            public int getRegTime() {
-                return regTime;
-            }
-
-            public void setRegTime(int regTime) {
-                this.regTime = regTime;
-            }
-
-            public String getTradePassword() {
-                return tradePassword;
-            }
-
-            public void setTradePassword(String tradePassword) {
-                this.tradePassword = tradePassword;
-            }
-
-            public String getInviteCode() {
-                return inviteCode;
-            }
-
-            public void setInviteCode(String inviteCode) {
-                this.inviteCode = inviteCode;
-            }
-
-            public int getReferrerNumber() {
-                return referrerNumber;
-            }
-
-            public void setReferrerNumber(int referrerNumber) {
-                this.referrerNumber = referrerNumber;
-            }
-
-            public int getJianjieReferrerNumber() {
-                return jianjieReferrerNumber;
-            }
-
-            public void setJianjieReferrerNumber(int jianjieReferrerNumber) {
-                this.jianjieReferrerNumber = jianjieReferrerNumber;
-            }
-
-            public double getLockBalanceFreed() {
-                return lockBalanceFreed;
-            }
-
-            public void setLockBalanceFreed(double lockBalanceFreed) {
-                this.lockBalanceFreed = lockBalanceFreed;
-            }
-
-            public double getLot() {
-                return lot;
-            }
-
-            public void setLot(double lot) {
-                this.lot = lot;
-            }
-
-            public double getLat() {
-                return lat;
-            }
-
-            public void setLat(double lat) {
-                this.lat = lat;
-            }
-
-            public String getPosition() {
-                return position;
-            }
-
-            public void setPosition(String position) {
-                this.position = position;
-            }
-
-            public String getMarrriage() {
-                return marrriage;
-            }
-
-            public void setMarrriage(String marrriage) {
-                this.marrriage = marrriage;
-            }
-
-            public String getIndustry() {
-                return industry;
-            }
-
-            public void setIndustry(String industry) {
-                this.industry = industry;
-            }
-
-            public String getTag() {
-                return tag;
-            }
-
-            public void setTag(String tag) {
-                this.tag = tag;
-            }
-
-            public String getArea() {
-                return area;
-            }
-
-            public void setArea(String area) {
-                this.area = area;
-            }
-
-            public boolean isDisabled() {
-                return disabled;
-            }
-
-            public void setDisabled(boolean disabled) {
-                this.disabled = disabled;
             }
         }
     }

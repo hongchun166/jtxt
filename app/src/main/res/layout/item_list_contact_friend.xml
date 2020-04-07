@@ -57,4 +57,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon" />
 
+    <ImageView
+        android:id="@+id/viewRedMsg"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/background_red_with_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
+        />
 </android.support.constraint.ConstraintLayout>

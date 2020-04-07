@@ -84,7 +84,7 @@ public class ChatPersonCardsView extends CardView implements View.OnClickListene
     private HttpRequestListener<BasePersonInfoResult> queryPersonInfoListener = new HttpRequestListener<BasePersonInfoResult>() {
         @Override
         public void onHttpRequestSucceed(BasePersonInfoResult result, OriginalCall call) {
-            if (result.isSuccess()){
+            if (result.isSuccess() && result.getData()!=null){
                 mFriend = User.UserToFriend(result.getData());
                 FriendRepository.save(mFriend);
                 //查询是否是好友

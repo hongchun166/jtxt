@@ -194,13 +194,13 @@ public class HomeActivity extends CIMMonitorActivity implements OnTabChangeListe
 
 
     private void showFragment(boolean enableShow){
-        if (enableShow){
-            enableGift = false;
-            if (mRegisterGiftFragment == null) {
-                mRegisterGiftFragment = RegisterGiftFragment.getInstance(mDataBean);
-            }
-            mRegisterGiftFragment.show(HomeActivity.this.getSupportFragmentManager(), "RegisterGiftFragment");
-        }
+//        if (enableShow){
+//            enableGift = false;
+//            if (mRegisterGiftFragment == null) {
+//                mRegisterGiftFragment = RegisterGiftFragment.getInstance(mDataBean);
+//            }
+//            mRegisterGiftFragment.show(HomeActivity.this.getSupportFragmentManager(), "RegisterGiftFragment");
+//        }
     }
 
 

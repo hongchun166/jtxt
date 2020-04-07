@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.linkb.R;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.network.result.SendedRedPacketListResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListSndHistoryResult;
 import com.linkb.jstx.util.ConvertUtils;
 import com.linkb.jstx.util.TimeUtils;
 
@@ -22,10 +23,10 @@ import butterknife.ButterKnife;
 
 public class SendedRedPacketAdapter extends RecyclerView.Adapter<SendedRedPacketAdapter.SendedViewHolder> {
 
-    private List<SendedRedPacketListResult.DataBean.RedListBean> mList = new ArrayList<>();
+    private List<RedpackgeListSndHistoryResult.DataBean.SendListBean> mList = new ArrayList<>();
     private Context mContext;
 
-    public SendedRedPacketAdapter(List<SendedRedPacketListResult.DataBean.RedListBean> mList, Context context) {
+    public SendedRedPacketAdapter(List<RedpackgeListSndHistoryResult.DataBean.SendListBean> mList, Context context) {
         this.mList = mList;
         this.mContext = context;
     }
@@ -39,15 +40,16 @@ public class SendedRedPacketAdapter extends RecyclerView.Adapter<SendedRedPacket
 
     @Override
     public void onBindViewHolder(@NonNull SendedViewHolder sendViewHolder, int i) {
-        SendedRedPacketListResult.DataBean.RedListBean dataBean = mList.get(i);
-        sendViewHolder.redPacketTypeTv.setText(dataBean.getRedType() == Constant.RedPacketType.COMMON_GROUP_LURKEY_RED_PACKET ? R.string.luck_red_packet : R.string.general_red_packet);
-        sendViewHolder.timeTv.setText(TimeUtils.millis2String(dataBean.getCreateTime(), TimeUtils.getCustomFormat3()));
-        sendViewHolder.moneyTv.setText(ConvertUtils.doubleToString(dataBean.getMoney()));
-        if (dataBean.getStatus() == 5) {
+        RedpackgeListSndHistoryResult.DataBean.SendListBean dataBean = mList.get(i);
+
+        sendViewHolder.redPacketTypeTv.setText(dataBean.getType() == Constant.RedPacketType.COMMON_GROUP_LURKEY_RED_PACKET ? R.string.luck_red_packet : R.string.general_red_packet);
+        sendViewHolder.timeTv.setText(dataBean.getSendTimeFinalStr());
+        sendViewHolder.moneyTv.setText(ConvertUtils.doubleToString(dataBean.getMoney())+" "+ dataBean.getCurrencyName());
+        if (dataBean.getState() == 5) {
             //有过期红包
-            sendViewHolder.redPacketTimeOutStatusTv.setText(mContext.getResources().getString(R.string.time_out_red_packet_count, dataBean.getRedCount() - dataBean.getRedResiCount(), dataBean.getRedCount()));
+            sendViewHolder.redPacketTimeOutStatusTv.setText(mContext.getResources().getString(R.string.time_out_red_packet_count, dataBean.getSendNumber() - dataBean.getSurplusNumber(), dataBean.getSendNumber()));
         }else {
-            sendViewHolder.redPacketTimeOutStatusTv.setText(mContext.getResources().getString(R.string.red_packet_send_count, dataBean.getRedCount() - dataBean.getRedResiCount(), dataBean.getRedCount()));
+            sendViewHolder.redPacketTimeOutStatusTv.setText(mContext.getResources().getString(R.string.red_packet_send_count, dataBean.getSendNumber() - dataBean.getSurplusNumber(), dataBean.getSendNumber()));
         }
     }
 

@@ -26,6 +26,7 @@ import com.linkb.jstx.comparator.FriendShipNameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.StarMarkRepository;
+import com.linkb.jstx.event.ReceiveFrienApplyEB;
 import com.linkb.jstx.listener.OnTouchMoveCharListener;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -37,6 +38,10 @@ import com.linkb.jstx.network.result.FriendListResultV2;
 import com.linkb.jstx.util.CharacterParser;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -90,6 +95,7 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter = new ContactsListViewAdapter(getContext(), mStarMarkList));
 //        adapter.notifyDataSetChanged(FriendRepository.queryFriendList());
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -104,6 +110,7 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
     public void onDetach() {
         super.onDetach();
         LvxinApplication.unregisterLocalReceiver(friendChangedReceiver);
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -170,6 +177,13 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
         HttpServiceManagerV2.listMyFriendV2(Global.getCurrentUser().account,this);
         mStarMarkList.clear();
         mStarMarkList.addAll(StarMarkRepository.queryAccountList());
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void evenbusReceiveApp(ReceiveFrienApplyEB eb){
+        if(adapter!=null){
+            FriendRepository.updateFriendRelationNewApply(true);
+            adapter.notifyDataSetChangedNewFrienApplyChange();
+        }
     }
 
     private class GetPingYingTask extends AsyncTask<List<FriendListResult.FriendShip>, Void, List<Object>> {

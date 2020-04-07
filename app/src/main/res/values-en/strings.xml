@@ -71,6 +71,7 @@
     <string name="apply_join_group_tips">Waiting Group Creator Review</string>
     <string name="add_friend_success_tips">added frined</string>
     <string name="added">added</string>
+    <string name="applyed">applyed</string>
     <string name="read_qr_code_error">invaild qrcode</string>
     <string name="apply_join_group_error_tips">You had joined this Group</string>
     <string name="search_no_result">search no result</string>
@@ -138,6 +139,8 @@
     <string name="red_packet_received_tips">waited Receive</string>
     <string name="red_packet_received_tips_default">Red packet waited Receive</string>
     <string name="send_red_packer_count_default">send red packet total 0</string>
+    <string name="receive_red_packer_count">send red packet total %1$d </string>
+
     <string name="wallet_title">KiKi Wallet</string>
     <string name="wallet_title2">Kiki Wallet</string>
     <string name="scan">scan</string>

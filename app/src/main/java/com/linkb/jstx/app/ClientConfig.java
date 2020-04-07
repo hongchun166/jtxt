@@ -67,6 +67,9 @@ public class ClientConfig {
      * */
     private static final String KEY_LANGUAGE_SELECT_TYPE = "KEY_LANGUAGE_SELECT_TYPE";
 
+    private static final String FRIEND_RELATION = "friend_Relation";
+    private static final String FRIEND_RELATION_HAVE_NEW_APPLY= "FRIEND_RELATION_HAVE_NEW_APPLY";
+
     public ClientConfig() {
     }
 
@@ -301,7 +304,23 @@ public class ClientConfig {
         sp.edit().putInt(KEY_LANGUAGE_SELECT_TYPE, languageType).apply();
     }
 
+    public static void setFriendRelation(String loginUid,String account,int state) {
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        sp.edit().putInt(FRIEND_RELATION+"_"+loginUid+"_"+account, state).apply();
+    }
+    public static int getFriendRelation(String loginUid,String account) {
+        SharedPreferences sp =  LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        return sp.getInt(FRIEND_RELATION+"_"+loginUid+"_"+account, 0);
+    }
 
+    public static void setFriendRelationNewApply(String loginUid,boolean hasNewApply) {
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        sp.edit().putBoolean(FRIEND_RELATION_HAVE_NEW_APPLY+"_"+loginUid, hasNewApply).apply();
+    }
+    public static boolean getFriendRelationNewApply(String loginUid) {
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        return sp.getBoolean(FRIEND_RELATION_HAVE_NEW_APPLY+"_"+loginUid, false);
+    }
     public Locale getSystemCurrentLocal() {
         return systemCurrentLocal;
     }

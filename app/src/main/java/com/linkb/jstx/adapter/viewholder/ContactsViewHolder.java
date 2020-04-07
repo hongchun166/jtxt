@@ -4,6 +4,7 @@ package com.linkb.jstx.adapter.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
@@ -16,6 +17,7 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder {
     public WebImageView icon;
     public View dividerView;
     public CheckBox checkBox;
+    public ImageView viewRedMsg;
 
     public ContactsViewHolder(View itemView) {
         super(itemView);
@@ -23,5 +25,6 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder {
         icon = itemView.findViewById(R.id.icon);
         dividerView = itemView.findViewById(R.id.divider_view);
         checkBox = itemView.findViewById(R.id.checkbox);
+        viewRedMsg=itemView.findViewById(R.id.viewRedMsg);
     }
 }

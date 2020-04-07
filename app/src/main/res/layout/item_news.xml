@@ -90,11 +90,27 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView148"
         app:layout_constraintStart_toEndOf="@+id/textView148" />
 
+
+    <TextView
+        android:id="@+id/viewGetRedBag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_content"
+        android:text="红包"
+        android:textColor="@color/background_yellow_FF8A3B"
+        android:background="@drawable/btn_bg_stroke_red_to_gray"
+        app:layout_constraintTop_toBottomOf="@+id/imageView41"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="10dp"
+        />
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/divider_color_gray_ebebeb"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </android.support.constraint.ConstraintLayout>

@@ -124,6 +124,14 @@ public class SearchUserListActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(searchUserParam.getSearchType()==SEARCH_TYPE_User){
+            mAdapterUser.notifyDataSetChanged();
+        }
+    }
+
     @OnClick(R.id.viewCancel)
     public void onBackBtn() {
         finish();
@@ -161,7 +169,6 @@ public class SearchUserListActivity extends BaseActivity {
                 GroupDetailDescActivity.navToAct(getContext(),dataBean.toGroupB());
             }
         });
-        recyclerView.setAdapter(mAdapterGroup);
         recyclerView.setAdapter(mAdapterGroup);
     }
 

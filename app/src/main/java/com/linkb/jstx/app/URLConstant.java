@@ -449,7 +449,7 @@ public class URLConstant {
         lisTags = API_URL + "/public/lisTags";
         listIndustry = API_URL + "/public/listIndustry";
         updateUserInfo=API_URL + "/user/updateUserInfo";
-        findPersons=API_URL + "/public/findPersons";
+        findPersons=API_URL + "public/findPersons";
         findGroups=API_URL + "/public/findGroups";
         checkInGroup=API_URL + "/group/checkInGroup";
         checkFriend=API_URL + "/userFriend/checkFriend";

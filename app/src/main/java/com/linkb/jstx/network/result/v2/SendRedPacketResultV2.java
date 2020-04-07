@@ -26,7 +26,8 @@ public class SendRedPacketResultV2 extends BaseResult implements Serializable {
     public static class DataBean implements Serializable {
         /**
          * id : 15   红包ID
-         * sendAccount : 18274839631   发生人
+         * sendAccount : 18274839631   发送人
+         * from  ;  发送人名称
          * type : 1 1，普通个人 2，群普通红包  3群运气红包
          * receiver : 18684758953    接收账号
          * money : 1  金额
@@ -42,6 +43,7 @@ public class SendRedPacketResultV2 extends BaseResult implements Serializable {
 
         private long id;
         private String sendAccount;
+        private String from;
         private int type;
         private String receiver;
         private double money;
@@ -68,6 +70,14 @@ public class SendRedPacketResultV2 extends BaseResult implements Serializable {
 
         public void setSendAccount(String sendAccount) {
             this.sendAccount = sendAccount;
+        }
+
+        public String getFrom() {
+            return from;
+        }
+
+        public void setFrom(String from) {
+            this.from = from;
         }
 
         public int getType() {

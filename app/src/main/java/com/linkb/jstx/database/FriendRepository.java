@@ -2,6 +2,9 @@
 package com.linkb.jstx.database;
 
 
+import android.content.SharedPreferences;
+
+import com.linkb.jstx.app.ClientConfig;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -178,6 +181,33 @@ public class FriendRepository extends BaseRepository<Friend, String> {
 
         String sql = "update " + Friend.TABLE_NAME + " set online=? where source=?";
         manager.innerExecuteSQL(sql, new String[]{online, account});
+    }
+
+    /**
+     * 更新好友关系
+     * 1、已发送好友申请
+     */
+    public static void updateFriendRelation(String friendAccount,int state){
+        String account=Global.getCurrentUser().getAccount();
+        ClientConfig.setFriendRelation(account,friendAccount,state);
+    }
+    public static void updateFriendRelationSndApply(String friendAccount){
+        updateFriendRelation(friendAccount,1);
+    }
+    public static boolean hasFriendRelationSndApply(String friendAccount){
+        return getFriendRelation(friendAccount)==1;
+    }
+    public static int getFriendRelation(String friendAccount){
+        String account=Global.getCurrentUser().getAccount();
+        return ClientConfig.getFriendRelation(account,friendAccount);
+    }
+    public static void updateFriendRelationNewApply(boolean has){
+        String account=Global.getCurrentUser().getAccount();
+         ClientConfig.setFriendRelationNewApply(account,has);
+    }
+    public static boolean getFriendRelationNewApply(){
+        String account=Global.getCurrentUser().getAccount();
+        return ClientConfig.getFriendRelationNewApply(account);
     }
 
     public static void save(Friend friend) {

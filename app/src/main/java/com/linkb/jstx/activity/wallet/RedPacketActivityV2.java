@@ -32,6 +32,7 @@ import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ContactsResult;
 import com.linkb.jstx.network.result.CurrencyListResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListCurrenCyResult;
 import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 import com.linkb.jstx.util.ConvertUtils;
 
@@ -75,7 +76,7 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
 
     /**选择的币种ID
     * */
-    private int mCurrencyID = 0 ;
+    private long mCurrencyID = 0 ;
 
     /**  发红包种类
      *  1 表示普通红包, 2表示普通群发红包   , 3表示拼手气群发红包
@@ -92,6 +93,10 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
 
     User self;
 
+    @Override
+    protected int getContentLayout() {
+        return R.layout.activity_red_packet;
+    }
 
     @Override
     protected void initComponents() {
@@ -101,6 +106,9 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
         receiveId = getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
 
         changeRedTypeUI(redPacketType);
+
+        amountTv.setVisibility(View.GONE);
+        amountTvTips.setVisibility(View.GONE);
 
         redPacketDescriptionEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -143,7 +151,7 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
             }
         });
 
-        HttpServiceManagerV2.listMyCurrency(self.getAccount(),"",this);
+        HttpServiceManagerV2.redpackgeListCurrenCy(self.getAccount(),this);
 
         queryGroupInfo(receiveId);
     }
@@ -185,10 +193,6 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
 
     }
 
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_red_packet;
-    }
 
     @OnClick(R.id.currency_cly)
     public void queryCurrencyList() {
@@ -242,7 +246,7 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
                 coinImage.load(BuildConfig.API_HOST  + dataListBean.getCurrencyIcon(), R.mipmap.btc);
                 coinNameTv.setText(dataListBean.getCurrencyMark());
                 mCurrencyID = dataListBean.getId();
-                amountTv.setText(ConvertUtils.doubleToString(dataListBean.getAmount()));
+//                amountTv.setText(ConvertUtils.doubleToString(dataListBean.getAmount()));
 
             }
         }
@@ -280,6 +284,7 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
             if (result.isSuccess()){
                 SendRedPacketResultV2 redPacketResult = (SendRedPacketResultV2) result;
                 SendRedPacketResultV2.DataBean dataBean1= redPacketResult.getData();
+                dataBean1.setFrom(String.valueOf(self.getName()));
                 Intent intent = getIntent();
                 intent.putExtra(SendRedPacketResultV2.DataBean.class.getName(), dataBean1);
                 setResult(RESULT_OK, intent);
@@ -287,17 +292,17 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
             }else {
                 showToastView(result.message);
             }
-        }else if (result instanceof ListMyCurrencyResult){
+        }else if (result instanceof RedpackgeListCurrenCyResult){
             if (result.isSuccess()){
 
-                ListMyCurrencyResult result1 = (ListMyCurrencyResult) result;
+                RedpackgeListCurrenCyResult result1 = (RedpackgeListCurrenCyResult) result;
 
                if(result1.getData() != null & result1.getData().size() > 0){
-                   ListMyCurrencyResult.DataBean dataListBean = result1.getData().get(0);
+                   RedpackgeListCurrenCyResult.DataBean dataListBean = result1.getData().get(0);
                    coinImage.load(BuildConfig.API_HOST  + dataListBean.getCurrencyIcon(), R.mipmap.btc);
                    coinNameTv.setText(dataListBean.getCurrencyName());
-                   mCurrencyID = dataListBean.getCurrencyId();
-                   amountTv.setText(ConvertUtils.doubleToString(dataListBean.getBalance()));
+                   mCurrencyID = dataListBean.getId();
+//                   amountTv.setText(ConvertUtils.doubleToString(dataListBean.getBalance()));
                }
             }
         }

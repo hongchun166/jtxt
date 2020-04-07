@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.linkb.R;
+import com.linkb.jstx.app.Global;
+import com.linkb.jstx.bean.User;
 import com.linkb.jstx.network.result.ReceivedRedPacketListResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListRcvHistroyResult;
 import com.linkb.jstx.util.ConvertUtils;
 import com.linkb.jstx.util.TimeUtils;
 
@@ -20,10 +23,11 @@ import butterknife.ButterKnife;
 
 public class ReceivedRedPacketAdapter extends RecyclerView.Adapter<ReceivedRedPacketAdapter.ReceivedViewHolder> {
 
-    private List<ReceivedRedPacketListResult.DataBean.RedListBean> mList = new ArrayList<>();
-
-    public ReceivedRedPacketAdapter(List<ReceivedRedPacketListResult.DataBean.RedListBean> mList) {
+    private List<RedpackgeListRcvHistroyResult.DataBean.ReceivListBean> mList = new ArrayList<>();
+    User self;
+    public ReceivedRedPacketAdapter(List<RedpackgeListRcvHistroyResult.DataBean.ReceivListBean> mList) {
         this.mList = mList;
+        self= Global.getCurrentUser();
     }
 
     @NonNull
@@ -35,11 +39,10 @@ public class ReceivedRedPacketAdapter extends RecyclerView.Adapter<ReceivedRedPa
 
     @Override
     public void onBindViewHolder(@NonNull ReceivedViewHolder receivedViewHolder, int i) {
-        ReceivedRedPacketListResult.DataBean.RedListBean dataBean = mList.get(i);
-        receivedViewHolder.nameTv.setText(dataBean.getUsername());
-        String time = TimeUtils.millis2String(dataBean.getCreateTime(), TimeUtils.getCustomFormat3());
-        receivedViewHolder.TimeTv.setText(time);
-        receivedViewHolder.moneyTv.setText(ConvertUtils.doubleToString(dataBean.getMoney()));
+        RedpackgeListRcvHistroyResult.DataBean.ReceivListBean dataBean = mList.get(i);
+        receivedViewHolder.nameTv.setText(self.getName());
+        receivedViewHolder.TimeTv.setText(dataBean.getReceiveTimerFinalStr());
+        receivedViewHolder.moneyTv.setText(ConvertUtils.doubleToString(dataBean.getReceiverMoney()));
         receivedViewHolder.currencyTv.setText(dataBean.getCurrencyName());
     }
 

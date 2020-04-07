@@ -73,12 +73,12 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
                     mExpressCommentListener.onBadNews(dataListBean);
                 }
             });
-            viewHolder.shareImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mExpressCommentListener.onShareNews(dataListBean);
-                }
-            });
+//            viewHolder.shareImg.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mExpressCommentListener.onShareNews(dataListBean);
+//                }
+//            });
             viewHolder.viewGetRedBag.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -145,6 +145,7 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         public ExpressViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            shareImg.setVisibility(View.INVISIBLE);
         }
     }
 

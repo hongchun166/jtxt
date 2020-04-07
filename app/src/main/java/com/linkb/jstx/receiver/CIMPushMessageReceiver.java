@@ -19,6 +19,7 @@ import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.database.MessageRepository;
+import com.linkb.jstx.event.ReceiveFrienApplyEB;
 import com.linkb.jstx.message.handler.CustomMessageHandlerFactory;
 import com.linkb.jstx.message.parser.MessageParserFactory;
 import com.linkb.jstx.model.Message;
@@ -28,6 +29,8 @@ import com.linkb.jstx.service.MessageNotifyService;
 import com.linkb.jstx.util.MLog;
 import com.linkb.jstx.util.MessageUtil;
 import com.linkb.video.RoomActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -162,6 +165,11 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
 
         if (msg.action.equals(Constant.MessageAction.ACTION_7)){
             receiveCancelVideoMsg(msg);
+            return;
+        }
+        if (msg.action.equals(Constant.MessageAction.ACTION_FrienApply) ||msg.action.equals(Constant.MessageAction. ACTION_117)){
+            ReceiveFrienApplyEB receiveFrienApplyEB=new ReceiveFrienApplyEB();
+            EventBus.getDefault().post(receiveFrienApplyEB);
             return;
         }
 

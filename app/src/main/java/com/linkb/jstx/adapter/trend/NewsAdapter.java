@@ -53,6 +53,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         viewHolder.sourceTv.setText(dataListBean.getAuthor());
         viewHolder.timeTv.setText(TimeUtils.getTimeAgo(dataListBean.getTimestamp(), mContext));
         viewHolder.goodReceptionNumberTv.setText(mContext.getResources().getString(R.string.good_reception_number, dataListBean.getReplyCount1()));
+
+        if(dataListBean.getLotteryAmount()!=null){
+            viewHolder.viewGetRedBag.setEnabled(false);
+            viewHolder.viewGetRedBag.setVisibility(View.VISIBLE);
+            String getRedBagHint=mContext.getResources().getString(R.string.hint_red_receive_ed)+dataListBean.getLotteryAmount().doubleValue()+"KKC";
+            viewHolder.viewGetRedBag.setText(getRedBagHint);
+        }else {
+            viewHolder.viewGetRedBag.setVisibility(View.GONE);
+        }
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +132,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         TextView timeTv;
         @BindView(R.id.textView149)
         TextView goodReceptionNumberTv;
+        @BindView(R.id.viewGetRedBag)
+        TextView viewGetRedBag;
 
 
         public NewsViewHolder(@NonNull View itemView) {

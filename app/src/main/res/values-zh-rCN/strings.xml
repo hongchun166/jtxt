@@ -70,6 +70,7 @@
     <string name="apply_join_group_tips">已经提交申请,等待群主审核通过</string>
     <string name="add_friend_success_tips">已经添加好友成功</string>
     <string name="added">已添加</string>
+    <string name="applyed">已申请</string>
     <string name="apply_join_group_error_tips">您已经在该群里</string>
     <string name="read_qr_code_error">无效的二维码</string>
     <string name="search_no_result">搜索无结果</string>
@@ -261,6 +262,7 @@
     <string name="red_packet_send_count">%1$d/%2$d个</string>
     <string name="send_red_packer_count">发出红包总数%1$d个</string>
     <string name="send_red_packer_count_default">发出红包总数0个</string>
+    <string name="receive_red_packer_count">收到红包总数%1$d个</string>
 
     <!--个人信息-->
     <string name="person_info">个人信息</string>

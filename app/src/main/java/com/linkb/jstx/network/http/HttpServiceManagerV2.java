@@ -11,16 +11,10 @@ import com.linkb.jstx.model.Moment;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.CommonResult;
 import com.linkb.jstx.network.result.FriendApplyBeResult;
-import com.linkb.jstx.network.result.FriendListResult;
 import com.linkb.jstx.network.result.FriendListResultV2;
-import com.linkb.jstx.network.result.FriendQueryResult;
-import com.linkb.jstx.network.result.GroupQueryResult;
 import com.linkb.jstx.network.result.MomentListResult;
 import com.linkb.jstx.network.result.NewsDataResult;
 import com.linkb.jstx.network.result.ReceivedRedPacketResult;
-import com.linkb.jstx.network.result.RedPacketReceivedMemberResult;
-import com.linkb.jstx.network.result.SendRedPacketResult;
-import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
 import com.linkb.jstx.network.result.v2.CheckInGroupResult;
 import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
@@ -37,6 +31,9 @@ import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.network.result.v2.ListTagsResult;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
 import com.linkb.jstx.network.result.v2.RedpackgeGetInfoResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListCurrenCyResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListRcvHistroyResult;
+import com.linkb.jstx.network.result.v2.RedpackgeListSndHistoryResult;
 import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 import com.linkb.jstx.network.result.v2.UpdateMessageDestroyTimeResult;
 import com.linkb.jstx.util.MD5;
@@ -468,7 +465,7 @@ public class HttpServiceManagerV2 {
      * @param  receiver  红包接收人|接收群
      * @param  tradePassword 支付密码
      */
-    public static void redpackgeSend(int currencyId, String sendMoney, String remark, int redCount, int redType, String tradePassword,String receiver, HttpRequestListener listener){
+    public static void redpackgeSend(long currencyId, String sendMoney, String remark, int redCount, int redType, String tradePassword,String receiver, HttpRequestListener listener){
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/send", SendRedPacketResultV2.class);
 //        requestBody.addParameter("userAccount", userAccount);
         requestBody.addParameter("currencyId", currencyId);
@@ -481,6 +478,31 @@ public class HttpServiceManagerV2 {
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
-
-
+    /**
+     * 获取红包发送币种列表
+     * @param
+     */
+    public static void redpackgeListCurrenCy(String userAccount,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listCurrenCy", RedpackgeListCurrenCyResult.class);
+        requestBody.addParameter("userAccount",userAccount);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取领取红包历史记录)
+     * @param
+     */
+    public static void redpackgeListReceivHistroy(String userAccount,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listReceivHistroy", RedpackgeListRcvHistroyResult.class);
+        requestBody.addParameter("userAccount",userAccount);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 获取发送红包历史记录)
+     * @param
+     */
+    public static void redpackgeListSendHistroy(String userAccount,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listSendHistroy", RedpackgeListSndHistoryResult.class);
+        requestBody.addParameter("userAccount",userAccount);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
 }
