@@ -59,7 +59,7 @@ public class HttpServiceManagerV2 {
         requestBody.addParameter("vertcode", vertcode);
         requestBody.addParameter("locale", locale);
         if(!TextUtils.isEmpty(inviteCode)){
-            requestBody.addParameter("inviteCode", locale);
+            requestBody.addParameter("inviteCode", inviteCode);
         }
         String tradePassword=null;
         if(!TextUtils.isEmpty(tradePassword)) {
