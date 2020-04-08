@@ -90,7 +90,7 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
 
         mDataBean = (RedpackgeGetInfoResult.DataBean) getIntent().getSerializableExtra(RedpackgeGetInfoResult.DataBean.class.getName());
         mRedPacketStatus = getIntent().getIntExtra(QueryRedPacketStatusResult.REDPACKET_STATUS, 0);
-        recyclerView.setAdapter(mAdapter = new RedPacketReceiveDetailAdapter(this, mList, getRedPackgeBeanInfo().getSendNumber()));
+        recyclerView.setAdapter(mAdapter = new RedPacketReceiveDetailAdapter(this, mList, getRedPackgeBeanInfo().getSendNumberNum()));
 
         initDate();
     }
@@ -102,12 +102,12 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
         title.setText(getResources().getString(R.string.red_packet_sender, getRedPackgeBeanInfo().getUserName()));
         remarkTv.setText(getRedPackgeBeanInfo().getRemark());
         totalRedPacketTv.setText(String.valueOf(getRedPackgeBeanInfo().getMoney()));
-        String cName= TextUtils.isEmpty(getRedPackgeBeanInfo().getCurrencyName())?"元":getRedPackgeBeanInfo().getCurrencyName();
+        String cName= TextUtils.isEmpty(getRedPackgeBeanInfo().getCurrencyName())?"KKC":getRedPackgeBeanInfo().getCurrencyName();
         redPacketCurrencyTv.setText(cName);
         mAdapter.setDangWei(cName);
 
 //        if (getRedPackgeBeanInfo().getSendAccount().equals(Global.getCurrentUser().getAccount())
-        if( getRedPackgeBeanInfo().getType()==Constant.RedPacketType.COMMON_RED_PACKET){
+        if(String.valueOf(Constant.RedPacketType.COMMON_RED_PACKET).equals(getRedPackgeBeanInfo().getType())){
             //自己发的红包，等待对方领取
             refreshLayout.setVisibility(View.GONE);
             checkBalanceView.setVisibility(View.GONE);

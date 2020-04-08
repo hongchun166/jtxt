@@ -1,5 +1,8 @@
 package com.linkb.jstx.network.result.v2;
 
+import android.text.TextUtils;
+
+import com.google.gson.annotations.SerializedName;
 import com.linkb.jstx.network.result.BaseResult;
 
 import java.io.Serializable;
@@ -9,7 +12,7 @@ public class RedpackgeGetInfoResult extends BaseResult {
 
     /**
      * code : 200
-     * data : {"id":17,"sendAccount":"18274839631","type":1,"receiver":"18684758953","money":1.2,"sendNumber":1,"surplusNumber":1,"version":0,"sendTime":"2020-04-04T08:14:49.188+0000","endTime":"2020-04-05T08:14:49.188+0000","currencyId":1,"state":0,"remark":""}
+     * data : {"receiver":"valueNull","remark":"恭厚厚","surplusNumber":"3","type":"3","userName":"黑狐","version":"0","sendTime":"Wed Apr 08 22:04:55 CST 2020","getState":1,"currencyName":"KKC","money":"1.02","sendAccount":"18274839631","sendNumber":"3","endTime":"Thu Apr 09 22:04:55 CST 2020","id":"67","state":"0","currencyId":"1","class":"class com.dby.jstx.model.Redpackge"}
      */
 
     private DataBean data;
@@ -22,78 +25,44 @@ public class RedpackgeGetInfoResult extends BaseResult {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable {
+    public static class DataBean  implements Serializable {
         /**
-         * id : 17
-         * sendAccount : 18274839631
-         * type : 1
-         * receiver : 18684758953
-         * money : 1.2
-         * sendNumber : 1
-         * surplusNumber : 1
+         * receiver : valueNull
+         * remark : 恭厚厚
+         * surplusNumber : 3
+         * type : 3
+         * userName : 黑狐
          * version : 0
-         * sendTime : 2020-04-04T08:14:49.188+0000
-         * endTime : 2020-04-05T08:14:49.188+0000
-         * currencyId : 1
+         * sendTime : Wed Apr 08 22:04:55 CST 2020
+         * getState : 1         红包对人状态，0 未领取， 1、已领取
+         * currencyName : KKC
+         * money : 1.02
+         * sendAccount : 18274839631
+         * sendNumber : 3
+         * endTime : Thu Apr 09 22:04:55 CST 2020
+         * id : 67
          * state : 0
-         * remark :
+         * currencyId : 1
+         * class : class com.dby.jstx.model.Redpackge
          */
 
-        private int id;
-        private String sendAccount;
-        private int type;
         private String receiver;
-        private double money;
-        private int sendNumber;
-        private int surplusNumber;
-        private int version;
-        private String sendTime;
-        private String endTime;
-        private int currencyId;
-        private String currencyName;
-        private int state;
         private String remark;
+        private String surplusNumber;
+        private String type;
         private String userName;
+        private String version;
+        private String sendTime;
+        private int getState;
+        private String currencyName;
+        private String money;
+        private String sendAccount;
+        private String sendNumber;
+        private String endTime;
+        private String id;
+        private String state;
+        private String currencyId;
 
-        public String getUserName() {
-            return userName;
-        }
-
-        public String getCurrencyName() {
-            return currencyName;
-        }
-
-        public void setCurrencyName(String currencyName) {
-            this.currencyName = currencyName;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getSendAccount() {
-            return sendAccount;
-        }
-
-        public void setSendAccount(String sendAccount) {
-            this.sendAccount = sendAccount;
-        }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
 
         public String getReceiver() {
             return receiver;
@@ -103,35 +72,43 @@ public class RedpackgeGetInfoResult extends BaseResult {
             this.receiver = receiver;
         }
 
-        public double getMoney() {
-            return money;
+        public String getRemark() {
+            return remark;
         }
 
-        public void setMoney(double money) {
-            this.money = money;
+        public void setRemark(String remark) {
+            this.remark = remark;
         }
 
-        public int getSendNumber() {
-            return sendNumber;
-        }
-
-        public void setSendNumber(int sendNumber) {
-            this.sendNumber = sendNumber;
-        }
-
-        public int getSurplusNumber() {
+        public String getSurplusNumber() {
             return surplusNumber;
         }
 
-        public void setSurplusNumber(int surplusNumber) {
+        public void setSurplusNumber(String surplusNumber) {
             this.surplusNumber = surplusNumber;
         }
 
-        public int getVersion() {
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+
+        public String getVersion() {
             return version;
         }
 
-        public void setVersion(int version) {
+        public void setVersion(String version) {
             this.version = version;
         }
 
@@ -143,6 +120,59 @@ public class RedpackgeGetInfoResult extends BaseResult {
             this.sendTime = sendTime;
         }
 
+        public int getGetState() {
+            return getState;
+        }
+        public boolean hasSelfReceiveed(){
+            return getGetState()==1;
+        }
+        public void setGetState(int getState) {
+            this.getState = getState;
+        }
+
+        public String getCurrencyName() {
+            return currencyName;
+        }
+
+        public void setCurrencyName(String currencyName) {
+            this.currencyName = currencyName;
+        }
+
+        public String getMoney() {
+            return money;
+        }
+
+        public void setMoney(String money) {
+            this.money = money;
+        }
+
+        public String getSendAccount() {
+            return sendAccount;
+        }
+
+        public void setSendAccount(String sendAccount) {
+            this.sendAccount = sendAccount;
+        }
+
+        public String getSendNumber() {
+            return sendNumber;
+        }
+        public int getSendNumberNum() {
+            if(TextUtils.isEmpty(sendNumber)){
+                return 0;
+            }
+            int num=0;
+            try{
+                num=Integer.valueOf(sendNumber);
+            }catch (NumberFormatException e){
+                e.printStackTrace();
+            }
+            return num;
+        }
+        public void setSendNumber(String sendNumber) {
+            this.sendNumber = sendNumber;
+        }
+
         public String getEndTime() {
             return endTime;
         }
@@ -151,28 +181,29 @@ public class RedpackgeGetInfoResult extends BaseResult {
             this.endTime = endTime;
         }
 
-        public int getCurrencyId() {
-            return currencyId;
+        public String getId() {
+            return id;
         }
 
-        public void setCurrencyId(int currencyId) {
-            this.currencyId = currencyId;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public int getState() {
+        public String getState() {
             return state;
         }
 
-        public void setState(int state) {
+        public void setState(String state) {
             this.state = state;
         }
 
-        public String getRemark() {
-            return remark;
+        public String getCurrencyId() {
+            return currencyId;
         }
 
-        public void setRemark(String remark) {
-            this.remark = remark;
+        public void setCurrencyId(String currencyId) {
+            this.currencyId = currencyId;
         }
+
     }
 }

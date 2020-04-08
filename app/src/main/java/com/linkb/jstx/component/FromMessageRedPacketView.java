@@ -6,8 +6,6 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.linkb.jstx.app.Constant;
-import com.linkb.jstx.network.model.SNSChatImage;
-import com.linkb.jstx.network.result.SendRedPacketResult;
 import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 
 public class FromMessageRedPacketView extends BaseToMessageView {

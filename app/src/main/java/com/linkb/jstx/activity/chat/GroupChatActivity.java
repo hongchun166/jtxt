@@ -398,7 +398,7 @@ public class GroupChatActivity extends FriendChatActivity implements ViewTreeObs
     public void onChatInputRedPacket() {
         Intent intentRedPacket = new Intent(GroupChatActivity.this, RedPacketActivityV2.class);
         intentRedPacket.putExtra(Constant.RedPacketType.RED_PACKET_TYPE, Constant.RedPacketType.COMMON_GROUP_LURKEY_RED_PACKET);
-        intentRedPacket.putExtra(Constant.CHAT_OTHRES_ID, groupId);
+        intentRedPacket.putExtra(Constant.CHAT_OTHRES_ID, String.valueOf(groupId));
         startActivityForResult(intentRedPacket, SEND_RED_PACKET_REQUEST_CODE);
     }
 

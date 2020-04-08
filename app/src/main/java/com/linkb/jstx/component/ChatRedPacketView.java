@@ -68,7 +68,6 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
         if (dataBean != null && !TextUtils.isEmpty(dataBean.getRemark())) {
             remarkTv.setText(dataBean.getRemark());
         }
-
         //查询红包是否已经被领取成功
         HttpServiceManagerV2.redpackgeGetInfo(String.valueOf(mDataBean.getId()), mQueryRedPacketEnabledListener);
     }
@@ -81,7 +80,7 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
     }
 
     private void receiveRedPacket(RedpackgeGetInfoResult result) {
-        if ((Objects.requireNonNull(Global.getCurrentUser()).account.equals(mDataBean.getSendAccount())&&mDataBean.getType()==1) ||enableOpenStatus) {
+        if ((Objects.requireNonNull(Global.getCurrentUser()).account.equals(mDataBean.getSendAccount())&& mDataBean.getType()==1) || enableOpenStatus) {
             //红包已经领取过, 直接进入领取详情页面
             Intent intent = new Intent(getContext(), RedPacketReceivedActivity.class);
             intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), result.getData());
@@ -90,7 +89,7 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
         } else {
             //红包有效，可以领取
             if (mRedPacketFragment == null) {
-                mRedPacketFragment = RedPacketFragment.getInstance(result.getData(), mRedPacketStatus);
+                mRedPacketFragment = RedPacketFragment.getInstance(result.getData(),mRedPacketStatus);
             }
             mRedPacketFragment.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "RedPacketFragment");
             updateRedPackedStatus(true);
@@ -109,9 +108,21 @@ public class ChatRedPacketView extends CardView implements View.OnClickListener 
         @Override
         public void onHttpRequestSucceed(RedpackgeGetInfoResult result, OriginalCall call) {
             if (result.isSuccess()) {
-                mRedPacketStatus = result.getData().getState();
+                RedpackgeGetInfoResult.DataBean dataBean=result.getData();
+                boolean hasSelfReceiveed=dataBean.hasSelfReceiveed();
+                mRedPacketStatus = TextUtils.isEmpty(dataBean.getState())?0:Integer.valueOf(dataBean.getState());
+                //红包是否无效了，是否领取完或者是否超时
+                boolean hasRedpackgeInvalid= mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed
+                            || mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut;
+                if(!hasRedpackgeInvalid){
+                    mRedPacketStatus=QueryRedPacketStatusResult.RED_PACKET_AVAILABLE;
+                }
                 //红包没有被用户领取状态
-                enableOpenStatus = (mRedPacketStatus ==QueryRedPacketStatusResult.RED_PACKET_Receiveed);
+                if(hasSelfReceiveed || hasRedpackgeInvalid){
+                    enableOpenStatus=true;
+                }else {
+                    enableOpenStatus=false;
+                }
                 updateRedPackedStatus(enableOpenStatus);
                 if (clickRedPacket) {
                     clickRedPacket = false;

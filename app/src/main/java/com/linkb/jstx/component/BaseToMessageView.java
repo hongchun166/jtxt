@@ -36,7 +36,7 @@ import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.R;
-import com.linkb.jstx.network.result.SendRedPacketResult;
+import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.linkb.jstx.util.MessageUtil;
 
@@ -133,8 +133,8 @@ public abstract class BaseToMessageView extends RelativeLayout implements OnMess
         setTag(message);
         readMark.setVisibility(View.INVISIBLE);
         if (message.format.equals(FORMAT_RED_PACKET) && message.extra != null){
-            SendRedPacketResult.DataBean  dataBean = new Gson().fromJson(message.extra, SendRedPacketResult.DataBean.class);
-            icon.load(FileURLBuilder.getUserIconUrl(dataBean.getUserAccount()), R.mipmap.lianxiren, 999);
+            SendRedPacketResultV2.DataBean  dataBean = new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
+            icon.load(FileURLBuilder.getUserIconUrl(dataBean.getSendAccount()), R.mipmap.lianxiren, 999);
         }else {
             icon.load(FileURLBuilder.getUserIconUrl(self.account), R.mipmap.lianxiren, 999);
         }
