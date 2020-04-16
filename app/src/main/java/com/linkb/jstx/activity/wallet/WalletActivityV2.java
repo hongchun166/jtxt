@@ -46,7 +46,7 @@ public class WalletActivityV2 extends BaseActivity{
     @BindView(R.id.money_visible_fly) View moneyHideFly;
     @BindView(R.id.money_visible_img) ImageView moneyHideImg;
     @BindView(R.id.total_assets_btc_tv) TextView total_assets_btc_tv;
-    @BindView(R.id.hide_currency_ckb) CheckBox hideCurrencyCkb;
+//    @BindView(R.id.hide_currency_ckb) CheckBox hideCurrencyCkb;
 
     @BindView(R.id.exchange_tv) TextView exchange_tv;
     @BindView(R.id.financial_btn) TextView financial_btn;
@@ -60,24 +60,24 @@ public class WalletActivityV2 extends BaseActivity{
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
-        hideCurrencyCkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                    List<ListMyCurrencyResult.DataBean> list = new ArrayList<>();
-                    for (int i = 0; i < mList.size(); i++) {
-                        if (mList.get(i).getLockBalance() > 0){
-                            list.add(mList.get(i));
-                        }else {
-                            continue;
-                        }
-                    }
-                    mAdapter.replaceAll(list);
-                }else {
-                    mAdapter.replaceAll(mList);
-                }
-            }
-        });
+//        hideCurrencyCkb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if (b){
+//                    List<ListMyCurrencyResult.DataBean> list = new ArrayList<>();
+//                    for (int i = 0; i < mList.size(); i++) {
+//                        if (mList.get(i).getLockBalance() > 0){
+//                            list.add(mList.get(i));
+//                        }else {
+//                            continue;
+//                        }
+//                    }
+//                    mAdapter.replaceAll(list);
+//                }else {
+//                    mAdapter.replaceAll(mList);
+//                }
+//            }
+//        });
 
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -129,7 +129,8 @@ public class WalletActivityV2 extends BaseActivity{
             @Override
             public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
                 if(result.isSuccess()){
-                    total_assets_btc_tv.setText(String.valueOf(result.getData().getBalance()));
+                    totalAssetsBtc=String.valueOf(result.getData().getBalance());
+                    changeMoneyVisibleState();
                 }
             }
             @Override

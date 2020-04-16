@@ -268,14 +268,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/hide_currency_ckb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hide_coin_type"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/hide_currency_ckb"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/hide_coin_type"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" -->
+<!--            />-->
 
         <View
             android:layout_width="0dp"

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.linkb.R;
@@ -55,12 +56,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         viewHolder.goodReceptionNumberTv.setText(mContext.getResources().getString(R.string.good_reception_number, dataListBean.getReplyCount1()));
 
         if(dataListBean.getLotteryAmount()!=null){
-            viewHolder.viewGetRedBag.setEnabled(false);
-            viewHolder.viewGetRedBag.setVisibility(View.VISIBLE);
-            String getRedBagHint=mContext.getResources().getString(R.string.hint_red_receive_ed)+dataListBean.getLotteryAmount().doubleValue()+"KKC";
-            viewHolder.viewGetRedBag.setText(getRedBagHint);
+            viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger_p);
         }else {
-            viewHolder.viewGetRedBag.setVisibility(View.GONE);
+            viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger);
         }
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +131,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         @BindView(R.id.textView149)
         TextView goodReceptionNumberTv;
         @BindView(R.id.viewGetRedBag)
-        TextView viewGetRedBag;
+        ImageView viewGetRedBag;
 
 
         public NewsViewHolder(@NonNull View itemView) {

@@ -79,8 +79,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     @BindView(R.id.viewActiveStarsView)
     ActiveStarsView viewActiveStarsView;
 
-    @BindView(R.id.viewIVEdit)
-    ImageView viewIVEdit;
+
 
     private User user;
 
@@ -197,10 +196,11 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
     @OnClick(R.id.imageView29)
     public void gotoModifyInfoAvatar() {
-        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivity.class), 0x11);
+//        startActivityForResult(new Intent(this.getActivity(), ProfileEditActivity.class), 0x11);
+        gotoEditInfoAvatar();
     }
 
-    @OnClick(R.id.viewIVEdit)
+
     public void gotoEditInfoAvatar() {
         startActivityForResult(new Intent(this.getActivity(), ProfileEditActivityV2.class), 0x11);
     }

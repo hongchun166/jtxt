@@ -86,22 +86,13 @@
             />
 
         <ImageView
-            android:id="@+id/viewIVEdit"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/ic_user_center_edit_v2" />
-
-        <ImageView
             android:id="@+id/viewIVQRCode"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="21dp"
-            android:layout_toLeftOf="@+id/viewIVEdit"
+            android:layout_alignParentRight="true"
             android:src="@mipmap/ic_user_center_qrcode_v2" />
     </RelativeLayout>
 

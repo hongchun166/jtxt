@@ -23,12 +23,15 @@ import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.WithdrawBillResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
+import com.linkb.jstx.util.TimeUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +49,8 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
     TextView billTypeTv;
     @BindView(R.id.empty_view)
     View emptyView;
+    @BindView(R.id.query_type_btn)
+    TextView query_type_btn;
 
     private BillListAdapterV2 mAdapter;
     private List<ListMyBalanceFlowResult.DataBean> mList = new ArrayList<>();
@@ -84,6 +89,8 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
 
         mAdapter = new BillListAdapterV2(mList, this);
         recyclerView.setAdapter(mAdapter);
+        query_type_btn.setVisibility(View.GONE);
+        query_type_btn.setEnabled(false);
     }
 
     @Override
@@ -136,7 +143,18 @@ public class BillActivityV2 extends BaseActivity implements HttpRequestListener<
     public void onHttpRequestSucceed(ListMyBalanceFlowResult result, OriginalCall call) {
         refreshLayout.finishRefresh();
         if (result.isSuccess()) {
-            mList = result.getData();
+//            mList = result.getData();
+            mList.clear();
+            mList.addAll(result.getData());
+
+            Collections.sort(mList, new Comparator<ListMyBalanceFlowResult.DataBean>() {
+                @Override
+                public int compare(ListMyBalanceFlowResult.DataBean o1, ListMyBalanceFlowResult.DataBean o2) {
+                    long o1Time=TimeUtils.string2Millis(o1.getAddTimeFinal());
+                    long o2Time=TimeUtils.string2Millis(o2.getAddTimeFinal());
+                    return o1Time>o2Time?-1:0;
+                }
+            });
             mAdapter.setData(mList);
             emptyView.setVisibility(result.getData().size() > 0 ? View.INVISIBLE : View.VISIBLE);
             temporary();
