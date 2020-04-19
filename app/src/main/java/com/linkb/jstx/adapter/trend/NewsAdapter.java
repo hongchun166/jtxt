@@ -53,7 +53,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         viewHolder.contentTv.setHtml(dataListBean.getTitle());
         viewHolder.sourceTv.setText(dataListBean.getAuthor());
         viewHolder.timeTv.setText(TimeUtils.getTimeAgo(dataListBean.getTimestamp(), mContext));
-        viewHolder.goodReceptionNumberTv.setText(mContext.getResources().getString(R.string.good_reception_number, dataListBean.getReplyCount1()));
+      //  viewHolder.goodReceptionNumberTv.setText(mContext.getResources().getString(R.string.good_reception_number, dataListBean.getReplyCount1()));
 
         if(dataListBean.getLotteryAmount()!=null){
             viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger);
@@ -123,8 +123,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         TextView sourceTv;
         @BindView(R.id.textView148)
         TextView timeTv;
-        @BindView(R.id.textView149)
-        TextView goodReceptionNumberTv;
         @BindView(R.id.viewGetRedBag)
         ImageView viewGetRedBag;
 

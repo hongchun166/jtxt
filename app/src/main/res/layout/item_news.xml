@@ -83,17 +83,7 @@
             android:layout_toRightOf="@+id/textView147"
             />
 
-        <TextView
-            android:visibility="visible"
-            android:id="@+id/textView149"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/tex_color_gray_999999"
-            android:textSize="@dimen/text_content"
-            android:text="@string/good_reception_number"
-            android:layout_alignParentRight="true"
-            />
+
         <ImageView
             android:id="@+id/viewGetRedBag"
             android:layout_width="wrap_content"
