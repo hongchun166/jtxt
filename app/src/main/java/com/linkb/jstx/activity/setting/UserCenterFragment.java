@@ -246,10 +246,11 @@ public class UserCenterFragment extends BaseFragment implements CloudImageLoadLi
 
     @OnClick(R.id.qr_code_fly)
     public void onQrCode(){
-        Intent intent = new Intent(getContext(), GroupQrCodeActivity.class);
-        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
-                user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
-        startActivity(intent);
+        GroupQrCodeActivity.navToActFriend(getContext(),user.account ,user.name);
+//        Intent intent = new Intent(getContext(), GroupQrCodeActivity.class);
+//        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
+//                user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
+//        startActivity(intent);
     }
 
     private class ShareAsyncTask extends AsyncTask<String, Void,  byte[]>{

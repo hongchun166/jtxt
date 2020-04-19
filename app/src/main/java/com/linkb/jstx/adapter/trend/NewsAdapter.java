@@ -56,9 +56,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         viewHolder.goodReceptionNumberTv.setText(mContext.getResources().getString(R.string.good_reception_number, dataListBean.getReplyCount1()));
 
         if(dataListBean.getLotteryAmount()!=null){
-            viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger_p);
-        }else {
             viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger);
+            viewHolder.viewGetRedBag.setEnabled(false);
+
+        }else {
+            viewHolder.viewGetRedBag.setImageResource(R.mipmap.ic_news_redpackger_p);
         }
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -76,15 +78,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     private void onItemClick(View view,NewsDataResult.DataListBean dataListBean) {
-        if (!TextUtils.isEmpty(dataListBean.getUrl())) {
-
-            MMWebViewActivity.createNavToParam(Uri.parse(dataListBean.getUrl()))
-                    .setBeanId(String.valueOf(dataListBean.getId()))
-                    .start(mContext);
-        }else {
-            if(onItemClickCallback!=null){
-                onItemClickCallback.onItemClickCallback(view,dataListBean);
-            }
+        if(onItemClickCallback!=null){
+            onItemClickCallback.onItemClickCallback(view,dataListBean);
         }
     }
 

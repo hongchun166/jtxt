@@ -2,19 +2,15 @@ package com.linkb.jstx.model.world_area;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.linkb.jstx.activity.contact.GroupQrCodeActivityV2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class WorlAreaOpt {

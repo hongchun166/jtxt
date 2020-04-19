@@ -1,14 +1,17 @@
 package com.linkb.jstx.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.linkb.R;
+import com.linkb.jstx.activity.chat.MMWebViewActivity;
 import com.linkb.jstx.adapter.trend.NewsAdapter;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.network.http.HttpRequestListener;
@@ -17,6 +20,7 @@ import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.NewsDataResult;
+import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -44,6 +48,8 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
 
     private List<NewsDataResult.DataListBean> mNewsList = new ArrayList<>();
 
+    String lastClickId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
@@ -67,9 +73,20 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
         mRecyclerView.setAdapter( mAdapter = new NewsAdapter(mNewsList, getContext()));
         mAdapter.setOnItemClickCallback((view, bean) ->{
 
+            if (!TextUtils.isEmpty(bean.getUrl())) {
+                lastClickId=String.valueOf(bean.getId());
+                MMWebViewActivity.createNavToParam(Uri.parse(bean.getUrl()))
+                        .setBeanId(String.valueOf(bean.getId()))
+                        .start(getContext());
+            }
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        httpGetEditorInfo(lastClickId);
+    }
 
     @Override
     public void requestData() {
@@ -96,6 +113,40 @@ public class NewsFragment extends LazyLoadFragment implements HttpRequestListene
 
     }
 
+    private void httpGetEditorInfo(String beanId) {
+        if(TextUtils.isEmpty(beanId)){
+            return;
+        }
+        NewsDataResult.DataListBean dataListBeanFind=null;
+        for (NewsDataResult.DataListBean dataListBean : mNewsList) {
+            if(String.valueOf(beanId).equals(String.valueOf(dataListBean.getId()))){
+                dataListBeanFind=dataListBean;
+            }
+        }
+        if(dataListBeanFind.getLotteryAmount()!=null){
+            return;
+        }
+        HttpServiceManagerV2.getEditorInfo(beanId, new HttpRequestListener<GetEditorInfoResult>() {
+            @Override
+            public void onHttpRequestSucceed(GetEditorInfoResult result, OriginalCall call) {
+                if (result.isSuccess()) {
+                    if (result.getData().getLottery_amount() != null) {
+                        for (NewsDataResult.DataListBean dataListBean : mNewsList) {
+                            if(String.valueOf(beanId).equals(String.valueOf(dataListBean.getId()))){
+                                dataListBean.setLotteryAmount(result.getData().getLottery_amount());
+                                break;
+                            }
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+            }
+        });
+    }
 
 
 }

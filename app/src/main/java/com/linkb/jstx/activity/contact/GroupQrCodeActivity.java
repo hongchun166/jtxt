@@ -1,6 +1,7 @@
 package com.linkb.jstx.activity.contact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.util.BitmapUtils;
 import com.linkb.jstx.util.ClipboardUtils;
 import com.linkb.jstx.util.ConvertUtils;
@@ -18,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,19 +30,45 @@ import butterknife.OnClick;
 * */
 public class GroupQrCodeActivity extends BaseActivity {
 
+    static class GroupQrCodeParam implements Serializable {
+        public String qrcodeType;
+        public String account;
+        public String name;
+    }
+
     @BindView(R.id.imageView2)
     ImageView qrcodeImage;
 
     private Bitmap mBitmap;
     private File file;
 
+    public static void navToActFriend(Context context,String account,String name){
+        GroupQrCodeParam param=new GroupQrCodeParam();
+        param.qrcodeType= Constant.QrCodeFormater.PERSON_QR_CODE;
+        param.account=account;
+        param.name=name;
+        Intent intent = new Intent(context, GroupQrCodeActivity.class);
+        intent.putExtra("GroupQrCodeParam",param);
+        context.startActivity(intent);
+    }
+    public static void navToActGroup(Context context,String gid){
+        GroupQrCodeParam param=new GroupQrCodeParam();
+        param.qrcodeType= Constant.QrCodeFormater.GROUP_QR_CODE;
+        param.account=gid;
+        Intent intent = new Intent(context, GroupQrCodeActivity.class);
+        intent.putExtra("GroupQrCodeParam",param);
+        context.startActivity(intent);
+    }
     @Override
     protected void initComponents() {
         ButterKnife.bind(this);
 
-        String qrcode = getIntent().getStringExtra("qrcode");
+        GroupQrCodeParam groupQrCodeParam = (GroupQrCodeParam) getIntent().getSerializableExtra("GroupQrCodeParam");
+        String qrString=groupQrCodeParam.qrcodeType
+                + Constant.QrCodeFormater.QR_CODE_SPLIT+groupQrCodeParam.account
+                + Constant.QrCodeFormater.QR_CODE_SPLIT +groupQrCodeParam.name;
 
-        mBitmap = ZXingUtils.createQRImage(qrcode,
+        mBitmap = ZXingUtils.createQRImage(qrString,
                 ConvertUtils.dp2px(150), ConvertUtils.dp2px(150));
         qrcodeImage.setImageBitmap(mBitmap);
     }

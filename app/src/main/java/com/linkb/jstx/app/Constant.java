@@ -407,6 +407,7 @@ public interface Constant {
         String QR_CODE_SPLIT = "#";
         String GROUP_QR_CODE = "1";
         String PERSON_QR_CODE = "2";
+        String Invitation_TO_Download_QR_CODE = "3";
     }
 
     /** 二维码扫码种类

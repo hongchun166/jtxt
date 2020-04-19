@@ -15,6 +15,7 @@ import com.jungly.gridpasswordview.GridPasswordView;
 import com.linkb.R;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 
@@ -113,7 +114,8 @@ public class PasswordInputFragment extends BaseDialogFragment implements HttpReq
     private void gotoVerifyPassword(String password) {
         applyPassword = password;
         showProgressDialog(getResources().getString(R.string.verify_password_ing));
-        HttpServiceManager.verifyApplyPassword(password, this);
+//        HttpServiceManager.verifyApplyPassword(password, this);
+        HttpServiceManagerV2.validateTradePassword(password, this);
     }
 
     @OnClick(R.id.dismiss_btn)

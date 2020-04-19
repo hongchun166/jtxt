@@ -50,13 +50,13 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         viewHolder.goodNewsNumber.setText(mContext.getResources().getString(R.string.good_news_number, dataListBean.getReplyCount3()));
         viewHolder.badNewsNumber.setText(mContext.getResources().getString(R.string.bad_news_number, dataListBean.getReplyCount4()));
 
+
         if(dataListBean.getLotteryAmount()!=null){
+            viewHolder.viewGetRedBag.setBackgroundResource(R.mipmap.ic_news_redpackger);
             viewHolder.viewGetRedBag.setEnabled(false);
-            String getRedBagHint=mContext.getResources().getString(R.string.hint_red_receive_ed)+dataListBean.getLotteryAmount().doubleValue()+"KKC";
-            viewHolder.viewGetRedBag.setText(getRedBagHint);
+
         }else {
-            viewHolder.viewGetRedBag.setText(R.string.hint_red_receive);
-            viewHolder.viewGetRedBag.setEnabled(true);
+            viewHolder.viewGetRedBag.setBackgroundResource(R.mipmap.ic_news_redpackger_p);
         }
 
         if (mExpressCommentListener != null){
@@ -140,7 +140,7 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         @BindView(R.id.button12)
         TextView badNewsNumber;
         @BindView(R.id.viewGetRedBag)
-        TextView viewGetRedBag;
+        ImageView viewGetRedBag;
 
         public ExpressViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -14,6 +14,7 @@ import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.countdownbutton.CountDownButton;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 
@@ -26,8 +27,7 @@ import butterknife.OnClick;
  */
 public class ModifyApplyPasswordActivity extends BaseActivity implements HttpRequestListener {
 
-    @BindView(R.id.oldPassword)
-    EditText oldApplyPassword;
+
     @BindView(R.id.newPassword)
     EditText newApplyPassword;
     @BindView(R.id.editText3)
@@ -47,7 +47,8 @@ public class ModifyApplyPasswordActivity extends BaseActivity implements HttpReq
     @OnClick(R.id.countbtn)
     public void onCountDown(){
         countDownButton.startCount();
-        HttpServiceManager.getApplyVerifyCode(this);
+//        HttpServiceManager.getApplyVerifyCode(this);
+        HttpServiceManagerV2.sendWeiquVCode(Global.getCurrentUser().getAccount(),this);
     }
 
     @OnClick(R.id.save_btn)
@@ -59,14 +60,9 @@ public class ModifyApplyPasswordActivity extends BaseActivity implements HttpReq
     public void onBack(){finish();}
 
     private void performUpdateRequest() {
-        String oldPassword = ((EditText) findViewById(R.id.oldPassword)).getText().toString().trim();
         String newPassword = ((EditText) findViewById(R.id.newPassword)).getText().toString().trim();
         String verifyCode = verifyCodeEdt.getText().toString().trim();
 
-        if (TextUtils.isEmpty(oldPassword)){
-            showToastView(R.string.old_apply_password_empty_error);
-            return;
-        }
         if (TextUtils.isEmpty(newPassword)){
             showToastView(R.string.new_apply_password_empty_error);
             return;
@@ -76,24 +72,41 @@ public class ModifyApplyPasswordActivity extends BaseActivity implements HttpReq
             return;
         }
         showProgressDialog(getString(R.string.tip_loading, getString(R.string.common_save)));
-        HttpServiceManager.updateApplyPassword(oldPassword,newPassword,verifyCode,this);
+//        HttpServiceManager.updateApplyPassword(newPassword,verifyCode,this);
+        User user=Global.getCurrentUser();
+        HttpServiceManagerV2.updateTradePass(user.account,newPassword,verifyCode,this);
     }
 
    @Override
     public void onHttpRequestSucceed(BaseResult result, OriginalCall call) {
-        if (result.isSuccess() && call.equalsPatch(URLConstant.MODIFY_APPLY_PASSWORD_URL)) {
-            hideProgressDialog();
-            showToastView(R.string.tip_save_complete);
-            finish();
-            return;
-        }
-        if (!result.isSuccess() && call.equalsPatch(URLConstant.MODIFY_APPLY_PASSWORD_URL)) {
-            hideProgressDialog();
-            showToastView(R.string.tip_oldpassword_error);
-        }
-        if (!result.isSuccess() && call.equalsPatch(URLConstant.APPLY_MESSAGE_VERIFY_CODE)){
-            showToastView(result.message);
-        }
+        hideProgressDialog();
+       if(call.equalsPatch(URLConstant.updateTradePass)){
+           if(result.isSuccess()){
+               showToastView(R.string.tip_save_complete);
+               finish();
+           }else {
+               showToastView(String.valueOf(result.message));
+           }
+       } else if ( call.equalsPatch(URLConstant.sendWeiquVCode)){
+           if(result.isSuccess()){
+               showToastView(R.string.tip_publish_complete);
+           }else {
+               showToastView(result.message);
+           }
+       }
+//        if (result.isSuccess() && call.equalsPatch(URLConstant.MODIFY_APPLY_PASSWORD_URL)) {
+//            hideProgressDialog();
+//            showToastView(R.string.tip_save_complete);
+//            finish();
+//            return;
+//        }
+//        if (!result.isSuccess() && call.equalsPatch(URLConstant.MODIFY_APPLY_PASSWORD_URL)) {
+//            hideProgressDialog();
+//            showToastView(R.string.tip_oldpassword_error);
+//        }
+//        if (!result.isSuccess() && call.equalsPatch(URLConstant.APPLY_MESSAGE_VERIFY_CODE)){
+//            showToastView(result.message);
+//        }
     }
 
     @Override

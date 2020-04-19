@@ -9,36 +9,6 @@
     <include
         layout="@layout/layout_common_modify_toolbar"/>
 
-    <LinearLayout
-        android:layout_marginTop="10dip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/item_background_top"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_user_old_apply_password"
-            android:textColor="@android:color/black" />
-
-        <EditText
-            android:id="@+id/oldPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:inputType="number"
-            android:paddingTop="11dp"
-            android:paddingBottom="11dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:maxLength="6"
-            android:background="@drawable/edittext_full_bg_selector"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -25,6 +25,7 @@ import com.linkb.jstx.network.result.v2.GetEditorInfoResult;
 import com.linkb.jstx.network.result.v2.GetMessageDestroySwithResult;
 import com.linkb.jstx.network.result.v2.GetReceiverDetailResultV2;
 import com.linkb.jstx.network.result.v2.GetRedBagResult;
+import com.linkb.jstx.network.result.v2.GetTradePasswordStateResult;
 import com.linkb.jstx.network.result.v2.ListIndustryResult;
 import com.linkb.jstx.network.result.v2.ListMyBalanceFlowResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
@@ -430,7 +431,7 @@ public class HttpServiceManagerV2 {
      * @param redPackgeId 红包ID
      */
     public static void redpackgeGetInfo(String redPackgeId,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/getInfo", RedpackgeGetInfoResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_GetInfo, RedpackgeGetInfoResult.class);
         requestBody.addParameter("redPackgeId", redPackgeId);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -439,7 +440,7 @@ public class HttpServiceManagerV2 {
      * @param redPackgeId 红包ID
      */
     public static void redpackgeGetReceiverDetail(String redPackgeId,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/getReceiverDetail", GetReceiverDetailResultV2.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_getReceiverDetail, GetReceiverDetailResultV2.class);
 //        requestBody.addParameter("userAccount", userAccount);
         requestBody.addParameter("redPackgeId", redPackgeId);
         HttpRequestLauncher.execute(requestBody, listener);
@@ -449,7 +450,7 @@ public class HttpServiceManagerV2 {
      * @param redPackgeId 红包ID
      */
     public static void redpackgeReceiver(String redPackgeId,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/receiverPackge", ReceivedRedPacketResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_receiverPackge, ReceivedRedPacketResult.class);
 //        requestBody.addParameter("userAccount", userAccount);
         requestBody.addParameter("redPackgeId", redPackgeId);
         HttpRequestLauncher.execute(requestBody, listener);
@@ -466,14 +467,15 @@ public class HttpServiceManagerV2 {
      * @param  tradePassword 支付密码
      */
     public static void redpackgeSend(long currencyId, String sendMoney, String remark, int redCount, int redType, String tradePassword,String receiver, HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/send", SendRedPacketResultV2.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_send, SendRedPacketResultV2.class);
 //        requestBody.addParameter("userAccount", userAccount);
         requestBody.addParameter("currencyId", currencyId);
         requestBody.addParameter("sendMoney", sendMoney);
         requestBody.addParameter("redCount", redCount);
         requestBody.addParameter("remark", remark);
         requestBody.addParameter("redType", redType);
-        requestBody.addParameter("tradePassword", MD5.digest(tradePassword + "blink"));
+//        requestBody.addParameter("tradePassword", MD5.digest(tradePassword + "blink"));
+        requestBody.addParameter("tradePassword",tradePassword);
         requestBody.addParameter("receiver", receiver);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -483,7 +485,7 @@ public class HttpServiceManagerV2 {
      * @param
      */
     public static void redpackgeListCurrenCy(String userAccount,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listCurrenCy", RedpackgeListCurrenCyResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_listCurrenCy, RedpackgeListCurrenCyResult.class);
         requestBody.addParameter("userAccount",userAccount);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -492,7 +494,7 @@ public class HttpServiceManagerV2 {
      * @param
      */
     public static void redpackgeListReceivHistroy(String userAccount,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listReceivHistroy", RedpackgeListRcvHistroyResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_listReceivHistroy, RedpackgeListRcvHistroyResult.class);
         requestBody.addParameter("userAccount",userAccount);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -501,8 +503,54 @@ public class HttpServiceManagerV2 {
      * @param
      */
     public static void redpackgeListSendHistroy(String userAccount,HttpRequestListener listener){
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.API_URL+"redpackge/listSendHistroy", RedpackgeListSndHistoryResult.class);
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.REDPACKGE_listSendHistroy, RedpackgeListSndHistoryResult.class);
         requestBody.addParameter("userAccount",userAccount);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+
+    /**
+     * 用户是否设置支付密码
+     * @param
+     */
+    public static void getTradePasswordState(String userAccount,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET,URLConstant.getTradePasswordState, GetTradePasswordStateResult.class);
+//        requestBody.addPathVariable("userAccount",userAccount);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 验证支付密码是否正确
+     * @param fundPassword 密码
+     * @param listener
+     */
+    public static void validateTradePassword(String fundPassword,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.validateTradePassword, BaseResult.class);
+        requestBody.addParameter("fundPassword",fundPassword);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+    /**
+     * 发送短信验证码
+     * @param account
+     */
+    public static void sendWeiquVCode(String account,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST,URLConstant.sendWeiquVCode, BaseResult.class);
+        requestBody.addParameter("account",account);
+        HttpRequestLauncher.execute(requestBody, listener);
+    }
+
+    /**
+     * 修改支付密码
+     * @param account
+     * @param newPassword
+     * @param identifyingCode  短信验证码
+     * @param listener
+     */
+    public static void updateTradePass(String account,String newPassword,String identifyingCode,HttpRequestListener listener){
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.PATCH,URLConstant.updateTradePass, BaseResult.class);
+        requestBody.addParameter("newPassword",newPassword);
+        requestBody.addParameter("identifyingCode",identifyingCode);
+        requestBody.addParameter("account",account);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 }

@@ -345,9 +345,7 @@ public class GroupDetailActivity extends CIMMonitorActivity implements OnDialogB
 
     @OnClick(R.id.imageView19)
     public void gotoQrCode(){
-        Intent intent = new Intent(this, GroupQrCodeActivity.class);
-        intent.putExtra("qrcode", Constant.QrCodeFormater.GROUP_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT + String.valueOf(group.id));
-        startActivity(intent);
+        GroupQrCodeActivity.navToActGroup(this, String.valueOf(group.id));
     }
 
     @OnClick(R.id.textView133)

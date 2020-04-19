@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.linkb.BuildConfig;
 import com.linkb.R;
+import com.linkb.jstx.activity.RegisterActivityV2;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.setting.ModifyApplyPasswordActivity;
+import com.linkb.jstx.activity.setting.ModifyPasswordActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.URLConstant;
@@ -31,6 +34,7 @@ import com.linkb.jstx.network.http.SimpleHttpRequestListener;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ContactsResult;
 import com.linkb.jstx.network.result.CurrencyListResult;
+import com.linkb.jstx.network.result.v2.GetTradePasswordStateResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.network.result.v2.RedpackgeListCurrenCyResult;
 import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
@@ -202,17 +206,26 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
 
     @OnClick(R.id.send_red_packet_confirm_button)
     public void gotoSendRedPackedt(){
-        mPasswordInputFragment = PasswordInputFragment.getInstance(redPacketAmountEditText.getText().toString(), coinNameTv.getText().toString());
-        mPasswordInputFragment.setListener(this);
+        User user=Global.getCurrentUser();
+        HttpServiceManagerV2.getTradePasswordState(user.getAccount(), new HttpRequestListener<GetTradePasswordStateResult>() {
+            @Override
+            public void onHttpRequestSucceed(GetTradePasswordStateResult result, OriginalCall call) {
+                if(result.isSuccess()){
+                    if(result.getData().hasSetPswSuc()){
+                        mPasswordInputFragment = PasswordInputFragment.getInstance(redPacketAmountEditText.getText().toString(), coinNameTv.getText().toString());
+                        mPasswordInputFragment.setListener(RedPacketActivityV2.this);
+                        mPasswordInputFragment.show(RedPacketActivityV2.this.getSupportFragmentManager(), "PasswordInputFragment");
+                    }else{
+                        startActivity(new Intent(RedPacketActivityV2.this, ModifyApplyPasswordActivity.class));
+                    }
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                showToastView(R.string.password_empty_error);
+            }
+        });
 
-//        if (mPasswordInputFragment == null){
-//            mPasswordInputFragment = PasswordInputFragment.getInstance(redPacketAmountEditText.getText().toString(), coinNameTv.getText().toString());
-//            mPasswordInputFragment.setListener(this);
-//        }else {
-//            mPasswordInputFragment.setRedPacketMoney(redPacketAmountEditText.getText().toString());
-//            mPasswordInputFragment.setCurrencyMark(coinNameTv.getText().toString());
-//        }
-        mPasswordInputFragment.show(RedPacketActivityV2.this.getSupportFragmentManager(), "PasswordInputFragment");
     }
 
     @OnClick(R.id.red_packet_record_fly)

@@ -229,10 +229,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
     @OnClick(R.id.invite_cly)
     public void goInvite() {
 //        startActivity(new Intent(this.getActivity(), PhoneContactsActivity.class));
-        Intent intent = new Intent(getContext(), GroupQrCodeActivityV2.class);
-        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE + Constant.QrCodeFormater.QR_CODE_SPLIT +
-                user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
-        startActivity(intent);
+        GroupQrCodeActivityV2.navToActInvitationDownload(getContext(),user.account,user.name);
     }
 
     @OnClick(R.id.modify_password_cly)
@@ -242,11 +239,7 @@ public class UserCenterFragmentV2 extends BaseFragment implements CloudImageLoad
 
     @OnClick(R.id.viewIVQRCode)
     public void onQrCode() {
-        Intent intent = new Intent(getContext(), GroupQrCodeActivity.class);
-        intent.putExtra("qrcode", Constant.QrCodeFormater.PERSON_QR_CODE +
-                Constant.QrCodeFormater.QR_CODE_SPLIT +
-                user.account + Constant.QrCodeFormater.QR_CODE_SPLIT + user.name);
-        startActivity(intent);
+        GroupQrCodeActivity.navToActFriend(getContext(),user.account ,user.name);
     }
 
 

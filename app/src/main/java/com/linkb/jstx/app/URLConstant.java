@@ -428,6 +428,21 @@ public class URLConstant {
     public static String  momentDelete;//删除朋友圈
     public static String  momentSave;//发布帖子
 
+    public static String REDPACKGE_GetInfo;//查看红包基本信息
+    public static String REDPACKGE_getReceiverDetail;// 获取红包领取详情(包括红包信息，和已领取的记录信息
+    public static String REDPACKGE_receiverPackge;//领红包
+    public static String REDPACKGE_send;//发送红包
+    public static String REDPACKGE_listCurrenCy;//获取红包发送币种列表
+    public static String REDPACKGE_listReceivHistroy;//获取领取红包历史记录
+    public static String REDPACKGE_listSendHistroy;//获取发送红包历史记录)
+
+    public static String getTradePasswordState;//用户是否设置支付密码
+
+    public static String validateTradePassword;//验证支付密码是否正确
+    public static String sendWeiquVCode;//发送短信验证码
+    public static String updateTradePass;//修改支付密码
+
+
     static {
         initialize();
         initializeV2();
@@ -469,6 +484,18 @@ public class URLConstant {
         momentDelete=API_URL+"moment/delete";
         momentSave=API_URL+"moment/save";
 
+        REDPACKGE_GetInfo=API_URL+"redpackge/getInfo";//查看红包基本信息
+        REDPACKGE_getReceiverDetail=API_URL+"redpackge/getReceiverDetail";// 获取红包领取详情(包括红包信息，和已领取的记录信息
+        REDPACKGE_receiverPackge=API_URL+"redpackge/receiverPackge";//领红包
+        REDPACKGE_send=API_URL+"redpackge/send";//发送红包
+        REDPACKGE_listCurrenCy=API_URL+"redpackge/listCurrenCy";//获取红包发送币种列表
+        REDPACKGE_listReceivHistroy=API_URL+"redpackge/listReceivHistroy";//获取领取红包历史记录
+        REDPACKGE_listSendHistroy=API_URL+"redpackge/listSendHistroy";//获取发送红包历史记录)
+
+        getTradePasswordState=API_URL+"account/getTradePasswordState";
+        validateTradePassword=API_URL+"account/validateTradePassword";
+        sendWeiquVCode=API_URL+"account/sendWeiquVCode";
+        updateTradePass=API_URL+"user/updateTradePass";//修改支付密码;
     }
     public static void initialize() {
 //         API_URL = ClientConfig.getServerPath() + "/api/";
