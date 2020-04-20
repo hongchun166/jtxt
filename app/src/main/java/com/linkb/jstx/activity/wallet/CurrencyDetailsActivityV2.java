@@ -37,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CurrencyDetailsActivityV2 extends BaseActivity {
+public class CurrencyDetailsActivityV2 extends BaseActivity  {
     @BindView(R.id.ll_record)
     LinearLayout llRecord;
     @BindView(R.id.ll_top)
