@@ -1,4 +1,3 @@
-
 package com.linkb.jstx.network.http;
 
 import android.content.Intent;
@@ -114,7 +113,7 @@ import static com.linkb.jstx.app.URLConstant.GET_ALL_GROUP;
 import static com.linkb.jstx.app.URLConstant.MESSAGE_REVOKE_URL;
 
 public class HttpServiceManager {
-
+	//MD5.digest(
 
     /**
      * 用户登录
@@ -124,20 +123,28 @@ public class HttpServiceManager {
      * @param listener
      */
     public static void login(String account, String password, String device, HttpRequestListener listener) {
-        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.USER_LOGIN_URL, LoginResult.class);
-        if (BuildConfig.LOCAL) {
-            requestBody.addParameter("password", MD5.digest(password + "blink"));
-        } else {
-            requestBody.addParameter("password", MD5.digest(password + "blink"));
-        }
+//        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.USER_LOGIN_URL, LoginResult.class);
+//        if (BuildConfig.LOCAL) {
+//            requestBody.addParameter("password", password );
+//        } else {
+//            requestBody.addParameter("password", password );
+//        }
+//
+//        requestBody.addParameter("account", account);
+//        requestBody.addParameter("device", device);
+//        requestBody.addParameter("loginType", 1);   // android 是1 iOS是2
+//        requestBody.addParameter("device", device);
+//        requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
+//        // requestBody.addParameter("sign", MD5.digest(device + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+//        requestBody.addParameter("sign", device+ String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
+//        HttpRequestLauncher.execute(requestBody, listener);
 
+        HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.API_URL+"/user/userLogin", LoginResult.class);
+        requestBody.addParameter("password", password );
         requestBody.addParameter("account", account);
-        requestBody.addParameter("device", device);
-        requestBody.addParameter("loginType", 1);   // android 是1 iOS是2
-        requestBody.addParameter("device", device);
-        requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
-        requestBody.addParameter("sign", MD5.digest(device + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
-        HttpRequestLauncher.execute(requestBody, listener);
+		HttpRequestLauncher.execute(requestBody, listener);
+
+		
     }
 
     public static void logout() {
@@ -147,8 +154,8 @@ public class HttpServiceManager {
 
     public static void updatePassword(String oldPassword, String newPassword, HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.PATCH, URLConstant.USER_PASSWORD_URL, BaseResult.class);
-        requestBody.addParameter("oldPassword", MD5.digest(oldPassword + "blink"));
-        requestBody.addParameter("newPassword", MD5.digest(newPassword + "blink"));
+        requestBody.addParameter("oldPassword",oldPassword);
+        requestBody.addParameter("newPassword", newPassword );
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -157,8 +164,8 @@ public class HttpServiceManager {
      */
     public static void updateApplyPassword(String oldPassword, String newPassword, String identifyingCode, HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.PATCH, URLConstant.MODIFY_APPLY_PASSWORD_URL, BaseResult.class);
-        requestBody.addParameter("oldPassword", MD5.digest(oldPassword + "blink"));
-        requestBody.addParameter("newPassword", MD5.digest(newPassword + "blink"));
+        requestBody.addParameter("oldPassword", oldPassword );
+        requestBody.addParameter("newPassword", newPassword );
         requestBody.addParameter("identifyingCode", identifyingCode);
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -1001,9 +1008,9 @@ public class HttpServiceManager {
     public static void verifyApplyPassword(String password, HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.VERIFY_APPLY_PASSWORD, BaseResult.class);
         if (BuildConfig.LOCAL) {
-            requestBody.addParameter("fundPassword", MD5.digest(password + "blink"));
+            requestBody.addParameter("fundPassword", password);
         } else {
-            requestBody.addParameter("fundPassword", MD5.digest(password + "blink"));
+            requestBody.addParameter("fundPassword", password );
         }
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -1021,7 +1028,7 @@ public class HttpServiceManager {
         requestBody.addParameter("redCount", redCount);
         requestBody.addParameter("remark", remark);
         requestBody.addParameter("redType", redPacketType);
-        requestBody.addParameter("tradePassword", MD5.digest(tradePassword + "blink"));
+        requestBody.addParameter("tradePassword", tradePassword);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -1089,7 +1096,8 @@ public class HttpServiceManager {
         requestBody.addParameter("account", account);
         requestBody.addParameter("type", type);
         requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
-        requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+        //requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+		requestBody.addParameter("sign",account+ String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -1100,7 +1108,8 @@ public class HttpServiceManager {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.REGISTER_MESSAGE_VERIFY_CODE, BaseDataResult.class);
         requestBody.addParameter("account", account);
         requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
-        requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+        //requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+		requestBody.addParameter("sign", account  + String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -1317,7 +1326,7 @@ public class HttpServiceManager {
      */
     public static void findPassword(String account, String newPassword, String vertcode, HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.FIND_PASSWORD_REQUEST, BaseDataResult.class);
-        requestBody.addParameter("newPassword", MD5.digest(newPassword + "blink"));
+        requestBody.addParameter("newPassword", newPassword );
         requestBody.addParameter("account", account);
         requestBody.addParameter("vertcode", vertcode);
         HttpRequestLauncher.execute(requestBody, listener);
@@ -1385,7 +1394,7 @@ public class HttpServiceManager {
         requestBody.addParameter("sendMoney", sendMoney);
         requestBody.addParameter("remark", remark);
         requestBody.addParameter("redType", redType);
-        requestBody.addParameter("tradePassword", MD5.digest(tradePassword + "blink"));
+        requestBody.addParameter("tradePassword", tradePassword );
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
