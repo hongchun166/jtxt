@@ -236,7 +236,8 @@ public class LoginActivityV2 extends BaseActivity  {
                     @Override
                     public void run(AccountManagerFuture accountManagerFuture) {
                         User user = result.getData().getUser();
-                        user.password = MD5.digest(passwordEdt.getText().toString().trim());
+//                        user.password = MD5.digest(passwordEdt.getText().toString().trim());
+                        user.password =passwordEdt.getText().toString().trim();
                         Global.addAccount(user);
                         Global.saveAccessToken(result.getToken());
                         handleLogined(result);

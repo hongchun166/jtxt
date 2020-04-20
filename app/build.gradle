@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'AndResGuard'
-
-
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
@@ -13,7 +11,7 @@ android {
 //        targetSdkVersion 24
         targetSdkVersion 28
         versionCode 32
-        versionName "1.0.33"
+        versionName "1.0.34"
 
         ndk{abiFilters "armeabi", "armeabi-v7a", "x86", "mips", "arm-v8a"}
     }
