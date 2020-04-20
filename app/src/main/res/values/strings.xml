@@ -423,10 +423,12 @@
     <string name="label_login_password">密码</string>
     <string name="label_login">登录</string>
     <string name="label_user_oldpassword">旧密码：</string>
-    <string name="label_user_newpassword">新密码(至少6位)：</string>
+    <string name="label_user_newpassword">新密码：</string>
+    <string name="label_user_newpassword_min_length">至少6位</string>
     <string name="label_user_newpassword_confirm">确认新密码</string>
     <string name="label_user_old_apply_password">旧支付密码：</string>
     <string name="label_user_new_apply_password">新支付密码：</string>
+    <string name="label_user_new_apply_password_hint">新支付密码</string>
     <string name="label_user_account">帐号：</string>
     <string name="label_user_telephone">电话：</string>
     <string name="label_user_industry">行业:</string>

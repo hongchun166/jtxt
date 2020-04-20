@@ -207,6 +207,7 @@
 
     <string name="label_user_old_apply_password">old apply password:</string>
     <string name="label_user_new_apply_password">new apply password:</string>
+    <string name="label_user_new_apply_password_hint">new apply password</string>
     <string name="label_setting_modify_apply_password">modify apply password</string>
     <string name="label_setting_default_apply_password">default apply password: 000000</string>
 
@@ -402,6 +403,7 @@
     <string name="label_login">login</string>
     <string name="label_user_oldpassword">old password：</string>
     <string name="label_user_newpassword">new password：</string>
+    <string name="label_user_newpassword_min_length">At least 6 digits</string>
     <string name="label_user_newpassword_confirm">confirm new password</string>
 
 

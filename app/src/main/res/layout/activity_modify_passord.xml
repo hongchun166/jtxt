@@ -56,14 +56,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
+            android:background="@drawable/edittext_full_bg_selector"
+            android:hint="@string/password_tips"
             android:inputType="textPassword"
             android:maxLength="16"
-            android:paddingTop="11dp"
-            android:paddingBottom="11dp"
             android:paddingLeft="8dp"
+            android:paddingTop="11dp"
             android:paddingRight="8dp"
-            android:textColor="@android:color/black"
-            android:background="@drawable/edittext_full_bg_selector" />
+            android:paddingBottom="11dp"
+            android:textSize="@dimen/text_content"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
 

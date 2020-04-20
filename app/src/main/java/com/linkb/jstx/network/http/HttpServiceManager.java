@@ -1096,9 +1096,10 @@ public class HttpServiceManager {
         requestBody.addParameter("account", account);
         requestBody.addParameter("type", type);
         requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
-        //requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
-		requestBody.addParameter("sign",account+ String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
+        requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+//		requestBody.addParameter("sign",account+ String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
         HttpRequestLauncher.execute(requestBody, listener);
+//        HttpServiceManagerV2.sendWeiquVCode(account,listener);
     }
 
     /**
@@ -1108,9 +1109,10 @@ public class HttpServiceManager {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.REGISTER_MESSAGE_VERIFY_CODE, BaseDataResult.class);
         requestBody.addParameter("account", account);
         requestBody.addParameter("curTime", TimeUtils.getCurrentTime());
-        //requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
-		requestBody.addParameter("sign", account  + String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
+        requestBody.addParameter("sign", MD5.digest(account + "blink" + String.valueOf(TimeUtils.getCurrentTime() / 600L))); //防止脚本自动登录
+//		requestBody.addParameter("sign", account  + String.valueOf(TimeUtils.getCurrentTime() / 600L)); //防止脚本自动登录
         HttpRequestLauncher.execute(requestBody, listener);
+//        HttpServiceManagerV2.sendWeiquVCode(account,listener);
     }
 
     /**
@@ -1326,7 +1328,7 @@ public class HttpServiceManager {
      */
     public static void findPassword(String account, String newPassword, String vertcode, HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.FIND_PASSWORD_REQUEST, BaseDataResult.class);
-        requestBody.addParameter("newPassword", newPassword );
+        requestBody.addParameter("newPassword",newPassword );
         requestBody.addParameter("account", account);
         requestBody.addParameter("vertcode", vertcode);
         HttpRequestLauncher.execute(requestBody, listener);
@@ -1394,7 +1396,7 @@ public class HttpServiceManager {
         requestBody.addParameter("sendMoney", sendMoney);
         requestBody.addParameter("remark", remark);
         requestBody.addParameter("redType", redType);
-        requestBody.addParameter("tradePassword", tradePassword );
+        requestBody.addParameter("tradePassword",tradePassword );
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
