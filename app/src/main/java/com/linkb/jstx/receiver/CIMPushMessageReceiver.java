@@ -20,6 +20,7 @@ import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
+import com.linkb.jstx.event.FriendRelationChnageEB;
 import com.linkb.jstx.event.ReceiveFrienApplyEB;
 import com.linkb.jstx.message.handler.CustomMessageHandlerFactory;
 import com.linkb.jstx.message.parser.MessageParserFactory;
@@ -168,7 +169,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
             receiveCancelVideoMsg(msg);
             return;
         }
-        if (msg.action.equals(Constant.MessageAction.ACTION_FrienApply) ||msg.action.equals(Constant.MessageAction. ACTION_117)){
+        if (msg.action.equals(Constant.MessageAction.ACTION_FrienApply) ||msg.action.equals(Constant.MessageAction.ACTION_117)){
 
             FriendRepository.updateFriendRelationNewApply(true);
 
@@ -176,7 +177,11 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
             EventBus.getDefault().post(receiveFrienApplyEB);
             return;
         }
-
+        if(msg.action.equals(Constant.MessageAction.ACTION_118) ||msg.action.equals(Constant.MessageAction. ACTION_119)){
+            FriendRelationChnageEB friendRelationChnageEB=new FriendRelationChnageEB();
+            EventBus.getDefault().post(friendRelationChnageEB);
+            return;
+        }
         MessageSource source = MessageParserFactory.getFactory().parserMessageSource(msg);
         if (source == null && (msg.action.equals(Constant.MessageAction.ACTION_112) || msg.action.equals(Constant.MessageAction.ACTION_113))) return;
 

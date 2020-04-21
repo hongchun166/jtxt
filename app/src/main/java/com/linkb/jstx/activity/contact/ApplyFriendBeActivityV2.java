@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.component.WebImageView;
+import com.linkb.jstx.event.FriendRelationChnageEB;
+import com.linkb.jstx.model.Message;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
@@ -29,6 +32,8 @@ import com.linkb.jstx.network.result.FriendResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +115,20 @@ public class ApplyFriendBeActivityV2 extends BaseActivity implements HttpRequest
                 hideProgressDialog();
                 if (result.isSuccess()) {
                     showToastView(getString(R.string.operation_suc));
+
+                    FriendRelationChnageEB friendRelationChnageEB=new FriendRelationChnageEB();
+                    EventBus.getDefault().post(friendRelationChnageEB);
+//                    Message message = new Message();
+//                    message.id = System.currentTimeMillis();
+//                    message.content = "";
+//                    message.sender = Global.getCurrentUser().account;
+//                    message.receiver = friendId;
+//                    message.format = format;
+//                    message.extra = extra;
+//                    message.action = getMessageAction(format,true);
+//                    message.timestamp = System.currentTimeMillis();
+//                    message.state = Constant.MessageStatus.STATUS_NO_SEND;
+
                     loadFriendDate();
                 }
             }

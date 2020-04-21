@@ -26,6 +26,7 @@ import com.linkb.jstx.comparator.FriendShipNameAscComparator;
 import com.linkb.jstx.component.CharSelectorBar;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.StarMarkRepository;
+import com.linkb.jstx.event.FriendRelationChnageEB;
 import com.linkb.jstx.event.ReceiveFrienApplyEB;
 import com.linkb.jstx.listener.OnTouchMoveCharListener;
 import com.linkb.jstx.model.Friend;
@@ -185,7 +186,12 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
             adapter.notifyDataSetChangedNewFrienApplyChange();
         }
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void evenbusFriendRelationChnageEB(FriendRelationChnageEB eb){
+        if(adapter!=null){
+            loadFriendDate(false);
+        }
+    }
     private class GetPingYingTask extends AsyncTask<List<FriendListResult.FriendShip>, Void, List<Object>> {
 
         @Override
