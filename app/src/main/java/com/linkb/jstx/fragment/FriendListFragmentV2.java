@@ -181,7 +181,7 @@ public class FriendListFragmentV2 extends CIMMonitorFragment implements OnTouchM
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void evenbusReceiveApp(ReceiveFrienApplyEB eb){
         if(adapter!=null){
-            FriendRepository.updateFriendRelationNewApply(true);
+
             adapter.notifyDataSetChangedNewFrienApplyChange();
         }
     }

@@ -287,16 +287,18 @@ public class RegisterActivityV2 extends BaseActivity {
                         handleLogined(result);
                     }
                 });
+            }else {
+                showToastView(String.valueOf(result.message));
             }
-            if (Constant.ReturnCode.CODE_403.equals(result.code)) {
-                showToastView(R.string.tip_account_or_password_error);
-            }
-            if (Constant.ReturnCode.CODE_404.equals(result.code)) {
-                showToastView(R.string.tip_account_invailed);
-            }
-            if (Constant.ReturnCode.CODE_402.equals(result.code)) {
-                showToastView(R.string.tip_account_disabled);
-            }
+//            if (Constant.ReturnCode.CODE_403.equals(result.code)) {
+//                showToastView(R.string.tip_account_or_password_error);
+//            }
+//            if (Constant.ReturnCode.CODE_404.equals(result.code)) {
+//                showToastView(R.string.tip_account_invailed);
+//            }
+//            if (Constant.ReturnCode.CODE_402.equals(result.code)) {
+//                showToastView(R.string.tip_account_disabled);
+//            }
         }
 
         @Override

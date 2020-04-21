@@ -18,6 +18,7 @@ import com.linkb.BuildConfig;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
+import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.event.ReceiveFrienApplyEB;
 import com.linkb.jstx.message.handler.CustomMessageHandlerFactory;
@@ -168,6 +169,9 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
             return;
         }
         if (msg.action.equals(Constant.MessageAction.ACTION_FrienApply) ||msg.action.equals(Constant.MessageAction. ACTION_117)){
+
+            FriendRepository.updateFriendRelationNewApply(true);
+
             ReceiveFrienApplyEB receiveFrienApplyEB=new ReceiveFrienApplyEB();
             EventBus.getDefault().post(receiveFrienApplyEB);
             return;

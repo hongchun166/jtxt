@@ -243,15 +243,17 @@ public class LoginActivityV2 extends BaseActivity  {
                         handleLogined(result);
                     }
                 });
-            }
-            if (Constant.ReturnCode.CODE_403.equals(result.code)) {
-                showToastView(R.string.tip_account_or_password_error);
-            }
-            if (Constant.ReturnCode.CODE_404.equals(result.code)) {
-                showToastView(R.string.tip_account_invailed);
-            }
-            if (Constant.ReturnCode.CODE_402.equals(result.code)) {
-                showToastView(R.string.tip_account_disabled);
+            }else {
+                showToastView(String.valueOf(result.message));
+//                if (Constant.ReturnCode.CODE_403.equals(result.code) || "2009".equals(result.code)) {
+//                    showToastView(R.string.tip_account_or_password_error);
+//                }else if (Constant.ReturnCode.CODE_404.equals(result.code)) {
+//                    showToastView(R.string.tip_account_invailed);
+//                }else   if (Constant.ReturnCode.CODE_402.equals(result.code)) {
+//                    showToastView(R.string.tip_account_disabled);
+//                }else {
+//                    showToastView(R.string.tip_account_or_password_error);
+//                }
             }
         }
 
