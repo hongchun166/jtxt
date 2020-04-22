@@ -99,10 +99,13 @@ public class GroupQrCodeActivityV2 extends BaseActivity implements HttpRequestLi
     }
 
     private void updateQRCodeBitmap(){
-        String qrString=groupQrCodeParam.qrcodeType
-                + Constant.QrCodeFormater.QR_CODE_SPLIT+groupQrCodeParam.account
-                + Constant.QrCodeFormater.QR_CODE_SPLIT +groupQrCodeParam.name
-                + Constant.QrCodeFormater.QR_CODE_SPLIT+String.valueOf(groupQrCodeParam.downloadUrl);
+        String qrString=
+//                groupQrCodeParam.qrcodeType
+//                + Constant.QrCodeFormater.QR_CODE_SPLIT+groupQrCodeParam.account
+//                + Constant.QrCodeFormater.QR_CODE_SPLIT +groupQrCodeParam.name
+//                + Constant.QrCodeFormater.QR_CODE_SPLIT
+//                +
+                    String.valueOf(groupQrCodeParam.downloadUrl);
 
         Bitmap log= BitmapFactory.decodeResource(getResources(),R.mipmap.ic_log_kiki,null);
 

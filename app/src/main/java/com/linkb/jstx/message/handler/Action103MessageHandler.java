@@ -38,7 +38,7 @@ public class Action103MessageHandler implements CustomMessageHandler {
         Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
         intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), msg);
         intent.putExtra(Constant.NEED_RECEIPT, true);
-        LvxinApplication.sendGlobalBroadcast(intent);
+        LvxinApplication.sendGlobalBroadcastPackageName(intent);
 
         MessageRepository.updateSender(message.getId(), Constant.SYSTEM);
 

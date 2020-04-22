@@ -90,6 +90,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
         if(true){
             return;
         }
+        //3.5
         if(Build.VERSION.SDK_INT >= 26 && !isRegister(LocalBroadcastManager.getInstance(context),"com.farsunset.lvxin.MESSAGE_RECEIVED")){
             CIMPushMessageReceiver receiver=new CIMPushMessageReceiver();
             IntentFilter intentFilter=new IntentFilter();
@@ -279,6 +280,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
     @Override
     public void onConnectFinished(boolean hasAutoBind) {
         super.onConnectFinished(hasAutoBind);
+        System.out.println("==onConnectFinished=="+hasAutoBind);
         if (!hasAutoBind) {
             // 绑定账号到服务端
             CIMPushManager.bindAccount(LvxinApplication.getInstance(), Global.getCurrentAccount());
@@ -297,6 +299,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
     @Override
     public void onReplyReceived(ReplyBody reply) {
         super.onReplyReceived(reply);
+        System.out.println("==onReplyReceived=="+(reply!=null?reply.toString():" null "));
         // 当账号绑定到服务端成功，拉取离线消息
         if (reply.getKey().equals(CIMConstant.RequestKey.CLIENT_BIND) && reply.getCode().equals(CIMConstant.ReturnCode.CODE_200)) {
             getOfflineMessage();

@@ -255,6 +255,10 @@ public class LvxinApplication extends Application {
         startActivity(intent);
     }
 
+    public static void sendGlobalBroadcastPackageName(Intent intent){
+        intent.setPackage(getInstance().getPackageName());
+        getInstance().sendBroadcast(intent);
+    }
     public static void sendGlobalBroadcast(Intent intent){
         getInstance().sendBroadcast(intent);
     }

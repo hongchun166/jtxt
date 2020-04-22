@@ -92,7 +92,7 @@ public class MicroServerDetailedActivity extends BaseActivity implements HttpReq
             Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
             intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), msg);
             intent.putExtra(Constant.NEED_RECEIPT, false);
-            LvxinApplication.sendGlobalBroadcast(intent);
+            LvxinApplication.sendGlobalBroadcastPackageName(intent);
 
         }
 

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 
+import com.farsunset.cim.sdk.android.CIMPushService;
 import com.farsunset.cim.sdk.android.constant.CIMConstant;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -367,7 +368,7 @@ public class HttpServiceManager {
                         Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
                         intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), MessageUtil.transform(message));
                         intent.putExtra(Constant.NEED_RECEIPT, false);
-                        LvxinApplication.sendGlobalBroadcast(intent);
+                        LvxinApplication.sendGlobalBroadcastPackageName(intent);
                     }
                     HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.MESSAGE_BATCH_RECEIVE_URL, BaseResult.class);
                     HttpRequestLauncher.executeQuietly(requestBody);

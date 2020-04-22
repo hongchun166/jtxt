@@ -5,9 +5,12 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
+import android.webkit.URLUtil;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.chat.MMWebViewActivity;
 import com.linkb.jstx.activity.contact.ApplyFriendActivityV2;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
@@ -114,6 +117,16 @@ public class QrcodeScanActivity extends BaseActivity implements QRCodeView.Deleg
                     startActivity(intent);
                     finish();
                 }
+            }
+        }else if(!TextUtils.isEmpty(result)){
+            if (Patterns.WEB_URL.matcher(result).matches() || URLUtil.isValidUrl(result)) {
+                String downloadUrl=result;
+                Uri uri = Uri.parse(downloadUrl);    //设置跳转的网站
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                finish();
+            }else {
+                showToastView(getString(R.string.read_qr_code_error));
             }
         }else {
             showToastView(getString(R.string.read_qr_code_error));
