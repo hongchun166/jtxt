@@ -3,7 +3,7 @@ package com.linkb.jstx.component;
 
 
 import android.content.Context;
-import android.support.v7.widget.DefaultItemAnimator;
+import com.linkb.jstx.listener.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
