@@ -104,7 +104,36 @@
                     android:layout_marginLeft="7dp"
                     android:src="@mipmap/next_step" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/viewMomentsBgGrp"
+                android:layout_width="match_parent"
+                android:layout_height="78.6dp"
+                android:background="@drawable/item_background_top"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_moments_bg"
+                    android:textColor="@color/tex_color_gray_333"
+                    android:textSize="@dimen/text_14sp" />
+
+                <com.linkb.jstx.component.WebImageView
+                    android:id="@+id/viewMomentsBg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/icon_def_head" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:src="@mipmap/next_step" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

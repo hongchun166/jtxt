@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,8 @@ public class UserDetailActivityV2 extends BaseActivity {
     TextView viewTVName;
     @BindView(R.id.viewIVSex)
     ImageView viewIVSex;
+    @BindView(R.id.viewSexTx)
+    TextView viewSexTx;
 
     @BindView(R.id.viewTVCompany)
     TextView viewTVCompany;
@@ -130,27 +133,33 @@ public class UserDetailActivityV2 extends BaseActivity {
     }
     private void updateUi(QueryUserInfoResult.DataBean dataBean){
         viewTVName.setText(dataBean.getName());
-        viewTVSign.setText(dataBean.getMotto());
-        int sexResId=dataBean.getGender().equals("1")?R.mipmap.ic_sex_woman:R.mipmap.ic_sex_woman;
-        viewIVSex.setImageResource(sexResId);
-        viewTVCompany.setText("长江实业有限公司");
-        viewTVProfession.setText("互联网IT Web前端");
-        viewTVAddress.setText("中国-湖南省-长沙");
-        List<String> signList=new ArrayList<>();
-        signList.add("金融");
-        signList.add("区块链");
-        signList.add("直销");
-        signList.add("PE");
-        signList.add("比特币");
-        signList.add("互联网");
-        viewTagFlowLayout.setAdapter(new TagAdapter<String>(signList) {
-            @Override
-            public View getView(FlowLayout parent, int position, String str) {
-                TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_user_flow,parent, false);
-                tv.setText(str);
-                return tv;
-            }
-        });
+        viewTVSign.setText(TextUtils.isEmpty(dataBean.getMotto())?"":dataBean.getMotto());
+//        int sexResId=dataBean.getGender().equals("1")?R.mipmap.ic_sex_woman:R.mipmap.ic_sex_woman;
+//        viewIVSex.setImageResource(sexResId);
+        viewSexTx.setText(dataBean.getGender().equals("1")?"男":"女");
+        viewIVSex.setVisibility(View.GONE);
+
+        viewTVCompany.setText(TextUtils.isEmpty(dataBean.getMarrriage())?"":dataBean.getMarrriage());//
+        viewTVProfession.setText(TextUtils.isEmpty(dataBean.getIndustry())?"":dataBean.getIndustry());//互联网IT Web前端
+        viewTVAddress.setText(TextUtils.isEmpty(dataBean.getArea())?"":dataBean.getArea());//中国-湖南省-长沙
+        if(!TextUtils.isEmpty(dataBean.getTag())){
+            List<String> signList=new ArrayList<>();
+            signList.add(dataBean.getTag());
+//        signList.add("金融");
+//        signList.add("区块链");
+//        signList.add("直销");
+//        signList.add("PE");
+//        signList.add("比特币");
+//        signList.add("互联网");
+            viewTagFlowLayout.setAdapter(new TagAdapter<String>(signList) {
+                @Override
+                public View getView(FlowLayout parent, int position, String str) {
+                    TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_user_flow,parent, false);
+                    tv.setText(str);
+                    return tv;
+                }
+            });
+        }
     }
 
 }

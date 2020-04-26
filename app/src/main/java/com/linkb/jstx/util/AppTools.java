@@ -249,8 +249,10 @@ public class AppTools {
 
     }
 
-
     public static void startIconPhotoCrop(AppCompatActivity context, Uri uri) {
+        startIconPhotoCrop(context,uri,Constant.RESULT_ZOOM);
+    }
+    public static void startIconPhotoCrop(AppCompatActivity context, Uri uri,int requestCode) {
 
         File targetFile = new File(LvxinApplication.CACHE_DIR_IMAGE, StringUtils.getUUID() + ".jpg");
         Global.setCropPhotoFilePath(targetFile.getAbsolutePath());
@@ -275,7 +277,7 @@ public class AppTools {
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(targetFile));
 
-        context.startActivityForResult(intent, Constant.RESULT_ZOOM);
+        context.startActivityForResult(intent,requestCode);
 
     }
 

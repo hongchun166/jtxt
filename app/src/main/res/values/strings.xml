@@ -439,6 +439,7 @@
     <string name="label_user_email">邮箱：</string>
     <string name="label_user_org">组织：</string>
     <string name="label_user_icon">头像：</string>
+    <string name="label_moments_bg">朋友圈背景：</string>
     <string name="label_user_name">名称：</string>
     <string name="label_user_marriage">婚姻状况：</string>
     <string name="label_user_marriage2">单身与否：</string>

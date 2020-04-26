@@ -2,10 +2,12 @@ package com.linkb.jstx.activity.setting;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,16 +32,20 @@ import com.linkb.jstx.activity.SelectCountryActivity;
 import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.app.Constant;
+import com.linkb.jstx.app.GlideApp;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.bean.FileResource;
 import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.database.GlideImageRepository;
+import com.linkb.jstx.dialog.CustomDialog;
 import com.linkb.jstx.dialog.MarriageChangeDialogV2;
 import com.linkb.jstx.dialog.SexChangeDialogV2;
 import com.linkb.jstx.event.UserInfoChangeEvent;
 import com.linkb.jstx.listener.OSSFileUploadListener;
+import com.linkb.jstx.listener.OnDialogButtonClickListener;
+import com.linkb.jstx.listener.SimpleFileUploadListener;
 import com.linkb.jstx.model.world_area.CountryBean;
 import com.linkb.jstx.model.world_area.WorlAreaOpt;
 import com.linkb.jstx.network.CloudFileUploader;
@@ -47,6 +54,7 @@ import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.model.SNSChatImage;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.network.result.RegionResult;
@@ -68,6 +76,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUploadListener, HttpRequestListener<ModifyPersonInfoResult> {
+    final String TAG="ProfileEditActivityV2";
     final int REQUEST_CODE_CountryBean=0x10;
     final int REQUEST_CODE_Name=0x11;
     final int REQUEST_CODE_Telephone=0x12;
@@ -77,6 +86,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     final int REQUEST_CODE_Label=0x16;
     final int REQUEST_CODE_Position=0x17;
     final int REQUEST_CODE_Head=0x18;
+    final int REQUEST_CODE_MomentsBg=0x19;
+    final int REQUEST_CODE_MomentsBgZoom=0x20;
 
     @BindView(R.id.title_tv)
     TextView titleTv;
@@ -84,6 +95,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     TextView rightBtn;
     @BindView(R.id.icon)
     WebImageView imgHeader;
+    @BindView(R.id.viewMomentsBg)
+    WebImageView viewMomentsBg;
+
     @BindView(R.id.account)
     TextView tvAccount;
     @BindView(R.id.llPassword)
@@ -136,6 +150,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         llPassword.setVisibility(View.GONE);
         modify_email_rly.setVisibility(View.GONE);
         initUserData();
+
     }
 
     @Override
@@ -151,6 +166,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if (user == null) return;
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
+
+        viewMomentsBg.load(FileURLBuilder.getMomentFileUrl(user.account), R.mipmap.lianxiren, 999);
+
         tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
@@ -176,13 +194,19 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
 
     /**
+     * 选择朋友圈背景
+     */
+    @OnClick(R.id.viewMomentsBg)
+    public void updateMomentsBg() {
+        buildPhotoView();
+    }
+    /**
      * 选择头像
      */
     @OnClick(R.id.iconSwicth)
     public void updateHeader() {
         startActivityForResult(new Intent(this, PhotoAlbumActivity.class), REQUEST_CODE_Head);
     }
-
 
     /**
      * 修改名称
@@ -482,6 +506,19 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_USER_ICON, user.account, photo, this);
             showProgressDialog(getString(R.string.tip_file_uploading, 0));
         }
+
+        if (resultCode == RESULT_OK && requestCode == PhotoAlbumActivity.REQUEST_CODE_MULT) {
+            List<File>  list=(List<File>) data.getSerializableExtra("files");
+            if(list.size()>0){
+                File photoBg =list.get(0);
+                upLoadMomentsBg(photoBg);
+            }
+        } else if (resultCode == RESULT_OK && requestCode == Constant.RESULT_CAMERA) {
+            File photoBg = new File(Global.getPhotoGraphFilePath());
+            upLoadMomentsBg(photoBg);
+        }
+
+
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_Name) {
             user = Global.getCurrentUser();
             tvNAme.setText(user.name);
@@ -590,4 +627,85 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
         }
     };
+
+
+
+    private void buildPhotoView() {
+        final AppCompatActivity context=this;
+        CustomDialog   customDialog = new CustomDialog(this);
+        customDialog.setOnDialogButtonClickListener(new OnDialogButtonClickListener() {
+            @Override
+            public void onLeftButtonClicked() {
+                customDialog.dismiss();
+                AppTools.startCameraActivity(context);
+            }
+
+            @Override
+            public void onRightButtonClicked() {
+                customDialog.dismiss();
+                Intent intent = new Intent(context, PhotoAlbumActivity.class);
+                intent.setAction(Constant.Action.ACTION_MULTIPLE_PHOTO_SELECTOR);
+                intent.putExtra(PhotoAlbumActivity.KEY_MAX_COUNT, 1);
+                startActivityForResult(intent, PhotoAlbumActivity.REQUEST_CODE_MULT);
+            }
+        });
+        customDialog.setIcon(R.drawable.icon_dialog_image);
+        customDialog.setMessage((R.string.title_choice_picture));
+        customDialog.setButtonsText(getString(R.string.common_camera), getString(R.string.common_album));
+        customDialog.show();
+    }
+    private void upLoadMomentsBg( File photoBg){
+        final Context context=this;
+        uploadSingleImage(photoBg.getAbsolutePath(),new SimpleFileUploadListener(){
+            @Override
+            public void onUploadCompleted(FileResource resource) {
+                hideProgressDialog();
+
+                BackgroundThreadHandler.postUIThread(() ->{
+                     viewMomentsBg.load(FileURLBuilder.getMomentFileUrl(resource.key), R.mipmap.lianxiren, 999);
+//                    GlideApp.with(context).load(FileURLBuilder.getMomentFileUrl(user.account)).into(viewMomentsBg))
+                });
+
+
+                final User userTemp=new User();
+                userTemp.backgeoudUrl=FileURLBuilder.getMomentFileUrl(user.account);
+                HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+            }
+
+            @Override
+            public void onUploadProgress(String key, float progress) {
+                super.onUploadProgress(key, progress);
+                showProgressDialog(getString(R.string.tip_file_uploading, (int) progress));
+            }
+
+            @Override
+            public void onUploadFailured(FileResource resource, Exception e) {
+                e.printStackTrace();
+                hideProgressDialog();
+            }
+        });
+    }
+    /** 上传单张图片封装
+     * */
+    private void uploadSingleImage(final String image, final OSSFileUploadListener listener) {
+        File file=new File(image);
+        if(!file.exists()){
+            System.out.println(" uploadSingleImage MOMENT file not exists ");
+        }
+        String fileName=image.substring(image.lastIndexOf("/")+1);
+        CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_MOMENT,fileName,file, new SimpleFileUploadListener(){
+            @Override
+            public void onUploadCompleted(FileResource resource) {
+                Log.d(TAG, "onUploadCompleted =======" + resource.key );
+                listener.onUploadCompleted(resource);
+            }
+
+            @Override
+            public void onUploadFailured(FileResource resource, Exception e) {
+                Log.d(TAG, "onUploadFailured =======" + resource.key );
+                listener.onUploadFailured(resource,e);
+            }
+        });
+    }
+
 }

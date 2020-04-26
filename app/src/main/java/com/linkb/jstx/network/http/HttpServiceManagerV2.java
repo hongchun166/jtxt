@@ -235,6 +235,7 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(user.area)) requestBody.addParameter("area", user.area);
         if(!TextUtils.isEmpty(user.tag)) requestBody.addParameter("tag", user.tag);
         if(!TextUtils.isEmpty(user.motto)) requestBody.addParameter("motto", user.motto);
+        if(!TextUtils.isEmpty(user.backgeoudUrl)) requestBody.addParameter("backgeoudUrl", user.backgeoudUrl);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
