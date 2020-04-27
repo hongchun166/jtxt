@@ -56,6 +56,9 @@ public class TimelineMomentHeaderView extends LinearLayout implements View.OnCli
         }
     }
 
+    public void displayBg(String url){
+        ((WebImageView) findViewById(R.id.wallpaper)).load(url, R.drawable.circle_banner_normal);
+    }
     public void displayIcon(String url) {
         ((WebImageView) findViewById(R.id.icon)).load(url, R.mipmap.lianxiren);
     }

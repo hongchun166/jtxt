@@ -69,6 +69,8 @@ public class QueryUserInfoResult extends BaseResult {
         private String area;
         private boolean disabled;
         String motto;
+        private String headUrl;
+        private String backgroudUrl;
 
         public String getAccount() {
             return account;
@@ -239,6 +241,22 @@ public class QueryUserInfoResult extends BaseResult {
 
         public void setMotto(String motto) {
             this.motto = motto;
+        }
+
+        public String getHeadUrl() {
+            return headUrl;
+        }
+
+        public void setHeadUrl(String headUrl) {
+            this.headUrl = headUrl;
+        }
+
+        public String getBackgroudUrl() {
+            return backgroudUrl;
+        }
+
+        public void setBackgroudUrl(String backgroudUrl) {
+            this.backgroudUrl = backgroudUrl;
         }
     }
 

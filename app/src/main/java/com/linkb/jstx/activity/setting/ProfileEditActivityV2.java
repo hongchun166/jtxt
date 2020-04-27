@@ -167,7 +167,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         tvGender.setText(User.GENDER_MAN.equals(user.gender) ? R.string.common_man : R.string.common_female);
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
 
-        viewMomentsBg.load(FileURLBuilder.getMomentFileUrl(user.account), R.mipmap.lianxiren, 999);
+        rrefreshMomentsBg(String.valueOf(user.backgeoudUrl));
+
 
         tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
@@ -196,7 +197,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     /**
      * 选择朋友圈背景
      */
-    @OnClick(R.id.viewMomentsBg)
+    @OnClick(R.id.viewMomentsBgGrp)
     public void updateMomentsBg() {
         buildPhotoView();
     }
@@ -579,6 +580,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             }
         });
 
+        final User userTemp=new User();
+        userTemp.headUrl=FileURLBuilder.getUserIconUrl(user.account);
+        HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+
         EventBus.getDefault().post(new UserInfoChangeEvent("icon"));
         LvxinApplication.sendLocalBroadcast(new Intent(Constant.Action.ACTION_LOGO_CHANGED));
     }
@@ -654,6 +659,9 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         customDialog.setButtonsText(getString(R.string.common_camera), getString(R.string.common_album));
         customDialog.show();
     }
+    private void rrefreshMomentsBg(String url){
+        viewMomentsBg.load(url, R.drawable.circle_banner_normal, 0);
+    }
     private void upLoadMomentsBg( File photoBg){
         final Context context=this;
         uploadSingleImage(photoBg.getAbsolutePath(),new SimpleFileUploadListener(){
@@ -662,10 +670,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                 hideProgressDialog();
 
                 BackgroundThreadHandler.postUIThread(() ->{
-                     viewMomentsBg.load(FileURLBuilder.getMomentFileUrl(resource.key), R.mipmap.lianxiren, 999);
-//                    GlideApp.with(context).load(FileURLBuilder.getMomentFileUrl(user.account)).into(viewMomentsBg))
+                    rrefreshMomentsBg(FileURLBuilder.getMomentFileUrl(resource.key));
                 });
-
 
                 final User userTemp=new User();
                 userTemp.backgeoudUrl=FileURLBuilder.getMomentFileUrl(user.account);

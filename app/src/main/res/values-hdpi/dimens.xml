@@ -2,7 +2,7 @@
 <resources>
     <dimen name="chat_thumbnail_min_side">75.0dip</dimen>
     <dimen name="add_photo_min_side">50.0dip</dimen>
-    <dimen name="circle_single_photo_side">220dip</dimen>
+    <dimen name="circle_single_photo_side">140dip</dimen>
     <dimen name="circle_icon_small_side">35dip</dimen>
 
     <dimen name="chat_mapview_height">108dip</dimen>

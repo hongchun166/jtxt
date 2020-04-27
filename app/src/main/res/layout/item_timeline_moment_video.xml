@@ -61,9 +61,11 @@
         <com.linkb.jstx.component.WebImageView
             android:id="@+id/thumbnailView"
             android:background="@color/video_background"
-            android:layout_width="@dimen/sns_video_width"
-            android:layout_height="@dimen/sns_video_height" />
-
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:minWidth="80dp"
+            />
+        <!--    sns_video_height  sns_video_width -->
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"

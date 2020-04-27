@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.support.v4.app.SharedElementCallback;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,7 @@ import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.R;
+import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.google.gson.Gson;
 
@@ -68,7 +70,10 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     private Comment comment;
     private Moment moment;
     private String transitionName;
-
+    @Override
+    public int getContentLayout() {
+        return R.layout.activity_trend_circle;
+    }
     @Override
     public void initComponents() {
         self = Global.getCurrentUser();
@@ -104,6 +109,24 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         toolbar.setOnClickListener(this);
 
         setExitSharedElementCallback(sharedElementCallback);
+
+        HttpServiceManagerV2.queryUserInfo(self.account, self.account, new HttpRequestListener<QueryUserInfoResult>() {
+            @Override
+            public void onHttpRequestSucceed(QueryUserInfoResult result, OriginalCall call) {
+                if(adapter==null)return;
+                if(result.isSuccess() && result.getData().size()>0){
+                    String backage=result.getData().get(0).getBackgroudUrl();
+                    if(!TextUtils.isEmpty(backage)){
+                        adapter.getHeaderView().displayBg(backage);
+                    }
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
+
     }
 
 
@@ -269,10 +292,7 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     }
 
 
-    @Override
-    public int getContentLayout() {
-        return R.layout.activity_trend_circle;
-    }
+
 
 
     @Override

@@ -3,6 +3,7 @@ package com.linkb.jstx.activity.trend;
 
 import android.content.Intent;
 import android.support.v4.app.SharedElementCallback;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.linkb.R;
@@ -10,6 +11,8 @@ import com.linkb.jstx.activity.base.BaseActivity;
 import com.linkb.jstx.activity.contact.PersonInfoActivity;
 import com.linkb.jstx.adapter.SelfMomentListViewAdapter;
 import com.linkb.jstx.app.Constant;
+import com.linkb.jstx.app.Global;
+import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.LoadMoreRecyclerView;
 import com.linkb.jstx.database.MomentRepository;
 import com.linkb.jstx.listener.OnItemClickedListener;
@@ -17,8 +20,10 @@ import com.linkb.jstx.listener.OnLoadRecyclerViewListener;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
+import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.MomentListResult;
+import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
 import com.linkb.jstx.util.FileURLBuilder;
 
 import java.util.List;
@@ -52,6 +57,23 @@ public class FriendMomentActivity extends BaseActivity implements OnLoadRecycler
         HttpServiceManager.queryOtherMomentList(friend.account,currentPage,this);
         setExitSharedElementCallback( sharedElementCallback);
 
+        User self= Global.getCurrentUser();
+        HttpServiceManagerV2.queryUserInfo(self.account, friend.account, new HttpRequestListener<QueryUserInfoResult>() {
+            @Override
+            public void onHttpRequestSucceed(QueryUserInfoResult result, OriginalCall call) {
+                if(adapter==null)return;
+                if(result.isSuccess() && result.getData().size()>0){
+                    String backage=result.getData().get(0).getBackgroudUrl();
+                    if(!TextUtils.isEmpty(backage)){
+                        adapter.getHeaderView().displayBg(backage);
+                    }
+                }
+            }
+            @Override
+            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
+            }
+        });
     }
 
 
