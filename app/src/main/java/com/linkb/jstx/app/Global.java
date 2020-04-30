@@ -20,6 +20,7 @@ public class Global {
 
     private static final String MODEL_KEY = "CURRENT_USER";
 
+    public static final String KEY_USER_MomentBackgroudUrl= "KEY_USER_MomentBackgroudUrl";
     public static final String KEY_USER_HeadUrl= "KEY_USER_HeadUrl";
     private static final String KEY_USER_ACCOUNT = "KEY_USER_ACCOUNT";
     private static final String KEY_USER_NAME = "KEY_USER_NAME";
@@ -77,6 +78,7 @@ public class Global {
             mUser.tag = accountManager.getUserData(account, KEY_USER_LABEL);
             mUser.position = accountManager.getUserData(account, KEY_USER_JOB);
             mUser.headUrl = accountManager.getUserData(account, KEY_USER_HeadUrl);
+            mUser.backgeoudUrl = accountManager.getUserData(account, KEY_USER_MomentBackgroudUrl);
             return mUser;
         }
 
@@ -102,6 +104,7 @@ public class Global {
             bundle.putString(KEY_USER_LABEL,user.tag);
             bundle.putString(KEY_USER_JOB,user.position);
             bundle.putString(KEY_USER_HeadUrl,user.headUrl);
+            bundle.putString(KEY_USER_MomentBackgroudUrl,user.backgeoudUrl);
             accountManager.addAccountExplicitly(account, user.password, bundle);
         }
     }
@@ -122,6 +125,7 @@ public class Global {
             accountManager.setUserData(account, KEY_USER_LABEL, user.tag);
             accountManager.setUserData(account, KEY_USER_JOB, user.position);
             accountManager.setUserData(account, KEY_USER_HeadUrl, user.headUrl);
+            accountManager.setUserData(account, KEY_USER_MomentBackgroudUrl, user.backgeoudUrl);
         }
     }
 

@@ -253,6 +253,9 @@ public class AppTools {
         startIconPhotoCrop(context,uri,Constant.RESULT_ZOOM);
     }
     public static void startIconPhotoCrop(AppCompatActivity context, Uri uri,int requestCode) {
+        startIconPhotoCrop(context, uri, 256,256,requestCode);
+    }
+    public static void startIconPhotoCrop(AppCompatActivity context, Uri uri,int w,int h,int requestCode) {
 
         File targetFile = new File(LvxinApplication.CACHE_DIR_IMAGE, StringUtils.getUUID() + ".jpg");
         Global.setCropPhotoFilePath(targetFile.getAbsolutePath());
@@ -263,8 +266,8 @@ public class AppTools {
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 256);
-        intent.putExtra("outputY", 256);
+        intent.putExtra("outputX", w);
+        intent.putExtra("outputY", h);
         intent.putExtra("scale", true);
         intent.putExtra("return-data", false);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());

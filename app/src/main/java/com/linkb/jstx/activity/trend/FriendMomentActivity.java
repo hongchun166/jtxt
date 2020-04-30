@@ -65,7 +65,7 @@ public class FriendMomentActivity extends BaseActivity implements OnLoadRecycler
                 if(result.isSuccess() && result.getData().size()>0){
                     String backage=result.getData().get(0).getBackgroudUrl();
                     if(!TextUtils.isEmpty(backage)){
-                        adapter.getHeaderView().displayBg(backage);
+                        adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(backage));
                     }
                 }
             }

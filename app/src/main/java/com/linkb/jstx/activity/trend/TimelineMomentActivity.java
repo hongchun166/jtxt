@@ -95,6 +95,9 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         adapter.getHeaderView().displayIcon(FileURLBuilder.getUserIconUrl(self.account));
         adapter.getHeaderView().showMessageRemind(MessageRepository.queryNewMoments(3));
         adapter.getHeaderView().setOnIconClickedListener(this);
+
+        adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(String.valueOf(self.getBackgeoudUrl())));
+
         mInnerMomentReceiver = new InnerMomentReceiver();
         LvxinApplication.registerLocalReceiver(mInnerMomentReceiver, mInnerMomentReceiver.getIntentFilter());
 
@@ -109,23 +112,6 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         toolbar.setOnClickListener(this);
 
         setExitSharedElementCallback(sharedElementCallback);
-
-        HttpServiceManagerV2.queryUserInfo(self.account, self.account, new HttpRequestListener<QueryUserInfoResult>() {
-            @Override
-            public void onHttpRequestSucceed(QueryUserInfoResult result, OriginalCall call) {
-                if(adapter==null)return;
-                if(result.isSuccess() && result.getData().size()>0){
-                    String backage=result.getData().get(0).getBackgroudUrl();
-                    if(!TextUtils.isEmpty(backage)){
-                        adapter.getHeaderView().displayBg(backage);
-                    }
-                }
-            }
-            @Override
-            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
-            }
-        });
 
     }
 
