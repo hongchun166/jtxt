@@ -39,6 +39,10 @@ public class MineMomentActivity extends BaseActivity implements OnLoadRecyclerVi
     private int currentPage = Constant.DEF_PAGE_INDEX;
     private InnerMomentReceiver mInnerMomentReceiver;
     private String transitionName;
+    @Override
+    public int getContentLayout() {
+        return R.layout.activity_trend_moment_listview;
+    }
 
     @Override
     public void initComponents() {
@@ -53,6 +57,7 @@ public class MineMomentActivity extends BaseActivity implements OnLoadRecyclerVi
         circleListView.setFooterView(adapter.getFooterView());
         adapter.addAll(MomentRepository.queryFirstPage(self.account, currentPage));
         adapter.getHeaderView().displayIcon(FileURLBuilder.getUserIconUrl(self.account));
+        adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(String.valueOf(self.getBackgroudUrl())));
 
         circleListView.showProgressBar();
         HttpServiceManager.queryMeMomentList(currentPage,this);
@@ -110,10 +115,6 @@ public class MineMomentActivity extends BaseActivity implements OnLoadRecyclerVi
     }
 
 
-    @Override
-    public int getContentLayout() {
-        return R.layout.activity_trend_moment_listview;
-    }
 
 
     @Override

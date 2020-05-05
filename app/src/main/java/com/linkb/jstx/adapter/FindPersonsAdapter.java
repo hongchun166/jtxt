@@ -89,6 +89,7 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
             viewAddFriend = itemView.findViewById(R.id.viewAddFriend);
             viewAddFriend.setOnClickListener(this);
             viewRootItem.setOnClickListener(this);
+            viewHead.setOnClickListener(this);
         }
 
         @Override
@@ -97,11 +98,15 @@ public class FindPersonsAdapter extends RecyclerView.Adapter<FindPersonsAdapter.
                 if (mListener != null) mListener.onAddFirend(dataBean);
             } else if (view.getId() == R.id.viewAddFriend) {
                 if (mListener != null) mListener.onAddFirend(dataBean);
+            }else if (view.getId() == R.id.viewHead) {
+                //nav
+                if (mListener != null) mListener.onClickHead(dataBean);
             }
         }
     }
 
     public interface OnSearchFriendClickedListener {
         void onAddFirend(FindPersonsResult.DataBean.ContentBean dataBean);
+        void onClickHead(FindPersonsResult.DataBean.ContentBean dataBean);
     }
 }

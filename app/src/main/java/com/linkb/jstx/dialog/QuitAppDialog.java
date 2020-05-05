@@ -33,6 +33,7 @@ public class QuitAppDialog extends BottomSheetDialog implements View.OnClickList
 
     private void doLogout() {
         Global.removePassword();
+//        Global.removeAccessToken();
         CIMPushManager.stop(LvxinApplication.getInstance());
         HttpServiceManager.logout();
         LvxinApplication.getInstance().restartSelf();

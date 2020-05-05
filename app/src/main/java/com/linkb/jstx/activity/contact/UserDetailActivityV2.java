@@ -50,8 +50,6 @@ public class UserDetailActivityV2 extends BaseActivity {
     TextView viewTVName;
     @BindView(R.id.viewIVSex)
     ImageView viewIVSex;
-    @BindView(R.id.viewSexTx)
-    TextView viewSexTx;
 
     @BindView(R.id.viewTVCompany)
     TextView viewTVCompany;
@@ -74,6 +72,9 @@ public class UserDetailActivityV2 extends BaseActivity {
     Friend friend;
 
     public static void navToAct(Context context,Friend friend){
+        if(context==null){
+            return;
+        }
         Intent intent=new Intent(context,UserDetailActivityV2.class);
         intent.putExtra("friend",friend);
         context.startActivity(intent);
@@ -134,12 +135,13 @@ public class UserDetailActivityV2 extends BaseActivity {
     private void updateUi(QueryUserInfoResult.DataBean dataBean){
         viewTVName.setText(dataBean.getName());
         viewTVSign.setText(TextUtils.isEmpty(dataBean.getMotto())?"":dataBean.getMotto());
-//        int sexResId=dataBean.getGender().equals("1")?R.mipmap.ic_sex_woman:R.mipmap.ic_sex_woman;
-//        viewIVSex.setImageResource(sexResId);
-        viewSexTx.setText(dataBean.getGender().equals("1")?"男":"女");
-        viewIVSex.setVisibility(View.GONE);
+        int sexResId=dataBean.getGender().equals("1")?R.mipmap.ic_sex_man:R.mipmap.ic_sex_woman;
+        viewIVSex.setImageResource(sexResId);
+//        viewSexTx.setText(dataBean.getGender().equals("1")?"男":"女");
+//        viewIVSex.setVisibility(View.GONE);
 
         viewTVCompany.setText(TextUtils.isEmpty(dataBean.getMarrriage())?"":dataBean.getMarrriage());//
+        viewTVCompany.setVisibility(View.GONE);
         viewTVProfession.setText(TextUtils.isEmpty(dataBean.getIndustry())?"":dataBean.getIndustry());//互联网IT Web前端
         viewTVAddress.setText(TextUtils.isEmpty(dataBean.getArea())?"":dataBean.getArea());//中国-湖南省-长沙
         if(!TextUtils.isEmpty(dataBean.getTag())){

@@ -154,12 +154,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/other"
+            android:text="@string/has_married2"
             android:textColor="@color/tex_color_gray_333"
             android:textSize="@dimen/text_14sp" />
 
         <TextView
-            android:id="@+id/viewOtherCondition"
+            android:id="@+id/viewMarriedCondition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -174,7 +174,39 @@
             android:src="@mipmap/next_step" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="0.3dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sex"
+            android:textColor="@color/tex_color_gray_333"
+            android:textSize="@dimen/text_14sp" />
+
+        <TextView
+            android:id="@+id/viewSexCondition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:hint="@string/no_limit" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_step" />
+
+    </LinearLayout>
     <Button
         android:id="@+id/next_button"
         android:layout_width="match_parent"

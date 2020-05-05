@@ -36,7 +36,10 @@ public class ScreenReceiverUtil {
     }
 
     public void stopScreenReceiverListener(){
-        mContext.unregisterReceiver(mScreenReceiver);
+        if(mContext!=null && mScreenReceiver!=null){
+            mContext.unregisterReceiver(mScreenReceiver);
+            mScreenReceiver=null;
+        }
     }
 
     public  class SreenBroadcastReceiver extends BroadcastReceiver {

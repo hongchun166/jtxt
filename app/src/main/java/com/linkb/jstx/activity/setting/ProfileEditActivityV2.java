@@ -168,7 +168,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         imgHeader.load(FileURLBuilder.getUserIconUrl(user.account), R.mipmap.lianxiren, 999);
 
 
-        rrefreshMomentsBg(String.valueOf(user.backgeoudUrl));
+        rrefreshMomentsBg(String.valueOf(user.backgroudUrl));
 
 
         tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
@@ -687,10 +687,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                     rrefreshMomentsBg(resource.key);
                 });
                 final User userTemp=new User();
-                userTemp.backgeoudUrl=resource.key;
+                userTemp.backgroudUrl=resource.key;
                 HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
                 User user=Global.getCurrentUser();
-                user.backgeoudUrl=userTemp.backgeoudUrl;
+                user.backgroudUrl=userTemp.backgroudUrl;
                 Global.modifyAccount(user);
             }
 

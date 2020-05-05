@@ -101,6 +101,9 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
 
     private Message mMsg;
 
+    private static void log(String msg){
+        System.out.println("testLog=="+msg);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -246,6 +249,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
             MessageSource source = MessageParserFactory.getFactory().parserMessageSource(msg);
             if (source instanceof  Friend){
                 Friend friend = (Friend) source;
+                log("==onMessageReceived==="+friend.name);
                 if (friend.name == null){
                     HttpServiceManager.queryPersonInfo(friend.account, new HttpRequestListener<BasePersonInfoResult>() {
                         @Override
@@ -305,10 +309,16 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
 
     @Override
     public void onChatLongClicked(ChatItem chat) {
-        TextView badge = conversationListView.findViewWithTag(chat.source).findViewById(R.id.badge);
-        customDialog.setTag(chat);
-        contentMenuWindow.buildChatMenuGroup(adapter.hasChatTop(chat), badge.getVisibility() == View.VISIBLE);
-        contentMenuWindow.show((View) badge.getParent());
+        View view=conversationListView.findViewWithTag(chat.source);
+        if(view!=null){
+            TextView badge = view.findViewById(R.id.badge);
+            if(badge!=null){
+                customDialog.setTag(chat);
+                contentMenuWindow.buildChatMenuGroup(adapter.hasChatTop(chat), badge.getVisibility() == View.VISIBLE);
+                contentMenuWindow.show((View) badge.getParent());
+            }
+        }
+
     }
 
     @Override
@@ -475,6 +485,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
                 return;
             }
             if (Constant.Action.ACTION_RECENT_APPEND_CHAT.equals(intent.getAction())) {
+                log("Constant.Action.ACTION_RECENT_APPEND_CHAT");
                 adapter.notifyItemMovedTop(item);
                 toogleEmptyView();
             }
@@ -485,6 +496,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
             }
 
             if (Constant.Action.ACTION_RECENT_REFRESH_CHAT.equals(intent.getAction())) {
+                log("Constant.Action.ACTION_RECENT_REFRESH_CHAT");
                 adapter.notifyItemChanged(item);
                 toogleEmptyView();
                 showNewMessageBadge();

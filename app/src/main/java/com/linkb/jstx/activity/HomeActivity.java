@@ -145,6 +145,15 @@ public class HomeActivity extends CIMMonitorActivity implements OnTabChangeListe
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mScreenListener!=null){
+            mScreenListener.stopScreenReceiverListener();
+            mScreenListener=null;
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         LvxinApplication.getInstance().startCheckVersionService();

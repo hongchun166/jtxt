@@ -17,6 +17,8 @@ import com.linkb.jstx.adapter.FindPersonsAdapter;
 import com.linkb.jstx.adapter.SearchGroupAdapterV2;
 import com.linkb.jstx.app.Global;
 import com.linkb.jstx.bean.User;
+import com.linkb.jstx.listener.DefaultItemAnimator;
+import com.linkb.jstx.listener.NoAlphaItemAnimator;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.model.intent.SearchUserParam;
@@ -104,9 +106,9 @@ public class SearchUserListActivity extends BaseActivity {
         if(searchUserParam.getSearchType()==SEARCH_TYPE_User){
             StringBuffer stringBuffer=new StringBuffer();
             if(!TextUtils.isEmpty(searchUserParam.getInputStr()))stringBuffer.append(searchUserParam.getInputStr()).append(" ");
-            if(!TextUtils.isEmpty(searchUserParam.getRegion()))stringBuffer.append(searchUserParam.getRegion()).append(" ");;
-            if(!TextUtils.isEmpty(searchUserParam.getIndustry()))stringBuffer.append(searchUserParam.getIndustry()).append(" ");;
-            if(!TextUtils.isEmpty(searchUserParam.getLabel()))stringBuffer.append(searchUserParam.getLabel()).append(" ");;
+            if(!TextUtils.isEmpty(searchUserParam.getRegion()))stringBuffer.append(searchUserParam.getRegion()).append(" ");
+            if(!TextUtils.isEmpty(searchUserParam.getIndustry()))stringBuffer.append(searchUserParam.getIndustry()).append(" ");
+            if(!TextUtils.isEmpty(searchUserParam.getLabel()))stringBuffer.append(searchUserParam.getLabel()).append(" ");
             if(!TextUtils.isEmpty(searchUserParam.getGender())){
                 if("0".equals(searchUserParam.getGender())){
                     stringBuffer.append(getString(R.string.common_female)).append(" ");
@@ -114,6 +116,9 @@ public class SearchUserListActivity extends BaseActivity {
                     stringBuffer.append(getString(R.string.common_man)).append(" ");
                 }
             }
+
+            if(!TextUtils.isEmpty(searchUserParam.getMarriedStr()))stringBuffer.append(searchUserParam.getMarriedStr()).append(" ");
+
             viewSearchInput.setText(stringBuffer.toString());
             initSearchUserView();
             httpSearchUserList(searchUserParam);
@@ -147,18 +152,26 @@ public class SearchUserListActivity extends BaseActivity {
 
     private void initSearchUserView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapterUser = new FindPersonsAdapter(this, mSearchUserList, new FindPersonsAdapter.OnSearchFriendClickedListener() {
             @Override
             public void onAddFirend(FindPersonsResult.DataBean.ContentBean dataBean) {
                 showProgressDialog("");
                 httpCheckFriend(dataBean);
             }
+
+            @Override
+            public void onClickHead(FindPersonsResult.DataBean.ContentBean dataBean) {
+                Friend friend=new Friend();
+                friend.account=dataBean.getAccount();
+                UserDetailActivityV2.navToAct(getContext(),friend);
+            }
         });
         recyclerView.setAdapter(mAdapterUser);
     }
     private void initSearchGroupView(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapterGroup = new SearchGroupAdapterV2(this, mSearchGroupList, new SearchGroupAdapterV2.OnSearchGroupClickedListener() {
             @Override
             public void onClickJoinGroup(FindGroupsResult.DataBean.ContentBean dataBean) {
@@ -186,9 +199,12 @@ public class SearchUserListActivity extends BaseActivity {
         showProgressDialog(getString(R.string.tip_loading, getString(R.string.label_login)));
 //        HttpServiceManager.queryFriend(searchUserParam.getInputStr(), new HttpRequestListener<FriendQueryResult>(){
         HttpServiceManagerV2.findPersons(searchUserParam.getInputStr(),searchUserParam.getRegion(),
-                searchUserParam.getIndustry(),searchUserParam.getLabel(),searchUserParam.getGender(), new HttpRequestListener<FindPersonsResult>(){
+                searchUserParam.getIndustry(),searchUserParam.getLabel(),searchUserParam.getGender(),searchUserParam.getMarriedStr(), new HttpRequestListener<FindPersonsResult>(){
                     @Override
                     public void onHttpRequestSucceed(FindPersonsResult result, OriginalCall call) {
+                        if(viewEmpty==null){
+                            return;
+                        }
                         hideProgressDialog();
                         boolean isDataListEmpty=true;
                         if(result.isSuccess()){
@@ -209,6 +225,9 @@ public class SearchUserListActivity extends BaseActivity {
                     }
                     @Override
                     public void onHttpRequestFailure(Exception e, OriginalCall call) {
+                        if(viewEmpty==null){
+                            return;
+                        }
                         hideProgressDialog();
                         viewEmpty.setVisibility(View.VISIBLE);
                     }

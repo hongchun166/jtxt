@@ -740,6 +740,7 @@
     <string name="no_limit">no limit</string>
     <string name="other">other</string>
     <string name="find">find</string>
+    <string name="has_married2">is Single</string>
     <string name="unmarried2">Single</string>
     <string name="marriage2">Non Single</string>
 

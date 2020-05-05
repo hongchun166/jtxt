@@ -12,15 +12,15 @@
                 android:icon="@mipmap/del_red"
                 android:title="@string/delete_friend"/>
 
-            <item
-                android:id="@+id/report"
-                android:icon="@mipmap/report"
-                android:title="@string/report"/>
+<!--            <item-->
+<!--                android:id="@+id/report"-->
+<!--                android:icon="@mipmap/report"-->
+<!--                android:title="@string/report"/>-->
 
-            <item
-                android:id="@+id/share_card"
-                android:icon="@mipmap/fenxiang"
-                android:title="@string/share_card"/>
+<!--            <item-->
+<!--                android:id="@+id/share_card"-->
+<!--                android:icon="@mipmap/fenxiang"-->
+<!--                android:title="@string/share_card"/>-->
 
         </menu>
     </item>

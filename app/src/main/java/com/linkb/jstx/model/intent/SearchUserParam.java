@@ -12,7 +12,7 @@ public class SearchUserParam implements Serializable {
     private String label;
     String gender;
     private String otherKey;
-
+    String marriedStr;//单身|非单身
     public String getInputStr() {
         return inputStr;
     }
@@ -67,5 +67,13 @@ public class SearchUserParam implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getMarriedStr() {
+        return marriedStr;
+    }
+
+    public void setMarriedStr(String marriedStr) {
+        this.marriedStr = marriedStr;
     }
 }

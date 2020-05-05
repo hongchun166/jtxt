@@ -1,5 +1,6 @@
 package com.linkb.jstx.activity.contact;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -69,6 +70,11 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
     private CustomDialog customDialog;
 
     @Override
+    protected int getContentLayout() {
+        return R.layout.activity_person_info_v2;
+    }
+
+    @Override
     protected void initComponents() {
         ButterKnife.bind(this);
         ImmersionBar.with(this)
@@ -104,10 +110,6 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
         customDialog.setOnDialogButtonClickListener(this);
     }
 
-    @Override
-    protected int getContentLayout() {
-        return R.layout.activity_person_info_v2;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,12 +123,12 @@ public class PersonInfoActivity extends BaseActivity implements OnDialogButtonCl
             case R.id.delete_friend:    //删除好友
                 customDialog.show();
                 break;
-            case R.id.report:       //举报
-                showToastView(getResources().getString(R.string.accelerate_develop));
-                break;
-            case R.id.share_card:       //分享名片
-                showToastView(getResources().getString(R.string.accelerate_develop));
-                break;
+//            case R.id.report:       //举报
+//                showToastView(getResources().getString(R.string.accelerate_develop));
+//                break;
+//            case R.id.share_card:       //分享名片
+//                showToastView(getResources().getString(R.string.accelerate_develop));
+//                break;
 
         }
         return super.onOptionsItemSelected(item);

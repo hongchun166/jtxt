@@ -28,7 +28,9 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
     private OnChatingHandlerListener onChatItemHandleListner;
     private List<ChatItem> dataList = new ArrayList<>();
     private List<ChatTop> chatTopList = new ArrayList<>();
-
+    private void log(String msg){
+        System.out.println("testLog=="+msg);
+    }
     @Override
     public RecentChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RecentChatViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recent_message, parent, false));
@@ -119,6 +121,7 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
     public void notifyItemMovedTop(ChatItem chatItem) {
         int topIndex = indexOfChatTop(chatItem);
         if (topIndex == -1) {
+            log("notifyItemMovedTop===topIndex = -1");
             notifyItemMoved(chatItem, chatTopList.size());
             return;
         }
@@ -127,7 +130,7 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
         chatTopList.remove(srcTop);
         chatTopList.add(0,srcTop);
         ChatTopRepository.updateSort(srcTop);
-
+        log("notifyItemMovedTop===");
         notifyItemMoved(chatItem, 0);
 
     }
@@ -141,6 +144,22 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
 
     private void notifyItemMoved(ChatItem chatItem, int toPosition) {
         int index = dataList.indexOf(chatItem);
+        log("==notifyItemMoved=="+"==index:"+index+",toPosition:"+toPosition+","+chatItem.source.getId());
+        if(index==-1){
+            boolean hasFind=false;
+            int count=0;
+            for (ChatItem item : dataList) {
+                if(chatItem.source!=null){
+                    if(item.source.getId().equals(chatItem.source.getId())){
+                        hasFind=true;
+                        break;
+                    }
+                }
+                count++;
+            }
+            index=hasFind?count:-1;
+            log("==index=="+index);
+        }
 
         if (index > 0 && index != toPosition) {
 

@@ -83,8 +83,11 @@ public class FindFindActivity extends BaseActivity {
     TextView tvIndustry;
     @BindView(R.id.tv_region)
     TextView tv_region;
-    @BindView(R.id.viewOtherCondition)
-    TextView viewOtherCondition;
+    @BindView(R.id.viewSexCondition)
+    TextView viewSexCondition;
+    @BindView(R.id.viewMarriedCondition)
+    TextView viewMarriedCondition;
+
     @BindView(R.id.viewSearchGroupInput)
     EditText viewSearchGroupInput;
 
@@ -276,11 +279,14 @@ public class FindFindActivity extends BaseActivity {
         String label = tvLabel.getText().toString().trim();
         ModifyLabelActivityV2.navToActBySelectTag(this,REQUEST_LABE_CODE,label);
     }
-    @OnClick(R.id.viewOtherCondition)
-    public void otherCondition() {
-        showOtherConditionDig();
+    @OnClick(R.id.viewSexCondition)
+    public void sexCondition() {
+        showSexConditionDig();
     }
-
+    @OnClick(R.id.viewMarriedCondition)
+    public void marriedCondition() {
+        showMarriedConditionDig();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode==REQUEST_CountryBean_CODE && Activity.RESULT_OK==resultCode){
@@ -306,24 +312,59 @@ public class FindFindActivity extends BaseActivity {
         viewFindUserRoot.setVisibility(searchType != 1?View.VISIBLE:View.GONE);
         viewFindGroupRoot.setVisibility(searchType == 1?View.VISIBLE:View.GONE);
     }
+    private void showMarriedConditionDig(){
+        final  List<String> otherConditionMarriage=new ArrayList<>();
+        otherConditionMarriage.add(getString(R.string.no_limit));
+        otherConditionMarriage.add(getString(R.string.marriage2));
+        otherConditionMarriage.add(getString(R.string.unmarried2));
 
-    private void showOtherConditionDig(){
+        OptionsPickerView pvCustomOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                String sex=otherConditionMarriage.get(options1);
+//                String marriage=otherConditionMarriage.get(options2);
+                viewMarriedCondition.setText(sex);
+            }
+        }).isDialog(false)
+                .setSubmitText(getString(R.string.finish))
+                .setSubmitColor(ContextCompat.getColor(getContext(), R.color.color_2e76e5))
+                .setCancelText(getString(R.string.common_cancel))
+                .setCancelColor(ContextCompat.getColor(getContext(), R.color.divider_color_gray_999999))
+                .setOutSideCancelable(false)
+                .build();;
+
+        pvCustomOptions.setSelectOptions(0, 1, 1);
+
+        Dialog mDialog = pvCustomOptions.getDialog();
+        if (mDialog != null) {
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+                dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+                dialogWindow.setDimAmount(0.1f);
+            }
+        }
+        pvCustomOptions.setNPicker(otherConditionMarriage, null,null);
+        pvCustomOptions.show();
+    }
+    private void showSexConditionDig(){
         final  List<String> otherConditionSex=new ArrayList<>();
         otherConditionSex.add(getString(R.string.no_limit));
         otherConditionSex.add(getString(R.string.common_man));
         otherConditionSex.add(getString(R.string.common_female));
-
-//        final  List<String> otherConditionMarriage=new ArrayList<>();
-//        otherConditionMarriage.add(getString(R.string.no_limit));
-//        otherConditionMarriage.add(getString(R.string.marriage2));
-//        otherConditionMarriage.add(getString(R.string.unmarried2));
-
         OptionsPickerView pvCustomOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String sex=otherConditionSex.get(options1);
 //                String marriage=otherConditionMarriage.get(options2);
-                viewOtherCondition.setText(sex);
+                viewSexCondition.setText(sex);
             }
         }).isDialog(false)
                 .setSubmitText(getString(R.string.finish))
@@ -366,11 +407,21 @@ public class FindFindActivity extends BaseActivity {
         searchUserParam.setIndustry(tvIndustry.getText().toString());
         searchUserParam.setLabel(tvLabel.getText().toString());
         searchUserParam.setRegion(tv_region.getText().toString());
-        String man=getString(R.string.common_man);
-        String female=getString(R.string.common_female);
-        String inputStrSex=viewOtherCondition.getText().toString();
-        if(!TextUtils.isEmpty(inputStrSex)){
-            searchUserParam.setGender(man.equals(inputStrSex)?"1":(female.equals(inputStrSex))?"0":"");
+        {
+            String man=getString(R.string.common_man);
+            String female=getString(R.string.common_female);
+            String inputStrSex=viewSexCondition.getText().toString();
+            if(!TextUtils.isEmpty(inputStrSex)){
+                searchUserParam.setGender(man.equals(inputStrSex)?"1":(female.equals(inputStrSex))?"0":"");
+            }
+        }
+        {
+            String marriage2=getString(R.string.marriage2);
+            String unmarried2=getString(R.string.unmarried2);
+            String marriageInput=viewMarriedCondition.getText().toString();
+            if(!TextUtils.isEmpty(marriageInput)){
+                searchUserParam.setMarriedStr(marriage2.equals(marriageInput)?"非单身":(unmarried2.equals(marriageInput))?"单身":"");
+            }
         }
         SearchUserListActivity.navToSearchUser(this,searchUserParam);
     }

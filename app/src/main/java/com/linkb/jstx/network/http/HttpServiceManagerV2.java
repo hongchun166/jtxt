@@ -235,7 +235,7 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(user.area)) requestBody.addParameter("area", user.area);
         if(!TextUtils.isEmpty(user.tag)) requestBody.addParameter("tag", user.tag);
         if(!TextUtils.isEmpty(user.motto)) requestBody.addParameter("motto", user.motto);
-        if(!TextUtils.isEmpty(user.backgeoudUrl)) requestBody.addParameter("backgeoudUrl", user.backgeoudUrl);
+        if(!TextUtils.isEmpty(user.backgroudUrl)) requestBody.addParameter("backgroudUrl", user.backgroudUrl);
         HttpRequestLauncher.execute(requestBody, listener);
     }
 
@@ -278,7 +278,7 @@ public class HttpServiceManagerV2 {
      * @param gender      性别(0女1男)
      * @param listener
      */
-    public static void findPersons(String content,String area,String industry,String tag,String gender,HttpRequestListener listener) {
+    public static void findPersons(String content,String area,String industry,String tag,String gender,String marrriage,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findPersons, FindPersonsResult.class);
         requestBody.addParameter("userAccount", Global.getCurrentUser().account);//
         requestBody.addParameter("content", content);//
@@ -287,6 +287,7 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(industry)) requestBody.addParameter("industry", industry);//
         if(!TextUtils.isEmpty(tag))requestBody.addParameter("tag", tag);//
         if(!TextUtils.isEmpty(gender))requestBody.addParameter("gender", gender);//
+        if(!TextUtils.isEmpty(marrriage))requestBody.addParameter("marrriage", marrriage);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
 

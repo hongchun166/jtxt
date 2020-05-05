@@ -43,20 +43,18 @@
                 android:textSize="@dimen/text_18sp"
                 android:text=""
                 />
-            <TextView
-                android:id="@+id/viewSexTx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text=""
-                android:textColor="@color/tex_color_gray_333"
-                android:textSize="@dimen/text_content"
-                />
             <ImageView
                 android:id="@+id/viewIVSex"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
+                />
+            <ImageView
+                android:id="@+id/viewIVLove"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="2dp"
+                android:src="@mipmap/ic_user_detailed_love"
                 />
         </LinearLayout>
         <TextView

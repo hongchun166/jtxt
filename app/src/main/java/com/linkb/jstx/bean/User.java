@@ -33,7 +33,7 @@ public class User implements Serializable {
     public String tag;//标签
     public String position;//职务
 
-    public String backgeoudUrl;//朋友圈背景图片
+    public String backgroudUrl;//朋友圈背景图片
 
     @Override
     public boolean equals(Object o) {
@@ -192,11 +192,11 @@ public class User implements Serializable {
         this.position = position;
     }
 
-    public String getBackgeoudUrl() {
-        return backgeoudUrl;
+    public String getBackgroudUrl() {
+        return backgroudUrl;
     }
 
-    public void setBackgeoudUrl(String backgeoudUrl) {
-        this.backgeoudUrl = backgeoudUrl;
+    public void setBackgroudUrl(String backgroudUrl) {
+        this.backgroudUrl = backgroudUrl;
     }
 }

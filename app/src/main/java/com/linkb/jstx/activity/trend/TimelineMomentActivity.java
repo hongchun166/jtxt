@@ -96,7 +96,7 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         adapter.getHeaderView().showMessageRemind(MessageRepository.queryNewMoments(3));
         adapter.getHeaderView().setOnIconClickedListener(this);
 
-        adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(String.valueOf(self.getBackgeoudUrl())));
+        adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(String.valueOf(self.getBackgroudUrl())));
 
         mInnerMomentReceiver = new InnerMomentReceiver();
         LvxinApplication.registerLocalReceiver(mInnerMomentReceiver, mInnerMomentReceiver.getIntentFilter());
