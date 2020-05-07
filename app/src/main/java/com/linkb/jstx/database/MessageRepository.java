@@ -542,8 +542,15 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
             return manager.databaseDao.queryBuilder().offset(start).limit(pageSize)
                     .orderBy("timestamp", false)
                     .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
-                    .and().eq("action", Constant.MessageAction.ACTION_0)
-                    .or().eq("action", Constant.MessageAction.ACTION_ReadDelete).query();
+                    .and().raw(formatSQLString("(action=? or action=? )", Constant.MessageAction.ACTION_0,  Constant.MessageAction.ACTION_ReadDelete))
+                    .query();
+
+//            return manager.databaseDao.queryBuilder().offset(start).limit(pageSize)
+//                    .orderBy("timestamp", false)
+//                    .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
+//                    .and().eq("action", Constant.MessageAction.ACTION_0)
+//                    .or().eq("action", Constant.MessageAction.ACTION_ReadDelete)
+//                    .query();
         } catch (SQLException e) {
             e.printStackTrace();
         }
