@@ -4,6 +4,7 @@ package com.linkb.jstx.network.http;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.util.MLog;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.BuildConfig;
@@ -22,7 +23,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
- public class HttpRequestLauncher {
+public class HttpRequestLauncher {
     private final static String TAG = HttpRequestLauncher.class.getSimpleName();
 
 
@@ -52,8 +53,17 @@ import okhttp3.Response;
         body.setRunWithOtherThread();
         prefromHttpRequest(body,EMPTY_CALLBACK);
     }
+    private static void addDefault(HttpRequestBody body){
+        if(body.getParameter().isEmpty()){
+            if(body.getMethod().equals(HttpMethod.POST)){
+//                body.getParameter().put("account", String.valueOf(Global.getCurrentUser().account));
+                body.getParameter().put("emptyBody", "emptyBody");
+            }
+        }
 
+    }
     public static   void execute(@NonNull final HttpRequestBody body,@NonNull  final HttpRequestListener listener) {
+        addDefault(body);
         prefromHttpRequest(body, new CustomOkHttpCallback (body.getDataClass(),body.isMainTheadCallback()) {
             @Override
             public void onResponse(Call call, BaseResult response) {

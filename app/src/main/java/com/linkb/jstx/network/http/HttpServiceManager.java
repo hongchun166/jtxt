@@ -1000,7 +1000,7 @@ public class HttpServiceManager {
      */
     public static void queryCurrencyList(HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.QUERY_CURRENCY_LIST, CurrencyListResult.class);
-        requestBody.addParameter("", "");
+        requestBody.addParameter("access-token", Global.getAccessToken());
         HttpRequestLauncher.execute(requestBody, listener);
     }
 

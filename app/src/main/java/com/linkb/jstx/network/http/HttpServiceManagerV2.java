@@ -245,7 +245,7 @@ public class HttpServiceManagerV2 {
      */
     public static void findGroups(String content,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findGroups, FindGroupsResult.class);
-        requestBody.addParameter("content", content);//
+       requestBody.addParameter("content", content);//
         requestBody.addParameter("currentPage", 0);//
         HttpRequestLauncher.execute(requestBody, listener);
     }
@@ -281,8 +281,8 @@ public class HttpServiceManagerV2 {
     public static void findPersons(String content,String area,String industry,String tag,String gender,String marrriage,HttpRequestListener listener) {
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.POST, URLConstant.findPersons, FindPersonsResult.class);
         requestBody.addParameter("userAccount", Global.getCurrentUser().account);//
-        requestBody.addParameter("content", content);//
         requestBody.addParameter("currentPage", 0);//
+        requestBody.addParameter("content",content);//
         if(!TextUtils.isEmpty(area)) requestBody.addParameter("area", area);//
         if(!TextUtils.isEmpty(industry)) requestBody.addParameter("industry", industry);//
         if(!TextUtils.isEmpty(tag))requestBody.addParameter("tag", tag);//
