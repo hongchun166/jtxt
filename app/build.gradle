@@ -10,8 +10,8 @@ android {
         minSdkVersion 21
 //        targetSdkVersion 24
         targetSdkVersion 28
-        versionCode 39
-        versionName "1.0.39"
+        versionCode 40
+        versionName "1.0.40"
 
         ndk{abiFilters "armeabi", "armeabi-v7a", "x86", "mips", "arm-v8a"}
     }

@@ -58,6 +58,7 @@ import com.linkb.jstx.network.model.SNSChatImage;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.ModifyPersonInfoResult;
 import com.linkb.jstx.network.result.RegionResult;
+import com.linkb.jstx.profession.MomentBgUpdatePro;
 import com.linkb.jstx.util.AppTools;
 import com.linkb.jstx.util.BackgroundThreadHandler;
 import com.linkb.jstx.util.FileURLBuilder;
@@ -95,6 +96,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     TextView rightBtn;
     @BindView(R.id.icon)
     WebImageView imgHeader;
+    @BindView(R.id.viewMomentsBgGrp)
+    View viewMomentsBgGrp;
     @BindView(R.id.viewMomentsBg)
     WebImageView viewMomentsBg;
 
@@ -137,6 +140,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
     WorlAreaOpt worlAreaOpt;
 
+    MomentBgUpdatePro momentBgUpdatePro;
+
     @Override
     protected int getToolbarTitle() {
         return super.getToolbarTitle();
@@ -149,6 +154,8 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         titleTv.setText(getString(R.string.label_setting_profile));
         llPassword.setVisibility(View.GONE);
         modify_email_rly.setVisibility(View.GONE);
+
+        viewMomentsBgGrp.setVisibility(View.GONE);
         initUserData();
 
     }
@@ -200,7 +207,27 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
      */
     @OnClick(R.id.viewMomentsBgGrp)
     public void updateMomentsBg() {
-        startActivityForResult(new Intent(this, PhotoAlbumActivity.class), REQUEST_CODE_MomentsBg);
+        if(momentBgUpdatePro==null){
+            momentBgUpdatePro=new MomentBgUpdatePro();
+            momentBgUpdatePro.setOnMomentBgUpdateProCallback(new MomentBgUpdatePro.OnMomentBgUpdateProCallback() {
+                @Override
+                public void onShowProgressDialog(boolean hasShow, String msg) {
+                    if(hasShow){
+                        showProgressDialog(msg);
+                    }else {
+                        hideProgressDialog();
+                    }
+                }
+
+                @Override
+                public void onMomentBgUpdateCallback(boolean hasSuc, String key, Object object) {
+                    BackgroundThreadHandler.postUIThread(() ->{
+                        rrefreshMomentsBg(key);
+                    });
+                }
+            });
+        }
+        momentBgUpdatePro.navToSelectPhoto(this);
 //        buildPhotoView();
     }
     /**
@@ -509,13 +536,16 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_USER_ICON, user.account, photo, this);
             showProgressDialog(getString(R.string.tip_file_uploading, 0));
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MomentsBg) {
-            AppTools.startIconPhotoCrop(this, data.getData(),350,350,REQUEST_CODE_MomentsBgZoom);
+        if(momentBgUpdatePro!=null){
+            momentBgUpdatePro.onActivityResult(requestCode, resultCode, data);
         }
-        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MomentsBgZoom){
-            File photo = new File(Global.getCropPhotoFilePath());
-            upLoadMomentsBg(photo);
-        }
+//        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MomentsBg) {
+//            AppTools.startIconPhotoCrop(this, data.getData(),350,350,REQUEST_CODE_MomentsBgZoom);
+//        }
+//        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MomentsBgZoom){
+//            File photo = new File(Global.getCropPhotoFilePath());
+//            upLoadMomentsBg(photo);
+//        }
 //        if (resultCode == RESULT_OK && requestCode == PhotoAlbumActivity.REQUEST_CODE_MULT) {
 //            List<File>  list=(List<File>) data.getSerializableExtra("files");
 //            if(list.size()>0){
@@ -630,6 +660,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
             mSexChangeDialog.dismiss();
             mSexChangeDialog = null;
         }
+        if(momentBgUpdatePro!=null){
+            momentBgUpdatePro.release();
+            momentBgUpdatePro=null;
+        }
     }
     HttpRequestListener httpRequestListener=new HttpRequestListener() {
         @Override
@@ -670,59 +704,6 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     }
     private void rrefreshMomentsBg(String key){
         viewMomentsBg.load(FileURLBuilder.getMomentFileUrl(key), R.drawable.circle_banner_normal, 0);
-    }
-    private void upLoadMomentsBg( File photoBg){
-        if(!photoBg.exists()){
-            System.out.println(" uploadSingleImage MOMENT file not exists ");
-        }
-        String filePatch=photoBg.getAbsolutePath();
-       final String fileName=filePatch.substring(filePatch.lastIndexOf("/")+1);
-
-        showProgressDialog(getString(R.string.tip_file_uploading, 0));
-        uploadSingleImage(photoBg,fileName,new SimpleFileUploadListener(){
-            @Override
-            public void onUploadCompleted(FileResource resource) {
-
-                BackgroundThreadHandler.postUIThread(() ->{
-                    rrefreshMomentsBg(resource.key);
-                });
-                final User userTemp=new User();
-                userTemp.backgroudUrl=resource.key;
-                HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
-                User user=Global.getCurrentUser();
-                user.backgroudUrl=userTemp.backgroudUrl;
-                Global.modifyAccount(user);
-            }
-
-            @Override
-            public void onUploadProgress(String key, float progress) {
-                super.onUploadProgress(key, progress);
-                showProgressDialog(getString(R.string.tip_file_uploading, (int) progress));
-            }
-
-            @Override
-            public void onUploadFailured(FileResource resource, Exception e) {
-                e.printStackTrace();
-                hideProgressDialog();
-            }
-        });
-    }
-    /** 上传单张图片封装
-     * */
-    private void uploadSingleImage(final File file,String fileKey, final OSSFileUploadListener listener) {
-        CloudFileUploader.asyncUpload(FileURLBuilder.BUCKET_MOMENT,fileKey,file, new SimpleFileUploadListener(){
-            @Override
-            public void onUploadCompleted(FileResource resource) {
-                Log.d(TAG, "onUploadCompleted =======" + resource.key );
-                listener.onUploadCompleted(resource);
-            }
-
-            @Override
-            public void onUploadFailured(FileResource resource, Exception e) {
-                Log.d(TAG, "onUploadFailured =======" + resource.key );
-                listener.onUploadFailured(resource,e);
-            }
-        });
     }
 
 }

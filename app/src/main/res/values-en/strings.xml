@@ -413,6 +413,7 @@
     <string name="label_user_org">structure：</string>
     <string name="label_user_icon">icon：</string>
     <string name="label_moments_bg">moments background：</string>
+    <string name="label_update_moments_bg">Update Background</string>
     <string name="label_user_name">name：</string>
     <string name="label_user_marriage">Marital status：</string>
     <string name="label_user_gender">gender：</string>

@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.linkb.jstx.listener.OnMomentBgClickLisenter;
 import com.linkb.jstx.model.Comment;
 import com.linkb.jstx.activity.trend.MomentMessageActivity;
 import com.linkb.jstx.listener.OnItemClickedListener;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class TimelineMomentHeaderView extends LinearLayout implements View.OnClickListener {
     private OnItemClickedListener onIconClickedListener;
+    private OnMomentBgClickLisenter onMomentBgClickLisenter;
     private WebImageView wallpaper;
 
     public TimelineMomentHeaderView(Context paramContext, AttributeSet paramAttributeSet) {
@@ -34,6 +36,7 @@ public class TimelineMomentHeaderView extends LinearLayout implements View.OnCli
         wallpaper = findViewById(R.id.wallpaper);
         int height = (int) (Resources.getSystem().getDisplayMetrics().widthPixels / 1.8);
         wallpaper.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,height));
+        wallpaper.setOnClickListener(this);
     }
 
     public void showMessageRemind(List<Message> msgList) {
@@ -76,6 +79,9 @@ public class TimelineMomentHeaderView extends LinearLayout implements View.OnCli
                     onIconClickedListener.onItemClicked(view.getId(), view);
                 }
                 break;
+            case R.id.wallpaper:
+                if (onMomentBgClickLisenter != null)  onMomentBgClickLisenter.onMomentBgClick(view.getId(), view);
+                break;
         }
     }
 
@@ -83,5 +89,7 @@ public class TimelineMomentHeaderView extends LinearLayout implements View.OnCli
         this.onIconClickedListener = onIconClickedListener;
     }
 
-
+    public void setOnMomentBgClickLisenter(OnMomentBgClickLisenter onMomentBgClickLisenter) {
+        this.onMomentBgClickLisenter = onMomentBgClickLisenter;
+    }
 }

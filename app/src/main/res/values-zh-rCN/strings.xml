@@ -411,6 +411,7 @@
     <string name="label_user_org">组织：</string>
     <string name="label_user_icon">头像：</string>
     <string name="label_moments_bg">朋友圈背景：</string>
+    <string name="label_update_moments_bg">更换相册封面</string>
     <string name="label_user_name">名称：</string>
     <string name="label_user_gender">性别：</string>
     <string name="label_user_marriage">婚姻状况：</string>

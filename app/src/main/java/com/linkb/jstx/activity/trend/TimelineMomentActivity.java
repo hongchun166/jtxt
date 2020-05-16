@@ -14,11 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.linkb.jstx.activity.base.CIMMonitorActivity;
+import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
+import com.linkb.jstx.dialog.MomentBgClickDialog;
 import com.linkb.jstx.listener.OnItemClickedListener;
 import com.linkb.jstx.listener.OnListViewRefreshListener;
+import com.linkb.jstx.listener.OnMomentBgClickLisenter;
 import com.linkb.jstx.model.Comment;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.http.HttpServiceManager;
@@ -48,6 +51,8 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.R;
 import com.linkb.jstx.network.result.v2.QueryUserInfoResult;
+import com.linkb.jstx.profession.MomentBgUpdatePro;
+import com.linkb.jstx.util.BackgroundThreadHandler;
 import com.linkb.jstx.util.FileURLBuilder;
 import com.google.gson.Gson;
 
@@ -55,7 +60,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class TimelineMomentActivity extends CIMMonitorActivity implements OnListViewRefreshListener, OnLoadRecyclerViewListener, OnCommentSelectedListener, OnInputPanelEventListener, OnItemClickedListener, HttpRequestListener {
+public class TimelineMomentActivity extends CIMMonitorActivity implements OnListViewRefreshListener, OnLoadRecyclerViewListener,
+        OnCommentSelectedListener, OnInputPanelEventListener,
+        OnItemClickedListener, HttpRequestListener, OnMomentBgClickLisenter {
     private CustomSwipeRefreshLayout swipeRefreshLayout;
     private MomentListViewAdapter adapter;
     private LoadMoreRecyclerView momentListView;
@@ -70,6 +77,9 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     private Comment comment;
     private Moment moment;
     private String transitionName;
+
+    MomentBgUpdatePro momentBgUpdatePro;
+
     @Override
     public int getContentLayout() {
         return R.layout.activity_trend_circle;
@@ -95,6 +105,7 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         adapter.getHeaderView().displayIcon(FileURLBuilder.getUserIconUrl(self.account));
         adapter.getHeaderView().showMessageRemind(MessageRepository.queryNewMoments(3));
         adapter.getHeaderView().setOnIconClickedListener(this);
+        adapter.getHeaderView().setOnMomentBgClickLisenter(this);
 
         adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(String.valueOf(self.getBackgroudUrl())));
 
@@ -186,6 +197,9 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         if (resultCode == RESULT_OK && requestCode == VideoRecorderActivity.REQUEST_CODE) {
             data.setClass(this, MomentPublishActivity.class);
             this.startActivityForResult(data, MomentPublishActivity.REQUEST_CODE);
+        }
+        if(momentBgUpdatePro!=null){
+            momentBgUpdatePro.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -308,6 +322,10 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
     @Override
     public void onDestroy() {
         LvxinApplication.unregisterLocalReceiver(mInnerMomentReceiver);
+        if(momentBgUpdatePro!=null){
+            momentBgUpdatePro.release();
+            momentBgUpdatePro=null;
+        }
         super.onDestroy();
     }
 
@@ -341,6 +359,40 @@ public class TimelineMomentActivity extends CIMMonitorActivity implements OnList
         startActivity(new Intent(this, MineMomentActivity.class));
     }
 
+
+    @Override
+    public void onMomentBgClick(Object obj, View view) {
+        if(momentBgUpdatePro==null){
+            momentBgUpdatePro=new MomentBgUpdatePro();
+            momentBgUpdatePro.setOnMomentBgUpdateProCallback(new MomentBgUpdatePro.OnMomentBgUpdateProCallback() {
+                @Override
+                public void onShowProgressDialog(boolean hasShow, String msg) {
+                    if(hasShow){
+                        showProgressDialog(msg);
+                    }else {
+                        hideProgressDialog();
+                    }
+                }
+
+                @Override
+                public void onMomentBgUpdateCallback(boolean hasSuc, String key, Object object) {
+                    BackgroundThreadHandler.postUIThread(() ->{
+                        rrefreshMomentsBg(key);
+                    });
+                }
+            });
+        }
+        MomentBgClickDialog dialog=new MomentBgClickDialog(this);
+        dialog.show();
+        dialog.setOnDialogMomentBgClick(view1 -> {
+            momentBgUpdatePro.navToSelectPhoto(TimelineMomentActivity.this);
+        });
+    }
+    private void rrefreshMomentsBg(String key){
+        if(adapter!=null){
+            adapter.getHeaderView().displayBg(FileURLBuilder.getMomentFileUrl(key));
+        }
+    }
     public class InnerMomentReceiver extends BroadcastReceiver {
 
         @Override
