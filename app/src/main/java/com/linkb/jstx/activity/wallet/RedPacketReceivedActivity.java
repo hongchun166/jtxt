@@ -56,7 +56,9 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
     @BindView(R.id.red_packet_tips_lly)
     View redPacketsTipsLly;
 
-    private int mRedPacketStatus;
+    @BindView(R.id.red_packet_received_tips)
+    TextView red_packet_received_tips;
+
 
     private RedPacketReceiveDetailAdapter mAdapter;
     private List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> mList = new ArrayList<>();
@@ -89,7 +91,7 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mDataBean = (RedpackgeGetInfoResult.DataBean) getIntent().getSerializableExtra(RedpackgeGetInfoResult.DataBean.class.getName());
-        mRedPacketStatus = getIntent().getIntExtra(QueryRedPacketStatusResult.REDPACKET_STATUS, 0);
+//      int  mRedPacketStatus = getIntent().getIntExtra(QueryRedPacketStatusResult.REDPACKET_STATUS, 0);
         recyclerView.setAdapter(mAdapter = new RedPacketReceiveDetailAdapter(this, mList, getRedPackgeBeanInfo().getSendNumberNum()));
 
         initDate();
@@ -106,21 +108,21 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
         redPacketCurrencyTv.setText(cName);
         mAdapter.setDangWei(cName);
 
+        int mRedPacketStatus = TextUtils.isEmpty(getRedPackgeBeanInfo().getState())?0:Integer.valueOf(getRedPackgeBeanInfo().getState());
 //        if (getRedPackgeBeanInfo().getSendAccount().equals(Global.getCurrentUser().getAccount())
         if(String.valueOf(Constant.RedPacketType.COMMON_RED_PACKET).equals(getRedPackgeBeanInfo().getType())){
             //自己发的红包，等待对方领取
             refreshLayout.setVisibility(View.GONE);
             checkBalanceView.setVisibility(View.GONE);
             redPacketsTipsLly.setVisibility(View.VISIBLE);
+            if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed ){
+                red_packet_received_tips.setText(R.string.red_packet_empty);//红包已领取完
+            }else if( mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut){
+                red_packet_received_tips.setText(R.string.red_packet_timeOut);//红包已过期
+            }
         }else {
-//            redPacketsTipsLly.setVisibility(View.GONE);
-//            if (getRedPackgeBeanInfo().getType() == Constant.RedPacketType.COMMON_RED_PACKET){
-//                refreshLayout.setVisibility(View.GONE);
-//                checkBalanceView.setVisibility(View.VISIBLE);
-//            }else {
-                refreshLayout.setVisibility(View.VISIBLE);
-                checkBalanceView.setVisibility(View.GONE);
-//            }
+            refreshLayout.setVisibility(View.VISIBLE);
+            checkBalanceView.setVisibility(View.GONE);
         }
 
         HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(getRedPackgeBeanInfo().getId()),  this);

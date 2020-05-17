@@ -30,7 +30,10 @@ public class RedpackgeGetInfoResult extends BaseResult {
          * receiver : valueNull
          * remark : 恭厚厚
          * surplusNumber : 3
+         *
+         * {@link com.linkb.jstx.app.Constant.RedPacketType}
          * type : 3
+         *
          * userName : 黑狐
          * version : 0
          * sendTime : Wed Apr 08 22:04:55 CST 2020
@@ -41,7 +44,9 @@ public class RedpackgeGetInfoResult extends BaseResult {
          * sendNumber : 3
          * endTime : Thu Apr 09 22:04:55 CST 2020
          * id : 67
-         * state : 0
+         *
+         * state : 0    0, "可领取" ,1, "超时",2, "已领完"
+         *
          * currencyId : 1
          * class : class com.dby.jstx.model.Redpackge
          */

@@ -138,6 +138,8 @@
     <string name="red_packet_restore_to_wallet">already put in balance</string>
     <string name="red_packet_received_tips">waited Receive</string>
     <string name="red_packet_received_tips_default">Red packet waited Receive</string>
+    <string name="red_packet_timeOut">Red packet Time Out</string>
+    <string name="red_packet_YiLingWang">Red packet No more</string>
     <string name="send_red_packer_count_default">send red packet total 0</string>
     <string name="receive_red_packer_count">send red packet total %1$d </string>
 

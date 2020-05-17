@@ -256,6 +256,8 @@
     <string name="is_no_limit">不限</string>
     <string name="red_packet_received_tips">红包等待对方领取</string>
     <string name="red_packet_received_tips_default">红包等待对方领取</string>
+    <string name="red_packet_timeOut">红包已过期</string>
+    <string name="red_packet_YiLingWang">红包已领完</string>
     <string name="BLink_Pay">KiKi Pay</string>
     <string name="more_currency">更多币种</string>
     <string name="sending_red_packet">红包发送中</string>
