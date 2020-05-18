@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.linkb.jstx.app.ClientConfig;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.database.MessageRepository;
@@ -133,8 +135,14 @@ public abstract class BaseToMessageView extends RelativeLayout implements OnMess
         setTag(message);
         readMark.setVisibility(View.INVISIBLE);
         if (message.format.equals(FORMAT_RED_PACKET) && message.extra != null){
-            SendRedPacketResultV2.DataBean  dataBean = new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
-            icon.load(FileURLBuilder.getUserIconUrl(dataBean.getSendAccount()), R.mipmap.lianxiren, 999);
+            Log.i("fromJson==",message.extra);
+            SendRedPacketResultV2.DataBean  dataBean =null;
+            try {
+                dataBean=new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
+                icon.load(FileURLBuilder.getUserIconUrl(dataBean.getSendAccount()), R.mipmap.lianxiren, 999);
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+            }
         }else {
             icon.load(FileURLBuilder.getUserIconUrl(self.account), R.mipmap.lianxiren, 999);
         }

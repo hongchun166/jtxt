@@ -109,22 +109,21 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
         mAdapter.setDangWei(cName);
 
         int mRedPacketStatus = TextUtils.isEmpty(getRedPackgeBeanInfo().getState())?0:Integer.valueOf(getRedPackgeBeanInfo().getState());
-//        if (getRedPackgeBeanInfo().getSendAccount().equals(Global.getCurrentUser().getAccount())
-        if(String.valueOf(Constant.RedPacketType.COMMON_RED_PACKET).equals(getRedPackgeBeanInfo().getType())){
-            //自己发的红包，等待对方领取
+        if(getRedPackgeBeanInfo().getGetState()==1){
+            refreshLayout.setVisibility(View.VISIBLE);
+            checkBalanceView.setVisibility(View.GONE);
+        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed){
+            refreshLayout.setVisibility(View.VISIBLE);
+            checkBalanceView.setVisibility(View.GONE);
+        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut){
             refreshLayout.setVisibility(View.GONE);
             checkBalanceView.setVisibility(View.GONE);
             redPacketsTipsLly.setVisibility(View.VISIBLE);
-            if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed ){
-                red_packet_received_tips.setText(R.string.red_packet_empty);//红包已领取完
-            }else if( mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut){
-                red_packet_received_tips.setText(R.string.red_packet_timeOut);//红包已过期
-            }
+            red_packet_received_tips.setText(R.string.red_packet_timeOut);//红包已过期
         }else {
             refreshLayout.setVisibility(View.VISIBLE);
             checkBalanceView.setVisibility(View.GONE);
         }
-
         HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(getRedPackgeBeanInfo().getId()),  this);
     }
 

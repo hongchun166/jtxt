@@ -5,8 +5,11 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.linkb.R;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.network.result.v2.SendRedPacketResultV2;
+import com.linkb.jstx.util.FileURLBuilder;
 
 public class FromMessageRedPacketView extends BaseToMessageView {
 
@@ -32,8 +35,14 @@ public class FromMessageRedPacketView extends BaseToMessageView {
             setVisibility(GONE);
 
         }else {
-            SendRedPacketResultV2.DataBean dataBean = new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
-            initRedPacket(dataBean);
+
+            SendRedPacketResultV2.DataBean  dataBean =null;
+            try {
+                dataBean=new Gson().fromJson(message.extra, SendRedPacketResultV2.DataBean.class);
+                initRedPacket(dataBean);
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+            }
         }
     }
 

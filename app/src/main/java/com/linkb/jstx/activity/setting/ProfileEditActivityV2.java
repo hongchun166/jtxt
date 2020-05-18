@@ -178,7 +178,7 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         rrefreshMomentsBg(String.valueOf(user.backgroudUrl));
 
 
-        tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
+        tvMarriage.setText(User.marrriageTypeToStr(user.getMarrriage()));
         tvTelephone.setText(TextUtils.isEmpty(user.telephone) ? "" : user.telephone);
         tvAccount.setText(TextUtils.isEmpty(user.code) ? "" : user.code);
         tvNAme.setText(TextUtils.isEmpty(user.name) ? "" : user.name);//佚名
@@ -278,21 +278,21 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
     @OnClick(R.id.ll_modify_marriage)
     public void marriage() {
         if (mMarriageChangeDialog == null) mMarriageChangeDialog = new MarriageChangeDialogV2(this);
-        mMarriageChangeDialog.updateStatus(user == null ? 0 : TextUtils.isEmpty(user.marrriage) ? 0 : Integer.parseInt(user.marrriage));
+        //单身|非单身
+
+        if(user == null || TextUtils.isEmpty(user.getMarrriage())){
+            mMarriageChangeDialog.updateStatus(0);
+        }else {
+            mMarriageChangeDialog.updateStatus(Integer.valueOf(user.getMarrriageType()));
+        }
         mMarriageChangeDialog.setOnMarriageCheckListener(new MarriageChangeDialogV2.OnMarriageCheckListener() {
             @Override
             public void marriageStatus(int type) {
-                user.marrriage = String.valueOf(type);
-
-                String unmarried=getString(R.string.unmarried2);
-                String marriage=getString(R.string.marriage2);
+                user.setMarrriage(User.marrriageTypeToStr(String.valueOf(type)));
                 final User userTemp=new User();
-                userTemp.marrriage=TextUtils.isEmpty(user.marrriage) ? unmarried : "0".equals(user.marrriage) ? unmarried: marriage;
+                userTemp.setMarrriage(user.getMarrriage());
                 HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
-
-
-                tvMarriage.setText(TextUtils.isEmpty(user.marrriage) ? R.string.unmarried2 : "0".equals(user.marrriage) ? R.string.unmarried2 : R.string.marriage2);
-
+                tvMarriage.setText(user.getMarrriage());
                 Global.modifyAccount(user);
                 mMarriageChangeDialog.dismiss();
             }

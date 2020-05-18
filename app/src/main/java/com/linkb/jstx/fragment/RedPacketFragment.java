@@ -150,6 +150,9 @@ public class RedPacketFragment extends BaseDialogFragment implements HttpRequest
     public void onHttpRequestSucceed(ReceivedRedPacketResult result, OriginalCall call) {
         if (result.isSuccess()) {
             //红包领取成功
+            //result.getData().getValue();
+            mDataBean.setGetState(1);
+            mDataBean.setMoney(String.valueOf(result.getData().getValue()));
             Intent intent = new Intent(getActivity(), RedPacketReceivedActivity.class);
             intent.putExtra(RedpackgeGetInfoResult.DataBean.class.getName(), mDataBean);
             startActivity(intent);

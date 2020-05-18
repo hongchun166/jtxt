@@ -228,7 +228,7 @@ public class HttpServiceManagerV2 {
         if(!TextUtils.isEmpty(user.headUrl)) requestBody.addParameter("headUrl", user.headUrl);
         if(!TextUtils.isEmpty(user.name)) requestBody.addParameter("name", user.name);
         if(!TextUtils.isEmpty(user.gender)) requestBody.addParameter("gender", user.gender);
-        if(!TextUtils.isEmpty(user.marrriage)) requestBody.addParameter("marrriage", user.marrriage);
+        if(!TextUtils.isEmpty(user.getMarrriage())) requestBody.addParameter("marrriage", user.getMarrriage());
         if(!TextUtils.isEmpty(user.telephone)) requestBody.addParameter("telephone", user.telephone);
         if(!TextUtils.isEmpty(user.industry)) requestBody.addParameter("industry", user.industry);
         if(!TextUtils.isEmpty(user.position)) requestBody.addParameter("position", user.position);

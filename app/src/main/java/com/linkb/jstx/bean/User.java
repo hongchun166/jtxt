@@ -1,6 +1,8 @@
 
 package com.linkb.jstx.bean;
 
+import android.text.TextUtils;
+
 import com.linkb.jstx.model.Friend;
 
 import java.io.Serializable;
@@ -27,7 +29,7 @@ public class User implements Serializable {
     public String motto;//签名
     public int grade;
     public boolean disabled;
-    public String marrriage;//婚姻
+    private String marrriage;//婚姻
     public String area;//区域
     public String industry;//行业
     public String tag;//标签
@@ -198,5 +200,37 @@ public class User implements Serializable {
 
     public void setBackgroudUrl(String backgroudUrl) {
         this.backgroudUrl = backgroudUrl;
+    }
+
+
+    /**
+     *  0、单身
+     *  1、非单身
+     * @return
+     */
+    public String getMarrriageType(){
+       return marrriageStrToType(marrriage);
+    }
+    public static String marrriageStrToType(String marrriage){
+        if( TextUtils.isEmpty(marrriage) ){
+            return "0";
+        }else {
+            if("单身".equals(marrriage) || "0".equals(marrriage)){
+                return "0";
+            }else {
+                return "1";
+            }
+        }
+    }
+    public static String marrriageTypeToStr(String marrriageType){
+        if(TextUtils.isEmpty(marrriageType) ){
+            return "单身";
+        }else {
+            if("单身".equals(marrriageType) || "0".equals(marrriageType)){
+                return "单身";
+            }else {
+                return "非单身";
+            }
+        }
     }
 }
