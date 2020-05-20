@@ -144,7 +144,7 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
 
     private void notifyItemMoved(ChatItem chatItem, int toPosition) {
         int index = dataList.indexOf(chatItem);
-        log("==notifyItemMoved=="+"==index:"+index+",toPosition:"+toPosition+","+chatItem.source.getId());
+        log("==notifyItemMoved=="+"==index:"+index+",toPosition:"+toPosition+",sourceId:"+(chatItem.source==null?" null":chatItem.source.getId()));
         if(index==-1){
             boolean hasFind=false;
             int count=0;

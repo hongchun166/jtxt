@@ -566,7 +566,7 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
                     .orderBy("timestamp", false)
                     .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
                     .and()
-                    .in("action", MessageHelp.getGrpAction())
+                    .in("action", Constant.MessageAction.ACTION_1,Constant.MessageAction.ACTION_3,Constant.MessageAction.ACTION_GrpRedPack)
                     .query();
         } catch (SQLException e) {
             e.printStackTrace();

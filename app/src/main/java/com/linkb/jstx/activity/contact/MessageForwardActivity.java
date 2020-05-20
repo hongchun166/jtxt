@@ -50,7 +50,7 @@ import java.util.List;
 
 public class MessageForwardActivity extends BaseActivity implements OnContactHandleListener, TextWatcher, OnDialogButtonClickListener, HttpRequestListener<MessageForwardResult>,OnItemClickedListener<MessageSource> {
 
-    private static final String[] INCLUDED_MESSAGE_TYPES = new String[]{Constant.MessageAction.ACTION_0, Constant.MessageAction.ACTION_1, Constant.MessageAction.ACTION_3, Constant.MessageAction.ACTION_GrpReadPack};
+    private static final String[] INCLUDED_MESSAGE_TYPES = new String[]{Constant.MessageAction.ACTION_0, Constant.MessageAction.ACTION_1, Constant.MessageAction.ACTION_3, Constant.MessageAction.ACTION_GrpRedPack};
     private RencentContactsAdapter adapter;
     private User self;
     SharedMessageDialog sharedDialog;
