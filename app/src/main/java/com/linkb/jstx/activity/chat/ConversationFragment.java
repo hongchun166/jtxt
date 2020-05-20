@@ -77,6 +77,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_2);
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_3);
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_ReadDelete);
+        INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_GrpRedPack);
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_102);
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_103);
         INCLUDED_MESSAGE_TYPES.add(Constant.MessageAction.ACTION_104);

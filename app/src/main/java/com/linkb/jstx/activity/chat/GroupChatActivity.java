@@ -30,6 +30,7 @@ import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseDataResult;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
 import com.linkb.jstx.network.result.QueryGroupInfoResult;
+import com.linkb.jstx.profession.MessageHelp;
 import com.linkb.jstx.util.AppTools;
 import com.linkb.jstx.util.MessageUtil;
 import com.linkb.jstx.database.GroupRepository;
@@ -186,15 +187,19 @@ public class GroupChatActivity extends FriendChatActivity implements ViewTreeObs
     }
     @Override
     public String getMessageAction(String format,boolean checkReadDelete) {
-        // TODO: 2019/3/20  
-        return Constant.MessageAction.ACTION_3;
+        // TODO: 2019/3/20
+        if(format.equals(Constant.MessageFormat.FORMAT_RED_PACKET)){
+            return Constant.MessageAction.ACTION_GrpRedPack;
+        }else {
+            return Constant.MessageAction.ACTION_3;
+        }
     }
 
     @Override
     public void onMessageReceived(com.farsunset.cim.sdk.android.model.Message message) {
 
         Message msg = MessageUtil.transform(message);
-        if (Constant.MessageAction.ACTION_3.equals(msg.action) && msg.sender.equals(super.mMessageSource.getId())) {
+        if ( MessageHelp.hasGrpActionByAction(message.getAction()) && msg.sender.equals(super.mMessageSource.getId())) {
             mAdapter.addMessage(msg);
             mChatListView.smartScrollToBottom();
             MessageRepository.updateStatus(msg.id, Message.STATUS_READ);

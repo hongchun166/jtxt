@@ -18,6 +18,7 @@ import com.j256.ormlite.dao.GenericRawResults;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
+import com.linkb.jstx.profession.MessageHelp;
 
 import org.apache.commons.io.IOUtils;
 
@@ -563,7 +564,10 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         try {
             return manager.databaseDao.queryBuilder().offset(start).limit(pageSize)
                     .orderBy("timestamp", false)
-                    .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender)).and().in("action",Constant.MessageAction.ACTION_1,Constant.MessageAction.ACTION_3).query();
+                    .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
+                    .and()
+                    .in("action", MessageHelp.getGrpAction())
+                    .query();
         } catch (SQLException e) {
             e.printStackTrace();
         }

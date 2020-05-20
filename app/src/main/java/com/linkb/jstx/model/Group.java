@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Group extends MessageSource implements Serializable {
     public static final String NAME = Group.class.getSimpleName();
     public static final long serialVersionUID = 4733464888738356502L;
-    private final static String[] MESSAGE_ACTION = new String[]{Constant.MessageAction.ACTION_1, Constant.MessageAction.ACTION_3, Constant.MessageAction.ACTION_112, Constant.MessageAction.ACTION_113};
+    private final static String[] MESSAGE_ACTION = new String[]{Constant.MessageAction.ACTION_1, Constant.MessageAction.ACTION_3, Constant.MessageAction.ACTION_GrpRedPack,Constant.MessageAction.ACTION_112, Constant.MessageAction.ACTION_113};
 
     @DatabaseField(id = true)
     public long id;

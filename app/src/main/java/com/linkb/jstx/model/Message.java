@@ -64,25 +64,13 @@ public class Message implements Serializable {
     @DatabaseField
     public int effectiveTime=10;//阅后-有效时间
 
-    private String[] isNeedSoundTypes = new String[]{Constant.MessageAction.ACTION_0,
-            Constant.MessageAction.ACTION_2,
-            Constant.MessageAction.ACTION_3,
-            Constant.MessageAction.ACTION_102,
-            Constant.MessageAction.ACTION_103,
-            Constant.MessageAction.ACTION_104,
-            Constant.MessageAction.ACTION_105,
-            Constant.MessageAction.ACTION_106,
-            Constant.MessageAction.ACTION_107
-    };
+
 
     //是否为动作消息，无需记录，无需显示
     public boolean isActionMessage() {
         return action.startsWith("9");
     }
 
-    public boolean isNeedSound() {
-        return Arrays.asList(isNeedSoundTypes).contains(action);
-    }
 
     //是否为动作消息，无需记录，无需显示
     public boolean isNoNeedShow() {

@@ -129,7 +129,9 @@ public abstract class BaseFromMessageView extends RelativeLayout implements OnMe
         icon.setTag(R.id.target, others);
         this.message = message;
 
-        if (message.action.equals(Constant.MessageAction.ACTION_3) || ((others instanceof Group) && message.action.equals(Constant.MessageAction.ACTION_1))) {
+        if (message.action.equals(Constant.MessageAction.ACTION_3)
+                || message.action.equals(Constant.MessageAction.ACTION_GrpRedPack)
+                || ((others instanceof Group) && message.action.equals(Constant.MessageAction.ACTION_1))) {
             if (!TextUtils.isEmpty(message.extra)){
                 Friend friend = null;
                 if (message.extra.contains(MessageExtra.TYPE_AT)){  // @人的时候的消息格式 为发送者@接受者: extra:13298682700AT://17602060697
