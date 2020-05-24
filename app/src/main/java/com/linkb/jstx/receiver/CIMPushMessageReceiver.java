@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.res.ComplexColorCompat;
+import android.text.TextUtils;
 
 import com.farsunset.cim.sdk.android.CIMEventBroadcastReceiver;
 import com.farsunset.cim.sdk.android.CIMListenerManager;
@@ -198,7 +199,15 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
         if (!isNeedDispatch) {
             return;
         }
-
+        if(msg.action.equals(Constant.MessageAction.ACTION_GrpRedPack)){
+            if(msg.content.startsWith("RedPackgePojo") || TextUtils.isEmpty(msg.extra)){
+                return;
+            }
+        }
+        if(MessageRepository.hasMessageRepeat(msg)){
+            MLog.i(TAG, "hasMessageRepeat:true==收到服务器-重复数据");
+            return;
+        }
         MessageRepository.add(msg);
         CIMListenerManager.notifyOnMessageReceived(message);
 

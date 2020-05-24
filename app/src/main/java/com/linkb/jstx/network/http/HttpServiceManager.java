@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.ArrayMap;
+import android.util.Log;
 
 import com.farsunset.cim.sdk.android.CIMPushService;
 import com.farsunset.cim.sdk.android.constant.CIMConstant;
@@ -20,6 +21,7 @@ import com.linkb.jstx.app.LvxinApplication;
 import com.linkb.jstx.app.URLConstant;
 import com.linkb.jstx.bean.ChatItem;
 import com.linkb.jstx.bean.FileResource;
+import com.linkb.jstx.comparator.MessageIdComparator;
 import com.linkb.jstx.database.FriendRepository;
 import com.linkb.jstx.database.MessageRepository;
 import com.linkb.jstx.database.MicroServerRepository;
@@ -107,8 +109,18 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.linkb.jstx.app.URLConstant.GET_ALL_GROUP;
 import static com.linkb.jstx.app.URLConstant.MESSAGE_REVOKE_URL;
@@ -358,20 +370,57 @@ public class HttpServiceManager {
     }
 
     public static void queryOfflineMessage() {
+        long maxId=MessageRepository.queryMessageMaxId(Global.getCurrentUser().account);
         HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.MESSAGE_OFFLINELIST_URL, MessageListResult.class);
+        requestBody.addPathVariable("maxId",maxId);
         requestBody.setRunWithOtherThread();
         HttpRequestLauncher.execute(requestBody, new SimpleHttpRequestListener<MessageListResult>() {
             @Override
             public void onHttpRequestSucceed(MessageListResult result, OriginalCall call) {
                 if (result.isSuccess() && result.isNotEmpty()) {
-                    for (Message message : result.dataList) {
-                        Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
-                        intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), MessageUtil.transform(message));
-                        intent.putExtra(Constant.NEED_RECEIPT, false);
-                        LvxinApplication.sendGlobalBroadcastPackageName(intent);
-                    }
                     HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.MESSAGE_BATCH_RECEIVE_URL, BaseResult.class);
                     HttpRequestLauncher.executeQuietly(requestBody);
+
+                    HashMap<String,Message> temp=new HashMap<>();
+                    if(result.dataList.size()>1){
+                        Collections.sort(result.dataList,new MessageIdComparator());
+                    }
+                    final String loginAccount=Global.getCurrentUser().account;
+                    Observable<Message> listObservable = Observable.fromIterable(result.dataList)
+                            .filter(message -> {
+                                String key=message.sender+"_"+message.receiver+"_"+message.format+"_"+message.action+"_"+message.timestamp;
+                                if(temp.containsKey(key)){
+                                    Message mapM=temp.get(key);
+                                    if(String.valueOf(mapM.content).equals(String.valueOf(message.content)) && String.valueOf(mapM.extra).equals(String.valueOf(message.extra))){
+                                        return false;
+                                    }else {
+                                        temp.put((key+System.currentTimeMillis()),message);
+                                        return true;
+                                    }
+                                }else {
+                                    temp.put(key,message);
+                                    return true;
+                                }
+                            });
+                    Observable<Long> timerObservable = Observable.interval(100, TimeUnit.MILLISECONDS);
+                    Observable.zip(listObservable, timerObservable, (message, aLong) -> message)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(message -> {
+                                Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
+                                intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), MessageUtil.transform(message));
+                                intent.putExtra(Constant.NEED_RECEIPT, false);
+                                LvxinApplication.sendGlobalBroadcastPackageName(intent);
+                            });
+
+//                    for (Message message : result.dataList) {
+//                        Intent intent = new Intent(CIMConstant.IntentAction.ACTION_MESSAGE_RECEIVED);
+//                        intent.putExtra(com.farsunset.cim.sdk.android.model.Message.class.getName(), MessageUtil.transform(message));
+//                        intent.putExtra(Constant.NEED_RECEIPT, false);
+//                        LvxinApplication.sendGlobalBroadcastPackageName(intent);
+//                    }
+//                    HttpRequestBody requestBody = new HttpRequestBody(HttpMethod.GET, URLConstant.MESSAGE_BATCH_RECEIVE_URL, BaseResult.class);
+//                    HttpRequestLauncher.executeQuietly(requestBody);
                 }
             }
         });

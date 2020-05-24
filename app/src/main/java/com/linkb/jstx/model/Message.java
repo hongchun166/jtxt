@@ -4,6 +4,7 @@ package com.linkb.jstx.model;
 import com.linkb.jstx.app.Constant;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.linkb.jstx.app.Global;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -64,7 +65,14 @@ public class Message implements Serializable {
     @DatabaseField
     public int effectiveTime=10;//阅后-有效时间
 
+    @DatabaseField
+    private String loginAccount;
+    @DatabaseField(columnName = "msg_key", unique = true)
+    private String msgByUserKey;
 
+    public Message() {
+        loginAccount= Global.getCurrentUser().account;
+    }
 
     //是否为动作消息，无需记录，无需显示
     public boolean isActionMessage() {
@@ -118,5 +126,20 @@ public class Message implements Serializable {
 
     public void setEffectiveTime(int effectiveTime) {
         this.effectiveTime = effectiveTime;
+    }
+    public String getLoginAccount() {
+        return loginAccount;
+    }
+
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount;
+    }
+
+    public String getMsgByUserKey() {
+        return msgByUserKey;
+    }
+
+    public void setMsgByUserKey(String msgByUserKey) {
+        this.msgByUserKey = msgByUserKey;
     }
 }

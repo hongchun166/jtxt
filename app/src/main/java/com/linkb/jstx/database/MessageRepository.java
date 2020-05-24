@@ -53,6 +53,20 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         String sql = "update " + Message.TABLE_NAME + " set state = ? where state = ? ";
         innerExecuteSQL(sql, new String[]{Constant.MessageStatus.STATUS_SEND_FAILURE, Constant.MessageStatus.STATUS_SENDING});
     }
+    public static boolean hasMessageRepeat(Message msg){
+        String msgKey=Global.getCurrentUser().account+"_"+msg.id;
+        try {
+            Message msgQu=manager.databaseDao.queryBuilder().where().eq("msg_key", msgKey).queryForFirst();
+            if(msgQu!=null){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public  static void add(Message msg) {
 
         //9开头的为无需记录的动作消息
@@ -62,6 +76,8 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         if (INCLUDED_MESSAGE_TYPES.contains(msg.action)){
             if (queryMessage(msg, INCLUDED_MESSAGE_TYPES.toArray()).size() > 0) return;
         }
+        String msgKey=Global.getCurrentUser().account+"_"+msg.id;
+        msg.setMsgByUserKey(msgKey);
         manager.innerSave(msg);
     }
 
@@ -127,7 +143,22 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         return new ArrayList<>();
     }
 
-
+    public static long queryMessageMaxId(String loginAccount) {
+        try {
+            Message message2= manager.databaseDao.queryBuilder()
+                    .orderBy("id", false)
+                    .where().eq("loginAccount", loginAccount)
+                    .queryForFirst();
+            if(message2==null){
+                return 0;
+            }else {
+                return message2.id;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
     public static Message queryReceivedLastMessage(String sender, Object[] action) {
         try {
 
@@ -258,47 +289,68 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
     }
 
     public static long countNewIncludedTypesBySender(String sender, Object[] action) {
-
+        String loginAccount=Global.getCurrentUser().account;
         List<Message> umRedmessageList = new ArrayList<>();
-        String actions = TextUtils.join(",", action);
-        String account = Global.getCurrentAccount();
-        String sql = "SELECT id,sender,receiver,action,format,title,content,extra,state,handle,timestamp FROM ( SELECT receiver as source, * FROM " + Message.TABLE_NAME + " WHERE sender = ?   and action in("+actions+") UNION SELECT sender as source, * FROM " + Message.TABLE_NAME +" WHERE receiver = ? and action in("+actions+")) GROUP BY source ORDER BY max(timestamp) DESC";
-        GenericRawResults<String[]> rawResults = null;
         try {
-            rawResults = manager.databaseDao.queryRaw(sql,account,account);
+            List<Message> messageList=manager.databaseDao.queryBuilder().offset(0L).limit(100L)
+                    .orderBy("timestamp", false)
+                    .where().raw(formatSQLString("(receiver=? or sender=? )", sender, sender))
+                    .and().eq("loginAccount", loginAccount)
+                    .and().in("action", action).query();
+            for (Message message : messageList) {
+                if (!message.state.equals("0")) continue;
+                umRedmessageList.add(message);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         }
+        return umRedmessageList.size();
 
-        while (rawResults != null && rawResults.iterator().hasNext()) {
-            String [] row = rawResults.iterator().next();
-            Message message = new Message();
-            message.id = Long.valueOf(row[0]);
-            message.sender = row[1];
-            message.receiver = row[2];
-            message.action = row[3];
-            message.format = row[4];
-            message.title = row[5];
-            message.content = row[6];
-            message.extra = row[7];
-            message.state = row[8];
-            message.handle = row[9];
-            message.timestamp = Long.parseLong(row[10]);
-
-            MessageSource source = MessageParserFactory.getFactory().parserMessageSource(message);
-            if (source == null || !message.state.equals("0")) continue;
-            if (message.sender.equals(sender)) umRedmessageList.add(message);
-        }
-
-        IOUtils.closeQuietly(rawResults);
+//        List<Message> umRedmessageList = new ArrayList<>();
+//        String actions = TextUtils.join(",", action);
+//        String account = Global.getCurrentAccount();
+//        String sql = "SELECT id,sender,receiver,action,format,title,content,extra,state,handle,timestamp FROM ( SELECT receiver as source, * FROM " + Message.TABLE_NAME + " WHERE sender = ?   and action in("+actions+") UNION SELECT sender as source, * FROM " + Message.TABLE_NAME +" WHERE receiver = ? and action in("+actions+")) GROUP BY source ORDER BY max(timestamp) DESC";
+//        GenericRawResults<String[]> rawResults = null;
 //        try {
-//            return manager.databaseDao.queryBuilder().where().eq("sender", sender).and().eq("state", Message.STATUS_NOT_READ).and().in("action", action).countOf();
+//            rawResults = manager.databaseDao.queryRaw(sql,account,account);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
+//            return 0;
 //        }
-//        return 0;
-        return umRedmessageList.size();
+//
+//        while (rawResults != null && rawResults.iterator().hasNext()) {
+//            String [] row = rawResults.iterator().next();
+//            Message message = new Message();
+//            message.id = Long.valueOf(row[0]);
+//            message.sender = row[1];
+//            message.receiver = row[2];
+//            message.action = row[3];
+//            message.format = row[4];
+//            message.title = row[5];
+//            message.content = row[6];
+//            message.extra = row[7];
+//            message.state = row[8];
+//            message.handle = row[9];
+//            message.timestamp = Long.parseLong(row[10]);
+//
+//            MessageSource source = MessageParserFactory.getFactory().parserMessageSource(message);
+//            if (source == null || !message.state.equals("0")) continue;
+////            if (message.sender.equals(sender)){
+////                umRedmessageList.add(message);
+////            }
+//            if (message.sender.equals(sender) || message.receiver.equals(sender)){
+//                umRedmessageList.add(message);
+//            }
+//        }
+//
+//        IOUtils.closeQuietly(rawResults);
+////        try {
+////            return manager.databaseDao.queryBuilder().where().eq("sender", sender).and().eq("state", Message.STATUS_NOT_READ).and().in("action", action).countOf();
+////        } catch (SQLException e) {
+////            e.printStackTrace();
+////        }
+////        return 0;
+//        return umRedmessageList.size();
 
     }
 
@@ -377,48 +429,65 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
     }
 
     public static int queryIncludedNewCount(Object[] includedTypes) {
+
+        String loginAccount=Global.getCurrentUser().account;
         List<Message> umRedmessageList = new ArrayList<>();
-        String actions = TextUtils.join(",", includedTypes);
-        String account = Global.getCurrentAccount();
-        String sql = "SELECT id,sender,receiver,action,format,title,content,extra,state,handle,timestamp FROM ( SELECT receiver as source, * FROM " + Message.TABLE_NAME + " WHERE sender = ?   and action in("+actions+") UNION SELECT sender as source, * FROM " + Message.TABLE_NAME +" WHERE receiver = ? and action in("+actions+")) GROUP BY source ORDER BY max(timestamp) DESC";
-        GenericRawResults<String[]> rawResults = null;
         try {
-            rawResults = manager.databaseDao.queryRaw(sql,account,account);
+            List<Message> messageList=manager.databaseDao.queryBuilder().offset(0L).limit(100L)
+                    .orderBy("timestamp", false)
+                    .where().raw(formatSQLString("(loginAccount=? )", loginAccount))
+                    .and().in("action", includedTypes).query();
+            for (Message message : messageList) {
+                if (!message.state.equals("0")) continue;
+                umRedmessageList.add(message);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         }
+        return umRedmessageList.size();
 
-        while (rawResults != null && rawResults.iterator().hasNext()) {
-            String [] row = rawResults.iterator().next();
-            Message message = new Message();
-            message.id = Long.valueOf(row[0]);
-            message.sender = row[1];
-            message.receiver = row[2];
-            message.action = row[3];
-            message.format = row[4];
-            message.title = row[5];
-            message.content = row[6];
-            message.extra = row[7];
-            message.state = row[8];
-            message.handle = row[9];
-            message.timestamp = Long.parseLong(row[10]);
-
-            MessageSource source = MessageParserFactory.getFactory().parserMessageSource(message);
-            if (source == null || !message.state.equals("0")) continue;
-            umRedmessageList.add(message);
-        }
-
-        IOUtils.closeQuietly(rawResults);
-
-
-//
+//        List<Message> umRedmessageList = new ArrayList<>();
+//        String actions = TextUtils.join(",", includedTypes);
+//        String account = Global.getCurrentAccount();
+//        String sql = "SELECT id,sender,receiver,action,format,title,content,extra,state,handle,timestamp FROM ( SELECT receiver as source, * FROM " + Message.TABLE_NAME + " WHERE sender = ?   and action in("+actions+") UNION SELECT sender as source, * FROM " + Message.TABLE_NAME +" WHERE receiver = ? and action in("+actions+")) GROUP BY source ORDER BY max(timestamp) DESC";
+//        GenericRawResults<String[]> rawResults = null;
 //        try {
-//            return (int) manager.databaseDao.queryBuilder().where().eq("state", Message.STATUS_NOT_READ).and().in("action", includedTypes).countOf();
+//            rawResults = manager.databaseDao.queryRaw(sql,account,account);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
+//            return 0;
 //        }
-        return umRedmessageList.size();
+//
+//        while (rawResults != null && rawResults.iterator().hasNext()) {
+//            String [] row = rawResults.iterator().next();
+//            Message message = new Message();
+//            message.id = Long.valueOf(row[0]);
+//            message.sender = row[1];
+//            message.receiver = row[2];
+//            message.action = row[3];
+//            message.format = row[4];
+//            message.title = row[5];
+//            message.content = row[6];
+//            message.extra = row[7];
+//            message.state = row[8];
+//            message.handle = row[9];
+//            message.timestamp = Long.parseLong(row[10]);
+//
+//            MessageSource source = MessageParserFactory.getFactory().parserMessageSource(message);
+//            if (source == null || !message.state.equals("0")) continue;
+//            umRedmessageList.add(message);
+//        }
+//
+//        IOUtils.closeQuietly(rawResults);
+//
+//
+////
+////        try {
+////            return (int) manager.databaseDao.queryBuilder().where().eq("state", Message.STATUS_NOT_READ).and().in("action", includedTypes).countOf();
+////        } catch (SQLException e) {
+////            e.printStackTrace();
+////        }
+//        return umRedmessageList.size();
 
 
     }

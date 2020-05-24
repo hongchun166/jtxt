@@ -24,6 +24,7 @@ import com.linkb.jstx.bean.User;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.database.GroupRepository;
 import com.linkb.jstx.fragment.PasswordInputFragment;
+import com.linkb.jstx.listener.OnSignCallback;
 import com.linkb.jstx.model.Group;
 import com.linkb.jstx.network.http.HttpRequestBody;
 import com.linkb.jstx.network.http.HttpRequestLauncher;
@@ -204,17 +205,25 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
         startActivityForResult(intent, 0x11);
     }
 
-    @OnClick(R.id.send_red_packet_confirm_button)
-    public void gotoSendRedPackedt(){
+    /**
+     * 用户是否设置支付密码
+     * @return
+     */
+    private void checkSaveTradePasswordState(OnSignCallback<Boolean> callback){
+        if(!TextUtils.isEmpty(Global.getTradePassword())){
+           if(callback!=null) callback.onSignCallback(true);
+           return;
+        }
         User user=Global.getCurrentUser();
         HttpServiceManagerV2.getTradePasswordState(user.getAccount(), new HttpRequestListener<GetTradePasswordStateResult>() {
             @Override
             public void onHttpRequestSucceed(GetTradePasswordStateResult result, OriginalCall call) {
                 if(result.isSuccess()){
                     if(result.getData().hasSetPswSuc()){
-                        mPasswordInputFragment = PasswordInputFragment.getInstance(redPacketAmountEditText.getText().toString(), coinNameTv.getText().toString());
-                        mPasswordInputFragment.setListener(RedPacketActivityV2.this);
-                        mPasswordInputFragment.show(RedPacketActivityV2.this.getSupportFragmentManager(), "PasswordInputFragment");
+                        Global.setTradePassword("1");
+                        if(callback!=null){
+                            callback.onSignCallback(true);
+                        }
                     }else{
                         startActivity(new Intent(RedPacketActivityV2.this, ModifyApplyPasswordActivity.class));
                     }
@@ -225,7 +234,18 @@ public class RedPacketActivityV2 extends BaseActivity implements PasswordInputFr
                 showToastView(R.string.password_empty_error);
             }
         });
+    }
 
+    @OnClick(R.id.send_red_packet_confirm_button)
+    public void gotoSendRedPackedt(){
+        checkSaveTradePasswordState(new OnSignCallback<Boolean>() {
+            @Override
+            public void onSignCallback(Boolean aBoolean) {
+                mPasswordInputFragment = PasswordInputFragment.getInstance(redPacketAmountEditText.getText().toString(), coinNameTv.getText().toString());
+                mPasswordInputFragment.setListener(RedPacketActivityV2.this);
+                mPasswordInputFragment.show(RedPacketActivityV2.this.getSupportFragmentManager(), "PasswordInputFragment");
+            }
+        });
     }
 
     @OnClick(R.id.red_packet_record_fly)

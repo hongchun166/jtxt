@@ -394,4 +394,16 @@ public class Global {
         String timeStr=sp.getString(account+"_"+friendAccount+"_UserToFriend",String.valueOf(10));
         return Integer.valueOf(timeStr);
     }
+
+    public static String getTradePassword(){
+        String account=getCurrentUser().account;
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        String tradePasswordState=sp.getString(account+"_TradePasswordState","");
+        return tradePasswordState;
+    }
+    public static void setTradePassword(String state){
+        String account=getCurrentUser().account;
+        SharedPreferences sp = LvxinApplication.getInstance().getSharedPreferences(MODEL_KEY, Context.MODE_PRIVATE);
+        sp.edit().putString(account+"_TradePasswordState",state).apply();
+    }
 }

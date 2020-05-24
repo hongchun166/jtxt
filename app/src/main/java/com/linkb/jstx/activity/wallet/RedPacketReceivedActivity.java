@@ -109,22 +109,48 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
         mAdapter.setDangWei(cName);
 
         int mRedPacketStatus = TextUtils.isEmpty(getRedPackgeBeanInfo().getState())?0:Integer.valueOf(getRedPackgeBeanInfo().getState());
-        if(getRedPackgeBeanInfo().getGetState()==1){
+
+        updateViewByState(getRedPackgeBeanInfo().getType(),getRedPackgeBeanInfo().getGetState(),mRedPacketStatus);
+
+        HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(getRedPackgeBeanInfo().getId()),  this);
+    }
+    public void updateRedPackagerByRedpackgeBean(GetReceiverDetailResultV2.DataBean.RedpackgeBean bean){
+        if(bean==null){
+            return;
+        }
+        title.setText(getResources().getString(R.string.red_packet_sender, bean.getUserName()));
+        remarkTv.setText(bean.getRemark());
+        totalRedPacketTv.setText(String.valueOf(bean.getMoney()));
+        String cName= TextUtils.isEmpty(bean.getCurrencyName())?"KKC":bean.getCurrencyName();
+        redPacketCurrencyTv.setText(cName);
+        mAdapter.setDangWei(cName);
+    }
+
+    private void updateViewByState(String type,int getState,int mRedPacketStatus ){
+        System.out.println("==updateViewByState=="+type+","+getState+","+mRedPacketStatus);
+        if(getState==1){//自己已经领取
             refreshLayout.setVisibility(View.VISIBLE);
             checkBalanceView.setVisibility(View.GONE);
-        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed){
+            redPacketsTipsLly.setVisibility(View.GONE);
+        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_Receiveed){//红包已领完
             refreshLayout.setVisibility(View.VISIBLE);
             checkBalanceView.setVisibility(View.GONE);
-        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut){
+            redPacketsTipsLly.setVisibility(View.VISIBLE);
+            red_packet_received_tips.setText(R.string.red_packet_empty);
+        }else if(mRedPacketStatus==QueryRedPacketStatusResult.RED_PACKET_TimeOut){//红包已经过期
             refreshLayout.setVisibility(View.GONE);
             checkBalanceView.setVisibility(View.GONE);
             redPacketsTipsLly.setVisibility(View.VISIBLE);
             red_packet_received_tips.setText(R.string.red_packet_timeOut);//红包已过期
+        }else if(type.equals(String.valueOf(Constant.RedPacketType.COMMON_RED_PACKET))){
+            refreshLayout.setVisibility(View.GONE);
+            checkBalanceView.setVisibility(View.GONE);
+            redPacketsTipsLly.setVisibility(View.VISIBLE);
         }else {
             refreshLayout.setVisibility(View.VISIBLE);
             checkBalanceView.setVisibility(View.GONE);
+            redPacketsTipsLly.setVisibility(View.GONE);
         }
-        HttpServiceManagerV2.redpackgeGetReceiverDetail(String.valueOf(getRedPackgeBeanInfo().getId()),  this);
     }
 
     @Override
@@ -151,7 +177,18 @@ public class RedPacketReceivedActivity extends BaseActivity implements HttpReque
     @Override
     public void onHttpRequestSucceed(GetReceiverDetailResultV2 result, OriginalCall call) {
         if (result.isSuccess()){
-            mAdapter.replaceAll(result.getData().getRedpackgeReceivers());
+            if(result.getData()!=null){
+                List<GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean> list= result.getData().getRedpackgeReceivers();
+                mAdapter.replaceAll(list);
+                if(list.size()>0){
+                    redPacketsTipsLly.setVisibility(View.GONE);
+                }
+                if(result.getData()!=null){
+                    GetReceiverDetailResultV2.DataBean.RedpackgeBean redpackgeBean=result.getData().getRedpackge();
+                    updateRedPackagerByRedpackgeBean(redpackgeBean);
+                }
+            }
+
         }
     }
 

@@ -69,7 +69,7 @@ public class RedPacketReceiveDetailAdapter extends RecyclerView.Adapter {
             GetReceiverDetailResultV2.DataBean.RedpackgeReceiversBean dataBean = mList.get(i - 1);
 
             holder.avatarImg.load(FileURLBuilder.getUserIconUrl(dataBean.getReceiverAccount()), R.mipmap.lianxiren);
-            holder.nameTv.setText(dataBean.getReceiverAccount());
+            holder.nameTv.setText(dataBean.getUserName());
             holder.timeTv.setText(dataBean.getTimeFinalStr());
 
             holder.receivedRedPacketTv.setText(mContext.getResources().getString(R.string.red_packet_receive_money,dataBean.getReceiverMoney(),dangWei));

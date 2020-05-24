@@ -1,6 +1,7 @@
 package com.linkb.jstx.network.result.v2;
 
 import android.support.annotation.Keep;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.linkb.jstx.network.result.BaseResult;
@@ -58,6 +59,8 @@ public class GetReceiverDetailResultV2 extends BaseResult {
             private String receiverAccount;
             private String receiverMoney;
             private String receiverTime;
+            private String userName;
+
 
             public long getId() {
                 return id;
@@ -89,6 +92,17 @@ public class GetReceiverDetailResultV2 extends BaseResult {
 
             public void setReceiverMoney(String receiverMoney) {
                 this.receiverMoney = receiverMoney;
+            }
+
+            public String getUserName() {
+                if(TextUtils.isEmpty(userName)){
+                    return receiverAccount;
+                }
+                return userName;
+            }
+
+            public void setUserName(String userName) {
+                this.userName = userName;
             }
 
             public String getReceiverTime() {

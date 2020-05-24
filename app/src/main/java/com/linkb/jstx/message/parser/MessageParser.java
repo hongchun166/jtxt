@@ -94,7 +94,7 @@ public abstract class MessageParser {
         }
 
         long noReadSum = MessageRepository.countNewIncludedTypesBySender(source.getId(), source.getMessageAction());
-        viewHolder.badge.setText(String.valueOf(noReadSum));
+        viewHolder.badge.setText(noReadSum>=99?"99+":String.valueOf(noReadSum));
         viewHolder.badge.setVisibility(noReadSum > 0 ? View.VISIBLE : View.GONE);
 
 

@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import com.jungly.gridpasswordview.GridPasswordView;
 import com.linkb.R;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManager;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BaseResult;
+import com.linkb.jstx.util.KeyBoardUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +27,8 @@ import butterknife.OnClick;
 
 public class PasswordInputFragment extends BaseDialogFragment implements HttpRequestListener {
 
-    @BindView(R.id.password_input_view) GridPasswordView gridPasswordView;
+    @BindView(R.id.password_input_view)
+    GridPasswordView gridPasswordView;
     @BindView(R.id.textView82)
     TextView passwordErrorTips;
     @BindView(R.id.textView77)
@@ -98,6 +101,18 @@ public class PasswordInputFragment extends BaseDialogFragment implements HttpReq
         }
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        KeyBoardUtil.onPopSoftInput(gridPasswordView);
+
+        gridPasswordView.postDelayed(()->{
+            gridPasswordView.callOnClick();
+        },200);
+
+
+    }
+
     public void setListener(VerifyApplyPasswordListener mListener) {
         this.mListener = mListener;
     }
@@ -132,6 +147,7 @@ public class PasswordInputFragment extends BaseDialogFragment implements HttpReq
             passwordErrorTips.setVisibility(View.GONE);
             if (mListener != null) mListener.onVerifySuccess(applyPassword);
         }else {
+            Global.setTradePassword("");
             passwordErrorTips.setVisibility(View.VISIBLE);
             if (mListener != null) mListener.onVerifyFailed();
         }

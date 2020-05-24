@@ -171,7 +171,7 @@ public class ConversationFragment extends CIMMonitorFragment implements OnDialog
         TextView newMsgBadge = tabView.findViewById(R.id.badge);
         int sum = MessageRepository.queryIncludedNewCount(INCLUDED_MESSAGE_TYPES.toArray());
         if (sum > 0) {
-            newMsgBadge.setText(String.valueOf(sum));
+            newMsgBadge.setText(sum>=99?"99+":String.valueOf(sum));
             newMsgBadge.setVisibility(View.VISIBLE);
         } else {
             newMsgBadge.setVisibility(View.GONE);
