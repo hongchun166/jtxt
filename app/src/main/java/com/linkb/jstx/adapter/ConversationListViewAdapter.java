@@ -47,8 +47,13 @@ public class ConversationListViewAdapter extends RecyclerView.Adapter<RecentChat
         viewHolder.itemView.setOnLongClickListener(this);
         viewHolder.itemView.setOnTouchListener(this);
         viewHolder.itemView.setBackgroundResource(hasChatTop(chatItem) ? R.drawable.chat_top_list_background : R.drawable.background_bottom_line_selector);
-        MessageParser messageParser =  MessageParserFactory.getFactory().getMessageParser(chatItem.message.action);
-        messageParser.displayItemRecentMessageView(viewHolder,chatItem);
+        if(chatItem.message!=null){
+            MessageParser messageParser =  MessageParserFactory.getFactory().getMessageParser(chatItem.message.action);
+            messageParser.displayItemRecentMessageView(viewHolder,chatItem);
+        }else {
+            log("==onBindViewHolder==chatItem.message==null");
+        }
+
     }
 
     @Override

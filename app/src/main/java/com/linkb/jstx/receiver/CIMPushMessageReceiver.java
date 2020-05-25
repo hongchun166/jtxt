@@ -206,7 +206,7 @@ public final class CIMPushMessageReceiver extends CIMEventBroadcastReceiver {
         }
         if(MessageRepository.hasMessageRepeat(msg)){
             MLog.i(TAG, "hasMessageRepeat:true==收到服务器-重复数据");
-            return;
+//            return;
         }
         MessageRepository.add(msg);
         CIMListenerManager.notifyOnMessageReceived(message);

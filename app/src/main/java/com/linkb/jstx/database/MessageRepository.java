@@ -19,6 +19,7 @@ import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.OriginalCall;
 import com.linkb.jstx.network.result.BasePersonInfoResult;
 import com.linkb.jstx.profession.MessageHelp;
+import com.linkb.jstx.util.MLog;
 
 import org.apache.commons.io.IOUtils;
 
@@ -54,6 +55,9 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         innerExecuteSQL(sql, new String[]{Constant.MessageStatus.STATUS_SEND_FAILURE, Constant.MessageStatus.STATUS_SENDING});
     }
     public static boolean hasMessageRepeat(Message msg){
+        if(msg.id==0){
+            return false;
+        }
         String msgKey=Global.getCurrentUser().account+"_"+msg.id;
         try {
             Message msgQu=manager.databaseDao.queryBuilder().where().eq("msg_key", msgKey).queryForFirst();
@@ -76,8 +80,15 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
         if (INCLUDED_MESSAGE_TYPES.contains(msg.action)){
             if (queryMessage(msg, INCLUDED_MESSAGE_TYPES.toArray()).size() > 0) return;
         }
-        String msgKey=Global.getCurrentUser().account+"_"+msg.id;
-        msg.setMsgByUserKey(msgKey);
+        if(msg.id==0){
+            MLog.i("MessageRepository", "MessageSave=add=msg.id==0");
+            String msgKey=Global.getCurrentUser().account+"_"+msg.id+"_"+System.currentTimeMillis();
+            msg.setMsgByUserKey(msgKey);
+        }else {
+            String msgKey=Global.getCurrentUser().account+"_"+msg.id;
+            msg.setMsgByUserKey(msgKey);
+        }
+
         manager.innerSave(msg);
     }
 
@@ -602,8 +613,8 @@ public  class MessageRepository extends BaseRepository<Message, Long> {
 
 
     public static void batchReadGroupMessage(String groupId) {
-        String sql = "update " + Message.TABLE_NAME + " set state = ? where action  = ? and sender = ? ";
-        manager.innerExecuteSQL(sql, new String[]{Message.STATUS_READ,Constant.MessageAction.ACTION_3,groupId});
+        String sql = "update " + Message.TABLE_NAME + " set state = ? where (action  = ? or action  = ?) and sender = ? ";
+        manager.innerExecuteSQL(sql, new String[]{Message.STATUS_READ,Constant.MessageAction.ACTION_3,Constant.MessageAction.ACTION_GrpRedPack,groupId});
     }
 
 

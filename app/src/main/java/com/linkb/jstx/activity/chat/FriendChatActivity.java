@@ -138,7 +138,14 @@ public class FriendChatActivity extends CIMMonitorActivityWithoutImmersion imple
 
     @Override
     public void initComponents() {
-        frienAccount=getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
+
+        try {
+            frienAccount=getIntent().getStringExtra(Constant.CHAT_OTHRES_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            frienAccount="";
+        }
+
         if(!TextUtils.isEmpty(frienAccount)){
             curIsFriendAct=true;
         }

@@ -402,7 +402,7 @@ public class HttpServiceManager {
                                     return true;
                                 }
                             });
-                    Observable<Long> timerObservable = Observable.interval(100, TimeUnit.MILLISECONDS);
+                    Observable<Long> timerObservable = Observable.interval(10, TimeUnit.MILLISECONDS);
                     Observable.zip(listObservable, timerObservable, (message, aLong) -> message)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
