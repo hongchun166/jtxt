@@ -43,6 +43,8 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
     @Override
     public void onBindViewHolder(@NonNull ExpressAdapter.ExpressViewHolder viewHolder, int i) {
         final NewsDataResult.DataListBean dataListBean = mNewsList.get(i);
+        viewHolder.dataListBean=dataListBean;
+
         viewHolder.timeTv.setText(dataListBean.getTimestampStr());
         viewHolder.titleTv.setHtml(dataListBean.getTitle());
         viewHolder.contentTv.setHtml(dataListBean.getContent());
@@ -56,36 +58,10 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
             viewHolder.viewGetRedBag.setEnabled(false);
 
         }else {
+            viewHolder.viewGetRedBag.setEnabled(true);
             viewHolder.viewGetRedBag.setBackgroundResource(R.mipmap.ic_news_redpackger_p);
         }
 
-        if (mExpressCommentListener != null){
-            viewHolder.goodNewsNumber.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mExpressCommentListener.onGoodNews(dataListBean);
-                }
-            });
-
-            viewHolder.badNewsNumber.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mExpressCommentListener.onBadNews(dataListBean);
-                }
-            });
-//            viewHolder.shareImg.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mExpressCommentListener.onShareNews(dataListBean);
-//                }
-//            });
-            viewHolder.viewGetRedBag.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mExpressCommentListener.onGetRedBag(dataListBean);
-                }
-            });
-        }
     }
 
     public void updateRedStateSuc(long itemId,double amount ){
@@ -124,7 +100,7 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         return mNewsList.size();
     }
 
-    public class ExpressViewHolder extends RecyclerView.ViewHolder{
+    public class ExpressViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.time_text_view)
         TextView timeTv;
         @BindView(R.id.textView150)
@@ -133,19 +109,31 @@ public class ExpressAdapter extends RecyclerView.Adapter<ExpressAdapter.ExpressV
         HtmlTextView titleTv;
         @BindView(R.id.content_collapse_textView)
         HtmlTextView contentTv;
-        @BindView(R.id.imageView42)
-        ImageView shareImg;
         @BindView(R.id.button11)
         TextView goodNewsNumber;
         @BindView(R.id.button12)
         TextView badNewsNumber;
         @BindView(R.id.viewGetRedBag)
         ImageView viewGetRedBag;
-
+        NewsDataResult.DataListBean dataListBean;
         public ExpressViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            shareImg.setVisibility(View.INVISIBLE);
+            viewGetRedBag.setOnClickListener(this);
+            badNewsNumber.setOnClickListener(this);
+            goodNewsNumber.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(view.getId()==R.id.viewGetRedBag){
+                if(mExpressCommentListener!=null) mExpressCommentListener.onGetRedBag(dataListBean);
+            }else if(view.getId()==R.id.button12){
+                if(mExpressCommentListener!=null)mExpressCommentListener.onBadNews(dataListBean);
+            }else if(view.getId()==R.id.button11){
+                if(mExpressCommentListener!=null)   mExpressCommentListener.onGoodNews(dataListBean);
+            }
+
         }
     }
 

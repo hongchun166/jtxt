@@ -71,63 +71,6 @@
         app:layout_constraintTop_toBottomOf="@+id/title_textView"
         app:layout_constraintEnd_toStartOf="@id/guideline2"/>
 
-    <!--<org.sufficientlysecure.htmltextview.HtmlTextView-->
-        <!--android:id="@+id/content_textView"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:text="新加坡时间2018年11月28日，WBF和PsEx数字货币交易所签约仪式在WBF大厦成功举行。"-->
-        <!--android:textColor="@color/tex_color_gray_232323"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textAppearance="@android:style/TextAppearance.Small"-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_constraintStart_toStartOf="@+id/time_text_view"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/title_textView"-->
-        <!--app:layout_constraintEnd_toStartOf="@id/guideline2"/>-->
-
-    <TextView
-        android:id="@+id/share_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:drawableStart="@mipmap/share"
-        android:drawablePadding="5dp"
-        android:text="@string/share"
-        android:textColor="@color/tex_color_gray_7B7B7B"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline2" />
-
-    <TextView
-        android:id="@+id/comment_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
-        android:drawableStart="@mipmap/comment"
-        android:drawablePadding="5dp"
-        android:text="@string/comment"
-        android:textColor="@color/tex_color_gray_7B7B7B"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/share_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/content_textView" />
-
-    <TextView
-        android:id="@+id/favorite_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
-        android:drawableStart="@mipmap/collect"
-        android:drawablePadding="5dp"
-        android:text="@string/favorite"
-        android:textColor="@color/tex_color_gray_7B7B7B"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/comment_text_view"
-        app:layout_constraintTop_toTopOf="@+id/content_textView" />
 
     <View
         android:id="@+id/view"
@@ -197,14 +140,4 @@
         app:layout_constraintStart_toEndOf="@+id/button12"
         app:layout_constraintTop_toBottomOf="@+id/content_collapse_textView"
         />
-
-    <ImageView
-        android:id="@+id/imageView42"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button12"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:srcCompat="@mipmap/share" />
-
-
 </android.support.constraint.ConstraintLayout>

@@ -159,6 +159,7 @@ public class HttpServiceManagerV2 {
 
     /**
      * 查询我的钱包某个币种余额信息
+     * 暂时不能用，币种换算
      * @param account
      * @param currencyId  钱包ID
      * @param listener

@@ -30,6 +30,8 @@ import com.j256.ormlite.stmt.query.In;
 import com.linkb.R;
 import com.linkb.jstx.activity.SelectCountryActivity;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.contact.FindFindActivity;
+import com.linkb.jstx.activity.contact.contracts.RegionDigOpt;
 import com.linkb.jstx.activity.util.PhotoAlbumActivity;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.GlideApp;
@@ -157,7 +159,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
         viewMomentsBgGrp.setVisibility(View.GONE);
         initUserData();
-
+        if(regionDigOpt==null) {
+            regionDigOpt = new RegionDigOpt();
+            regionDigOpt.loadData(this);
+        }
     }
 
     @Override
@@ -328,23 +333,26 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
 
     }
 
-    CountryBean countryBean;
+
     /**
      * 地址
      */
     @OnClick(R.id.modify_region_rly)
     public void region() {
-        changeRegion(null);
         showRegionDialog();
     }
 
+    RegionDigOpt regionDigOpt=null;
     private void showRegionDialog(){
-        if (pvCustomOptions == null) {
-            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+        if(regionDigOpt!=null) {
+            regionDigOpt.setOnRegionDigOptCallback(new RegionDigOpt.OnRegionDigOptCallback() {
                 @Override
-                public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                    String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
+                public void onRegionDigCountryClick() {
+                    startActivityForResult(new Intent(ProfileEditActivityV2.this, SelectCountryActivity.class),REQUEST_CODE_CountryBean);
+                }
 
+                @Override
+                public void onRegionSelectSuc(String region) {
                     final User userTemp=new User();
                     userTemp.area=region;
                     HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
@@ -353,110 +361,134 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
                     user.area = region;
                     Global.modifyAccount(user);
                 }
-            }).setLayoutRes(R.layout.view_region_options_layout, new CustomListener() {
-                @Override
-                public void customLayout(View v) {
-                    final TextView viewCancel = (TextView) v.findViewById(R.id.viewCancel);
-                    final TextView viewFinish = (TextView) v.findViewById(R.id.viewFinish);
-                    TextView viewCountry = (TextView) v.findViewById(R.id.viewCountry);
-                    viewCountry.setText(countryBean.getCname());
-                    viewFinish.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            pvCustomOptions.returnData();
-                            pvCustomOptions.dismiss();
-                        }
-                    });
-                    viewCancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            pvCustomOptions.dismiss();
-                        }
-                    });
-                    viewCountry.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivityForResult(
-                                    new Intent(ProfileEditActivityV2.this, SelectCountryActivity.class)
-                                    ,REQUEST_CODE_CountryBean);
-                        }
-                    });
-                }
-            })
-                    .isDialog(false)
-                    .setSubmitText(getString(R.string.finish))
-                    .setSubmitColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.color_2e76e5))
-                    .setCancelText(getString(R.string.common_cancel))
-                    .setCancelColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.divider_color_gray_999999))
-                    .setOutSideCancelable(false)
-                    .build();
-            pvCustomOptions.setSelectOptions(0, 1, 1);
-            Dialog mDialog = pvCustomOptions.getDialog();
-            if (mDialog != null) {
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        Gravity.BOTTOM);
-                params.leftMargin = 0;
-                params.rightMargin = 0;
-                pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
-                Window dialogWindow = mDialog.getWindow();
-                if (dialogWindow != null) {
-                    dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
-                    dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
-                    dialogWindow.setDimAmount(0.1f);
-                }
-            }
+            });
         }
-        pvCustomOptions.setPicker(provinces, citys);
-        pvCustomOptions.show();
+        if(regionDigOpt!=null) {
+            regionDigOpt.changeRegion(null,false);
+            regionDigOpt.showRegionDialog(this,false);
+        }
+//        if (pvCustomOptions == null) {
+//            pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+//                @Override
+//                public void onOptionsSelect(int options1, int options2, int options3, View v) {
+//                    String region = "" + provinces.get(options1) + "-" + citys.get(options1).get(options2);
+//
+//                    final User userTemp=new User();
+//                    userTemp.area=region;
+//                    HttpServiceManagerV2.updateUserInfo(userTemp,httpRequestListener);
+//
+//                    tvRegion.setText(region);
+//                    user.area = region;
+//                    Global.modifyAccount(user);
+//                }
+//            }).setLayoutRes(R.layout.view_region_options_layout, new CustomListener() {
+//                @Override
+//                public void customLayout(View v) {
+//                    final TextView viewCancel = (TextView) v.findViewById(R.id.viewCancel);
+//                    final TextView viewFinish = (TextView) v.findViewById(R.id.viewFinish);
+//                    TextView viewCountry = (TextView) v.findViewById(R.id.viewCountry);
+//                    viewCountry.setText(countryBean.getCname());
+//                    viewFinish.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            pvCustomOptions.returnData();
+//                            pvCustomOptions.dismiss();
+//                        }
+//                    });
+//                    viewCancel.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            pvCustomOptions.dismiss();
+//                        }
+//                    });
+//                    viewCountry.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            startActivityForResult(
+//                                    new Intent(ProfileEditActivityV2.this, SelectCountryActivity.class)
+//                                    ,REQUEST_CODE_CountryBean);
+//                        }
+//                    });
+//                }
+//            })
+//                    .isDialog(false)
+//                    .setSubmitText(getString(R.string.finish))
+//                    .setSubmitColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.color_2e76e5))
+//                    .setCancelText(getString(R.string.common_cancel))
+//                    .setCancelColor(ContextCompat.getColor(ProfileEditActivityV2.this, R.color.divider_color_gray_999999))
+//                    .setOutSideCancelable(false)
+//                    .build();
+//            pvCustomOptions.setSelectOptions(0, 1, 1);
+//            Dialog mDialog = pvCustomOptions.getDialog();
+//            if (mDialog != null) {
+//                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+//                        ViewGroup.LayoutParams.MATCH_PARENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT,
+//                        Gravity.BOTTOM);
+//                params.leftMargin = 0;
+//                params.rightMargin = 0;
+//                pvCustomOptions.getDialogContainerLayout().setLayoutParams(params);
+//                Window dialogWindow = mDialog.getWindow();
+//                if (dialogWindow != null) {
+//                    dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+//                    dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+//                    dialogWindow.setDimAmount(0.1f);
+//                }
+//            }
+//        }
+//        pvCustomOptions.setPicker(provinces, citys);
+//        pvCustomOptions.show();
     }
+//    CountryBean countryBean;
     private void changeRegion(CountryBean countryBean){
-        this.countryBean=countryBean;
-        if(pvCustomOptions!=null){
-            pvCustomOptions.dismiss();
-            pvCustomOptions=null;
+        if(regionDigOpt!=null){
+            regionDigOpt.changeRegion(countryBean);
         }
-        if(provinces!=null)provinces.clear();
-        if(citys!=null)citys.clear();
-        loadRegionData();
-        if(provinces.size()==0 ){
-            tvRegion.setText(countryBean.getCname());
-            if(pvCustomOptions!=null){
-                pvCustomOptions.dismiss();
-                pvCustomOptions=null;
-            }
-        }else if(citys.size()==0){
-            tvRegion.setText(countryBean.getCname());
-            if(pvCustomOptions!=null){
-                pvCustomOptions.dismiss();
-                pvCustomOptions=null;
-            }
-        }else {
-            showRegionDialog();
-        }
+//        this.countryBean=countryBean;
+//        if(pvCustomOptions!=null){
+//            pvCustomOptions.dismiss();
+//            pvCustomOptions=null;
+//        }
+//        if(provinces!=null)provinces.clear();
+//        if(citys!=null)citys.clear();
+//        loadRegionData();
+//        if(provinces.size()==0 ){
+//            tvRegion.setText(countryBean.getCname());
+//            if(pvCustomOptions!=null){
+//                pvCustomOptions.dismiss();
+//                pvCustomOptions=null;
+//            }
+//        }else if(citys.size()==0){
+//            tvRegion.setText(countryBean.getCname());
+//            if(pvCustomOptions!=null){
+//                pvCustomOptions.dismiss();
+//                pvCustomOptions=null;
+//            }
+//        }else {
+//            showRegionDialog();
+//        }
     }
-    private void loadRegionData(){
-        if(countryBean==null){
-            countryBean=new CountryBean();
-            countryBean.setId("44");//中国
-            countryBean.setCname("中国");
-            countryBean.setName("China");
-        }
-        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
-            if(countryBean.getId().equals("44")){
-                getJson("citycode.json");
-            }else {
-                List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
-                provinces = provincesDouList.get(1);
-                citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
-                if(provinces.size()==1 && provinces.get(0).equals("")){
-                    provinces.clear();
-                    provinces.add(countryBean.getCname());
-                }
-            }
-        }
-    }
+//    private void loadRegionData(){
+//        if(countryBean==null){
+//            countryBean=new CountryBean();
+//            countryBean.setId("44");//中国
+//            countryBean.setCname("中国");
+//            countryBean.setName("China");
+//        }
+//        if(provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0){
+//            if(countryBean.getId().equals("44")){
+//                getJson("citycode.json");
+//            }else {
+//                List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
+//                provinces = provincesDouList.get(1);
+//                citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
+//                if(provinces.size()==1 && provinces.get(0).equals("")){
+//                    provinces.clear();
+//                    provinces.add(countryBean.getCname());
+//                }
+//            }
+//        }
+//    }
     /**
      * 标签
      */
@@ -484,41 +516,41 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         startActivityForResult(new Intent(this, ModifyEmailActivityV2.class), REQUEST_CODE_Email);
     }
 
-    /**
-     * 读取assets本地json
-     *
-     * @param fileName 文件名称
-     */
-    public void getJson(final String fileName) {
-
-        //将json数据变成字符串
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            //获取assets资源管理器
-            AssetManager assetManager = ProfileEditActivityV2.this.getAssets();
-            //通过管理器打开文件并读取
-            BufferedReader bf = new BufferedReader(new InputStreamReader(
-                    assetManager.open(fileName)));
-            String line;
-            while ((line = bf.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            Gson gson = new Gson();
-            RegionResult regionResult = gson.fromJson(stringBuilder.toString(), RegionResult.class);
-            provinces = new ArrayList<>();
-            citys = new ArrayList<>();
-            for (int i = 0; i < regionResult.province.size(); i++) {
-                provinces.add(regionResult.province.get(i).a);
-                List<String> marr = new ArrayList<>();
-                for (int j = 0; j < regionResult.province.get(i).city.size(); j++) {
-                    marr.add(regionResult.province.get(i).city.get(j).a);
-                }
-                citys.add(marr);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * 读取assets本地json
+//     *
+//     * @param fileName 文件名称
+//     */
+//    public void getJson(final String fileName) {
+//
+//        //将json数据变成字符串
+//        StringBuilder stringBuilder = new StringBuilder();
+//        try {
+//            //获取assets资源管理器
+//            AssetManager assetManager = ProfileEditActivityV2.this.getAssets();
+//            //通过管理器打开文件并读取
+//            BufferedReader bf = new BufferedReader(new InputStreamReader(
+//                    assetManager.open(fileName)));
+//            String line;
+//            while ((line = bf.readLine()) != null) {
+//                stringBuilder.append(line);
+//            }
+//            Gson gson = new Gson();
+//            RegionResult regionResult = gson.fromJson(stringBuilder.toString(), RegionResult.class);
+//            provinces = new ArrayList<>();
+//            citys = new ArrayList<>();
+//            for (int i = 0; i < regionResult.province.size(); i++) {
+//                provinces.add(regionResult.province.get(i).a);
+//                List<String> marr = new ArrayList<>();
+//                for (int j = 0; j < regionResult.province.get(i).city.size(); j++) {
+//                    marr.add(regionResult.province.get(i).city.get(j).a);
+//                }
+//                citys.add(marr);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -663,6 +695,10 @@ public class ProfileEditActivityV2 extends BaseActivity implements OSSFileUpload
         if(momentBgUpdatePro!=null){
             momentBgUpdatePro.release();
             momentBgUpdatePro=null;
+        }
+        if(regionDigOpt!=null){
+            regionDigOpt.release();
+            regionDigOpt=null;
         }
     }
     HttpRequestListener httpRequestListener=new HttpRequestListener() {

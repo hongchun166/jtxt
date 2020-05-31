@@ -270,7 +270,7 @@ public class FindFindActivity extends BaseActivity {
     @OnClick(R.id.ll_region_item)
     public void findRegion() {
         if(regionDigOpt!=null) {
-            regionDigOpt.changeRegion(null);
+            regionDigOpt.changeRegion(null,false);
             regionDigOpt.showRegionDialog(this);
         }
     }

@@ -137,7 +137,7 @@ public class CurrencyDetailsActivityV2 extends BaseActivity  {
     private void updateData(CurrencyInfoResult result) {
         if (result == null) return;
         if (!result.isSuccess()) return;
-        tvAmount.setText(String.valueOf(result.data.lockBalance));
+        tvAmount.setText(String.valueOf(result.data.balance));
         tvCode.setText(String.valueOf(result.data.currencyAddress));
 //        records.clear();
 //        //无数据暂用假数据

@@ -111,8 +111,12 @@ public class RegionDigOpt implements View.OnClickListener {
     private void showRegionDialog() {
         showRegionDialog(context);
     }
-
-    public void showRegionDialog(Context context) {
+    boolean hasShowNoView=true;
+    public void showRegionDialog(Context contex) {
+        showRegionDialog(contex,hasShowNoView);
+    }
+    public void showRegionDialog(Context context,boolean hasShowNoView) {
+        this.hasShowNoView=hasShowNoView;
         this.context = context;
         if (pvCustomOptions == null) {
             pvCustomOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
@@ -132,7 +136,12 @@ public class RegionDigOpt implements View.OnClickListener {
                     viewFinish.setOnClickListener(RegionDigOpt.this);
                     viewCancel.setOnClickListener(RegionDigOpt.this);
                     viewCountry.setOnClickListener(RegionDigOpt.this);
-                    viewNo.setOnClickListener(RegionDigOpt.this);
+                    if(hasShowNoView){
+                        viewNo.setVisibility(View.VISIBLE);
+                        viewNo.setOnClickListener(RegionDigOpt.this);
+                    }else {
+                        viewNo.setVisibility(View.GONE);
+                    }
                 }
             })
                     .isDialog(false)
@@ -163,8 +172,10 @@ public class RegionDigOpt implements View.OnClickListener {
         pvCustomOptions.setPicker(provinces, citys);
         pvCustomOptions.show();
     }
-
     public void changeRegion(CountryBean countryBean) {
+        changeRegion(countryBean,true);
+    }
+    public void changeRegion(CountryBean countryBean,boolean hasShowDialog) {
         this.countryBean = countryBean;
         if (pvCustomOptions != null) {
             pvCustomOptions.dismiss();
@@ -174,21 +185,23 @@ public class RegionDigOpt implements View.OnClickListener {
         if (citys != null) citys.clear();
         loadRegionData();
         if (provinces.size() == 0) {
-            sendEvenSelectSuc(countryBean.getCname());
+            if(countryBean!=null)sendEvenSelectSuc(countryBean.getCname());
 //            tv_region.setText(countryBean.getCname());
             if (pvCustomOptions != null) {
                 pvCustomOptions.dismiss();
                 pvCustomOptions = null;
             }
         } else if (citys.size() == 0) {
-            sendEvenSelectSuc(countryBean.getCname());
+            if(countryBean!=null)sendEvenSelectSuc(countryBean.getCname());
 //            tv_region.setText(countryBean.getCname());
             if (pvCustomOptions != null) {
                 pvCustomOptions.dismiss();
                 pvCustomOptions = null;
             }
         } else {
-            showRegionDialog();
+            if(hasShowDialog){
+                showRegionDialog();
+            }
         }
     }
 
@@ -200,9 +213,9 @@ public class RegionDigOpt implements View.OnClickListener {
             countryBean.setName("China");
         }
         if (provinces == null || provinces.size() == 0 || citys == null || citys.size() == 0) {
-            if (countryBean.getId().equals("44")) {
-                getJson("citycode.json");
-            } else {
+//            if (countryBean.getId().equals("44")) {
+//                getJson("citycode.json");
+//            } else {
                 List<List<String>> provincesDouList = worlAreaOpt.qureyProvinceList(countryBean.getId());
                 provinces = provincesDouList.get(1);
                 citys = worlAreaOpt.qureyCityList(provincesDouList.get(0));
@@ -210,7 +223,7 @@ public class RegionDigOpt implements View.OnClickListener {
                     provinces.clear();
                     provinces.add(countryBean.getCname());
                 }
-            }
+//            }
         }
     }
 

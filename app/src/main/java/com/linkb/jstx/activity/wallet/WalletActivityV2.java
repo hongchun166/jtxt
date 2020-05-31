@@ -22,7 +22,9 @@ import com.linkb.jstx.component.GlobalEmptyView;
 import com.linkb.jstx.network.http.HttpRequestListener;
 import com.linkb.jstx.network.http.HttpServiceManagerV2;
 import com.linkb.jstx.network.http.OriginalCall;
+import com.linkb.jstx.network.result.BaseResult;
 import com.linkb.jstx.network.result.v2.AccountBalanceResult;
+import com.linkb.jstx.network.result.v2.CurrencyInfoResult;
 import com.linkb.jstx.network.result.v2.ListMyCurrencyResult;
 import com.linkb.jstx.util.ConvertUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -125,16 +127,29 @@ public class WalletActivityV2 extends BaseActivity{
     private void initDate(){
         showProgressDialog("");
         User user=Global.getCurrentUser();
-        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener<AccountBalanceResult>() {
+//        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener<AccountBalanceResult>() {
+//            @Override
+//            public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
+//                if(result.isSuccess()){
+//                    totalAssetsBtc=String.valueOf(result.getData().getBalance());
+//                    changeMoneyVisibleState();
+//                }
+//            }
+//            @Override
+//            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+//            }
+//        });
+        HttpServiceManagerV2.getMyCurrencyById(user.account,"1",new HttpRequestListener<CurrencyInfoResult>() {
             @Override
-            public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(CurrencyInfoResult result, OriginalCall call) {
                 if(result.isSuccess()){
-                    totalAssetsBtc=String.valueOf(result.getData().getBalance());
+                    totalAssetsBtc=String.valueOf(result.data.balance);
                     changeMoneyVisibleState();
                 }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
+
             }
         });
         HttpServiceManagerV2.listMyCurrency(user.account, "", new HttpRequestListener<ListMyCurrencyResult>() {
