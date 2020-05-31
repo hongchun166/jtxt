@@ -127,31 +127,31 @@ public class WalletActivityV2 extends BaseActivity{
     private void initDate(){
         showProgressDialog("");
         User user=Global.getCurrentUser();
-//        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener<AccountBalanceResult>() {
-//            @Override
-//            public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
-//                if(result.isSuccess()){
-//                    totalAssetsBtc=String.valueOf(result.getData().getBalance());
-//                    changeMoneyVisibleState();
-//                }
-//            }
-//            @Override
-//            public void onHttpRequestFailure(Exception e, OriginalCall call) {
-//            }
-//        });
-        HttpServiceManagerV2.getMyCurrencyById(user.account,"1",new HttpRequestListener<CurrencyInfoResult>() {
+        HttpServiceManagerV2.getAccountBalance(user.account, new HttpRequestListener<AccountBalanceResult>() {
             @Override
-            public void onHttpRequestSucceed(CurrencyInfoResult result, OriginalCall call) {
+            public void onHttpRequestSucceed(AccountBalanceResult result, OriginalCall call) {
                 if(result.isSuccess()){
-                    totalAssetsBtc=String.valueOf(result.data.balance);
+                    totalAssetsBtc=String.valueOf(result.getData().getBalance());
                     changeMoneyVisibleState();
                 }
             }
             @Override
             public void onHttpRequestFailure(Exception e, OriginalCall call) {
-
             }
         });
+//        HttpServiceManagerV2.getMyCurrencyById(user.account,"1",new HttpRequestListener<CurrencyInfoResult>() {
+//            @Override
+//            public void onHttpRequestSucceed(CurrencyInfoResult result, OriginalCall call) {
+//                if(result.isSuccess()){
+//                    totalAssetsBtc=String.valueOf(result.data.balance);
+//                    changeMoneyVisibleState();
+//                }
+//            }
+//            @Override
+//            public void onHttpRequestFailure(Exception e, OriginalCall call) {
+//
+//            }
+//        });
         HttpServiceManagerV2.listMyCurrency(user.account, "", new HttpRequestListener<ListMyCurrencyResult>() {
             @Override
             public void onHttpRequestSucceed(ListMyCurrencyResult result, OriginalCall call) {
