@@ -65,7 +65,7 @@ public class ChatVideoView extends CardView implements OnClickListener, OnTransm
         }
 
         if (getParent() instanceof BaseFromMessageView) {
-            extraTextView.setText(video.duration + "\" " + FileUtils.byteCountToDisplaySize(video.size));
+            extraTextView.setText(video.getDurationInt() + "\" " + FileUtils.byteCountToDisplaySize(video.size));
         }
     }
 

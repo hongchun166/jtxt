@@ -384,7 +384,7 @@ public class VideoRecorderActivity extends BaseActivity implements EasyPermissio
     @Override
     public void onSaveVideoSuccess(String s) {
         video.size = videoFile.length();
-        video.duration = mProgressView.getDurationSecond();
+        video.duration = String.valueOf(mProgressView.getDurationSecond());
         video.video = videoFile.getName();
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             video.mode = SNSVideo.HORIZONTAL;

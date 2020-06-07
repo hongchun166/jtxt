@@ -4,6 +4,7 @@ package com.linkb.jstx.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,8 +37,17 @@ public class TimelineMomentVideoView extends TimelineMomentView {
     @Override
     public void displayMoment(Moment moment, User self, OnCommentSelectedListener commentSelectedListener) {
         super.displayMoment(moment, self, commentSelectedListener);
+        Log.d("TEST_KK","content=="+moment.content+",\nextra=="+moment.extra);
+        try{
+            video = new Gson().fromJson(moment.content, SNSMomentVideo.class);
+        }catch (Exception e){
+            e.printStackTrace();
+            video=null;
+        }
 
-        video = new Gson().fromJson(moment.content, SNSMomentVideo.class);
+        if(video==null){
+            return;
+        }
         if (video.mode == SNSMomentVideo.HORIZONTAL) {
             thumbnailView.getLayoutParams().width = getContext().getResources().getDimensionPixelOffset(R.dimen.sns_video_height);
             thumbnailView.getLayoutParams().height = getContext().getResources().getDimensionPixelOffset(R.dimen.sns_video_width);
