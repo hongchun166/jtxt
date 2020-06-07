@@ -172,7 +172,7 @@ public class Global {
         if (user != null) {
             return user.account;
         }
-        return null;
+        return "";
     }
 
     public static int getChatTextMaxWidth() {

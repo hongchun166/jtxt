@@ -59,7 +59,7 @@ import butterknife.OnClick;
 
 /**
  * 找一找
- * {@link SearchFriendActivityV2}
+ *
  */
 public class FindFindActivity extends BaseActivity {
     public  final int REQUEST_INDUSTRY_CODE = 1001;//行业

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.base.BaseActivity;
+import com.linkb.jstx.activity.setting.ProfileEditActivityV2;
 import com.linkb.jstx.adapter.SearchFriendAdapter;
 import com.linkb.jstx.app.Constant;
 import com.linkb.jstx.app.Global;
@@ -127,13 +128,18 @@ public class SearchFriendActivityV3 extends BaseActivity implements HttpRequestL
 
     @Override
     public void onAddFirend(FriendQueryResult.DataListBean dataBean) {
-        mDataBean = dataBean;
-        Friend friend = new Friend();
-        friend.name = dataBean.getName();
-        friend.account = dataBean.getAccount();
-        Intent intent=new Intent(this,ApplyFriendActivityV2.class);
-        intent.putExtra(Friend.class.getName(),friend);
-        startActivity(intent);
+        if(Global.getCurrentAccount().equals(dataBean.getAccount())){
+            startActivityForResult(new Intent(this, ProfileEditActivityV2.class), 0x11);
+        }else {
+            mDataBean = dataBean;
+            Friend friend = new Friend();
+            friend.name = dataBean.getName();
+            friend.account = dataBean.getAccount();
+            Intent intent=new Intent(this,ApplyFriendActivityV2.class);
+            intent.putExtra(Friend.class.getName(),friend);
+            startActivity(intent);
+        }
+
     }
 
     private HttpRequestListener<BaseResult> addFriendRequest = new HttpRequestListener<BaseResult>() {

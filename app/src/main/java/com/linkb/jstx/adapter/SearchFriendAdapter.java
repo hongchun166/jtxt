@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.linkb.R;
 import com.linkb.jstx.activity.contact.PersonInfoActivity;
+import com.linkb.jstx.app.Global;
 import com.linkb.jstx.component.WebImageView;
 import com.linkb.jstx.model.Friend;
 import com.linkb.jstx.network.result.FriendQueryResult;
